@@ -40,8 +40,8 @@ extern "C" {
 #include <stdint.h>
 
 void X2CScope_Initialise(void);
-void X2CScope_HookUARTFunctions(void (*sendSerialFcnPntr)(uint8_t), uint8_t (*receiveSerialFcnPntr)(), \
-        uint8_t (*isReceiveDataAvailableFcnPntr)(), uint8_t (*isSendReadyFcnPntr)());
+void X2CScope_HookUARTFunctions(void (*sendSerialFcnPntr)(uint8_t), uint8_t (*receiveSerialFcnPntr)(void), \
+        uint8_t (*isReceiveDataAvailableFcnPntr)(void), uint8_t (*isSendReadyFcnPntr)(void));
 
 void sendSerial(uint8_t data);
 uint8_t receiveSerial(void);
