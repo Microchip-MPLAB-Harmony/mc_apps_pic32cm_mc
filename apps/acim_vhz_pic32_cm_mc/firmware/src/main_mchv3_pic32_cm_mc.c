@@ -98,7 +98,7 @@ int main ( void )
     return ( EXIT_FAILURE );
 }
 
-void OC_FAULT_ISR(uintptr_t context)
+void __NO_RETURN OC_FAULT_ISR(uintptr_t context)
 {
    
     motor_stop_source = OC_FAULT_STOP;
