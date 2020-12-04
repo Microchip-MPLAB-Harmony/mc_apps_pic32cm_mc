@@ -261,7 +261,7 @@ Note:         called when overcurrent is detected
 #ifdef RAM_EXECUTE
 void __ramfunc__ OC_FAULT_ISR(uintptr_t context)
 #else
-void OC_FAULT_ISR(uintptr_t context)
+void __attribute__ ((noreturn)) OC_FAULT_ISR(uintptr_t context)
 #endif
 {
     Motor_StateParams.motor_stop_source = OC_FAULT_STOP;
