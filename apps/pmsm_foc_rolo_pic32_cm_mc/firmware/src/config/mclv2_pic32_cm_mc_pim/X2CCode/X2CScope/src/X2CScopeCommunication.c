@@ -39,7 +39,7 @@ void sendSerial(uint8_t data)
     SERCOM3_USART_Write(&data,1);
 }
 
-uint8_t receiveSerial()
+uint8_t receiveSerial(void)
 {
     uint8_t data;
     bool status = false;
@@ -54,13 +54,13 @@ uint8_t receiveSerial()
     }
 }
 
-uint8_t isReceiveDataAvailable()
+uint8_t isReceiveDataAvailable(void)
 {
     return (SERCOM3_USART_ReceiverIsReady());
 
 }
 
-uint8_t isSendReady()
+uint8_t isSendReady(void)
 {
     return (SERCOM3_USART_TransmitterIsReady());
 }
