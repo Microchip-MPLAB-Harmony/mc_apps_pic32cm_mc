@@ -42,6 +42,10 @@ Key features enabled in this project are:
   - TC3 peripheral is used as a timer to measure the time elapsed between two consecutive hall edges
   - TC4 peripheral is used as an internal 1 mS timer counter
 
+  **PDEC Peripheral**:
+  - PDEC is used in Hall mode to detect the hall pattern change. 
+  - PDEC VLC interrupt is generated when hall pattern changes.
+
 - **EIC**:
   - External Interrupt Controller detects hardware over-current fault input and generates a non-recoverable fault event for TCC0, thereby shutting down the PWM in the event of an over-current fault
   - External Interrupt control also detects hall sensor edges allowing the software to update the commutation pattern
