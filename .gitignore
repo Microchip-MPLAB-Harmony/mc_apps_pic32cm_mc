@@ -3,6 +3,8 @@
 *.map
 *.d
 *.flag
+*.lock
+Gemfile
 **/nbproject/private
 **/nbproject/Makefile-*
 **/nbproject/Package-*

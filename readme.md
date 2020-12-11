@@ -1,4 +1,11 @@
-﻿# Microchip MPLAB® Harmony 3 Motor Control Application Examples for PIC32CM MC family
+﻿---
+title: Motor Control Application Examples for PIC32CM MC family
+nav_order: 1
+has_children: true
+has_toc: false
+---
+
+# Microchip MPLAB® Harmony 3 Motor Control Application Examples for PIC32CM MC family
 
 MPLAB Harmony 3 is an extension of the MPLAB® ecosystem for creating
 embedded firmware solutions for Microchip 32-bit SAM and PIC32 microcontroller
@@ -17,13 +24,12 @@ notes and licensing information.
  - [Release Notes](./release_notes.md)
  - [MPLAB Harmony License](mplab_harmony_license.md)
 
-# Contents Summary
+## Contents Summary
 
 | Folder     | Description                                               |
 |------------|-----------------------------------------------------------|
 | apps       | Demonstration applications for Motor Control              |
-| doc        | Demonstration user guide in .chm format                   |
-| docs       | Demonstration user guide in HTML format                   |
+| docs       | Contains documentation in html format for offline viewing (to be used only after cloning this repository onto a local machine). Use [github pages](https://microchip-mplab-harmony.github.io/mc_apps_pic32cm_mc/) of this repository for viewing it online.                   |
 |||
 
 
@@ -31,7 +37,7 @@ notes and licensing information.
 
 These applications contain static algorithm code and peripherals are configured using MHC. Configurations can be changed in userparam.h file. 
 
-### PIC32CM MC Family
+
 | Name | Description|
 |:---------|:-----------|
 | [PMSM FOC using Reduced Order Luenberger Observer](apps/pmsm_foc_rolo_pic32_cm_mc/readme.md) | Sensorless Field Oriented Control of PMSM using Reduced Order Luenberger Observer (ROLO) |
