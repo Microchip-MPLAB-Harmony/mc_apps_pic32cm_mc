@@ -7,9 +7,9 @@ project: pmsm_foc_rolo_pic32_cm_mc
 creation_date: 2020-12-04T17:40:27.208+05:30[Asia/Calcutta]    # ISO 8601 format: https://www.w3.org/TR/NOTE-datetime
 operating_system: Windows 10
 mhc_mode: IDE            # [IDE|Standalone|Headless]
-mhc_version: v3.6.2
+mhc_version: v3.6.5
 mplabx_version: v5.45        # if MPLAB X plugin only
-plugin_version: v3.6.1        # if MPLAB X plugin only
+plugin_version: v3.6.2        # if MPLAB X plugin only
 compiler: XC32 (2.41)
 
 modules:
