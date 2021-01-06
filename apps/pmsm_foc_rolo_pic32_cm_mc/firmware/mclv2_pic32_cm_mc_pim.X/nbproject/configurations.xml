@@ -203,21 +203,21 @@
       <logicalFolder name="f1"
                      displayName="mclv2_pic32_cm_mc_pim.mhc"
                      projectFiles="true">
-        <itemPath>..\src\config\mclv2_pic32_cm_mc_pim\mclv2_pic32_cm_mc_pim.mhc\adc0.yml</itemPath>
-        <itemPath>..\src\config\mclv2_pic32_cm_mc_pim\mclv2_pic32_cm_mc_pim.mhc\adc1.yml</itemPath>
-        <itemPath>..\src\config\mclv2_pic32_cm_mc_pim\mclv2_pic32_cm_mc_pim.mhc\cmsis.yml</itemPath>
-        <itemPath>..\src\config\mclv2_pic32_cm_mc_pim\mclv2_pic32_cm_mc_pim.mhc\core.yml</itemPath>
-        <itemPath>..\src\config\mclv2_pic32_cm_mc_pim\mclv2_pic32_cm_mc_pim.mhc\dfp.yml</itemPath>
-        <itemPath>..\src\config\mclv2_pic32_cm_mc_pim\mclv2_pic32_cm_mc_pim.mhc\divas.yml</itemPath>
-        <itemPath>..\src\config\mclv2_pic32_cm_mc_pim\mclv2_pic32_cm_mc_pim.mhc\eic.yml</itemPath>
-        <itemPath>..\src\config\mclv2_pic32_cm_mc_pim\mclv2_pic32_cm_mc_pim.mhc\evsys.yml</itemPath>
-        <itemPath>..\src\config\mclv2_pic32_cm_mc_pim\mclv2_pic32_cm_mc_pim.mhc\GraphSettings.yml</itemPath>
-        <itemPath>..\src\config\mclv2_pic32_cm_mc_pim\mclv2_pic32_cm_mc_pim.mhc\nvmctrl.yml</itemPath>
-        <itemPath>..\src\config\mclv2_pic32_cm_mc_pim\mclv2_pic32_cm_mc_pim.mhc\project.yml</itemPath>
-        <itemPath>..\src\config\mclv2_pic32_cm_mc_pim\mclv2_pic32_cm_mc_pim.mhc\sercom3.yml</itemPath>
-        <itemPath>..\src\config\mclv2_pic32_cm_mc_pim\mclv2_pic32_cm_mc_pim.mhc\settings.yml</itemPath>
-        <itemPath>..\src\config\mclv2_pic32_cm_mc_pim\mclv2_pic32_cm_mc_pim.mhc\tcc0.yml</itemPath>
-        <itemPath>..\src\config\mclv2_pic32_cm_mc_pim\mclv2_pic32_cm_mc_pim.mhc\X2CScope.yml</itemPath>
+        <itemPath>../src/config/mclv2_pic32_cm_mc_pim/mclv2_pic32_cm_mc_pim.mhc/adc0.yml</itemPath>
+        <itemPath>../src/config/mclv2_pic32_cm_mc_pim/mclv2_pic32_cm_mc_pim.mhc/adc1.yml</itemPath>
+        <itemPath>../src/config/mclv2_pic32_cm_mc_pim/mclv2_pic32_cm_mc_pim.mhc/cmsis.yml</itemPath>
+        <itemPath>../src/config/mclv2_pic32_cm_mc_pim/mclv2_pic32_cm_mc_pim.mhc/core.yml</itemPath>
+        <itemPath>../src/config/mclv2_pic32_cm_mc_pim/mclv2_pic32_cm_mc_pim.mhc/dfp.yml</itemPath>
+        <itemPath>../src/config/mclv2_pic32_cm_mc_pim/mclv2_pic32_cm_mc_pim.mhc/divas.yml</itemPath>
+        <itemPath>../src/config/mclv2_pic32_cm_mc_pim/mclv2_pic32_cm_mc_pim.mhc/eic.yml</itemPath>
+        <itemPath>../src/config/mclv2_pic32_cm_mc_pim/mclv2_pic32_cm_mc_pim.mhc/evsys.yml</itemPath>
+        <itemPath>../src/config/mclv2_pic32_cm_mc_pim/mclv2_pic32_cm_mc_pim.mhc/GraphSettings.yml</itemPath>
+        <itemPath>../src/config/mclv2_pic32_cm_mc_pim/mclv2_pic32_cm_mc_pim.mhc/nvmctrl.yml</itemPath>
+        <itemPath>../src/config/mclv2_pic32_cm_mc_pim/mclv2_pic32_cm_mc_pim.mhc/project.yml</itemPath>
+        <itemPath>../src/config/mclv2_pic32_cm_mc_pim/mclv2_pic32_cm_mc_pim.mhc/sercom3.yml</itemPath>
+        <itemPath>../src/config/mclv2_pic32_cm_mc_pim/mclv2_pic32_cm_mc_pim.mhc/settings.yml</itemPath>
+        <itemPath>../src/config/mclv2_pic32_cm_mc_pim/mclv2_pic32_cm_mc_pim.mhc/tcc0.yml</itemPath>
+        <itemPath>../src/config/mclv2_pic32_cm_mc_pim/mclv2_pic32_cm_mc_pim.mhc/X2CScope.yml</itemPath>
       </logicalFolder>
       <itemPath>Makefile</itemPath>
       <itemPath>../src/config/mclv2_pic32_cm_mc_pim/harmony-manifest-success.yml</itemPath>
