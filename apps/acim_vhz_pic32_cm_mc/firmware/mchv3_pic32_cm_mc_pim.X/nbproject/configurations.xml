@@ -259,8 +259,7 @@
       <compileType>
         <linkerTool>
           <linkerLibItems>
-            <linkerLibFileItem>../src/config/mchv3_pic32_cm_mc_pim/libCORTEXM0PLUS_X2CScope.a</linkerLibFileItem>
-            <linkerLibFileItem>../src/config/mchv3_pic32_cm_mc_pim/libCORTEXM0PLUS_X2CScope.a</linkerLibFileItem>
+            <linkerLibFileItem>../src/config/mchv3_pic32_cm_mc_pim/X2CCode/X2CScope/lib/libCORTEXM0PLUS_X2CScope.a</linkerLibFileItem>
           </linkerLibItems>
         </linkerTool>
         <archiverTool>
