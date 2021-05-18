@@ -7,6 +7,22 @@ nav_order: 99
 ![Harmony logo small](https://raw.githubusercontent.com/wiki/Microchip-MPLAB-Harmony/Microchip-MPLAB-Harmony.github.io/images/microchip_mplab_harmony_logo_small.png)
 
 # Microchip MPLAB® Harmony 3 Release Notes
+
+## Microchip MPLAB® Harmony 3 Motor Control Application Examples for PIC32CM MC family v3.0.1
+
+### Bug Fixes
+- Fixed X2CScope library path in acim_vhz_pic32_cm_mc application
+
+### Known Issues
+- Same as v3.0.0
+
+### Development Tools
+* [MPLAB X IDE v5.45](https://www.microchip.com/mplab/mplab-x-ide)
+* [MPLAB XC32 C/C++ Compiler v3.00](https://www.microchip.com/mplab/compilers)
+* MPLAB X IDE plug-ins:
+  * MPLAB Harmony Configurator (MHC) v3.6.2
+  * X2CScope v1.3.0.
+
 ## Microchip MPLAB® Harmony 3 Motor Control Application Examples for PIC32CM MC family v3.0.0
 
 
