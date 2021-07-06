@@ -59,21 +59,21 @@ children:
     - type: Values
       children:
       - type: Dynamic
-        attributes: {id: tcc0, value: TCC0CHANNEL0}
+        attributes: {id: tcc0, value: TCC0_CHANNEL0}
   - type: String
     attributes: {id: PWM_PH_V}
     children:
     - type: Values
       children:
       - type: Dynamic
-        attributes: {id: tcc0, value: TCC0CHANNEL1}
+        attributes: {id: tcc0, value: TCC0_CHANNEL1}
   - type: String
     attributes: {id: PWM_PH_W}
     children:
     - type: Values
       children:
       - type: Dynamic
-        attributes: {id: tcc0, value: TCC0CHANNEL2}
+        attributes: {id: tcc0, value: TCC0_CHANNEL2}
   - type: String
     attributes: {id: PWM_SET_DUTY_API}
     children:
@@ -100,8 +100,8 @@ children:
     children:
     - type: Values
       children:
-      - type: User
-        attributes: {value: '1200'}
+      - type: Dynamic
+        attributes: {id: tcc0, value: '0'}
   - type: KeyValueSet
     attributes: {id: TCC_0_DRVCTRL_NRE_NRV}
     children:
@@ -113,8 +113,8 @@ children:
         - {type: Value, value: 'true'}
     - type: Values
       children:
-      - type: User
-        attributes: {value: '1'}
+      - type: Dynamic
+        attributes: {id: tcc0, value: '1'}
   - type: KeyValueSet
     attributes: {id: TCC_0_WAVE_POL}
     children:
@@ -133,13 +133,20 @@ children:
         attributes: {id: visible}
         children:
         - {type: Value, value: 'false'}
+  - type: Boolean
+    attributes: {id: TCC_0_WEXCTRL_DTIEN}
+    children:
+    - type: Values
+      children:
+      - type: Dynamic
+        attributes: {id: tcc0, value: 'true'}
   - type: Integer
     attributes: {id: TCC_1_CC}
     children:
     - type: Values
       children:
-      - type: User
-        attributes: {value: '1200'}
+      - type: Dynamic
+        attributes: {id: tcc0, value: '0'}
   - type: KeyValueSet
     attributes: {id: TCC_1_DRVCTRL_NRE_NRV}
     children:
@@ -151,8 +158,8 @@ children:
         - {type: Value, value: 'true'}
     - type: Values
       children:
-      - type: User
-        attributes: {value: '1'}
+      - type: Dynamic
+        attributes: {id: tcc0, value: '1'}
   - type: KeyValueSet
     attributes: {id: TCC_1_WAVE_POL}
     children:
@@ -171,13 +178,20 @@ children:
         attributes: {id: visible}
         children:
         - {type: Value, value: 'false'}
+  - type: Boolean
+    attributes: {id: TCC_1_WEXCTRL_DTIEN}
+    children:
+    - type: Values
+      children:
+      - type: Dynamic
+        attributes: {id: tcc0, value: 'true'}
   - type: Integer
     attributes: {id: TCC_2_CC}
     children:
     - type: Values
       children:
-      - type: User
-        attributes: {value: '1200'}
+      - type: Dynamic
+        attributes: {id: tcc0, value: '0'}
   - type: KeyValueSet
     attributes: {id: TCC_2_DRVCTRL_NRE_NRV}
     children:
@@ -189,8 +203,8 @@ children:
         - {type: Value, value: 'true'}
     - type: Values
       children:
-      - type: User
-        attributes: {value: '1'}
+      - type: Dynamic
+        attributes: {id: tcc0, value: '1'}
   - type: KeyValueSet
     attributes: {id: TCC_2_WAVE_POL}
     children:
@@ -209,13 +223,13 @@ children:
         attributes: {id: visible}
         children:
         - {type: Value, value: 'false'}
-  - type: Integer
-    attributes: {id: TCC_3_CC}
+  - type: Boolean
+    attributes: {id: TCC_2_WEXCTRL_DTIEN}
     children:
     - type: Values
       children:
-      - type: User
-        attributes: {value: '1200'}
+      - type: Dynamic
+        attributes: {id: tcc0, value: 'true'}
   - type: KeyValueSet
     attributes: {id: TCC_3_DRVCTRL_NRE_NRV}
     children:
@@ -225,6 +239,10 @@ children:
         attributes: {id: visible}
         children:
         - {type: Value, value: 'true'}
+    - type: Values
+      children:
+      - type: Dynamic
+        attributes: {id: tcc0, value: '1'}
   - type: KeyValueSet
     attributes: {id: TCC_3_WAVE_POL}
     children:
@@ -254,8 +272,8 @@ children:
         - {type: Value, value: 'true'}
     - type: Values
       children:
-      - type: User
-        attributes: {value: '1'}
+      - type: Dynamic
+        attributes: {id: tcc0, value: '1'}
   - type: KeyValueSet
     attributes: {id: TCC_5_DRVCTRL_NRE_NRV}
     children:
@@ -267,8 +285,8 @@ children:
         - {type: Value, value: 'true'}
     - type: Values
       children:
-      - type: User
-        attributes: {value: '1'}
+      - type: Dynamic
+        attributes: {id: tcc0, value: '1'}
   - type: KeyValueSet
     attributes: {id: TCC_6_DRVCTRL_NRE_NRV}
     children:
@@ -280,8 +298,8 @@ children:
         - {type: Value, value: 'true'}
     - type: Values
       children:
-      - type: User
-        attributes: {value: '1'}
+      - type: Dynamic
+        attributes: {id: tcc0, value: '1'}
   - type: KeyValueSet
     attributes: {id: TCC_7_DRVCTRL_NRE_NRV}
     children:
@@ -291,6 +309,19 @@ children:
         attributes: {id: visible}
         children:
         - {type: Value, value: 'true'}
+    - type: Values
+      children:
+      - type: Dynamic
+        attributes: {id: tcc0, value: '1'}
+  - type: Comment
+    attributes: {id: TCC_COMPARE_PERIOD_COMMENT}
+    children:
+    - type: Attributes
+      children:
+      - type: Boolean
+        attributes: {id: visible}
+        children:
+        - {type: Value, value: 'false'}
   - type: Boolean
     attributes: {id: TCC_CTRLBSET_DIR}
     children:
@@ -309,10 +340,6 @@ children:
         attributes: {id: visible}
         children:
         - {type: Value, value: 'true'}
-    - type: Values
-      children:
-      - type: User
-        attributes: {value: '5'}
   - type: Integer
     attributes: {id: TCC_DRVCTRL_FILTERVAL1}
     children:
@@ -341,21 +368,21 @@ children:
         children:
         - {type: Value, value: '**** Low side dead time is 2.0 uS ****'}
   - type: KeyValueSet
-    attributes: {id: TCC_EVCTRL_EVACT0}
+    attributes: {id: TCC_EVCTRL_EVACT1}
     children:
     - type: Values
       children:
-      - type: User
-        attributes: {value: '6'}
+      - type: Dynamic
+        attributes: {id: tcc0, value: '5'}
   - type: Boolean
     attributes: {id: TCC_EVCTRL_OVFEO}
     children:
     - type: Values
       children:
-      - type: User
-        attributes: {value: 'true'}
+      - type: Dynamic
+        attributes: {id: tcc0, value: 'true'}
   - type: Boolean
-    attributes: {id: TCC_EVCTRL_TCINV0}
+    attributes: {id: TCC_EVCTRL_TCINV1}
     children:
     - type: Attributes
       children:
@@ -399,33 +426,73 @@ children:
         attributes: {id: visible}
         children:
         - {type: Value, value: 'true'}
+    - type: Values
+      children:
+      - type: Dynamic
+        attributes: {id: tcc0, value: 'true'}
+  - type: Integer
+    attributes: {id: TCC_MODULE_FREQUENCY}
+    children:
+    - type: Values
+      children:
+      - type: Dynamic
+        attributes: {id: tcc0, value: '48000000'}
   - type: Integer
     attributes: {id: TCC_PER_PER}
     children:
     - type: Values
       children:
-      - type: User
-        attributes: {value: '2400'}
+      - type: Dynamic
+        attributes: {id: tcc0, value: '2400'}
+  - type: Boolean
+    attributes: {id: TCC_PWM_INTERRUPT_MODE}
+    children:
+    - type: Values
+      children:
+      - type: Dynamic
+        attributes: {id: tcc0, value: 'true'}
+  - type: Long
+    attributes: {id: TCC_TIMER_PERIOD}
+    children:
+    - type: Values
+      children:
+      - type: Dynamic
+        attributes: {id: tcc0, value: '48000'}
   - type: KeyValueSet
     attributes: {id: TCC_WAVE_WAVEGEN}
     children:
     - type: Values
       children:
-      - type: User
-        attributes: {value: '1'}
+      - type: Dynamic
+        attributes: {id: tcc0, value: '1'}
   - type: Integer
     attributes: {id: TCC_WEXCTRL_DTHS}
     children:
     - type: Values
       children:
-      - type: User
-        attributes: {value: '96'}
+      - type: Dynamic
+        attributes: {id: tcc0, value: '96'}
   - type: Integer
     attributes: {id: TCC_WEXCTRL_DTLS}
     children:
     - type: Values
       children:
-      - type: User
-        attributes: {value: '96'}
+      - type: Dynamic
+        attributes: {id: tcc0, value: '96'}
+- type: Attachments
+  children:
+  - type: DirectCapability
+    attributes: {id: TCC0_PWM}
+    children:
+    - type: Attributes
+      children:
+      - type: String
+        attributes: {id: targetComponentID}
+        children:
+        - {type: Value, value: pmsm_foc}
+      - type: String
+        attributes: {id: targetAttachmentID}
+        children:
+        - {type: Value, value: pmsmfoc_PWM}
 - type: ElementPosition
-  attributes: {x: '24', y: '259', id: tcc0}
+  attributes: {x: '184', y: '319', id: tcc0}

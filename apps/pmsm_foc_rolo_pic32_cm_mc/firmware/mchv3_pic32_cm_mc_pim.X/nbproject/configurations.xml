@@ -8,31 +8,53 @@
         <logicalFolder name="f1"
                        displayName="mchv3_pic32_cm_mc_pim"
                        projectFiles="true">
-          <logicalFolder name="f1" displayName="peripheral" projectFiles="true">
-            <logicalFolder name="f5" displayName="adc" projectFiles="true">
+          <logicalFolder name="f3" displayName="motor_control" projectFiles="true">
+            <logicalFolder name="f1" displayName="pmsm_foc" projectFiles="true">
+              <itemPath>../src/config/mchv3_pic32_cm_mc_pim/motor_control/pmsm_foc/mc_ramp_profiler.h</itemPath>
+              <itemPath>../src/config/mchv3_pic32_cm_mc_pim/motor_control/pmsm_foc/mc_ramp_profiler.c</itemPath>
+              <itemPath>../src/config/mchv3_pic32_cm_mc_pim/motor_control/pmsm_foc/mc_current_control.h</itemPath>
+              <itemPath>../src/config/mchv3_pic32_cm_mc_pim/motor_control/pmsm_foc/mc_current_measurement.h</itemPath>
+              <itemPath>../src/config/mchv3_pic32_cm_mc_pim/motor_control/pmsm_foc/mc_error_handler.h</itemPath>
+              <itemPath>../src/config/mchv3_pic32_cm_mc_pim/motor_control/pmsm_foc/mc_flux_control.h</itemPath>
+              <itemPath>../src/config/mchv3_pic32_cm_mc_pim/motor_control/pmsm_foc/mc_function_coordinator.h</itemPath>
+              <itemPath>../src/config/mchv3_pic32_cm_mc_pim/motor_control/pmsm_foc/mc_generic_library.h</itemPath>
+              <itemPath>../src/config/mchv3_pic32_cm_mc_pim/motor_control/pmsm_foc/mc_hardware_abstraction.h</itemPath>
+              <itemPath>../src/config/mchv3_pic32_cm_mc_pim/motor_control/pmsm_foc/mc_interface_handling.h</itemPath>
+              <itemPath>../src/config/mchv3_pic32_cm_mc_pim/motor_control/pmsm_foc/mc_motor_control.h</itemPath>
+              <itemPath>../src/config/mchv3_pic32_cm_mc_pim/motor_control/pmsm_foc/mc_pmsm_foc.h</itemPath>
+              <itemPath>../src/config/mchv3_pic32_cm_mc_pim/motor_control/pmsm_foc/mc_pwm.h</itemPath>
+              <itemPath>../src/config/mchv3_pic32_cm_mc_pim/motor_control/pmsm_foc/mc_reduced_order_luenberger.h</itemPath>
+              <itemPath>../src/config/mchv3_pic32_cm_mc_pim/motor_control/pmsm_foc/mc_speed_control.h</itemPath>
+              <itemPath>../src/config/mchv3_pic32_cm_mc_pim/motor_control/pmsm_foc/mc_start_up.h</itemPath>
+              <itemPath>../src/config/mchv3_pic32_cm_mc_pim/motor_control/pmsm_foc/mc_userparams.h</itemPath>
+              <itemPath>../src/config/mchv3_pic32_cm_mc_pim/motor_control/pmsm_foc/mc_voltage_measurement.h</itemPath>
+            </logicalFolder>
+          </logicalFolder>
+          <logicalFolder name="f2" displayName="peripheral" projectFiles="true">
+            <logicalFolder name="f9" displayName="adc" projectFiles="true">
               <itemPath>../src/config/mchv3_pic32_cm_mc_pim/peripheral/adc/plib_adc_common.h</itemPath>
               <itemPath>../src/config/mchv3_pic32_cm_mc_pim/peripheral/adc/plib_adc0.h</itemPath>
               <itemPath>../src/config/mchv3_pic32_cm_mc_pim/peripheral/adc/plib_adc1.h</itemPath>
             </logicalFolder>
-            <logicalFolder name="f7" displayName="clock" projectFiles="true">
+            <logicalFolder name="f5" displayName="clock" projectFiles="true">
               <itemPath>../src/config/mchv3_pic32_cm_mc_pim/peripheral/clock/plib_clock.h</itemPath>
             </logicalFolder>
             <logicalFolder name="f10" displayName="divas" projectFiles="true">
               <itemPath>../src/config/mchv3_pic32_cm_mc_pim/peripheral/divas/plib_divas.h</itemPath>
             </logicalFolder>
-            <logicalFolder name="f9" displayName="eic" projectFiles="true">
+            <logicalFolder name="f7" displayName="eic" projectFiles="true">
               <itemPath>../src/config/mchv3_pic32_cm_mc_pim/peripheral/eic/plib_eic.h</itemPath>
             </logicalFolder>
             <logicalFolder name="f3" displayName="evsys" projectFiles="true">
               <itemPath>../src/config/mchv3_pic32_cm_mc_pim/peripheral/evsys/plib_evsys.h</itemPath>
             </logicalFolder>
-            <logicalFolder name="f8" displayName="nvic" projectFiles="true">
+            <logicalFolder name="f6" displayName="nvic" projectFiles="true">
               <itemPath>../src/config/mchv3_pic32_cm_mc_pim/peripheral/nvic/plib_nvic.h</itemPath>
             </logicalFolder>
             <logicalFolder name="f2" displayName="nvmctrl" projectFiles="true">
               <itemPath>../src/config/mchv3_pic32_cm_mc_pim/peripheral/nvmctrl/plib_nvmctrl.h</itemPath>
             </logicalFolder>
-            <logicalFolder name="f6" displayName="port" projectFiles="true">
+            <logicalFolder name="f4" displayName="port" projectFiles="true">
               <itemPath>../src/config/mchv3_pic32_cm_mc_pim/peripheral/port/plib_port.h</itemPath>
             </logicalFolder>
             <logicalFolder name="f1" displayName="sercom" projectFiles="true">
@@ -41,21 +63,22 @@
                 <itemPath>../src/config/mchv3_pic32_cm_mc_pim/peripheral/sercom/usart/plib_sercom_usart_common.h</itemPath>
               </logicalFolder>
             </logicalFolder>
-            <logicalFolder name="f4" displayName="tcc" projectFiles="true">
+            <logicalFolder name="f8" displayName="tcc" projectFiles="true">
               <itemPath>../src/config/mchv3_pic32_cm_mc_pim/peripheral/tcc/plib_tcc0.h</itemPath>
               <itemPath>../src/config/mchv3_pic32_cm_mc_pim/peripheral/tcc/plib_tcc_common.h</itemPath>
             </logicalFolder>
           </logicalFolder>
-          <logicalFolder name="f2" displayName="X2CCode" projectFiles="true">
+          <logicalFolder name="f1" displayName="X2CCode" projectFiles="true">
             <logicalFolder name="f1" displayName="X2CScope" projectFiles="true">
               <itemPath>../src/config/mchv3_pic32_cm_mc_pim/X2CCode/X2CScope/inc/X2CScope.h</itemPath>
               <itemPath>../src/config/mchv3_pic32_cm_mc_pim/X2CCode/X2CScope/inc/X2CScopeCommunication.h</itemPath>
             </logicalFolder>
           </logicalFolder>
-          <itemPath>../src/config/mchv3_pic32_cm_mc_pim/userparams.h</itemPath>
           <itemPath>../src/config/mchv3_pic32_cm_mc_pim/device_cache.h</itemPath>
           <itemPath>../src/config/mchv3_pic32_cm_mc_pim/toolchain_specifics.h</itemPath>
           <itemPath>../src/config/mchv3_pic32_cm_mc_pim/definitions.h</itemPath>
+          <itemPath>../src/config/mchv3_pic32_cm_mc_pim/interrupts.h</itemPath>
+          <itemPath>../src/config/mchv3_pic32_cm_mc_pim/device_vectors.h</itemPath>
           <itemPath>../src/config/mchv3_pic32_cm_mc_pim/device.h</itemPath>
         </logicalFolder>
       </logicalFolder>
@@ -113,15 +136,54 @@
             <itemPath>../src/packs/PIC32CM1216MC00048_DFP/component/tsens.h</itemPath>
             <itemPath>../src/packs/PIC32CM1216MC00048_DFP/component/wdt.h</itemPath>
           </logicalFolder>
-          <logicalFolder name="f2" displayName="pio" projectFiles="true">
+          <logicalFolder name="f2" displayName="instance" projectFiles="true">
+            <itemPath>../src/packs/PIC32CM1216MC00048_DFP/instance/ac.h</itemPath>
+            <itemPath>../src/packs/PIC32CM1216MC00048_DFP/instance/adc0.h</itemPath>
+            <itemPath>../src/packs/PIC32CM1216MC00048_DFP/instance/adc1.h</itemPath>
+            <itemPath>../src/packs/PIC32CM1216MC00048_DFP/instance/ccl.h</itemPath>
+            <itemPath>../src/packs/PIC32CM1216MC00048_DFP/instance/dac.h</itemPath>
+            <itemPath>../src/packs/PIC32CM1216MC00048_DFP/instance/divas.h</itemPath>
+            <itemPath>../src/packs/PIC32CM1216MC00048_DFP/instance/dmac.h</itemPath>
+            <itemPath>../src/packs/PIC32CM1216MC00048_DFP/instance/dsu.h</itemPath>
+            <itemPath>../src/packs/PIC32CM1216MC00048_DFP/instance/eic.h</itemPath>
+            <itemPath>../src/packs/PIC32CM1216MC00048_DFP/instance/evsys.h</itemPath>
+            <itemPath>../src/packs/PIC32CM1216MC00048_DFP/instance/freqm.h</itemPath>
+            <itemPath>../src/packs/PIC32CM1216MC00048_DFP/instance/gclk.h</itemPath>
+            <itemPath>../src/packs/PIC32CM1216MC00048_DFP/instance/hmatrixhs.h</itemPath>
+            <itemPath>../src/packs/PIC32CM1216MC00048_DFP/instance/mclk.h</itemPath>
+            <itemPath>../src/packs/PIC32CM1216MC00048_DFP/instance/mtb.h</itemPath>
+            <itemPath>../src/packs/PIC32CM1216MC00048_DFP/instance/nvmctrl.h</itemPath>
+            <itemPath>../src/packs/PIC32CM1216MC00048_DFP/instance/osc32kctrl.h</itemPath>
+            <itemPath>../src/packs/PIC32CM1216MC00048_DFP/instance/oscctrl.h</itemPath>
+            <itemPath>../src/packs/PIC32CM1216MC00048_DFP/instance/pac.h</itemPath>
+            <itemPath>../src/packs/PIC32CM1216MC00048_DFP/instance/pdec.h</itemPath>
+            <itemPath>../src/packs/PIC32CM1216MC00048_DFP/instance/pm.h</itemPath>
+            <itemPath>../src/packs/PIC32CM1216MC00048_DFP/instance/port.h</itemPath>
+            <itemPath>../src/packs/PIC32CM1216MC00048_DFP/instance/rstc.h</itemPath>
+            <itemPath>../src/packs/PIC32CM1216MC00048_DFP/instance/rtc.h</itemPath>
+            <itemPath>../src/packs/PIC32CM1216MC00048_DFP/instance/sdadc.h</itemPath>
+            <itemPath>../src/packs/PIC32CM1216MC00048_DFP/instance/sercom0.h</itemPath>
+            <itemPath>../src/packs/PIC32CM1216MC00048_DFP/instance/sercom1.h</itemPath>
+            <itemPath>../src/packs/PIC32CM1216MC00048_DFP/instance/sercom2.h</itemPath>
+            <itemPath>../src/packs/PIC32CM1216MC00048_DFP/instance/sercom3.h</itemPath>
+            <itemPath>../src/packs/PIC32CM1216MC00048_DFP/instance/supc.h</itemPath>
+            <itemPath>../src/packs/PIC32CM1216MC00048_DFP/instance/tc0.h</itemPath>
+            <itemPath>../src/packs/PIC32CM1216MC00048_DFP/instance/tc1.h</itemPath>
+            <itemPath>../src/packs/PIC32CM1216MC00048_DFP/instance/tc2.h</itemPath>
+            <itemPath>../src/packs/PIC32CM1216MC00048_DFP/instance/tc3.h</itemPath>
+            <itemPath>../src/packs/PIC32CM1216MC00048_DFP/instance/tc4.h</itemPath>
+            <itemPath>../src/packs/PIC32CM1216MC00048_DFP/instance/tcc0.h</itemPath>
+            <itemPath>../src/packs/PIC32CM1216MC00048_DFP/instance/tcc1.h</itemPath>
+            <itemPath>../src/packs/PIC32CM1216MC00048_DFP/instance/tcc2.h</itemPath>
+            <itemPath>../src/packs/PIC32CM1216MC00048_DFP/instance/tsens.h</itemPath>
+            <itemPath>../src/packs/PIC32CM1216MC00048_DFP/instance/wdt.h</itemPath>
+          </logicalFolder>
+          <logicalFolder name="f3" displayName="pio" projectFiles="true">
             <itemPath>../src/packs/PIC32CM1216MC00048_DFP/pio/pic32cm1216mc00048.h</itemPath>
           </logicalFolder>
           <itemPath>../src/packs/PIC32CM1216MC00048_DFP/pic32cm1216mc00048.h</itemPath>
         </logicalFolder>
       </logicalFolder>
-      <itemPath>../src/mc_app.h</itemPath>
-      <itemPath>../src/q14_generic_mcLib.h</itemPath>
-      <itemPath>../src/q14_rolo_mcLib.h</itemPath>
     </logicalFolder>
     <logicalFolder name="LinkerScript"
                    displayName="Linker Files"
@@ -141,30 +203,49 @@
         <logicalFolder name="f1"
                        displayName="mchv3_pic32_cm_mc_pim"
                        projectFiles="true">
-          <logicalFolder name="f1" displayName="peripheral" projectFiles="true">
-            <logicalFolder name="f5" displayName="adc" projectFiles="true">
+          <logicalFolder name="f4" displayName="motor_control" projectFiles="true">
+            <logicalFolder name="f1" displayName="pmsm_foc" projectFiles="true">
+              <itemPath>../src/config/mchv3_pic32_cm_mc_pim/motor_control/pmsm_foc/mc_current_control.c</itemPath>
+              <itemPath>../src/config/mchv3_pic32_cm_mc_pim/motor_control/pmsm_foc/mc_current_measurement.c</itemPath>
+              <itemPath>../src/config/mchv3_pic32_cm_mc_pim/motor_control/pmsm_foc/mc_error_handler.c</itemPath>
+              <itemPath>../src/config/mchv3_pic32_cm_mc_pim/motor_control/pmsm_foc/mc_flux_control.c</itemPath>
+              <itemPath>../src/config/mchv3_pic32_cm_mc_pim/motor_control/pmsm_foc/mc_function_coordinator.c</itemPath>
+              <itemPath>../src/config/mchv3_pic32_cm_mc_pim/motor_control/pmsm_foc/mc_generic_library.c</itemPath>
+              <itemPath>../src/config/mchv3_pic32_cm_mc_pim/motor_control/pmsm_foc/mc_hardware_abstraction.c</itemPath>
+              <itemPath>../src/config/mchv3_pic32_cm_mc_pim/motor_control/pmsm_foc/mc_interface_handling.c</itemPath>
+              <itemPath>../src/config/mchv3_pic32_cm_mc_pim/motor_control/pmsm_foc/mc_motor_control.c</itemPath>
+              <itemPath>../src/config/mchv3_pic32_cm_mc_pim/motor_control/pmsm_foc/mc_pmsm_foc.c</itemPath>
+              <itemPath>../src/config/mchv3_pic32_cm_mc_pim/motor_control/pmsm_foc/mc_pwm.c</itemPath>
+              <itemPath>../src/config/mchv3_pic32_cm_mc_pim/motor_control/pmsm_foc/mc_reduced_order_luenberger.c</itemPath>
+              <itemPath>../src/config/mchv3_pic32_cm_mc_pim/motor_control/pmsm_foc/mc_speed_control.c</itemPath>
+              <itemPath>../src/config/mchv3_pic32_cm_mc_pim/motor_control/pmsm_foc/mc_start_up.c</itemPath>
+              <itemPath>../src/config/mchv3_pic32_cm_mc_pim/motor_control/pmsm_foc/mc_voltage_measurement.c</itemPath>
+            </logicalFolder>
+          </logicalFolder>
+          <logicalFolder name="f2" displayName="peripheral" projectFiles="true">
+            <logicalFolder name="f9" displayName="adc" projectFiles="true">
               <itemPath>../src/config/mchv3_pic32_cm_mc_pim/peripheral/adc/plib_adc0.c</itemPath>
               <itemPath>../src/config/mchv3_pic32_cm_mc_pim/peripheral/adc/plib_adc1.c</itemPath>
             </logicalFolder>
-            <logicalFolder name="f7" displayName="clock" projectFiles="true">
+            <logicalFolder name="f5" displayName="clock" projectFiles="true">
               <itemPath>../src/config/mchv3_pic32_cm_mc_pim/peripheral/clock/plib_clock.c</itemPath>
             </logicalFolder>
             <logicalFolder name="f10" displayName="divas" projectFiles="true">
               <itemPath>../src/config/mchv3_pic32_cm_mc_pim/peripheral/divas/plib_divas.c</itemPath>
             </logicalFolder>
-            <logicalFolder name="f9" displayName="eic" projectFiles="true">
+            <logicalFolder name="f7" displayName="eic" projectFiles="true">
               <itemPath>../src/config/mchv3_pic32_cm_mc_pim/peripheral/eic/plib_eic.c</itemPath>
             </logicalFolder>
             <logicalFolder name="f3" displayName="evsys" projectFiles="true">
               <itemPath>../src/config/mchv3_pic32_cm_mc_pim/peripheral/evsys/plib_evsys.c</itemPath>
             </logicalFolder>
-            <logicalFolder name="f8" displayName="nvic" projectFiles="true">
+            <logicalFolder name="f6" displayName="nvic" projectFiles="true">
               <itemPath>../src/config/mchv3_pic32_cm_mc_pim/peripheral/nvic/plib_nvic.c</itemPath>
             </logicalFolder>
             <logicalFolder name="f2" displayName="nvmctrl" projectFiles="true">
               <itemPath>../src/config/mchv3_pic32_cm_mc_pim/peripheral/nvmctrl/plib_nvmctrl.c</itemPath>
             </logicalFolder>
-            <logicalFolder name="f6" displayName="port" projectFiles="true">
+            <logicalFolder name="f4" displayName="port" projectFiles="true">
               <itemPath>../src/config/mchv3_pic32_cm_mc_pim/peripheral/port/plib_port.c</itemPath>
             </logicalFolder>
             <logicalFolder name="f1" displayName="sercom" projectFiles="true">
@@ -172,14 +253,14 @@
                 <itemPath>../src/config/mchv3_pic32_cm_mc_pim/peripheral/sercom/usart/plib_sercom3_usart.c</itemPath>
               </logicalFolder>
             </logicalFolder>
-            <logicalFolder name="f4" displayName="tcc" projectFiles="true">
+            <logicalFolder name="f8" displayName="tcc" projectFiles="true">
               <itemPath>../src/config/mchv3_pic32_cm_mc_pim/peripheral/tcc/plib_tcc0.c</itemPath>
             </logicalFolder>
           </logicalFolder>
           <logicalFolder name="f3" displayName="stdio" projectFiles="true">
             <itemPath>../src/config/mchv3_pic32_cm_mc_pim/stdio/xc32_monitor.c</itemPath>
           </logicalFolder>
-          <logicalFolder name="f2" displayName="X2CCode" projectFiles="true">
+          <logicalFolder name="f1" displayName="X2CCode" projectFiles="true">
             <logicalFolder name="f1" displayName="X2CScope" projectFiles="true">
               <itemPath>../src/config/mchv3_pic32_cm_mc_pim/X2CCode/X2CScope/src/X2CScope.c</itemPath>
               <itemPath>../src/config/mchv3_pic32_cm_mc_pim/X2CCode/X2CScope/src/X2CScopeCommunication.c</itemPath>
@@ -192,15 +273,12 @@
           <itemPath>../src/config/mchv3_pic32_cm_mc_pim/libc_syscalls.c</itemPath>
         </logicalFolder>
       </logicalFolder>
-      <itemPath>../src/mc_app.c</itemPath>
-      <itemPath>../src/q14_generic_mcLib.c</itemPath>
-      <itemPath>../src/q14_rolo_mcLib.c</itemPath>
-      <itemPath>../src/main_mchv3_pic32_cm_mc.c</itemPath>
+      <itemPath>../src/main.c</itemPath>
     </logicalFolder>
     <logicalFolder name="ExternalFiles"
                    displayName="Important Files"
                    projectFiles="false">
-      <logicalFolder name="f1"
+      <logicalFolder name="f2"
                      displayName="mchv3_pic32_cm_mc_pim.mhc"
                      projectFiles="true">
         <itemPath>../src/config/mchv3_pic32_cm_mc_pim/mchv3_pic32_cm_mc_pim.mhc/adc0.yml</itemPath>
@@ -213,11 +291,32 @@
         <itemPath>../src/config/mchv3_pic32_cm_mc_pim/mchv3_pic32_cm_mc_pim.mhc/evsys.yml</itemPath>
         <itemPath>../src/config/mchv3_pic32_cm_mc_pim/mchv3_pic32_cm_mc_pim.mhc/GraphSettings.yml</itemPath>
         <itemPath>../src/config/mchv3_pic32_cm_mc_pim/mchv3_pic32_cm_mc_pim.mhc/nvmctrl.yml</itemPath>
+        <itemPath>../src/config/mchv3_pic32_cm_mc_pim/mchv3_pic32_cm_mc_pim.mhc/pmsm_foc.yml</itemPath>
         <itemPath>../src/config/mchv3_pic32_cm_mc_pim/mchv3_pic32_cm_mc_pim.mhc/project.yml</itemPath>
         <itemPath>../src/config/mchv3_pic32_cm_mc_pim/mchv3_pic32_cm_mc_pim.mhc/sercom3.yml</itemPath>
         <itemPath>../src/config/mchv3_pic32_cm_mc_pim/mchv3_pic32_cm_mc_pim.mhc/settings.yml</itemPath>
         <itemPath>../src/config/mchv3_pic32_cm_mc_pim/mchv3_pic32_cm_mc_pim.mhc/tcc0.yml</itemPath>
         <itemPath>../src/config/mchv3_pic32_cm_mc_pim/mchv3_pic32_cm_mc_pim.mhc/X2CScope.yml</itemPath>
+      </logicalFolder>
+      <logicalFolder name="f1"
+                     displayName="mclv2_pic32_cm_mc_pim.mhc"
+                     projectFiles="true">
+        <itemPath>../src/config/mclv2_pic32_cm_mc_pim/mclv2_pic32_cm_mc_pim.mhc/adc0.yml</itemPath>
+        <itemPath>../src/config/mclv2_pic32_cm_mc_pim/mclv2_pic32_cm_mc_pim.mhc/adc1.yml</itemPath>
+        <itemPath>../src/config/mclv2_pic32_cm_mc_pim/mclv2_pic32_cm_mc_pim.mhc/cmsis.yml</itemPath>
+        <itemPath>../src/config/mclv2_pic32_cm_mc_pim/mclv2_pic32_cm_mc_pim.mhc/core.yml</itemPath>
+        <itemPath>../src/config/mclv2_pic32_cm_mc_pim/mclv2_pic32_cm_mc_pim.mhc/dfp.yml</itemPath>
+        <itemPath>../src/config/mclv2_pic32_cm_mc_pim/mclv2_pic32_cm_mc_pim.mhc/divas.yml</itemPath>
+        <itemPath>../src/config/mclv2_pic32_cm_mc_pim/mclv2_pic32_cm_mc_pim.mhc/eic.yml</itemPath>
+        <itemPath>../src/config/mclv2_pic32_cm_mc_pim/mclv2_pic32_cm_mc_pim.mhc/evsys.yml</itemPath>
+        <itemPath>../src/config/mclv2_pic32_cm_mc_pim/mclv2_pic32_cm_mc_pim.mhc/GraphSettings.yml</itemPath>
+        <itemPath>../src/config/mclv2_pic32_cm_mc_pim/mclv2_pic32_cm_mc_pim.mhc/nvmctrl.yml</itemPath>
+        <itemPath>../src/config/mclv2_pic32_cm_mc_pim/mclv2_pic32_cm_mc_pim.mhc/pmsm_foc.yml</itemPath>
+        <itemPath>../src/config/mclv2_pic32_cm_mc_pim/mclv2_pic32_cm_mc_pim.mhc/project.yml</itemPath>
+        <itemPath>../src/config/mclv2_pic32_cm_mc_pim/mclv2_pic32_cm_mc_pim.mhc/sercom3.yml</itemPath>
+        <itemPath>../src/config/mclv2_pic32_cm_mc_pim/mclv2_pic32_cm_mc_pim.mhc/settings.yml</itemPath>
+        <itemPath>../src/config/mclv2_pic32_cm_mc_pim/mclv2_pic32_cm_mc_pim.mhc/tcc0.yml</itemPath>
+        <itemPath>../src/config/mclv2_pic32_cm_mc_pim/mclv2_pic32_cm_mc_pim.mhc/X2CScope.yml</itemPath>
       </logicalFolder>
       <itemPath>Makefile</itemPath>
       <itemPath>../src/config/mchv3_pic32_cm_mc_pim/harmony-manifest-success.yml</itemPath>
@@ -234,14 +333,14 @@
         <targetDevice>PIC32CM1216MC00048</targetDevice>
         <targetHeader></targetHeader>
         <targetPluginBoard></targetPluginBoard>
-        <platformTool>EdbgTool</platformTool>
+        <platformTool>Simulator</platformTool>
         <languageToolchain>XC32</languageToolchain>
         <languageToolchainVersion>2.50</languageToolchainVersion>
         <platform>3</platform>
       </toolsSet>
       <packs>
-        <pack name="CMSIS" vendor="ARM" version="5.4.0"/>
         <pack name="PIC32CM-MC_DFP" vendor="Microchip" version="1.0.36"/>
+        <pack name="CMSIS" vendor="ARM" version="5.4.0"/>
       </packs>
       <ScriptingSettings>
       </ScriptingSettings>
@@ -255,7 +354,7 @@
         </archiverTool>
         <loading>
           <useAlternateLoadableFile>false</useAlternateLoadableFile>
-          <parseOnProdLoad>true</parseOnProdLoad>
+          <parseOnProdLoad>false</parseOnProdLoad>
           <alternateLoadableFile></alternateLoadableFile>
         </loading>
         <subordinates>
@@ -304,7 +403,7 @@
         <property key="enable-unroll-loops" value="false"/>
         <property key="exclude-floating-point" value="false"/>
         <property key="extra-include-directories"
-                  value="../src;../src/config/mchv3_pic32_cm_mc_pim;../src/packs/PIC32CM1216MC00048_DFP;../src/packs/CMSIS/CMSIS/Core/Include;../src/packs/CMSIS/;../src/config/mchv3_pic32_cm_mc_pim/X2CCode"/>
+                  value="../src;../src/config/mchv3_pic32_cm_mc_pim;../src/config/mchv3_pic32_cm_mc_pim/X2CCode;../src/packs/CMSIS/;../src/packs/CMSIS/CMSIS/Core/Include;../src/packs/PIC32CM1216MC00048_DFP"/>
         <property key="generate-16-bit-code" value="false"/>
         <property key="generate-micro-compressed-code" value="false"/>
         <property key="isolate-each-function" value="true"/>
@@ -320,8 +419,7 @@
         <property key="unaligned-access" value=""/>
         <property key="use-cci" value="false"/>
         <property key="use-iar" value="false"/>
-        <property key="use-indirect-calls" value="false"/>
-        <appendMe value="-Wformat=2 -Wundef -Wshadow -Wpointer-arith -Wbad-function-cast -Wwrite-strings -Waggregate-return -Wstrict-prototypes -Wmissing-format-attribute -Wno-deprecated-declarations -Wredundant-decls -Wnested-externs -Winline -Wlong-long -Wunreachable-code -Wmissing-noreturn"/>
+        <property key="use-indirect-calls" value="true"/>
       </C32>
       <C32-AR>
         <property key="additional-options-chop-files" value="false"/>
@@ -401,7 +499,7 @@
         <property key="exceptions" value="true"/>
         <property key="exclude-floating-point" value="false"/>
         <property key="extra-include-directories"
-                  value="../src;../src/config/mchv3_pic32_cm_mc_pim;../src/packs/PIC32CM1216MC00048_DFP;../src/packs/CMSIS/CMSIS/Core/Include;../src/packs/CMSIS/;"/>
+                  value="../src;../src/config/mchv3_pic32_cm_mc_pim;../src/packs/CMSIS/;../src/packs/CMSIS/CMSIS/Core/Include;../src/packs/PIC32CM1216MC00048_DFP"/>
         <property key="generate-16-bit-code" value="false"/>
         <property key="generate-micro-compressed-code" value="false"/>
         <property key="isolate-each-function" value="true"/>
@@ -431,56 +529,6 @@
         <property key="save-temps" value="false"/>
         <property key="wpo-lto" value="false"/>
       </C32Global>
-      <EdbgTool>
-        <property key="AutoSelectMemRanges" value="auto"/>
-        <property key="arm.use_vtor" value="false"/>
-        <property key="arm.vtor_adr" value="exception_table"/>
-        <property key="communication.activationmode" value="nohv"/>
-        <property key="communication.interface" value="swd"/>
-        <property key="communication.speed" value="2.000"/>
-        <property key="debugoptions.useswbreakpoints" value="false"/>
-        <property key="firmware.path"
-                  value="Press to browse for a specific firmware version"/>
-        <property key="firmware.toolpack"
-                  value="Press to select which tool pack to use"/>
-        <property key="firmware.update.action" value="firmware.update.use.latest"/>
-        <property key="freeze.timers" value="false"/>
-        <property key="lastid" value=""/>
-        <property key="memories.aux" value="false"/>
-        <property key="memories.bootflash" value="true"/>
-        <property key="memories.configurationmemory" value="true"/>
-        <property key="memories.configurationmemory2" value="true"/>
-        <property key="memories.dataflash" value="true"/>
-        <property key="memories.eeprom" value="true"/>
-        <property key="memories.exclude.configurationmemory" value="true"/>
-        <property key="memories.flashdata" value="true"/>
-        <property key="memories.id" value="true"/>
-        <property key="memories.instruction.ram.ranges"
-                  value="${memories.instruction.ram.ranges}"/>
-        <property key="memories.programmemory" value="true"/>
-        <property key="memories.programmemory.ranges" value="0-1ffff"/>
-        <property key="memories.rww" value="true"/>
-        <property key="poweroptions.powerenable" value="false"/>
-        <property key="programoptions.eraseb4program" value="true"/>
-        <property key="programoptions.preservedataflash" value="false"/>
-        <property key="programoptions.preservedataflash.ranges"
-                  value="${memories.dataflash.default}"/>
-        <property key="programoptions.preserveeeprom" value="false"/>
-        <property key="programoptions.preserveeeprom.ranges" value=""/>
-        <property key="programoptions.preserveprogram.ranges" value=""/>
-        <property key="programoptions.preserveprogramrange" value="false"/>
-        <property key="programoptions.preserveuserid" value="false"/>
-        <property key="programoptions.programuserotp" value="false"/>
-        <property key="script.log_level" value="0"/>
-        <property key="script.reset_delay" value="0"/>
-        <property key="script.show_output" value="false"/>
-        <property key="toolpack.updateoptions"
-                  value="toolpack.updateoptions.uselatestoolpack"/>
-        <property key="toolpack.updateoptions.packversion"
-                  value="Press to select which tool pack to use"/>
-        <property key="voltagevalue" value=""/>
-        <property key="x.erase.clearprot" value="true"/>
-      </EdbgTool>
       <PICkit3PlatformTool>
         <property key="ADC 1" value="true"/>
         <property key="AutoSelectMemRanges" value="auto"/>
@@ -847,6 +895,8 @@
         <property key="warningmessagebreakoptions.W0246_ADC_ACCUMULATION_BAD_RESSEL"
                   value="report"/>
         <property key="warningmessagebreakoptions.W0247_ADC_CONVERSION_BAD_RESSEL"
+                  value="report"/>
+        <property key="warningmessagebreakoptions.W0248_ADC_WR_BEFORE_KEY_SEQ"
                   value="report"/>
         <property key="warningmessagebreakoptions.W0400_PWM_PWM_FASTER_THAN_FOSC"
                   value="report"/>

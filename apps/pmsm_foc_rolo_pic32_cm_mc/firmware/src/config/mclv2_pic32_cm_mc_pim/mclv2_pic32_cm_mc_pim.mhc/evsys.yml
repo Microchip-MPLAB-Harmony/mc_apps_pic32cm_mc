@@ -9,22 +9,22 @@ children:
     children:
     - type: Values
       children:
-      - type: User
-        attributes: {value: 'true'}
+      - type: Dynamic
+        attributes: {id: pmsm_foc, value: 'true'}
   - type: KeyValueSet
     attributes: {id: EVSYS_CHANNEL_0_EDGE}
     children:
     - type: Values
       children:
-      - type: User
-        attributes: {value: '1'}
+      - type: Dynamic
+        attributes: {id: pmsm_foc, value: '1'}
   - type: KeyValueSet
     attributes: {id: EVSYS_CHANNEL_0_GENERATOR}
     children:
     - type: Values
       children:
-      - type: User
-        attributes: {value: '74'}
+      - type: Dynamic
+        attributes: {id: pmsm_foc, value: '74'}
   - type: Boolean
     attributes: {id: EVSYS_CHANNEL_0_GENERATOR_ACTIVE}
     children:
@@ -44,8 +44,8 @@ children:
     children:
     - type: Values
       children:
-      - type: User
-        attributes: {value: 'true'}
+      - type: Dynamic
+        attributes: {id: pmsm_foc, value: 'true'}
   - type: Boolean
     attributes: {id: EVSYS_CHANNEL_10_GENERATOR_ACTIVE}
     children:
@@ -79,15 +79,15 @@ children:
     children:
     - type: Values
       children:
-      - type: User
-        attributes: {value: '1'}
+      - type: Dynamic
+        attributes: {id: pmsm_foc, value: '1'}
   - type: KeyValueSet
     attributes: {id: EVSYS_CHANNEL_1_GENERATOR}
     children:
     - type: Values
       children:
-      - type: User
-        attributes: {value: '30'}
+      - type: Dynamic
+        attributes: {id: pmsm_foc, value: '30'}
   - type: Boolean
     attributes: {id: EVSYS_CHANNEL_1_GENERATOR_ACTIVE}
     children:
@@ -233,26 +233,19 @@ children:
         children:
         - {type: Value, value: 'true'}
   - type: KeyValueSet
-    attributes: {id: EVSYS_USER_28}
-    children:
-    - type: Values
-      children:
-      - type: User
-        attributes: {value: '1'}
-  - type: KeyValueSet
-    attributes: {id: EVSYS_USER_9}
-    children:
-    - type: Values
-      children:
-      - type: User
-        attributes: {value: '2'}
-  - type: Boolean
-    attributes: {id: GENERATOR_EIC_EXTINT_2_ACTIVE}
+    attributes: {id: EVSYS_USER_10}
     children:
     - type: Values
       children:
       - type: Dynamic
-        attributes: {id: eic, value: 'false'}
+        attributes: {id: pmsm_foc, value: '2'}
+  - type: KeyValueSet
+    attributes: {id: EVSYS_USER_28}
+    children:
+    - type: Values
+      children:
+      - type: Dynamic
+        attributes: {id: pmsm_foc, value: '1'}
   - type: Boolean
     attributes: {id: GENERATOR_EIC_EXTINT_8_ACTIVE}
     children:
@@ -282,11 +275,11 @@ children:
       - type: Dynamic
         attributes: {id: adc0, value: 'false'}
   - type: Boolean
-    attributes: {id: USER_TCC0_EV_0_READY}
+    attributes: {id: USER_TCC0_EV_1_READY}
     children:
     - type: Values
       children:
       - type: Dynamic
         attributes: {id: tcc0, value: 'true'}
 - type: ElementPosition
-  attributes: {x: '160', y: '20', id: evsys}
+  attributes: {x: '147', y: '21', id: evsys}

@@ -12,19 +12,12 @@ children:
       - type: Dynamic
         attributes: {id: eic, value: '0'}
   - type: Boolean
-    attributes: {id: EIC_CHAN_2}
-    children:
-    - type: Values
-      children:
-      - type: User
-        attributes: {value: 'false'}
-  - type: Boolean
     attributes: {id: EIC_CHAN_8}
     children:
     - type: Values
       children:
-      - type: User
-        attributes: {value: 'true'}
+      - type: Dynamic
+        attributes: {id: pmsm_foc, value: 'true'}
   - type: Boolean
     attributes: {id: EIC_CONFIG_FILTEN_8}
     children:
@@ -35,19 +28,12 @@ children:
         children:
         - {type: Value, value: 'true'}
   - type: KeyValueSet
-    attributes: {id: EIC_CONFIG_SENSE_2}
-    children:
-    - type: Values
-      children:
-      - type: User
-        attributes: {value: '0'}
-  - type: KeyValueSet
     attributes: {id: EIC_CONFIG_SENSE_8}
     children:
     - type: Values
       children:
-      - type: User
-        attributes: {value: '5'}
+      - type: Dynamic
+        attributes: {id: pmsm_foc, value: '2'}
   - type: Hex
     attributes: {id: EIC_EXTINTEO}
     children:
@@ -56,40 +42,19 @@ children:
       - type: Dynamic
         attributes: {id: eic, value: '256'}
   - type: Boolean
-    attributes: {id: EIC_EXTINTEO_2}
-    children:
-    - type: Values
-      children:
-      - type: User
-        attributes: {value: 'false'}
-  - type: Boolean
     attributes: {id: EIC_EXTINTEO_8}
     children:
     - type: Values
       children:
-      - type: User
-        attributes: {value: 'true'}
+      - type: Dynamic
+        attributes: {id: pmsm_foc, value: 'true'}
   - type: Hex
     attributes: {id: EIC_INT}
     children:
     - type: Values
       children:
       - type: Dynamic
-        attributes: {id: eic, value: '256'}
-  - type: Boolean
-    attributes: {id: EIC_INT_2}
-    children:
-    - type: Values
-      children:
-      - type: User
-        attributes: {value: 'false'}
-  - type: Boolean
-    attributes: {id: EIC_INT_8}
-    children:
-    - type: Values
-      children:
-      - type: User
-        attributes: {value: 'true'}
+        attributes: {id: eic, value: '0'}
   - type: Menu
     attributes: {id: EIC_MENU8}
     children:
@@ -100,4 +65,4 @@ children:
         children:
         - {type: Value, value: 'true'}
 - type: ElementPosition
-  attributes: {x: '177', y: '276', id: eic}
+  attributes: {x: '151', y: '75', id: eic}

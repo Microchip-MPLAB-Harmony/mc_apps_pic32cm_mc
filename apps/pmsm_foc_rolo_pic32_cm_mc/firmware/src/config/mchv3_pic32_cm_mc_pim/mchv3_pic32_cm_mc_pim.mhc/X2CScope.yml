@@ -40,5 +40,18 @@ children:
         attributes: {id: targetAttachmentID}
         children:
         - {type: Value, value: SERCOM3_UART}
+  - type: DirectCapability
+    attributes: {id: x2cScope_Scope}
+    children:
+    - type: Attributes
+      children:
+      - type: String
+        attributes: {id: targetComponentID}
+        children:
+        - {type: Value, value: pmsm_foc}
+      - type: String
+        attributes: {id: targetAttachmentID}
+        children:
+        - {type: Value, value: pmsmfoc_X2CSCOPE}
 - type: ElementPosition
-  attributes: {x: '303', y: '364', id: X2CScope}
+  attributes: {x: '185', y: '388', id: X2CScope}
