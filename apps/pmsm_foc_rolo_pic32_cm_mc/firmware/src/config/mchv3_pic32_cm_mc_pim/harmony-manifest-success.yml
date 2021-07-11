@@ -4,13 +4,13 @@
 
 
 project: pmsm_foc_rolo_pic32_cm_mc
-creation_date: 2021-07-06T16:23:53.543+05:30[Asia/Calcutta]    # ISO 8601 format: https://www.w3.org/TR/NOTE-datetime
+creation_date: 2021-07-22T17:22:55.749+05:30[Asia/Calcutta]    # ISO 8601 format: https://www.w3.org/TR/NOTE-datetime
 operating_system: Windows 10
 mhc_mode: IDE            # [IDE|Standalone|Headless]
 mhc_version: v3.8.0
-mplabx_version: v5.45        # if MPLAB X plugin only
+mplabx_version: v5.50        # if MPLAB X plugin only
 plugin_version: v3.6.2        # if MPLAB X plugin only
-compiler: XC32 (2.50)
+compiler: XC32 (3.01)
 
 modules:
     - {name: "csp", version: "v3.9.1"}

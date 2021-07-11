@@ -171,7 +171,7 @@ void mcVolI_VoltageCalculationInit( tmcVol_ConfigParameters_s * volParam );
 #ifdef RAM_EXECUTE
 void __ramfunc__ mcVolI_VoltageCalculationRun( const tmcVol_InstanceId_e Id );
 #else
-void mcVolI_VoltageCalculationRun( const tmcVol_InstanceId_e Id )
+void mcVolI_VoltageCalculationRun( const tmcVol_InstanceId_e Id );
 #endif
 
 

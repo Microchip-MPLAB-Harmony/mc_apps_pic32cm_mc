@@ -74,13 +74,6 @@
 #define Q_AXIS_STARTUP    1u
 #define ALIGNMENT_METHOD                 (Q_AXIS)  /* alignment method  */
 
-/**
- *  Defining FLUX_WEAKENING allows the PMSM motor to operate at speed higher than rated 
- *  speed                                                                                       
- */
- #define FLUX_WEAKENING DISABLE 
-
-
 #define POTENTIOMETER_INPUT_ENABLED       ENABLE
 
 #define SPEED_REF_RPM                     (float)1000   /* Speed Ref */
@@ -104,7 +97,7 @@
 /**
  *  Defining BIDIRECTION_CONTROL enables bi-directional control of the motor                            
  */ 
-#define BIDIRECTION_CONTROL  ENABLE
+#define BIDIRECTION_CONTROL  DISABLE
 
 /**
  *  Defining CONTROL_TO_PWM_1_2 sets the control to PWM ratio to 1:2                         
@@ -314,11 +307,8 @@
 /**
  * Base speed
  */ 
-#if ( 1u == FLUX_WEAKENING )
-#define BASE_SPEED  (float)(2.0f * FLOAT_PI * ( (float)NUM_POLE_PAIRS * (float)MAXIMUM_SPEED_IN_RPM / 60.0f  ))
-#else 
 #define BASE_SPEED  (float)(2.0f * FLOAT_PI * ( (float)NUM_POLE_PAIRS * (float)RATED_SPEED_IN_RPM / 60.0f  ))
-#endif 
+
 
 /**
  * Base impedence = Base voltage / Base current

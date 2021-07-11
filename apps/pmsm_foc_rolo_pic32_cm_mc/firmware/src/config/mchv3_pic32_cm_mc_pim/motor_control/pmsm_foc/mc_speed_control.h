@@ -54,11 +54,8 @@
 *******************************************************************************/
 /**
  */
-#if ( ENABLE == FLUX_WEAKENING )
-#define MAXIMUM_SPEED_FROM_POT_IN_RPM   MAXIMUM_SPEED_IN_RPM  
-#else
+
 #define MAXIMUM_SPEED_FROM_POT_IN_RPM  RATED_SPEED_IN_RPM
-#endif
 
 /**
  *  Potentiometer first order filter parameter ( 0.0 -  1.0 )
@@ -96,7 +93,7 @@
             /* Anti-windup back calculation gain */\
             SPEED_YMAX \
         },        \
-        1.0f,   \
+        500.0f,   \
         MINIMUM_SPEED_IN_RPM,   \
         MAXIMUM_SPEED_FROM_POT_IN_RPM,  \
         TORQUE_MODE_MAXIMUM_CURRENT \
@@ -155,7 +152,7 @@ typedef struct tmcSpe_PiController_s
 typedef struct _tmcSpe_UserParameters_s
 {
     tmcSpe_PiController_s    speedController;
-    float speedFilterParam;
+    float rpmPerSecondLimit;
     float minReferenceSpeed;
     float maxReferenceSpeed;
     float maxTorqueCurrent;

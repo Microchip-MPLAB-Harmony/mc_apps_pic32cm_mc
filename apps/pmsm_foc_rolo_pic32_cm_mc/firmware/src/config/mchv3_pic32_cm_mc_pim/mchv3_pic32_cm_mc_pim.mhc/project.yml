@@ -69,13 +69,6 @@ files:
   security: NON_SECURE
   type: SOURCE
   userChecksum: AE1576EFE53F359ECA2E9831288E6E9E
-- generatedChecksum: 08EF2682626430320406F70C6A52D105
-  logicalPath: config/mchv3_pic32_cm_mc_pim/motor_control/pmsm_foc
-  name: mc_flux_control.c
-  physicalPath: motor_control/pmsm_foc
-  security: NON_SECURE
-  type: SOURCE
-  userChecksum: 08EF2682626430320406F70C6A52D105
 - generatedChecksum: 8B1A63C62CB38A9C0CC38A2203F3BFE6
   logicalPath: config/mchv3_pic32_cm_mc_pim/motor_control/pmsm_foc
   name: mc_function_coordinator.c
@@ -83,13 +76,13 @@ files:
   security: NON_SECURE
   type: SOURCE
   userChecksum: 8B1A63C62CB38A9C0CC38A2203F3BFE6
-- generatedChecksum: 59A6DADB0A3B003903A0053DEF7082DD
+- generatedChecksum: 35CFDD82AB22DC1AE4E820AAB560542F
   logicalPath: config/mchv3_pic32_cm_mc_pim/motor_control/pmsm_foc
   name: mc_generic_library.c
   physicalPath: motor_control/pmsm_foc
   security: NON_SECURE
   type: SOURCE
-  userChecksum: 59A6DADB0A3B003903A0053DEF7082DD
+  userChecksum: 35CFDD82AB22DC1AE4E820AAB560542F
 - generatedChecksum: 4ED4CA94D468363BB2B83CA0F4DB9208
   logicalPath: config/mchv3_pic32_cm_mc_pim/motor_control/pmsm_foc
   name: mc_hardware_abstraction.c
@@ -104,13 +97,13 @@ files:
   security: NON_SECURE
   type: SOURCE
   userChecksum: 2DC89544C58EFD009B912CA931F5EBCC
-- generatedChecksum: E557960A19E23370AA364A95549D05F2
+- generatedChecksum: 70D2B53D1D607C07AACB0E037D720B72
   logicalPath: config/mchv3_pic32_cm_mc_pim/motor_control/pmsm_foc
   name: mc_motor_control.c
   physicalPath: motor_control/pmsm_foc
   security: NON_SECURE
   type: SOURCE
-  userChecksum: E557960A19E23370AA364A95549D05F2
+  userChecksum: 70D2B53D1D607C07AACB0E037D720B72
 - generatedChecksum: 4DE1825A646405201522746D2BF1EFD4
   logicalPath: config/mchv3_pic32_cm_mc_pim/motor_control/pmsm_foc
   name: mc_pmsm_foc.c
@@ -132,13 +125,13 @@ files:
   security: NON_SECURE
   type: SOURCE
   userChecksum: CE014D7176586BD836540584F3A3A73D
-- generatedChecksum: 43C0402C7B27D0490D1E1C9071F8D499
+- generatedChecksum: 9C409FF27084B0B6A94D2D2A20A1EF89
   logicalPath: config/mchv3_pic32_cm_mc_pim/motor_control/pmsm_foc
   name: mc_speed_control.c
   physicalPath: motor_control/pmsm_foc
   security: NON_SECURE
   type: SOURCE
-  userChecksum: 43C0402C7B27D0490D1E1C9071F8D499
+  userChecksum: 9C409FF27084B0B6A94D2D2A20A1EF89
 - generatedChecksum: DAAAD68E3BD551BB59669E7D9F109291
   logicalPath: config/mchv3_pic32_cm_mc_pim/motor_control/pmsm_foc
   name: mc_start_up.c
@@ -216,13 +209,13 @@ files:
   security: NON_SECURE
   type: SOURCE
   userChecksum: 3E6137D6968CADBFD1FECBA1278A253C
-- generatedChecksum: 76FFB36AB4C7A399DF4FFD4744C6A99E
+- generatedChecksum: 524680CF6832B13E7FA7698E464B07C1
   logicalPath: config/mchv3_pic32_cm_mc_pim/peripheral/sercom/usart
   name: plib_sercom3_usart.c
   physicalPath: peripheral/sercom/usart
   security: NON_SECURE
   type: SOURCE
-  userChecksum: 76FFB36AB4C7A399DF4FFD4744C6A99E
+  userChecksum: 524680CF6832B13E7FA7698E464B07C1
 - generatedChecksum: 68A4BCE9DF15DE5B2D4F3C3C76DC3F9D
   logicalPath: config/mchv3_pic32_cm_mc_pim/peripheral/tcc
   name: plib_tcc0.c
@@ -552,13 +545,6 @@ files:
   security: NON_SECURE
   type: HEADER
   userChecksum: D557C476B295A66EC1946893502C0C2B
-- generatedChecksum: FC19F0332C2E908ED84C573640B1A4C4
-  logicalPath: config/mchv3_pic32_cm_mc_pim/motor_control/pmsm_foc
-  name: mc_flux_control.h
-  physicalPath: motor_control/pmsm_foc
-  security: NON_SECURE
-  type: HEADER
-  userChecksum: FC19F0332C2E908ED84C573640B1A4C4
 - generatedChecksum: 94A26DADCF11EA7835DE442E0E3845BC
   logicalPath: config/mchv3_pic32_cm_mc_pim/motor_control/pmsm_foc
   name: mc_function_coordinator.h
@@ -587,13 +573,13 @@ files:
   security: NON_SECURE
   type: HEADER
   userChecksum: 30C95C1528778743F9EF3B0F95DE7BF8
-- generatedChecksum: C49333151FD260CC440A04BAD3D85D4E
+- generatedChecksum: 4A1D7CA5EC67EF9628044BBCDF17135A
   logicalPath: config/mchv3_pic32_cm_mc_pim/motor_control/pmsm_foc
   name: mc_motor_control.h
   physicalPath: motor_control/pmsm_foc
   security: NON_SECURE
   type: HEADER
-  userChecksum: C49333151FD260CC440A04BAD3D85D4E
+  userChecksum: 4A1D7CA5EC67EF9628044BBCDF17135A
 - generatedChecksum: CB074B39FC65E725F957316471969F9C
   logicalPath: config/mchv3_pic32_cm_mc_pim/motor_control/pmsm_foc
   name: mc_pmsm_foc.h
@@ -629,13 +615,13 @@ files:
   security: NON_SECURE
   type: HEADER
   userChecksum: AE351EC10B15E091DD5B9629FF187000
-- generatedChecksum: DA76B66D8CC7BF29FCAA84C74516CE5F
+- generatedChecksum: 333FBCE21B884A9B5A8BBD2F1A1F3930
   logicalPath: config/mchv3_pic32_cm_mc_pim/motor_control/pmsm_foc
   name: mc_speed_control.h
   physicalPath: motor_control/pmsm_foc
   security: NON_SECURE
   type: HEADER
-  userChecksum: DA76B66D8CC7BF29FCAA84C74516CE5F
+  userChecksum: 333FBCE21B884A9B5A8BBD2F1A1F3930
 - generatedChecksum: 41CA06C03557FA253258976B426970E4
   logicalPath: config/mchv3_pic32_cm_mc_pim/motor_control/pmsm_foc
   name: mc_start_up.h
@@ -643,20 +629,20 @@ files:
   security: NON_SECURE
   type: HEADER
   userChecksum: 41CA06C03557FA253258976B426970E4
-- generatedChecksum: 9B2B9880C774F245DDEC2F588F7BB849
+- generatedChecksum: A06EF13E7E6D0968CE3A07FBAE0EA54F
   logicalPath: config/mchv3_pic32_cm_mc_pim/motor_control/pmsm_foc
   name: mc_userparams.h
   physicalPath: motor_control/pmsm_foc
   security: NON_SECURE
   type: HEADER
-  userChecksum: 9B2B9880C774F245DDEC2F588F7BB849
-- generatedChecksum: 61531B3CB8BF4B8744F79E35391E8697
+  userChecksum: A06EF13E7E6D0968CE3A07FBAE0EA54F
+- generatedChecksum: 42EA008E689B3F06ACE9EF795BA66021
   logicalPath: config/mchv3_pic32_cm_mc_pim/motor_control/pmsm_foc
   name: mc_voltage_measurement.h
   physicalPath: motor_control/pmsm_foc
   security: NON_SECURE
   type: HEADER
-  userChecksum: 61531B3CB8BF4B8744F79E35391E8697
+  userChecksum: 42EA008E689B3F06ACE9EF795BA66021
 - generatedChecksum: 7A09611DF683AD4C2D81BF3186CB055B
   logicalPath: packs/PIC32CM1216MC00048_DFP/component
   name: mclk.h

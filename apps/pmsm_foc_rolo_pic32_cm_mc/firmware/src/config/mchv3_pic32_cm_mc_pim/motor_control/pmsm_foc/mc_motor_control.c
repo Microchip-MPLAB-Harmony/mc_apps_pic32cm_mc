@@ -52,6 +52,9 @@ static tmcMoc_StateSignal_s  mcMoc_StateSignal_mds;
 
 #ifdef MOTOR_START_STOP_FROM_BUTTON  
 static button_response_t button_S2_data;
+#if (ENABLE == BIDIRECTION_CONTROL )
+static button_response_t button_S3_data;
+#endif
 #endif
 
 /*******************************************************************************
@@ -96,7 +99,7 @@ void mcMocI_MotorControlInit( void )
     mcRpoI_RotorPositionCalculationInit( &mcRpoI_ConfigParameters_gds);
    
     /* Initialize Flux Control */
-    mcFlxI_FluxControlInit( &mcFlxI_ConfigParameters_gds );
+    //mcFlxI_FluxControlInit( &mcFlxI_ConfigParameters_gds );
         
     /* Initialize PWM Modulator */
     mcPwmI_PulseWidthModulationInit( &mcPwmI_ConfigParameters_gds );    
@@ -151,9 +154,6 @@ void mcMocI_MotorControlTasksRun( void )
             case mcState_Foc:
             {  
                 mcMocI_SpaceVectorPosition_gdu16 = mcRpoI_ElectricalRotorPosition_gdu16;
-            #if( ENABLE == FLUX_WEAKENING )
-                mcFlxI_FluxControlRun(0u);
-            #endif
                 mcSpeI_SpeedRegulationRun( 0u );
             }
             break;
@@ -251,7 +251,7 @@ void mcMocI_MotorStart(void)
     mcMoc_StateSignal_mds.appState = mcState_Startup;
 }
 
-#ifdef BIDIRECTION_CONTROL
+#if ENABLE == BIDIRECTION_CONTROL
 /*! \brief Motor direction toggle function 
  * 
  * Details.
@@ -296,6 +296,10 @@ void mcMocI_MotorControlCommandGet( void )
     {
         mcLib_ButtonRespond(&button_S2_data, &mcMocI_MotorStop);
     }  
+  #if (ENABLE == BIDIRECTION_CONTROL )        
+    button_S3_data.inputVal = mcHalI_DirectionButtonGet();
+    mcLib_ButtonRespond(&button_S3_data, &mcMocI_MotorDirectionToggle);
+  #endif
 #endif
 }
 

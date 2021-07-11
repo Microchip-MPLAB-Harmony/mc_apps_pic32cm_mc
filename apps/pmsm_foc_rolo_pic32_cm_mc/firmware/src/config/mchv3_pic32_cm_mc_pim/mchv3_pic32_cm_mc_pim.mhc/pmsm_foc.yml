@@ -502,9 +502,9 @@ children:
     - type: TargetAttachments
       children:
       - type: TargetAttachment
-        attributes: {targetComponentID: adc0, targetAttachmentID: ADC0_ADC}
-      - type: TargetAttachment
         attributes: {targetComponentID: adc1, targetAttachmentID: ADC1_ADC}
+      - type: TargetAttachment
+        attributes: {targetComponentID: adc0, targetAttachmentID: ADC0_ADC}
   - type: DirectDependency
     attributes: {id: pmsmfoc_PWM}
     children:
