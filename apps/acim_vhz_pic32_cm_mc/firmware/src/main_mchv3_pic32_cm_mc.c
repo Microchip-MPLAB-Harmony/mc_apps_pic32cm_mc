@@ -54,7 +54,6 @@
 
 
 uint8_t  switch_state = 0;
-uint8_t  state_halt; 
 uint8_t  direction = 0x0U;
 uint16_t set_speed = 0;
 uint16_t speed_ref_pot;
