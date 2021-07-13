@@ -11,11 +11,9 @@
           <logicalFolder name="f3" displayName="motor_control" projectFiles="true">
             <logicalFolder name="f1" displayName="pmsm_foc" projectFiles="true">
               <itemPath>../src/config/mclv2_pic32_cm_mc_pim/motor_control/pmsm_foc/mc_ramp_profiler.h</itemPath>
-              <itemPath>../src/config/mclv2_pic32_cm_mc_pim/motor_control/pmsm_foc/mc_ramp_profiler.c</itemPath>
               <itemPath>../src/config/mclv2_pic32_cm_mc_pim/motor_control/pmsm_foc/mc_current_control.h</itemPath>
               <itemPath>../src/config/mclv2_pic32_cm_mc_pim/motor_control/pmsm_foc/mc_current_measurement.h</itemPath>
               <itemPath>../src/config/mclv2_pic32_cm_mc_pim/motor_control/pmsm_foc/mc_error_handler.h</itemPath>
-              <itemPath>../src/config/mclv2_pic32_cm_mc_pim/motor_control/pmsm_foc/mc_flux_control.h</itemPath>
               <itemPath>../src/config/mclv2_pic32_cm_mc_pim/motor_control/pmsm_foc/mc_function_coordinator.h</itemPath>
               <itemPath>../src/config/mclv2_pic32_cm_mc_pim/motor_control/pmsm_foc/mc_generic_library.h</itemPath>
               <itemPath>../src/config/mclv2_pic32_cm_mc_pim/motor_control/pmsm_foc/mc_hardware_abstraction.h</itemPath>
@@ -28,6 +26,7 @@
               <itemPath>../src/config/mclv2_pic32_cm_mc_pim/motor_control/pmsm_foc/mc_start_up.h</itemPath>
               <itemPath>../src/config/mclv2_pic32_cm_mc_pim/motor_control/pmsm_foc/mc_userparams.h</itemPath>
               <itemPath>../src/config/mclv2_pic32_cm_mc_pim/motor_control/pmsm_foc/mc_voltage_measurement.h</itemPath>
+              <itemPath>../src/config/mclv2_pic32_cm_mc_pim/motor_control/pmsm_foc/mc_ramp_profiler.c</itemPath>
             </logicalFolder>
           </logicalFolder>
           <logicalFolder name="f2" displayName="peripheral" projectFiles="true">
@@ -208,7 +207,6 @@
               <itemPath>../src/config/mclv2_pic32_cm_mc_pim/motor_control/pmsm_foc/mc_current_control.c</itemPath>
               <itemPath>../src/config/mclv2_pic32_cm_mc_pim/motor_control/pmsm_foc/mc_current_measurement.c</itemPath>
               <itemPath>../src/config/mclv2_pic32_cm_mc_pim/motor_control/pmsm_foc/mc_error_handler.c</itemPath>
-              <itemPath>../src/config/mclv2_pic32_cm_mc_pim/motor_control/pmsm_foc/mc_flux_control.c</itemPath>
               <itemPath>../src/config/mclv2_pic32_cm_mc_pim/motor_control/pmsm_foc/mc_function_coordinator.c</itemPath>
               <itemPath>../src/config/mclv2_pic32_cm_mc_pim/motor_control/pmsm_foc/mc_generic_library.c</itemPath>
               <itemPath>../src/config/mclv2_pic32_cm_mc_pim/motor_control/pmsm_foc/mc_hardware_abstraction.c</itemPath>
@@ -315,12 +313,12 @@
         <targetPluginBoard></targetPluginBoard>
         <platformTool>noID</platformTool>
         <languageToolchain>XC32</languageToolchain>
-        <languageToolchainVersion>2.50</languageToolchainVersion>
+        <languageToolchainVersion>3.01</languageToolchainVersion>
         <platform>3</platform>
       </toolsSet>
       <packs>
-        <pack name="PIC32CM-MC_DFP" vendor="Microchip" version="1.0.36"/>
         <pack name="CMSIS" vendor="ARM" version="5.4.0"/>
+        <pack name="PIC32CM-MC_DFP" vendor="Microchip" version="1.2.52"/>
       </packs>
       <ScriptingSettings>
       </ScriptingSettings>
@@ -334,7 +332,7 @@
         </archiverTool>
         <loading>
           <useAlternateLoadableFile>false</useAlternateLoadableFile>
-          <parseOnProdLoad>false</parseOnProdLoad>
+          <parseOnProdLoad>true</parseOnProdLoad>
           <alternateLoadableFile></alternateLoadableFile>
         </loading>
         <subordinates>
@@ -352,8 +350,6 @@
       </makeCustomizationType>
       <AtmelIceTool>
         <property key="AutoSelectMemRanges" value="auto"/>
-        <property key="arm.use_vtor" value="false"/>
-        <property key="arm.vtor_adr" value="exception_table"/>
         <property key="communication.activationmode" value="nohv"/>
         <property key="communication.interface" value="swd"/>
         <property key="communication.speed" value="4.000"/>
@@ -364,7 +360,6 @@
                   value="Press to select which tool pack to use"/>
         <property key="firmware.update.action" value="firmware.update.use.latest"/>
         <property key="freeze.timers" value="false"/>
-        <property key="lastid" value=""/>
         <property key="memories.aux" value="false"/>
         <property key="memories.bootflash" value="true"/>
         <property key="memories.configurationmemory" value="true"/>
@@ -390,15 +385,11 @@
         <property key="programoptions.preserveprogramrange" value="false"/>
         <property key="programoptions.preserveuserid" value="false"/>
         <property key="programoptions.programuserotp" value="false"/>
-        <property key="script.log_level" value="0"/>
-        <property key="script.reset_delay" value="0"/>
-        <property key="script.show_output" value="false"/>
         <property key="toolpack.updateoptions"
                   value="toolpack.updateoptions.uselatestoolpack"/>
         <property key="toolpack.updateoptions.packversion"
                   value="Press to select which tool pack to use"/>
         <property key="voltagevalue" value=""/>
-        <property key="x.erase.clearprot" value="true"/>
       </AtmelIceTool>
       <C32>
         <property key="additional-warnings" value="true"/>
@@ -421,6 +412,7 @@
         <property key="preprocessor-macros" value=""/>
         <property key="strict-ansi" value="false"/>
         <property key="support-ansi" value="false"/>
+        <property key="tentative-definitions" value="-fno-common"/>
         <property key="toplevel-reordering" value=""/>
         <property key="unaligned-access" value=""/>
         <property key="use-cci" value="false"/>
@@ -452,6 +444,7 @@
       </C32-AS>
       <C32-CO>
         <property key="coverage-enable" value=""/>
+        <property key="stack-guidance" value="false"/>
       </C32-CO>
       <C32-LD>
         <property key="additional-options-use-response-files" value="false"/>
@@ -533,6 +526,7 @@
         <property key="omit-pack-options" value="1"/>
         <property key="relaxed-math" value="false"/>
         <property key="save-temps" value="false"/>
+        <property key="stack-smashing" value=""/>
         <property key="wpo-lto" value="false"/>
       </C32Global>
       <PICkit3PlatformTool>
@@ -1063,6 +1057,58 @@
                   value=""/>
         <property key="warningmessagebreakoptions.warningmessages" value="holdstate"/>
       </Simulator>
+      <Tool>
+        <property key="AutoSelectMemRanges" value="auto"/>
+        <property key="arm.use_vtor" value="false"/>
+        <property key="arm.vtor_adr" value="exception_table"/>
+        <property key="communication.activationmode" value="nohv"/>
+        <property key="communication.interface" value="swd"/>
+        <property key="communication.speed" value="4.000"/>
+        <property key="debugoptions.useswbreakpoints" value="false"/>
+        <property key="firmware.path"
+                  value="Press to browse for a specific firmware version"/>
+        <property key="firmware.toolpack"
+                  value="Press to select which tool pack to use"/>
+        <property key="firmware.update.action" value="firmware.update.use.latest"/>
+        <property key="freeze.timers" value="false"/>
+        <property key="lastid" value=""/>
+        <property key="memories.aux" value="false"/>
+        <property key="memories.bootflash" value="true"/>
+        <property key="memories.configurationmemory" value="true"/>
+        <property key="memories.configurationmemory2" value="true"/>
+        <property key="memories.dataflash" value="true"/>
+        <property key="memories.eeprom" value="true"/>
+        <property key="memories.exclude.configurationmemory" value="true"/>
+        <property key="memories.flashdata" value="true"/>
+        <property key="memories.id" value="true"/>
+        <property key="memories.instruction.ram.ranges"
+                  value="${memories.instruction.ram.ranges}"/>
+        <property key="memories.programmemory" value="true"/>
+        <property key="memories.programmemory.ranges" value="0x400000-0x5fffff"/>
+        <property key="memories.rww" value="true"/>
+        <property key="poweroptions.powerenable" value="false"/>
+        <property key="programmerToGoFilePath"
+                  value="D:/Release/mc_apps_pic32cm_mc/apps/pmsm_foc_rolo_pic32_cm_mc/firmware/mclv2_pic32_cm_mc_pim.X/debug/mclv2_pic32_cm_mc_pim/mclv2_pic32_cm_mc_pim_ptg"/>
+        <property key="programoptions.eraseb4program" value="false"/>
+        <property key="programoptions.preservedataflash" value="false"/>
+        <property key="programoptions.preservedataflash.ranges"
+                  value="${memories.dataflash.default}"/>
+        <property key="programoptions.preserveeeprom" value="false"/>
+        <property key="programoptions.preserveeeprom.ranges" value=""/>
+        <property key="programoptions.preserveprogram.ranges" value=""/>
+        <property key="programoptions.preserveprogramrange" value="false"/>
+        <property key="programoptions.preserveuserid" value="false"/>
+        <property key="programoptions.programuserotp" value="false"/>
+        <property key="script.log_level" value="0"/>
+        <property key="script.reset_delay" value="0"/>
+        <property key="script.show_output" value="false"/>
+        <property key="toolpack.updateoptions"
+                  value="toolpack.updateoptions.uselatestoolpack"/>
+        <property key="toolpack.updateoptions.packversion"
+                  value="Press to select which tool pack to use"/>
+        <property key="voltagevalue" value=""/>
+        <property key="x.erase.clearprot" value="true"/>
+      </Tool>
     </conf>
   </confs>
 </configurationDescriptor>

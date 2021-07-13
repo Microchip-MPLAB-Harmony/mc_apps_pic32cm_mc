@@ -71,6 +71,34 @@ children:
       children:
       - type: Dynamic
         attributes: {id: pmsm_foc, value: '25'}
+  - type: Float
+    attributes: {id: MCPMSMFOC_ID_KI}
+    children:
+    - type: Values
+      children:
+      - type: Dynamic
+        attributes: {id: pmsm_foc, value: '917.0'}
+  - type: Float
+    attributes: {id: MCPMSMFOC_ID_KP}
+    children:
+    - type: Values
+      children:
+      - type: Dynamic
+        attributes: {id: pmsm_foc, value: '0.71'}
+  - type: Float
+    attributes: {id: MCPMSMFOC_IQ_KI}
+    children:
+    - type: Values
+      children:
+      - type: Dynamic
+        attributes: {id: pmsm_foc, value: '917.0'}
+  - type: Float
+    attributes: {id: MCPMSMFOC_IQ_KP}
+    children:
+    - type: Values
+      children:
+      - type: Dynamic
+        attributes: {id: pmsm_foc, value: '0.71'}
   - type: KeyValueSet
     attributes: {id: MCPMSMFOC_MOTOR_CONNECTION}
     children:
@@ -195,9 +223,9 @@ children:
     - type: TargetAttachments
       children:
       - type: TargetAttachment
-        attributes: {targetComponentID: adc1, targetAttachmentID: ADC1_ADC}
-      - type: TargetAttachment
         attributes: {targetComponentID: adc0, targetAttachmentID: ADC0_ADC}
+      - type: TargetAttachment
+        attributes: {targetComponentID: adc1, targetAttachmentID: ADC1_ADC}
   - type: DirectDependency
     attributes: {id: pmsmfoc_PWM}
     children:

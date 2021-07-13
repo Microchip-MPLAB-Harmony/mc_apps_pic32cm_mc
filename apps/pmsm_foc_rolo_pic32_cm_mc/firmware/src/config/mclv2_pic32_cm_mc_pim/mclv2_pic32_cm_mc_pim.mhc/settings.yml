@@ -5,8 +5,9 @@ frameworkPath: ..\..\..\..\Code_Generation
 processor: PIC32CM1216MC00048
 projectName: mclv2_pic32_cm_mc_pim
 settings:
-  PackageFilter: csp;mc_apps_pic32cm_mc;mc_apps_pic32mk;mc_apps_sam_d5x_e5x;mc_apps_sam_d5x_e5x
-    - Copy;mc_apps_sam_d5x_e5x - Copy (2);mc_apps_sam_e7x_s7x_v7x;motor_control;motor_control__;x2c
+  PackageFilter: csp;Dual Motor;mc_apps_pic32cm_mc;mc_apps_pic32mk;mc_apps_sam_d5x_e5x;mc_apps_sam_d5x_e5x
+    - Copy;mc_apps_sam_d5x_e5x - Copy (2);mc_apps_sam_d5x_e5x_07132021;mc_apps_sam_e7x_s7x_v7x;motor_control;motor_control
+    - Copy;motor_control__;x2c
   FORCE_OPTIMIZATION: 'false'
   GENERATE_BACKUP: 'true'
   TRUSTZONE: 'false'
