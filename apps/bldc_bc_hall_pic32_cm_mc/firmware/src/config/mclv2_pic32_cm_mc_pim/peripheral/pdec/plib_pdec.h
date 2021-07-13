@@ -94,9 +94,9 @@ void PDEC_HALLStop( void );
 
 uint8_t PDEC_HALLPatternGet( void );
 
-void PDEC_HALLPatternSet( uint8_t pattern );
+bool PDEC_HALLPatternSet( uint8_t pattern );
 
-void PDEC_HALLTimeWindowSet(uint16_t low_window, uint16_t high_window);
+bool PDEC_HALLTimeWindowSet(uint16_t low_window, uint16_t high_window);
 
 void PDEC_HALLCallbackRegister( PDEC_HALL_CALLBACK callback, uintptr_t context );
 

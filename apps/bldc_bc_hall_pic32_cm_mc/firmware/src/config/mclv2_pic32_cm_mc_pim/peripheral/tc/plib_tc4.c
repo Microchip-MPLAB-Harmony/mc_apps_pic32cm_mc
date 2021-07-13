@@ -53,6 +53,7 @@
 /* This section lists the other files that are included in this file.
 */
 
+#include "interrupts.h"
 #include "plib_tc4.h"
 
 // *****************************************************************************
@@ -61,7 +62,7 @@
 // *****************************************************************************
 // *****************************************************************************
 
-TC_TIMER_CALLBACK_OBJ TC4_CallbackObject;
+static TC_TIMER_CALLBACK_OBJ TC4_CallbackObject;
 
 // *****************************************************************************
 // *****************************************************************************
@@ -85,20 +86,20 @@ void TC4_TimerInitialize( void )
     TC4_REGS->COUNT16.TC_CTRLA = TC_CTRLA_MODE_COUNT16 | TC_CTRLA_PRESCALER_DIV1 | TC_CTRLA_PRESCSYNC_PRESC ;
 
     /* Configure in Match Frequency Mode */
-    TC4_REGS->COUNT16.TC_WAVE = TC_WAVE_WAVEGEN_MPWM;
+    TC4_REGS->COUNT16.TC_WAVE = (uint8_t)TC_WAVE_WAVEGEN_MPWM;
 
     /* Configure timer period */
     TC4_REGS->COUNT16.TC_CC[0U] = 8000U;
 
     /* Clear all interrupt flags */
-    TC4_REGS->COUNT16.TC_INTFLAG = TC_INTFLAG_Msk;
+    TC4_REGS->COUNT16.TC_INTFLAG = (uint8_t)TC_INTFLAG_Msk;
 
     TC4_CallbackObject.callback = NULL;
     /* Enable interrupt*/
-    TC4_REGS->COUNT16.TC_INTENSET = TC_INTENSET_OVF_Msk;
+    TC4_REGS->COUNT16.TC_INTENSET = (uint8_t)(TC_INTENSET_OVF_Msk);
 
 
-    while((TC4_REGS->COUNT16.TC_SYNCBUSY))
+    while((TC4_REGS->COUNT16.TC_SYNCBUSY) != 0U)
     {
         /* Wait for Write Synchronization */
     }
@@ -126,13 +127,13 @@ void TC4_TimerStop( void )
 
 uint32_t TC4_TimerFrequencyGet( void )
 {
-    return (uint32_t)(8000000UL);
+    return (uint32_t)(8000000U);
 }
 
 void TC4_TimerCommandSet(TC_COMMAND command)
 {
-    TC4_REGS->COUNT16.TC_CTRLBSET = command << TC_CTRLBSET_CMD_Pos;
-    while((TC4_REGS->COUNT16.TC_SYNCBUSY))
+    TC4_REGS->COUNT16.TC_CTRLBSET = (uint8_t)((uint32_t)command << TC_CTRLBSET_CMD_Pos);
+    while((TC4_REGS->COUNT16.TC_SYNCBUSY) != 0U)
     {
         /* Wait for Write Synchronization */
     }    
@@ -142,14 +143,14 @@ void TC4_TimerCommandSet(TC_COMMAND command)
 uint16_t TC4_Timer16bitCounterGet( void )
 {
     /* Write command to force COUNT register read synchronization */
-    TC4_REGS->COUNT16.TC_CTRLBSET |= TC_CTRLBSET_CMD_READSYNC;
+    TC4_REGS->COUNT16.TC_CTRLBSET |= (uint8_t)TC_CTRLBSET_CMD_READSYNC;
 
     while((TC4_REGS->COUNT16.TC_SYNCBUSY & TC_SYNCBUSY_CTRLB_Msk) == TC_SYNCBUSY_CTRLB_Msk)
     {
         /* Wait for Write Synchronization */
     }
 
-    while((TC4_REGS->COUNT16.TC_CTRLBSET & TC_CTRLBSET_CMD_Msk) != 0)
+    while((TC4_REGS->COUNT16.TC_CTRLBSET & TC_CTRLBSET_CMD_Msk) != 0U)
     {
         /* Wait for CMD to become zero */
     }
@@ -198,12 +199,12 @@ void TC4_TimerCallbackRegister( TC_TIMER_CALLBACK callback, uintptr_t context )
 /* Timer Interrupt handler */
 void TC4_TimerInterruptHandler( void )
 {
-    if (TC4_REGS->COUNT16.TC_INTENSET != 0)
+    if (TC4_REGS->COUNT16.TC_INTENSET != 0U)
     {
         TC_TIMER_STATUS status;
         status = (TC_TIMER_STATUS) TC4_REGS->COUNT16.TC_INTFLAG;
         /* Clear interrupt flags */
-        TC4_REGS->COUNT16.TC_INTFLAG = TC_INTFLAG_Msk;
+        TC4_REGS->COUNT16.TC_INTFLAG = (uint8_t)TC_INTFLAG_Msk;
         if((status != TC_TIMER_STATUS_NONE) && TC4_CallbackObject.callback != NULL)
         {
             TC4_CallbackObject.callback(status, TC4_CallbackObject.context);

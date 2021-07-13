@@ -54,6 +54,7 @@
 */
 
 #include "plib_pdec.h"
+#include "interrupts.h"
 
 // *****************************************************************************
 // *****************************************************************************
@@ -140,23 +141,30 @@ uint8_t PDEC_HALLPatternGet( void )
 
 
 /* Set the hall pattern */
-void PDEC_HALLPatternSet( uint8_t pattern )
+bool PDEC_HALLPatternSet( uint8_t pattern )
 {
-    PDEC_REGS->PDEC_CCBUF[0] = (pattern & 0x07);
-    while(PDEC_REGS->PDEC_SYNCBUSY)
+    bool status = false;
+    if((PDEC_REGS->PDEC_STATUS & PDEC_STATUS_CCBUFV0_Msk) == 0U)
     {
-        /* Wait for write Synchronization */
-    }
+        PDEC_REGS->PDEC_CCBUF[0] = (pattern & 0x07);
+        status = true;
+    }    
+    return status;
 }
 
-void PDEC_HALLTimeWindowSet(uint16_t low_window, uint16_t high_window)
+bool PDEC_HALLTimeWindowSet(uint16_t low_window, uint16_t high_window)
 {
-    PDEC_REGS->PDEC_CCBUF[0] = low_window << 16;
-    PDEC_REGS->PDEC_CCBUF[1] = high_window << 16;
-    while(PDEC_REGS->PDEC_SYNCBUSY)
-    {
-        /* Wait for write Synchronization */
+    bool status = false;    
+    if((PDEC_REGS->PDEC_STATUS & PDEC_STATUS_CCBUFV0_Msk) == 0U)
+    {    
+        PDEC_REGS->PDEC_CCBUF[0] = low_window << 16;
+        if((PDEC_REGS->PDEC_STATUS & PDEC_STATUS_CCBUFV1_Msk) == 0U)
+        {    
+            PDEC_REGS->PDEC_CCBUF[1] = high_window << 16;
+            status = true;
+        }
     }
+    return status;
 }
 
 

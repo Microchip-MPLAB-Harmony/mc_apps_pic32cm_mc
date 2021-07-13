@@ -102,7 +102,7 @@ Function Prototypes
 void __ramfunc__ ADC_ISR(ADC_STATUS status, uintptr_t context);
 void __ramfunc__ OC_FAULT_ISR(uintptr_t context);
 void __ramfunc__ TC4_1ms_ISR(TC_TIMER_STATUS status, uintptr_t context);
-void __ramfunc__ void PDEC_VLC_InterruptHandler(PDEC_HALL_STATUS status, uintptr_t context);
+void __ramfunc__  PDEC_VLC_InterruptHandler(PDEC_HALL_STATUS status, uintptr_t context);
 #else
 void ADC_ISR(ADC_STATUS status, uintptr_t context);
 void OC_FAULT_ISR(uintptr_t context);
@@ -259,9 +259,9 @@ Output:       nothing (modifies some global variables)
 Note:         called when overcurrent is detected             
 ******************************************************************************/
 #ifdef RAM_EXECUTE
-void __ramfunc__ OC_FAULT_ISR(uintptr_t context)
+void __NO_RETURN __ramfunc__ OC_FAULT_ISR(uintptr_t context)
 #else
-void __attribute__ ((noreturn)) OC_FAULT_ISR(uintptr_t context)
+void __NO_RETURN OC_FAULT_ISR(uintptr_t context)
 #endif
 {
     Motor_StateParams.motor_stop_source = OC_FAULT_STOP;
@@ -313,7 +313,7 @@ Output:       nothing (modifies some global variables)
 Note:         called when edge is detected on any hall pin            
 ******************************************************************************/
 #ifdef RAM_EXECUTE
-void __ramfunc__ PDEC_VLC_InterruptHandler(void)
+void __ramfunc__ PDEC_VLC_InterruptHandler(PDEC_HALL_STATUS status, uintptr_t context)
 #else
 void PDEC_VLC_InterruptHandler(PDEC_HALL_STATUS status, uintptr_t context)
 #endif
