@@ -4,7 +4,8 @@
 *.d
 *.flag
 *.lock
-Gemfile
+*.backup
+Gemfile*
 **/nbproject/private
 **/nbproject/Makefile-*
 **/nbproject/Package-*
@@ -12,6 +13,7 @@ Gemfile
 **/*.X/debug
 **/*.X/dist
 **/*.X/build
+**/*.X/.generated_files
 **/*.IAR/Debug
 **/*.IAR/settings
 **/*.IAR/*.dep
