@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
 <Package name="mc_apps_pic32cm_mc">
     <Dependencies>
-        <Dependency name="motor_control" version="v3.6.0"/>
+        <Dependency name="motor_control" version="v3.7.0"/>
     </Dependencies>
 </Package>

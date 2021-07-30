@@ -9,12 +9,12 @@ operating_system: Windows 10
 mhc_mode: IDE            # [IDE|Standalone|Headless]
 mhc_version: v3.8.0
 mplabx_version: v5.50        # if MPLAB X plugin only
-plugin_version: v3.6.2        # if MPLAB X plugin only
+plugin_version: v3.6.4        # if MPLAB X plugin only
 compiler: XC32 (3.01)
 
 modules:
     - {name: "csp", version: "v3.9.1"}
     - {name: "dev_packs", version: "v3.9.0"}
     - {name: "x2c", version: "v1.1.4"}
-    - {name: "motor_control", version: "unknown"}
+    - {name: "motor_control", version: "3.7.0"}
 
