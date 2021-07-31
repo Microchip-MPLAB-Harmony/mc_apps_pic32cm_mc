@@ -80,6 +80,12 @@ exclude:
   - "*.ld"
   - "*.jar"
   - "*.prj"
+  - "*.xml"
+  - "*.yml"
+  - "*.sct"
+  - "*.icf"
+  - "*.group"
+  - "*.link"
 
 # Aux links for the upper right navigation
 aux_links:

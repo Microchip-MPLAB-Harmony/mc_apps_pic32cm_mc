@@ -1,5 +1,5 @@
 ﻿---
-title: Motor Control Application Examples for PIC32CM MC family
+title: Microchip MPLAB® Harmony 3 Motor Control Application Examples for PIC32CM MC family
 nav_order: 1
 has_children: true
 has_toc: false
@@ -30,7 +30,7 @@ notes and licensing information.
 |------------|-----------------------------------------------------------|
 | apps       | Demonstration applications for Motor Control              |
 | docs       | Contains documentation in html format for offline viewing (to be used only after cloning this repository onto a local machine). Use [github pages](https://microchip-mplab-harmony.github.io/mc_apps_pic32cm_mc/) of this repository for viewing it online.                   |
-|||
+
 
 ## Configurable Motor Control Examples (MHC code-genaration)
 
