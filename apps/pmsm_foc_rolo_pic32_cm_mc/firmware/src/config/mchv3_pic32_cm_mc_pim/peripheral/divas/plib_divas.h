@@ -70,17 +70,6 @@ extern "C"
 
 void DIVAS_Initialize(void);
 
-/* 32-bit Signed division, return quotient */
-int32_t DIVAS_DivSigned(int32_t numerator, int32_t denominator);
-
-/* 32-bit Unsigned division, return quotient */
-uint32_t DIVAS_DivUnsigned(uint32_t numerator, uint32_t denominator);
-
-/* 32-bit Signed division, return quotient and remainder as 64-bit number */
-uint64_t DIVAS_DivmodSigned(int32_t numerator, int32_t denominator);
-
-/* 32-bit Unsigned division, return quotient and remainder as 64-bit result */
-uint64_t DIVAS_DivmodUnsigned(uint32_t numerator, uint32_t denominator);
 
 /* 32-bit Square Root */
 uint32_t DIVAS_SquareRoot (uint32_t number);

@@ -1,5 +1,5 @@
----
-parent: Microchip MPLAB® Harmony 3 Motor Control Application Examples for PIC32CM MC family
+﻿---
+parent: Motor Control Application Examples for PIC32CM MC family
 title: BLDC Block Commutation using Hall Sensor
 has_children: false
 has_toc: false

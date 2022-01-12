@@ -1,5 +1,5 @@
----
-parent: Microchip MPLAB® Harmony 3 Motor Control Application Examples for PIC32CM MC family
+﻿---
+parent: Motor Control Application Examples for PIC32CM MC family
 title: PMSM FOC using Reduced Order Luenberger Observer
 has_children: false
 has_toc: false

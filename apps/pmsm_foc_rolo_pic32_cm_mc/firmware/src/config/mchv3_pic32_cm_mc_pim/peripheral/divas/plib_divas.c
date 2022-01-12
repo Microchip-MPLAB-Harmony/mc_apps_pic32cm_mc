@@ -44,6 +44,11 @@
 #include "plib_divas.h"
 #include "device.h"
 
+/* Provide forward declaration for overloaded division operators */
+extern int32_t __aeabi_idiv(int32_t numerator, int32_t denominator);
+extern uint32_t __aeabi_uidiv(uint32_t numerator, uint32_t denominator);
+extern uint64_t __aeabi_idivmod(int32_t numerator, int32_t denominator);
+extern uint64_t __aeabi_uidivmod(uint32_t numerator, uint32_t denominator);
 
 void DIVAS_Initialize(void)
 {
@@ -86,8 +91,8 @@ static inline void divas_div(const uint8_t sign, const uint32_t dividend, const 
     }
 }
 
-/* 32-bit Signed division, return quotient */
-int32_t DIVAS_DivSigned(int32_t numerator, int32_t denominator)
+/* Do signed division, return result */
+int32_t __aeabi_idiv(int32_t numerator, int32_t denominator)
 {
     int32_t res;
     DIVAS_CRITICAL_ENTER();
@@ -97,8 +102,8 @@ int32_t DIVAS_DivSigned(int32_t numerator, int32_t denominator)
     return res;
 }
 
-/* 32-bit Unsigned division, return quotient */
-uint32_t DIVAS_DivUnsigned(uint32_t numerator, uint32_t denominator)
+/* Do unsigned division, return result */
+uint32_t __aeabi_uidiv(uint32_t numerator, uint32_t denominator)
 {
     uint32_t res;
     DIVAS_CRITICAL_ENTER();
@@ -108,8 +113,8 @@ uint32_t DIVAS_DivUnsigned(uint32_t numerator, uint32_t denominator)
     return res;
 }
 
-/* 32-bit Signed division, return quotient and remainder as 64-bit number */
-uint64_t DIVAS_DivmodSigned(int32_t numerator, int32_t denominator)
+/* Do signed division, return result and remainder */
+uint64_t __aeabi_idivmod(int32_t numerator, int32_t denominator)
 {
     uint64_t res;
     DIVAS_CRITICAL_ENTER();
@@ -119,8 +124,8 @@ uint64_t DIVAS_DivmodSigned(int32_t numerator, int32_t denominator)
     return res;
 }
 
-/* 32-bit Unsigned division, return quotient and remainder as 64-bit result */
-uint64_t DIVAS_DivmodUnsigned(uint32_t numerator, uint32_t denominator)
+/* Do unsigned division, return result and remainder */
+uint64_t __aeabi_uidivmod(uint32_t numerator, uint32_t denominator)
 {
     uint64_t res;
     DIVAS_CRITICAL_ENTER();
