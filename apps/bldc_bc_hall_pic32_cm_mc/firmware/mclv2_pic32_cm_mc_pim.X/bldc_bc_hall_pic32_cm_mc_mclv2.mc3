@@ -1,4 +1,4 @@
-<config configName="mclv2_pic32_cm_mc_pim" projectName="bldc_bc_hall_pic32_cm_mc_mclv2" configVersion="1.1" device="PIC32CM1216MC00048" deviceLibraryClass="com.microchip.mcc.harmony.Harmony3Library" coreVersion="5.4.0">
+<config configName="mclv2_pic32_cm_mc_pim" projectName="bldc_bc_hall_pic32_cm_mc_mclv2" configVersion="1.1" device="PIC32CM1216MC00048" deviceLibraryClass="com.microchip.mcc.harmony.Harmony3Library" coreVersion="5.4.1">
    <usedPackages class="java.util.ArrayList"/>
    <usedClasses class="java.util.TreeMap">
       <entry>
@@ -59,7 +59,7 @@
       </entry>
    </usedClasses>
    <usedLibraries class="java.util.ArrayList">
-      <ILibraryFile class="com.microchip.mcc.core.library.BaseLibraryFile" libraryClass="com.microchip.mcc.harmony.Harmony3Library" version="1.0.3"/>
+      <ILibraryFile class="com.microchip.mcc.core.library.BaseLibraryFile" libraryClass="com.microchip.mcc.harmony.Harmony3Library" version="1.0.9"/>
    </usedLibraries>
    <tokenMap class="java.util.TreeMap">
       <entry>
@@ -92,17 +92,6 @@
   &lt;X2CScope dnOrder=&quot;0&quot; id=&quot;X2C_SCOPE_PERIPH_USED&quot;&gt;
     &lt;Values dnOrder=&quot;0&quot;&gt;
       &lt;Dynamic dnOrder=&quot;0&quot; id=&quot;X2CScope&quot; value=&quot;SERCOM3_USART&quot;/&gt;
-    &lt;/Values&gt;
-  &lt;/X2CScope&gt;
-&lt;/X2CScope&gt;
-</value>
-      </entry>
-      <entry>
-         <key class="com.microchip.mcc.core.tokenManager.CustomKey" moduleName="X2CScope" name="X2C_SCOPE_UART_BAUD_RATE_SYMBOL"/>
-         <value>&lt;?xml version=&quot;1.0&quot; encoding=&quot;UTF-8&quot;?&gt;&lt;X2CScope&gt;
-  &lt;X2CScope dnOrder=&quot;0&quot; id=&quot;X2C_SCOPE_UART_BAUD_RATE_SYMBOL&quot;&gt;
-    &lt;Values dnOrder=&quot;0&quot;&gt;
-      &lt;Dynamic dnOrder=&quot;0&quot; id=&quot;X2CScope&quot; value=&quot;USART_BAUD_RATE&quot;/&gt;
     &lt;/Values&gt;
   &lt;/X2CScope&gt;
 &lt;/X2CScope&gt;
@@ -417,8 +406,7 @@
          <key class="com.microchip.mcc.core.tokenManager.CustomKey" moduleName="core" name="!@#harmonyUserData"/>
          <value>&lt;?xml version=&quot;1.0&quot; encoding=&quot;UTF-8&quot;?&gt;&lt;UserData&gt;
   &lt;UserData dnOrder=&quot;0&quot;&gt;
-    &lt;GraphSettings canvasHeight=&quot;400&quot; canvasWidth=&quot;400&quot; dnOrder=&quot;0&quot;/&gt;
-    &lt;ComponentGraph dnOrder=&quot;1&quot; id=&quot;__ROOTVIEW&quot;&gt;
+    &lt;ComponentGraph dnOrder=&quot;0&quot; id=&quot;__ROOTVIEW&quot;&gt;
       &lt;ElementPositions dnOrder=&quot;0&quot;&gt;
         &lt;ElementPosition dnOrder=&quot;0&quot; id=&quot;X2CScope&quot; x=&quot;250&quot; y=&quot;464&quot;/&gt;
         &lt;ElementPosition dnOrder=&quot;1&quot; id=&quot;adc1&quot; x=&quot;146&quot; y=&quot;200&quot;/&gt;
@@ -436,6 +424,7 @@
         &lt;ElementPosition dnOrder=&quot;13&quot; id=&quot;tcc0&quot; x=&quot;24&quot; y=&quot;200&quot;/&gt;
       &lt;/ElementPositions&gt;
     &lt;/ComponentGraph&gt;
+    &lt;GraphSettings canvasHeight=&quot;400&quot; canvasWidth=&quot;400&quot; dnOrder=&quot;1&quot;/&gt;
   &lt;/UserData&gt;
 &lt;/UserData&gt;
 </value>
@@ -686,6 +675,17 @@
         &lt;Value dnOrder=&quot;0&quot;&gt;false&lt;/Value&gt;
       &lt;/Boolean&gt;
     &lt;/Attributes&gt;
+  &lt;/core&gt;
+&lt;/core&gt;
+</value>
+      </entry>
+      <entry>
+         <key class="com.microchip.mcc.core.tokenManager.CustomKey" moduleName="core" name="CoreMainFile"/>
+         <value>&lt;?xml version=&quot;1.0&quot; encoding=&quot;UTF-8&quot;?&gt;&lt;core&gt;
+  &lt;core dnOrder=&quot;0&quot; id=&quot;CoreMainFile&quot;&gt;
+    &lt;Values dnOrder=&quot;0&quot;&gt;
+      &lt;User dnOrder=&quot;0&quot; value=&quot;false&quot;/&gt;
+    &lt;/Values&gt;
   &lt;/core&gt;
 &lt;/core&gt;
 </value>
@@ -6221,15 +6221,11 @@
       </entry>
       <entry>
          <file>..\src\config\mclv2_pic32_cm_mc_pim\definitions.h</file>
-         <hash>30ad68ed40aa86af9bc7daf5e5b583a60bf4bb072778dedb6d4d7ab35b7ac208</hash>
+         <hash>a1cc271f43a952d505cba03403f8bd208f4e0d37c9463d4284d8b6703ada1a7f</hash>
       </entry>
       <entry>
          <file>..\src\packs\PIC32CM1216MC00048_DFP\component\ccl.h</file>
          <hash>e22628ea6dd205cfbd84180f4a0d11c8d0e6c6cce13c488deecee262177d5247</hash>
-      </entry>
-      <entry>
-         <file>..\src\main_mclv2_pic32_cm_mc.c</file>
-         <hash>d3c233d419e6304bfacbafc18cc68c0f5c26e365f23b20ea40ccfac458f664c5</hash>
       </entry>
       <entry>
          <file>..\src\packs\PIC32CM1216MC00048_DFP\instance\wdt.h</file>
@@ -6285,7 +6281,7 @@
       </entry>
       <entry>
          <file>..\src\config\mclv2_pic32_cm_mc_pim\startup_xc32.c</file>
-         <hash>be2c779688c247443de3423ff9ffd8079d8e5afd090c46997829e1cf1d57c73f</hash>
+         <hash>0daa92ab227c2d0b2746b14b920680c58690c4f3ade28ae6cef46927b7e413fd</hash>
       </entry>
       <entry>
          <file>..\src\packs\PIC32CM1216MC00048_DFP\component\eic.h</file>
@@ -6329,7 +6325,7 @@
       </entry>
       <entry>
          <file>..\src\config\mclv2_pic32_cm_mc_pim\peripheral\port\plib_port.c</file>
-         <hash>733ccc395ec33da70184ea8bd4d62289fbccaad8f9e22a2676b0d5e9876a5666</hash>
+         <hash>c812b2ce76c6e32e505de10fdc7c90cb94c32f24747ed877032ba4ad22093033</hash>
       </entry>
       <entry>
          <file>..\src\config\mclv2_pic32_cm_mc_pim\peripheral\sercom\usart\plib_sercom_usart_common.h</file>
@@ -6361,7 +6357,7 @@
       </entry>
       <entry>
          <file>..\src\config\mclv2_pic32_cm_mc_pim\initialization.c</file>
-         <hash>adc4b9d89879d9a6fc7de3730e5fa4bf1acb92e1d03ca7a6a5e141daa712ca92</hash>
+         <hash>2d210baa49934410a753861fd57d4351fef293b2c40cef6e544eec436730c431</hash>
       </entry>
       <entry>
          <file>..\src\packs\PIC32CM1216MC00048_DFP\instance\tc0.h</file>
