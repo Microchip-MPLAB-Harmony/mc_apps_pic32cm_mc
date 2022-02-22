@@ -65,6 +65,30 @@
 // *****************************************************************************
 // *****************************************************************************
 
+/*** Macros for IA pin ***/
+#define IA_Get()               (((PORT_REGS->GROUP[1].PORT_IN >> 8U)) & 0x01U)
+#define IA_PIN                  PORT_PIN_PB08
+
+/*** Macros for IB pin ***/
+#define IB_Get()               (((PORT_REGS->GROUP[1].PORT_IN >> 9U)) & 0x01U)
+#define IB_PIN                  PORT_PIN_PB09
+
+/*** Macros for PWM1H1 pin ***/
+#define PWM1H1_Get()               (((PORT_REGS->GROUP[0].PORT_IN >> 4U)) & 0x01U)
+#define PWM1H1_PIN                  PORT_PIN_PA04
+
+/*** Macros for PWM1H2 pin ***/
+#define PWM1H2_Get()               (((PORT_REGS->GROUP[0].PORT_IN >> 5U)) & 0x01U)
+#define PWM1H2_PIN                  PORT_PIN_PA05
+
+/*** Macros for VBUS pin ***/
+#define VBUS_Get()               (((PORT_REGS->GROUP[0].PORT_IN >> 9U)) & 0x01U)
+#define VBUS_PIN                  PORT_PIN_PA09
+
+/*** Macros for PWM1H3 pin ***/
+#define PWM1H3_Get()               (((PORT_REGS->GROUP[0].PORT_IN >> 10U)) & 0x01U)
+#define PWM1H3_PIN                  PORT_PIN_PA10
+
 /*** Macros for GPIO_PA11 pin ***/
 #define GPIO_PA11_Set()               (PORT_REGS->GROUP[0].PORT_OUTSET = ((uint32_t)1U << 11U))
 #define GPIO_PA11_Clear()             (PORT_REGS->GROUP[0].PORT_OUTCLR = ((uint32_t)1U << 11U))
@@ -74,6 +98,26 @@
 #define GPIO_PA11_Get()               (((PORT_REGS->GROUP[0].PORT_IN >> 11U)) & 0x01U)
 #define GPIO_PA11_PIN                  PORT_PIN_PA11
 
+/*** Macros for PWM1L1 pin ***/
+#define PWM1L1_Get()               (((PORT_REGS->GROUP[0].PORT_IN >> 14U)) & 0x01U)
+#define PWM1L1_PIN                  PORT_PIN_PA14
+
+/*** Macros for PWM1L2 pin ***/
+#define PWM1L2_Get()               (((PORT_REGS->GROUP[0].PORT_IN >> 15U)) & 0x01U)
+#define PWM1L2_PIN                  PORT_PIN_PA15
+
+/*** Macros for PWM1L3 pin ***/
+#define PWM1L3_Get()               (((PORT_REGS->GROUP[0].PORT_IN >> 20U)) & 0x01U)
+#define PWM1L3_PIN                  PORT_PIN_PA20
+
+/*** Macros for X2CSCOPE_TX pin ***/
+#define X2CSCOPE_TX_Get()               (((PORT_REGS->GROUP[0].PORT_IN >> 22U)) & 0x01U)
+#define X2CSCOPE_TX_PIN                  PORT_PIN_PA22
+
+/*** Macros for X2CSCOPE_RX pin ***/
+#define X2CSCOPE_RX_Get()               (((PORT_REGS->GROUP[0].PORT_IN >> 23U)) & 0x01U)
+#define X2CSCOPE_RX_PIN                  PORT_PIN_PA23
+
 /*** Macros for GPIO_PA25 pin ***/
 #define GPIO_PA25_Set()               (PORT_REGS->GROUP[0].PORT_OUTSET = ((uint32_t)1U << 25U))
 #define GPIO_PA25_Clear()             (PORT_REGS->GROUP[0].PORT_OUTCLR = ((uint32_t)1U << 25U))
@@ -82,6 +126,28 @@
 #define GPIO_PA25_InputEnable()       (PORT_REGS->GROUP[0].PORT_DIRCLR = ((uint32_t)1U << 25U))
 #define GPIO_PA25_Get()               (((PORT_REGS->GROUP[0].PORT_IN >> 25U)) & 0x01U)
 #define GPIO_PA25_PIN                  PORT_PIN_PA25
+
+/*** Macros for GPIO_PB22 pin ***/
+#define GPIO_PB22_Set()               (PORT_REGS->GROUP[1].PORT_OUTSET = ((uint32_t)1U << 22U))
+#define GPIO_PB22_Clear()             (PORT_REGS->GROUP[1].PORT_OUTCLR = ((uint32_t)1U << 22U))
+#define GPIO_PB22_Toggle()            (PORT_REGS->GROUP[1].PORT_OUTTGL = ((uint32_t)1U << 22U))
+#define GPIO_PB22_OutputEnable()      (PORT_REGS->GROUP[1].PORT_DIRSET = ((uint32_t)1U << 22U))
+#define GPIO_PB22_InputEnable()       (PORT_REGS->GROUP[1].PORT_DIRCLR = ((uint32_t)1U << 22U))
+#define GPIO_PB22_Get()               (((PORT_REGS->GROUP[1].PORT_IN >> 22U)) & 0x01U)
+#define GPIO_PB22_PIN                  PORT_PIN_PB22
+
+/*** Macros for GPIO_PB23 pin ***/
+#define GPIO_PB23_Set()               (PORT_REGS->GROUP[1].PORT_OUTSET = ((uint32_t)1U << 23U))
+#define GPIO_PB23_Clear()             (PORT_REGS->GROUP[1].PORT_OUTCLR = ((uint32_t)1U << 23U))
+#define GPIO_PB23_Toggle()            (PORT_REGS->GROUP[1].PORT_OUTTGL = ((uint32_t)1U << 23U))
+#define GPIO_PB23_OutputEnable()      (PORT_REGS->GROUP[1].PORT_DIRSET = ((uint32_t)1U << 23U))
+#define GPIO_PB23_InputEnable()       (PORT_REGS->GROUP[1].PORT_DIRCLR = ((uint32_t)1U << 23U))
+#define GPIO_PB23_Get()               (((PORT_REGS->GROUP[1].PORT_IN >> 23U)) & 0x01U)
+#define GPIO_PB23_PIN                  PORT_PIN_PB23
+
+/*** Macros for POT pin ***/
+#define POT_Get()               (((PORT_REGS->GROUP[1].PORT_IN >> 2U)) & 0x01U)
+#define POT_PIN                  PORT_PIN_PB02
 
 // *****************************************************************************
 /* PORT Group

@@ -93,7 +93,7 @@ void ADC0_Initialize( void )
                                       (ADC_CALIB_BIASCOMP((calib_low_word & ADC0_BIASCAL_Msk) >> ADC0_BIASCAL_POS)));
 
     /* Prescaler */
-    ADC0_REGS->ADC_CTRLB = (uint8_t)ADC_CTRLB_PRESCALER_DIV4;
+    ADC0_REGS->ADC_CTRLB = (uint8_t)ADC_CTRLB_PRESCALER_DIV8;
     /* Sampling length */
     ADC0_REGS->ADC_SAMPCTRL = (uint8_t)ADC_SAMPCTRL_SAMPLEN(3UL);
 
