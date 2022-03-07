@@ -8,6 +8,37 @@ nav_order: 99
 
 # Microchip MPLAB® Harmony 3 Release Notes
 
+## Microchip MPLAB® Harmony 3 Motor Control Application Examples for PIC32CM MC family v3.2.0
+
+### Applications
+
+| Development Board | Number of Applications | 
+| --- | --- | 
+|[dsPICDEM™ MCLV-2 Low Voltage Development Board](https://www.microchip.com/DevelopmentTools/ProductDetails/DM330021-2) | 2 |
+|[dsPICDEM™ MCHV-3 High Voltage Development Board](https://www.microchip.com/developmenttools/ProductDetails/dm330023-3) | 2 |
+
+### New Features
+- Migrated MHC generated firware to MCC generated firmware
+
+### Known Issues
+* The MCC may over-write the pin configuration, i.e. ```plib_port.c``` and ```plib_port.h``` files. Take care while merging the files on regeneration.
+* same as v3.1.0
+
+### Required MPLAB Harmony v3 Modules
+* csp v3.11.0
+* x2c v1.2.0
+* motor_control v3.8.0
+* dev_packs v3.11.0
+* mcc v1.0.9
+
+### Development Tools
+* [MPLAB X IDE v6.00](https://www.microchip.com/mplab/mplab-x-ide)
+* [MPLAB XC32 C/C++ Compiler v4.00](https://www.microchip.com/mplab/compilers)
+* MPLAB X IDE plug-ins:
+  * MPLAB Code Configurator (MCC) v5.1.1
+  * X2CScope v1.3.0.
+
+
 ## Microchip MPLAB® Harmony 3 Motor Control Application Examples for PIC32CM MC family v3.1.0
 
 ### Applications

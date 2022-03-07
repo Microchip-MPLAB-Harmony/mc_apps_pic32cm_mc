@@ -1,4 +1,4 @@
-﻿---
+---
 parent: Motor Control Application Examples for PIC32CM MC family
 title: ACIM VHz Openloop Control
 has_children: false

@@ -1,4 +1,4 @@
-﻿---
+---
 parent: Motor Control Application Examples for PIC32CM MC family
 title: BLDC Block Commutation using Hall Sensor
 has_children: false
