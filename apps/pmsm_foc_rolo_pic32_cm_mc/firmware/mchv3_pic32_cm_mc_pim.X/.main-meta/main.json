@@ -10,21 +10,21 @@
 		"shortDescription": "This application implements the sensorless field oriented control (FOC) of a permanent magnet synchronous motor (PMSM). It estimates rotor position from measured phase currents and a reduced order luenberger observer (ROLO). This algorithm is implemented on a PIC32CM MC MCU.",
 		"ide": {
 			"name": "MPLABX",
-			"semverRange": ">=5.50.0"
+			"semverRange": ">=6.00.0"
 		},
 		"compiler": [
 			{
 				"name": "XC32",
-				"semverRange": ">=3.1.0"
+				"semverRange": ">=4.00.0"
 			}
 		],
 		"dfp": {
 			"name": "PIC32CM-MC_DFP",
-			"semverRange": "^1.2.52"
+			"semverRange": "^1.3.58"
 		},
 		"configurator": {
-			"name": "MHC",
-			"semverRange": ">=3.6.4"
+			"name": "MCC",
+			"semverRange": ">=1.0.9"
 		},
 		"device": {
 			"metaDataVersion": "1.0.0",

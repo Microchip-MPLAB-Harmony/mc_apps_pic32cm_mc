@@ -10,21 +10,21 @@
 		"shortDescription": "Brushless Direct Current electric motor, or BLDC motors for short, are electronically commutated motors powered by a DC electric source via an external motor controller. This document serves as a guidance to build, configure and run Block Commutation algorithm for BLDC motors on Microchip's 32-bit PIC32CM MC microcontroller devices.",
 		"ide": {
 			"name": "MPLABX",
-			"semverRange": ">=5.45.0"
+			"semverRange": ">=6.00.0"
 		},
 		"compiler": [
 			{
 				"name": "XC32",
-				"semverRange": ">=2.50.0"
+				"semverRange": ">=4.00.0"
 			}
 		],
 		"dfp": {
 			"name": "PIC32CM-MC_DFP",
-			"semverRange": "^1.0.36"
+			"semverRange": "^1.3.58"
 		},
 		"configurator": {
-			"name": "MHC",
-			"semverRange": ">=3.6.2"
+			"name": "MCC",
+			"semverRange": ">=1.0.9"
 		},
 		"device": {
 			"metaDataVersion": "1.0.0",
