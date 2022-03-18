@@ -21,7 +21,6 @@ nav_order: 99
 - Migrated MHC generated firware to MCC generated firmware
 
 ### Known Issues
-* The MCC may over-write the pin configuration, i.e. ```plib_port.c``` and ```plib_port.h``` files. Take care while merging the files on regeneration.
 * same as v3.1.0
 
 ### Required MPLAB Harmony v3 Modules
@@ -29,13 +28,13 @@ nav_order: 99
 * x2c v1.2.0
 * motor_control v3.8.0
 * dev_packs v3.11.0
-* mcc v1.0.9
+* mcc v1.1.0
 
 ### Development Tools
 * [MPLAB X IDE v6.00](https://www.microchip.com/mplab/mplab-x-ide)
 * [MPLAB XC32 C/C++ Compiler v4.00](https://www.microchip.com/mplab/compilers)
 * MPLAB X IDE plug-ins:
-  * MPLAB Code Configurator (MCC) v5.1.1
+  * MPLAB Code Configurator (MCC) v5.1.2
   * X2CScope v1.3.0.
 
 
