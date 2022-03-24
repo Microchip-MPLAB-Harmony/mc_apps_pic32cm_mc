@@ -6,8 +6,8 @@
 project: pmsm_foc_rolo_pic32_cm_mc
 creation_date: 2022-02-25T18:56:36.258+05:30[Asia/Calcutta]    # ISO 8601 format: https://www.w3.org/TR/NOTE-datetime
 operating_system: Windows 10
-mcc_mode: Standalone     # [IDE|Standalone|Headless]
-mcc_version: NA
+mhc_mode: Standalone     # [IDE|Standalone|Headless]
+mhc_version: NA
 mplabx_version: NA      # if MPLAB X plugin only
 plugin_version: NA      # if MPLAB X plugin only
 compiler: xc32

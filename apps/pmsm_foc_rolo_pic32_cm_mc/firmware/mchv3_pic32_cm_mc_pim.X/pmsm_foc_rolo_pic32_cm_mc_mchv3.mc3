@@ -1,4 +1,4 @@
-<config configName="mchv3_pic32_cm_mc_pim" projectName="pmsm_foc_rolo_pic32_cm_mc_mchv3" configVersion="1.1" device="PIC32CM1216MC00048" deviceLibraryClass="com.microchip.mcc.harmony.Harmony3Library" coreVersion="5.4.1">
+<config configName="mchv3_pic32_cm_mc_pim" projectName="pmsm_foc_rolo_pic32_cm_mc_mchv3" configVersion="1.1" device="PIC32CM1216MC00048" deviceLibraryClass="com.microchip.mcc.harmony.Harmony3Library" coreVersion="5.4.2">
    <usedPackages class="java.util.ArrayList"/>
    <usedClasses class="java.util.TreeMap">
       <entry>
@@ -73,16 +73,6 @@
           &lt;/String&gt;
         &lt;/Attributes&gt;
       &lt;/DirectDependency&gt;
-      &lt;DirectCapability dnOrder=&quot;1&quot; id=&quot;x2cScope_Scope&quot;&gt;
-        &lt;Attributes dnOrder=&quot;0&quot;&gt;
-          &lt;String dnOrder=&quot;0&quot; id=&quot;targetComponentID&quot;&gt;
-            &lt;Value dnOrder=&quot;0&quot;&gt;pmsm_foc&lt;/Value&gt;
-          &lt;/String&gt;
-          &lt;String dnOrder=&quot;1&quot; id=&quot;targetAttachmentID&quot;&gt;
-            &lt;Value dnOrder=&quot;0&quot;&gt;pmsmfoc_X2CSCOPE&lt;/Value&gt;
-          &lt;/String&gt;
-        &lt;/Attributes&gt;
-      &lt;/DirectCapability&gt;
     &lt;/Attachments&gt;
   &lt;/X2CScope&gt;
 &lt;/X2CScope&gt;
@@ -620,7 +610,8 @@
          <key class="com.microchip.mcc.core.tokenManager.CustomKey" moduleName="core" name="!@#harmonyUserData"/>
          <value>&lt;?xml version=&quot;1.0&quot; encoding=&quot;UTF-8&quot;?&gt;&lt;UserData&gt;
   &lt;UserData dnOrder=&quot;0&quot;&gt;
-    &lt;ComponentGraph dnOrder=&quot;0&quot; id=&quot;__ROOTVIEW&quot;&gt;
+    &lt;GraphSettings canvasHeight=&quot;505&quot; canvasWidth=&quot;510&quot; dnOrder=&quot;0&quot;/&gt;
+    &lt;ComponentGraph dnOrder=&quot;1&quot; id=&quot;__ROOTVIEW&quot;&gt;
       &lt;ElementPositions dnOrder=&quot;0&quot;&gt;
         &lt;ElementPosition dnOrder=&quot;0&quot; id=&quot;X2CScope&quot; x=&quot;135&quot; y=&quot;369&quot;/&gt;
         &lt;ElementPosition dnOrder=&quot;1&quot; id=&quot;adc0&quot; x=&quot;133&quot; y=&quot;159&quot;/&gt;
@@ -637,7 +628,6 @@
         &lt;ElementPosition dnOrder=&quot;12&quot; id=&quot;tcc0&quot; x=&quot;135&quot; y=&quot;299&quot;/&gt;
       &lt;/ElementPositions&gt;
     &lt;/ComponentGraph&gt;
-    &lt;GraphSettings canvasHeight=&quot;505&quot; canvasWidth=&quot;510&quot; dnOrder=&quot;1&quot;/&gt;
   &lt;/UserData&gt;
 &lt;/UserData&gt;
 </value>
@@ -3868,16 +3858,6 @@
           &lt;/String&gt;
         &lt;/Attributes&gt;
       &lt;/DirectDependency&gt;
-      &lt;DirectDependency dnOrder=&quot;2&quot; id=&quot;pmsmfoc_X2CSCOPE&quot;&gt;
-        &lt;Attributes dnOrder=&quot;0&quot;&gt;
-          &lt;String dnOrder=&quot;0&quot; id=&quot;targetComponentID&quot;&gt;
-            &lt;Value dnOrder=&quot;0&quot;&gt;X2CScope&lt;/Value&gt;
-          &lt;/String&gt;
-          &lt;String dnOrder=&quot;1&quot; id=&quot;targetAttachmentID&quot;&gt;
-            &lt;Value dnOrder=&quot;0&quot;&gt;x2cScope_Scope&lt;/Value&gt;
-          &lt;/String&gt;
-        &lt;/Attributes&gt;
-      &lt;/DirectDependency&gt;
     &lt;/Attachments&gt;
   &lt;/pmsm_foc&gt;
 &lt;/pmsm_foc&gt;
@@ -4755,6 +4735,17 @@
 </value>
       </entry>
       <entry>
+         <key class="com.microchip.mcc.core.tokenManager.CustomKey" moduleName="sercom3" name="USART_RXPO"/>
+         <value>&lt;?xml version=&quot;1.0&quot; encoding=&quot;UTF-8&quot;?&gt;&lt;sercom3&gt;
+  &lt;sercom3 dnOrder=&quot;0&quot; id=&quot;USART_RXPO&quot;&gt;
+    &lt;Values dnOrder=&quot;0&quot;&gt;
+      &lt;User dnOrder=&quot;0&quot; value=&quot;1&quot;/&gt;
+    &lt;/Values&gt;
+  &lt;/sercom3&gt;
+&lt;/sercom3&gt;
+</value>
+      </entry>
+      <entry>
          <key class="com.microchip.mcc.core.tokenManager.CustomKey" moduleName="sercom3" name="USART_SAMPLE_COUNT"/>
          <value>&lt;?xml version=&quot;1.0&quot; encoding=&quot;UTF-8&quot;?&gt;&lt;sercom3&gt;
   &lt;sercom3 dnOrder=&quot;0&quot; id=&quot;USART_SAMPLE_COUNT&quot;&gt;
@@ -5382,7 +5373,7 @@
       </entry>
       <entry>
          <file>..\src\config\mchv3_pic32_cm_mc_pim\peripheral\port\plib_port.c</file>
-         <hash>4f891b032f2be24479b991fe680cf529257f7d97c8ac81a66f7b8d90e6ab6f12</hash>
+         <hash>33c6b79164ce4a988ffe16f8eaf8bde16a3062935754b349ff364b3290ef848b</hash>
       </entry>
       <entry>
          <file>..\src\packs\PIC32CM1216MC00048_DFP\component\tsens.h</file>
@@ -5454,7 +5445,7 @@
       </entry>
       <entry>
          <file>..\src\config\mchv3_pic32_cm_mc_pim\definitions.h</file>
-         <hash>b30fdf4b2dddb9eb59cc81c80211dc8843436ebb1d7604314f946b9c1851573c</hash>
+         <hash>369175dee7a3b4707e0d38c3b3f5655331d690856f0d6ff017c52220d55da49c</hash>
       </entry>
       <entry>
          <file>..\src\packs\PIC32CM1216MC00048_DFP\component\osc32kctrl.h</file>
@@ -5670,7 +5661,7 @@
       </entry>
       <entry>
          <file>..\src\config\mchv3_pic32_cm_mc_pim\peripheral\sercom\usart\plib_sercom3_usart.c</file>
-         <hash>5c0ab0957042f0c615a5cbe3343ea0517617c89b954071f41a84cc938fafb0af</hash>
+         <hash>92f6199f0baa33dd71631cb0fa5e05757b36c3a1db94e1283657232aeea8b6c4</hash>
       </entry>
       <entry>
          <file>..\src\config\mchv3_pic32_cm_mc_pim\peripheral\clock\plib_clock.c</file>
