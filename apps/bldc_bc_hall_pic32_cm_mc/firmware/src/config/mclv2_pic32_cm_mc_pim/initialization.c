@@ -138,9 +138,9 @@ void SYS_Initialize ( void* data )
 
     TC3_TimerInitialize();
 
-    TC4_TimerInitialize();
-
     PDEC_HALLInitialize();
+
+    TC4_TimerInitialize();
 
     TCC0_PWMInitialize();
 

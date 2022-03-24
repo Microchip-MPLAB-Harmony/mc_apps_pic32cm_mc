@@ -1,4 +1,4 @@
-<config configName="mclv2_pic32_cm_mc_pim" projectName="bldc_bc_hall_pic32_cm_mc_mclv2" configVersion="1.1" device="PIC32CM1216MC00048" deviceLibraryClass="com.microchip.mcc.harmony.Harmony3Library" coreVersion="5.4.1">
+<config configName="mclv2_pic32_cm_mc_pim" projectName="bldc_bc_hall_pic32_cm_mc_mclv2" configVersion="1.1" device="PIC32CM1216MC00048" deviceLibraryClass="com.microchip.mcc.harmony.Harmony3Library" coreVersion="5.4.2">
    <usedPackages class="java.util.ArrayList"/>
    <usedClasses class="java.util.TreeMap">
       <entry>
@@ -406,7 +406,8 @@
          <key class="com.microchip.mcc.core.tokenManager.CustomKey" moduleName="core" name="!@#harmonyUserData"/>
          <value>&lt;?xml version=&quot;1.0&quot; encoding=&quot;UTF-8&quot;?&gt;&lt;UserData&gt;
   &lt;UserData dnOrder=&quot;0&quot;&gt;
-    &lt;ComponentGraph dnOrder=&quot;0&quot; id=&quot;__ROOTVIEW&quot;&gt;
+    &lt;GraphSettings canvasHeight=&quot;400&quot; canvasWidth=&quot;400&quot; dnOrder=&quot;0&quot;/&gt;
+    &lt;ComponentGraph dnOrder=&quot;1&quot; id=&quot;__ROOTVIEW&quot;&gt;
       &lt;ElementPositions dnOrder=&quot;0&quot;&gt;
         &lt;ElementPosition dnOrder=&quot;0&quot; id=&quot;X2CScope&quot; x=&quot;250&quot; y=&quot;464&quot;/&gt;
         &lt;ElementPosition dnOrder=&quot;1&quot; id=&quot;adc1&quot; x=&quot;146&quot; y=&quot;200&quot;/&gt;
@@ -424,7 +425,6 @@
         &lt;ElementPosition dnOrder=&quot;13&quot; id=&quot;tcc0&quot; x=&quot;24&quot; y=&quot;200&quot;/&gt;
       &lt;/ElementPositions&gt;
     &lt;/ComponentGraph&gt;
-    &lt;GraphSettings canvasHeight=&quot;400&quot; canvasWidth=&quot;400&quot; dnOrder=&quot;1&quot;/&gt;
   &lt;/UserData&gt;
 &lt;/UserData&gt;
 </value>
@@ -6221,7 +6221,7 @@
       </entry>
       <entry>
          <file>..\src\config\mclv2_pic32_cm_mc_pim\definitions.h</file>
-         <hash>a1cc271f43a952d505cba03403f8bd208f4e0d37c9463d4284d8b6703ada1a7f</hash>
+         <hash>7569a3493cdd8862da837db54883f495024e68f84a67d7b7d65b51ba05d380d4</hash>
       </entry>
       <entry>
          <file>..\src\packs\PIC32CM1216MC00048_DFP\component\ccl.h</file>
@@ -6325,7 +6325,7 @@
       </entry>
       <entry>
          <file>..\src\config\mclv2_pic32_cm_mc_pim\peripheral\port\plib_port.c</file>
-         <hash>c812b2ce76c6e32e505de10fdc7c90cb94c32f24747ed877032ba4ad22093033</hash>
+         <hash>733ccc395ec33da70184ea8bd4d62289fbccaad8f9e22a2676b0d5e9876a5666</hash>
       </entry>
       <entry>
          <file>..\src\config\mclv2_pic32_cm_mc_pim\peripheral\sercom\usart\plib_sercom_usart_common.h</file>
@@ -6357,7 +6357,7 @@
       </entry>
       <entry>
          <file>..\src\config\mclv2_pic32_cm_mc_pim\initialization.c</file>
-         <hash>2d210baa49934410a753861fd57d4351fef293b2c40cef6e544eec436730c431</hash>
+         <hash>adc4b9d89879d9a6fc7de3730e5fa4bf1acb92e1d03ca7a6a5e141daa712ca92</hash>
       </entry>
       <entry>
          <file>..\src\packs\PIC32CM1216MC00048_DFP\instance\tc0.h</file>
