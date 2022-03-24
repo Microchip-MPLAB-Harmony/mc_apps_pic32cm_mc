@@ -1,4 +1,4 @@
-<config configName="mchv3_pic32_cm_mc_pim" projectName="acim_vhz_pic32_cm_mc_mchv3" configVersion="1.1" device="PIC32CM1216MC00048" deviceLibraryClass="com.microchip.mcc.harmony.Harmony3Library" coreVersion="5.4.1">
+<config configName="mchv3_pic32_cm_mc_pim" projectName="acim_vhz_pic32_cm_mc_mchv3" configVersion="1.1" device="PIC32CM1216MC00048" deviceLibraryClass="com.microchip.mcc.harmony.Harmony3Library" coreVersion="5.4.2">
    <usedPackages class="java.util.ArrayList"/>
    <usedClasses class="java.util.TreeMap">
       <entry>
@@ -4800,7 +4800,7 @@
       </entry>
       <entry>
          <file>..\src\config\mchv3_pic32_cm_mc_pim\peripheral\port\plib_port.c</file>
-         <hash>cb6891db015f0978a2dff75d73a9511c3790f14abfbea9c1d69124b5af050679</hash>
+         <hash>ab30c046f0b7074782f0b9288931cf061d47f9e2a2816e051486fbbd9d4991eb</hash>
       </entry>
       <entry>
          <file>..\src\packs\PIC32CM1216MC00048_DFP\component\tsens.h</file>
@@ -4860,7 +4860,7 @@
       </entry>
       <entry>
          <file>..\src\config\mchv3_pic32_cm_mc_pim\definitions.h</file>
-         <hash>99307e5d7a0dede5f9e8ae489c3ea0a462f6ec9f4ef34fa755de5e8b0600b159</hash>
+         <hash>aab89975a5efa8b6508c1f041a173da780d639802769453aae29962e34f027f7</hash>
       </entry>
       <entry>
          <file>..\src\packs\PIC32CM1216MC00048_DFP\component\osc32kctrl.h</file>
