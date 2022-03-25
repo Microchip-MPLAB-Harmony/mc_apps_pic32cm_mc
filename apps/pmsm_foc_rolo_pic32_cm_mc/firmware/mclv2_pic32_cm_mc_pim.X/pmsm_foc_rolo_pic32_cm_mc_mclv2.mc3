@@ -1,4 +1,4 @@
-<config configName="mclv2_pic32_cm_mc_pim" projectName="pmsm_foc_rolo_pic32_cm_mc_mclv2" configVersion="1.1" device="PIC32CM1216MC00048" deviceLibraryClass="com.microchip.mcc.harmony.Harmony3Library" coreVersion="5.4.1">
+<config configName="mclv2_pic32_cm_mc_pim" projectName="pmsm_foc_rolo_pic32_cm_mc_mclv2" configVersion="1.1" device="PIC32CM1216MC00048" deviceLibraryClass="com.microchip.mcc.harmony.Harmony3Library" coreVersion="5.4.2">
    <usedPackages class="java.util.ArrayList"/>
    <usedClasses class="java.util.TreeMap">
       <entry>
@@ -3722,8 +3722,8 @@
     &lt;Attachments dnOrder=&quot;0&quot;&gt;
       &lt;MultiCapability dnOrder=&quot;0&quot; id=&quot;pmsmfoc_ADC&quot;&gt;
         &lt;TargetAttachments dnOrder=&quot;0&quot;&gt;
-          &lt;TargetAttachment dnOrder=&quot;0&quot; targetAttachmentID=&quot;ADC0_ADC&quot; targetComponentID=&quot;adc0&quot;/&gt;
-          &lt;TargetAttachment dnOrder=&quot;1&quot; targetAttachmentID=&quot;ADC1_ADC&quot; targetComponentID=&quot;adc1&quot;/&gt;
+          &lt;TargetAttachment dnOrder=&quot;0&quot; targetAttachmentID=&quot;ADC1_ADC&quot; targetComponentID=&quot;adc1&quot;/&gt;
+          &lt;TargetAttachment dnOrder=&quot;1&quot; targetAttachmentID=&quot;ADC0_ADC&quot; targetComponentID=&quot;adc0&quot;/&gt;
         &lt;/TargetAttachments&gt;
       &lt;/MultiCapability&gt;
       &lt;DirectDependency dnOrder=&quot;1&quot; id=&quot;pmsmfoc_PWM&quot;&gt;
