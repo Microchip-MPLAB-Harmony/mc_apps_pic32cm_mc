@@ -254,6 +254,7 @@
       <itemPath>../src/mc_app.c</itemPath>
       <itemPath>../src/q14_generic_mcLib.c</itemPath>
       <itemPath>../src/main_mclv2_pic32_cm_mc.c</itemPath>
+      <itemPath>../src/config/mclv2_pic32_cm_mc_pim/pin_configurations.csv</itemPath>
     </logicalFolder>
     <logicalFolder name="ExternalFiles"
                    displayName="Important Files"
@@ -295,7 +296,7 @@
         <targetDevice>PIC32CM1216MC00048</targetDevice>
         <targetHeader></targetHeader>
         <targetPluginBoard></targetPluginBoard>
-        <platformTool>noID</platformTool>
+        <platformTool>AtmelIceTool</platformTool>
         <languageToolchain>XC32</languageToolchain>
         <languageToolchainVersion>4.00</languageToolchainVersion>
         <platform>3</platform>

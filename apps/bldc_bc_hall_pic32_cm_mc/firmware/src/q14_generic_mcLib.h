@@ -74,8 +74,173 @@ uint16_t __ramfunc__ pi_lib_calculate(picontrol_type* piPtr);
 uint16_t pi_lib_calculate(picontrol_type* piPtr);
 #endif
 
+//#ifndef   STATIC_FORCEINLINE
+//  #define STATIC_FORCEINLINE                   __attribute__((always_inline)) static inline
+//#endif
+/*! \brief Right shift  for 32-bit signed integer
+ *
+ * Details
+ * Right shift  for 32-bit signed integer
+ *
+ * @param[in]:
+ * @param[in/out]:
+ * @param[out]:
+ * @return:
+ */
+static inline int32_t mcUtils_RightShiftS32(int32_t operand, uint16_t shift )
+{
+#if defined ENABLE_SIGN_INTEGER_SHIFT
+    /* MISRAC 2012 deviation block start */
+    /* MISRA C-2012 Rule 10.1 deviated in this function. Deviation record ID -  H3_MISRAC_2012_R_2_2_DR_1  */
+    return ( operand >> shift );
+    /* MISRAC 2012 deviation block end */
+#else
+    int32_t result;
+    uint32_t u32a;
+
+    if( 0 > operand )
+    {
+        u32a = ((uint32_t)(-operand ) >> shift );
+        result = -(int32_t)u32a;
+    }
+    else
+    {
+        u32a = ((uint32_t)operand >> shift);
+        result = (int32_t)u32a;
+    }
+    return result;
+#endif
+}
+
+/*! \brief Left shift  for 32-bit signed integer
+ *
+ * Details
+ * Left shift  for 32-bit signed integer
+ *
+ * @param[in]:
+ * @param[in/out]:
+ * @param[out]:
+ * @return:
+ */
+static inline int32_t mcUtils_LeftShiftS32(int32_t operand, uint16_t shift )
+{
+#if defined ENABLE_SIGN_INTEGER_SHIFT
+    /* MISRAC 2012 deviation block start */
+    /* MISRA C-2012 Rule 10.1 deviated in this function. Deviation record ID -  H3_MISRAC_2012_R_2_2_DR_1  */
+    return ( operand << shift );
+    /* MISRAC 2012 deviation block end */
+#else
+    int32_t result;
+    uint32_t u32a;
+
+    if(0 > operand )
+    {
+        u32a = ((uint32_t)(-operand ) << shift );
+        result = -(int32_t)u32a;
+    }
+    else
+    {
+        u32a = ((uint32_t)operand << shift);
+        result = (int32_t)u32a;
+    }
+    return (result);
+#endif
+}
+
+/*! \brief Right shift  for 16-bit signed short
+ *
+ * Details
+ * Right shift  for 16-bit signed short
+ *
+ * @param[in]:
+ * @param[in/out]:
+ * @param[out]:
+ * @return:
+ */
+static inline int16_t mcUtils_RightShiftS16(int16_t operand, uint16_t shift )
+{
+#if defined ENABLE_SIGN_INTEGER_SHIFT
+    /* MISRAC 2012 deviation block start */
+    /* MISRA C-2012 Rule 10.1 deviated in this function. Deviation record ID -  H3_MISRAC_2012_R_2_2_DR_1  */
+    return ( operand >> shift );
+    /* MISRAC 2012 deviation block end */
+#else
+    int16_t result;
+    uint16_t u16a;
+
+    if( 0 > operand )
+    {
+        u16a = ((uint16_t)(-operand ) >> shift );
+        result = -(int16_t)u16a;
+    }
+    else
+    {
+        u16a = ((uint16_t)operand >> shift);
+        result = (int16_t)u16a;
+    }
+    return (result);
+#endif
+}
+
+/*! \brief Left shift  for 16-bit signed short
+ *
+ * Details
+ * Left shift  for 16-bit signed short
+ *
+ * @param[in]:
+ * @param[in/out]:
+ * @param[out]:
+ * @return:
+ */
+static inline int16_t mcUtils_LeftShiftS16(int16_t operand, uint16_t shift )
+{
+#if defined ENABLE_SIGN_INTEGER_SHIFT
+    /* MISRAC 2012 deviation block start */
+    /* MISRA C-2012 Rule 10.1 deviated in this function. Deviation record ID -  H3_MISRAC_2012_R_2_2_DR_1  */
+    return ( operand << shift );
+    /* MISRAC 2012 deviation block end */
+#else
+    int16_t result;
+    uint16_t u16a;
+
+    if( 0 > operand )
+    {
+        u16a = ((uint16_t)(-operand ) << shift );
+        result = -(int16_t)u16a;
+    }
+    else
+    {
+        u16a = ((uint16_t)operand << shift);
+        result = (int16_t)u16a;
+    }
+    return (result);
+#endif
+}
+
+/*! \brief Left shift  for 16-bit signed short
+ *
+ * Details
+ * Left shift  for 16-bit signed short
+ *
+ * @param[in]:
+ * @param[in/out]:
+ * @param[out]:
+ * @return:
+ */
+static inline int16_t mcUtils_MultAndRightShiftS16(int16_t operand1, int16_t operand2, uint16_t shift )
+{
+#if defined ENABLE_SIGN_INTEGER_SHIFT
+    /* MISRAC 2012 deviation block start */
+    /* MISRA C-2012 Rule 10.1 deviated in this function. Deviation record ID -  H3_MISRAC_2012_R_2_2_DR_1  */
+    return (int16_t)(( (int32_t)operand1 * (int32_t)operand2)  >> shift );
+    /* MISRAC 2012 deviation block end */
+#else
+    return (int16_t)mcUtils_RightShiftS32((int32_t)((int32_t)operand1 * (int32_t)operand2 ), shift );
+#endif
+}
 
 /* END OF CONTROL FUNCTIONS *************************************************/
 
 
 #endif // Q14_GENERIC_MCLIB_H
+

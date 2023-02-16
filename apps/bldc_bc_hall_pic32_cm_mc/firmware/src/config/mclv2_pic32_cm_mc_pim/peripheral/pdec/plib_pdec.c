@@ -62,7 +62,7 @@
 // *****************************************************************************
 // *****************************************************************************
 /* Object to hold callback function and context */
-PDEC_HALL_CALLBACK_OBJ PDEC_HALL_CallbackObj;
+static PDEC_HALL_CALLBACK_OBJ PDEC_HALL_CallbackObj;
 
 // *****************************************************************************
 // *****************************************************************************
@@ -84,9 +84,9 @@ void PDEC_HALLInitialize( void )
 
     /* Configure quadrature control settings */
     PDEC_REGS->PDEC_CTRLA = PDEC_CTRLA_MODE_HALL
-                  | PDEC_CTRLA_PINEN(0x7) | PDEC_CTRLA_PINVEN(0x0); 
+                  | PDEC_CTRLA_PINEN(0x7U) | PDEC_CTRLA_PINVEN(0x0U); 
     PDEC_REGS->PDEC_PRESC = PDEC_PRESC_PRESC_DIV1;
-    PDEC_REGS->PDEC_FILTER = PDEC_FILTER_FILTER(2);
+    PDEC_REGS->PDEC_FILTER = PDEC_FILTER_FILTER(2U);
 
     /* Clear all interrupt flags */
     PDEC_REGS->PDEC_INTFLAG = PDEC_INTFLAG_Msk;
@@ -96,7 +96,7 @@ void PDEC_HALLInitialize( void )
 
     PDEC_REGS->PDEC_EVCTRL = 0x0;
 
-    while((PDEC_REGS->PDEC_SYNCBUSY))
+    while((PDEC_REGS->PDEC_SYNCBUSY)!= 0U)
     {
         /* Wait for Write Synchronization */
     }
@@ -107,7 +107,7 @@ void PDEC_HALLStart( void )
 {
     PDEC_REGS->PDEC_CTRLA |= PDEC_CTRLA_ENABLE_Msk;
     PDEC_REGS->PDEC_CTRLBSET = PDEC_CTRLBSET_CMD_START;
-    while((PDEC_REGS->PDEC_SYNCBUSY))
+    while((PDEC_REGS->PDEC_SYNCBUSY)!= 0U)
     {
         /* Wait for Write Synchronization */
     }
@@ -118,7 +118,7 @@ void PDEC_HALLStop( void )
 {
     PDEC_REGS->PDEC_CTRLBSET = PDEC_CTRLBSET_CMD_STOP;
     PDEC_REGS->PDEC_CTRLA &= ~PDEC_CTRLA_ENABLE_Msk;
-    while((PDEC_REGS->PDEC_SYNCBUSY))
+    while((PDEC_REGS->PDEC_SYNCBUSY)!= 0U)
     {
         /* Wait for Write Synchronization */
     }
@@ -128,7 +128,7 @@ void PDEC_HALLStop( void )
 uint8_t PDEC_HALLPatternGet( void )
 {
     PDEC_REGS->PDEC_CTRLBSET = PDEC_CTRLBSET_CMD_READSYNC;
-    while(PDEC_REGS->PDEC_SYNCBUSY)
+    while((PDEC_REGS->PDEC_SYNCBUSY)!= 0U)
     {
         /* Wait for read Synchronization */
     }
@@ -136,7 +136,7 @@ uint8_t PDEC_HALLPatternGet( void )
     {
         /* Wait for CMD to become zero */
     }
-    return (uint8_t)(PDEC_REGS->PDEC_COUNT & 0x07);
+    return (uint8_t)(PDEC_REGS->PDEC_COUNT & 0x07U);
 }
 
 
@@ -146,7 +146,7 @@ bool PDEC_HALLPatternSet( uint8_t pattern )
     bool status = false;
     if((PDEC_REGS->PDEC_STATUS & PDEC_STATUS_CCBUFV0_Msk) == 0U)
     {
-        PDEC_REGS->PDEC_CCBUF[0] = (pattern & 0x07);
+        PDEC_REGS->PDEC_CCBUF[0] =((uint32_t)pattern & 0x07U);
         status = true;
     }    
     return status;
@@ -157,10 +157,10 @@ bool PDEC_HALLTimeWindowSet(uint16_t low_window, uint16_t high_window)
     bool status = false;    
     if((PDEC_REGS->PDEC_STATUS & PDEC_STATUS_CCBUFV0_Msk) == 0U)
     {    
-        PDEC_REGS->PDEC_CCBUF[0] = low_window << 16;
+        PDEC_REGS->PDEC_CCBUF[0] =(uint32_t)low_window << 16;
         if((PDEC_REGS->PDEC_STATUS & PDEC_STATUS_CCBUFV1_Msk) == 0U)
         {    
-            PDEC_REGS->PDEC_CCBUF[1] = high_window << 16;
+            PDEC_REGS->PDEC_CCBUF[1] = (uint32_t)high_window << 16;
             status = true;
         }
     }
@@ -177,7 +177,7 @@ void PDEC_HALLCallbackRegister( PDEC_HALL_CALLBACK callback, uintptr_t context )
 void PDEC_InterruptHandler( void )
 {
     PDEC_HALL_STATUS status;
-    status = (PDEC_HALL_STATUS) PDEC_REGS->PDEC_INTFLAG;
+    status = PDEC_REGS->PDEC_INTFLAG;
     /* Clear interrupt flags */
     PDEC_REGS->PDEC_INTFLAG = 0xFF;
     if (PDEC_HALL_CallbackObj.callback != NULL)

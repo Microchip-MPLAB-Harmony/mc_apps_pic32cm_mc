@@ -73,20 +73,21 @@ uint16_t pi_lib_calculate(picontrol_type* piPtr)
 	y_kplus 	= ((int32_t)piPtr->integratorBuf + y_ki);
 	
 	/*	Load buffer with the accumulated error	*/
-	piPtr->integratorBuf = y_kplus;
+	piPtr->integratorBuf = (uint32_t)y_kplus;
 	
-	y_kplus = y_kplus >> 15;
+	//y_kplus = y_kplus >> 15U;
+    y_kplus = mcUtils_RightShiftS32(y_kplus,15U);
 	
 	/* Integral term Anti Windup Saturation Limit Check	*/
-	if(y_kplus >= SPEED_MAX_LIMIT)
+	if(y_kplus >= (int32_t)SPEED_MAX_LIMIT)
 	{
-		y_kplus = SPEED_MAX_LIMIT;
-		piPtr->integratorBuf = (uint32_t) y_kplus*32768;
+		y_kplus = (int32_t)SPEED_MAX_LIMIT;
+		piPtr->integratorBuf = (uint32_t)y_kplus*32768U;
 	}
-	else if (y_kplus < SPEED_MIN_LIMIT)
+	else if (y_kplus < (int32_t)SPEED_MIN_LIMIT)
 	{
-		y_kplus = SPEED_MIN_LIMIT;
-		piPtr->integratorBuf = (uint32_t) y_kplus*32768;
+		y_kplus = (int32_t)SPEED_MIN_LIMIT;
+		piPtr->integratorBuf = (uint32_t)y_kplus*32768U;
 	}
 	else
 	{
@@ -94,16 +95,16 @@ uint16_t pi_lib_calculate(picontrol_type* piPtr)
 	}
 
 	/*	Summation of Prop term and Integral term	*/
-	yn_kplus	=	(y_kp + piPtr->integratorBuf)>>15;
+	yn_kplus	=	mcUtils_RightShiftS32((y_kp + (int32_t)piPtr->integratorBuf),15U);
 	
 	/*	Saturation Limit Check on final output	*/
-	if(yn_kplus >= SPEED_MAX_LIMIT)
+	if(yn_kplus >= (int32_t)SPEED_MAX_LIMIT)
 	{
-		yn_kplus = SPEED_MAX_LIMIT;
+		yn_kplus = (int32_t)SPEED_MAX_LIMIT;
 	}
-	else if(yn_kplus < SPEED_MIN_LIMIT)
+	else if(yn_kplus < (int32_t)SPEED_MIN_LIMIT)
 	{
-		yn_kplus = SPEED_MIN_LIMIT;
+		yn_kplus = (int32_t)SPEED_MIN_LIMIT;
 	}
 	else
 	{

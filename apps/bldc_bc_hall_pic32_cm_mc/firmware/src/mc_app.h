@@ -56,6 +56,12 @@ typedef enum
     OC_FAULT_STOP
 } stop_source_t;
 
+typedef struct
+{
+    uint32_t inputVal;  /* read value of button input pin */
+    uint16_t state;
+    uint16_t cnt;
+} button_response_t;
 
 typedef struct
 {
@@ -100,16 +106,16 @@ typedef struct
 }motor_hall_params_t;
 
 
-extern picontrol_type  speedpi;
+//extern picontrol_type  speedpi;
 /*******************************************************************************
 Public variables definition
 *******************************************************************************/
 
 //extern stop_source_t motor_stop_source; 
 
-extern uint8_t var_time_10ms;
+//extern uint8_t var_time_10ms;
 
-
+extern motor_state_params_t    Motor_StateParams;
 /*******************************************************************************
 Private functions prototypes
 *******************************************************************************/

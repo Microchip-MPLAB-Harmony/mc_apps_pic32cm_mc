@@ -54,6 +54,7 @@
 */
 
 #include "plib_eic.h"
+#include "interrupts.h"
 
 // *****************************************************************************
 // *****************************************************************************
@@ -62,7 +63,7 @@
 // *****************************************************************************
 
 /* EIC Channel Callback object */
-EIC_CALLBACK_OBJ    eicCallbackObject[EXTINT_COUNT];
+static EIC_CALLBACK_OBJ    eicCallbackObject[EXTINT_COUNT];
 
 
 void EIC_Initialize (void)
@@ -169,7 +170,7 @@ void EIC_InterruptHandler(void)
             /* Read the interrupt flag status */
             eicIntFlagStatus = EIC_REGS->EIC_INTFLAG & (1UL << currentChannel);
 
-            if (eicIntFlagStatus)
+            if (eicIntFlagStatus != 0U)
             {
                 /* Find any associated callback entries in the callback table */
                 if ((eicCallbackObject[currentChannel].callback != NULL))

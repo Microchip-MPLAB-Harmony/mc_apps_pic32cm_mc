@@ -78,10 +78,10 @@ void TCC0_PWMInitialize(void)
     TCC0_REGS->TCC_CC[3] = 0U;
     TCC0_REGS->TCC_PER = 2399U;
 
-    TCC0_REGS->TCC_PATT =(uint16_t)(TCC_PATT_PGE4_Msk 
+    TCC0_REGS->TCC_PATT =TCC_PATT_PGE4_Msk 
  	 	 | TCC_PATT_PGE5_Msk 
  	 	 | TCC_PATT_PGE6_Msk 
- 	 	 | TCC_PATT_PGE7_Msk);
+ 	 	 | TCC_PATT_PGE7_Msk;
 
     TCC0_REGS->TCC_DRVCTRL |= TCC_DRVCTRL_FILTERVAL0(5UL)
           | TCC_DRVCTRL_FILTERVAL1(0UL)| TCC_DRVCTRL_NRE0_Msk
@@ -201,6 +201,7 @@ uint32_t TCC0_PWMInterruptStatusGet(void)
     interrupt_status = TCC0_REGS->TCC_INTFLAG;
     /* Clear interrupt flags */
     TCC0_REGS->TCC_INTFLAG = interrupt_status;
+    (void)TCC0_REGS->TCC_INTFLAG;
     return interrupt_status;
 }
 

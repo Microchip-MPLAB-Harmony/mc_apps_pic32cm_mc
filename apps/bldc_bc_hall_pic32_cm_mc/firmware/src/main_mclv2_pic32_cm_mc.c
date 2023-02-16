@@ -53,17 +53,10 @@
 
 
 
-extern motor_state_params_t    Motor_StateParams;
+motor_state_params_t    Motor_StateParams;
 
-typedef struct
-{
-    uint32_t inputVal;  /* read value of button input pin */
-    uint16_t state;
-    uint16_t cnt;
-} button_response_t;
-
-button_response_t button_S2_data;
-button_response_t button_S3_data;
+static button_response_t button_S2_data;
+static button_response_t button_S3_data;
 
 
 
@@ -124,12 +117,13 @@ void buttonRespond(button_response_t * buttonResData, void (* buttonJob)(void))
             break;
         case 1u:  /* Stay idle for 500ms, and then return to detect. */
             buttonResData->cnt++;
-            if(buttonResData->cnt >= 50){
+            if(buttonResData->cnt >= 50u){
                 buttonResData->cnt = 0u;
                 buttonResData->state = 0u;
             }
             break;
         default:
+            /* Default case */
             break;
     }
 }
@@ -137,7 +131,7 @@ void buttonRespond(button_response_t * buttonResData, void (* buttonJob)(void))
 
 void buttonStartStopToggle(void)
 {
-    Motor_StateParams.switch_state ^= 1;         
+    Motor_StateParams.switch_state ^= 1U;         
 		
 	if(1U == Motor_StateParams.switch_state)
 	{
@@ -156,12 +150,12 @@ void buttonStartStopToggle(void)
 void buttonDirectionToggle(void)
 {
     // Direction can be changed only when motor is stopped
-    if(!Motor_StateParams.state_run)
+    if(!(bool)Motor_StateParams.state_run)
     {
-        Motor_StateParams.direction ^= 1;
+        Motor_StateParams.direction ^= (uint8_t)1;
         LED2_DIRECTION_Toggle();        
         
-        if(!Motor_StateParams.direction)
+        if(!(bool)Motor_StateParams.direction)
         {
             Motor_StateParams.direction_offset = 0;
         }

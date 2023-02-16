@@ -55,20 +55,21 @@ Headers inclusions
 /*******************************************************************************
 Variables
 *******************************************************************************/
-motor_bc_params_t       Motor_BCParams;
-motor_hall_params_t     Motor_HallParams;
-motor_state_params_t    Motor_StateParams;
-picontrol_type          Motor_Speed_PIParams;
-
+static motor_bc_params_t       Motor_BCParams;
+static motor_hall_params_t     Motor_HallParams;
+static picontrol_type          Motor_Speed_PIParams;
+static bool StatusFlag = true;
+static uint8_t PWM_StatusFlag=true;
+static uintptr_t dummyforMisra;
 /* Hall Pattern 
  first 8 entries are for clockwise direction and later 8 for anti-clockwise direction
  */
-const uint16_t HALL_ARRAY[16] = { 0, 5, 3, 1, 6, 4, 2, 0, 0, 3, 6, 2, 5, 1, 4, 0 };  
+static const uint16_t HALL_ARRAY[16] = { 0, 5, 3, 1, 6, 4, 2, 0, 0, 3, 6, 2, 5, 1, 4, 0 };  
 
 /* Commutation Pattern as per Hall Pattern
  first 8 entries are for clockwise direction and later 8 for anti-clockwise direction
  */
-const uint16_t COMMUTATION_ARRAY[16] = {
+static const uint16_t COMMUTATION_ARRAY[16] = {
     0,    
     /* to achieve B+ C-, put the following in Pattern register H1H2H3: 001 */
     0x4075, //0x4075, HS //0x0237U, LS
@@ -134,12 +135,12 @@ void MCAPP_MotorControlVarsInit(void)
     Motor_Speed_PIParams.error = 0;
     Motor_Speed_PIParams.kp = (int32_t)SPEED_KP_DEFAULT;
     Motor_Speed_PIParams.ki = (int32_t)SPEED_KI_DEFAULT;
-    Motor_Speed_PIParams.maxlimit = SPEED_MAX_LIMIT;
-    Motor_Speed_PIParams.minlimit = SPEED_MIN_LIMIT;
+    Motor_Speed_PIParams.maxlimit = (int32_t)SPEED_MAX_LIMIT;
+    Motor_Speed_PIParams.minlimit = (int32_t)SPEED_MIN_LIMIT;
     Motor_Speed_PIParams.outputvalue = 0;
     Motor_Speed_PIParams.integratorBuf = 0;
     
-    Motor_BCParams.speed_constant = (TC3_TimerFrequencyGet() * 10) / MOTOR_POLE_PAIRS;
+    Motor_BCParams.speed_constant = (TC3_TimerFrequencyGet() * 10U) / MOTOR_POLE_PAIRS;
     Motor_BCParams.speed_pi_enable = 0;
     
 }
@@ -153,18 +154,18 @@ Note:         called when start button is pressed
 ******************************************************************************/
 void MCAPP_Start(void)
 {
-   
-    PDEC_HALLCallbackRegister(PDEC_VLC_InterruptHandler ,(uintptr_t) NULL ); 
+    
+    PDEC_HALLCallbackRegister((PDEC_HALL_CALLBACK)PDEC_VLC_InterruptHandler ,(uintptr_t) dummyforMisra ); 
     
     /* ADC result ready interrupt handler to read Ishunt and Potentiometer value */
-    ADC1_CallbackRegister((ADC_CALLBACK) ADC_ISR, (uintptr_t)NULL);
+    ADC1_CallbackRegister((ADC_CALLBACK) ADC_ISR, (uintptr_t)dummyforMisra);
     
     /* Fault interrupt handler */
-    EIC_CallbackRegister ((EIC_PIN)EIC_PIN_8, (EIC_CALLBACK) OC_FAULT_ISR,(uintptr_t)NULL);
+    EIC_CallbackRegister ((EIC_PIN)EIC_PIN_8, (EIC_CALLBACK) OC_FAULT_ISR,(uintptr_t)dummyforMisra);
     
     
     /* 1ms timer interrupt handler for speed calculation */
-    TC4_TimerCallbackRegister(TC4_1ms_ISR, (uintptr_t)NULL);
+    TC4_TimerCallbackRegister(TC4_1ms_ISR, (uintptr_t)dummyforMisra);
     
     MCAPP_MotorControlVarsInit();
     
@@ -176,10 +177,11 @@ void MCAPP_Start(void)
     TCC0_PWMStart(); 
     
     /* Disable all PWM outputs */
-    TCC0_PWMPatternSet(0x77, 0x00);  
+    PWM_StatusFlag &= (uint8_t)(StatusFlag = TCC0_PWMPatternSet(0x77, 0x00));  
     
     /* Start 1 mS timer */
-    TC4_TimerStart();    
+    TC4_TimerStart();   
+
 }
 
 
@@ -191,7 +193,7 @@ Output:       nothing (modifies some global variables)
 Note:         called when start button is pressed             
 ******************************************************************************/
 void Motor_Start(void)
-{
+{ 
     Motor_Speed_PIParams.integratorBuf = 0;    
     Motor_Speed_PIParams.outputvalue = 0;
     
@@ -201,14 +203,14 @@ void Motor_Start(void)
     Motor_BCParams.avgctr = (uint16_t) MOTOR_SPEED_CALCFACTOR;
     Motor_BCParams.actual_speed_target = 0;
     Motor_BCParams.speed_pi_enable = 1;
-  
+    bool Hall_Input= false;
     /* Initialize duty cycle */
-    TCC0_PWM24bitDutySet(TCC0_CHANNEL0, DEFAULT_DUTY);
-    Motor_BCParams.speed_reference_target = DEFAULT_SPEED_TARGET; 
+    PWM_StatusFlag &= (uint8_t)(StatusFlag = TCC0_PWM24bitDutySet(TCC0_CHANNEL0, (uint32_t)DEFAULT_DUTY));
+    Motor_BCParams.speed_reference_target =(uint16_t) DEFAULT_SPEED_TARGET; 
 
-    Motor_HallParams.curhall1 = PORT_PinRead(PORT_PIN_PA16);     // HALL A
-    Motor_HallParams.curhall2 = PORT_PinRead(PORT_PIN_PA17);     // HALL B
-    Motor_HallParams.curhall3 = PORT_PinRead(PORT_PIN_PA18);     // HALL C
+    Motor_HallParams.curhall1 = (uint8_t)(Hall_Input = PORT_PinRead(PORT_PIN_PA16));     // HALL A
+    Motor_HallParams.curhall2 = (uint8_t)(Hall_Input = PORT_PinRead(PORT_PIN_PA17));     // HALL B
+    Motor_HallParams.curhall3 = (uint8_t)(Hall_Input = PORT_PinRead(PORT_PIN_PA18));     // HALL C
         
     Motor_HallParams.curpattern = ((Motor_HallParams.curhall1 << 2)|(Motor_HallParams.curhall2 << 1) | Motor_HallParams.curhall3);  
 
@@ -216,15 +218,16 @@ void Motor_Start(void)
     {
         Motor_HallParams.pattern_commutation = COMMUTATION_ARRAY[Motor_HallParams.curpattern + (Motor_StateParams.direction_offset)];
         /* PWM should be applied only at high side switches */
-        Motor_HallParams.patt_enable = (uint8_t)(Motor_HallParams.pattern_commutation & 0x00FF);
-        Motor_HallParams.patt_value  = (uint8_t)(Motor_HallParams.pattern_commutation >> 8) & 0x00FF;
+        Motor_HallParams.patt_enable = (uint8_t)(Motor_HallParams.pattern_commutation & (uint8_t)0x00FF);
+        Motor_HallParams.patt_value  = (uint8_t)(Motor_HallParams.pattern_commutation >> 8) & ((uint8_t)0x00FF);
             
-        TCC0_PWMPatternSet(Motor_HallParams.patt_enable, Motor_HallParams.patt_value);
+        PWM_StatusFlag &= (uint8_t)(StatusFlag = TCC0_PWMPatternSet(Motor_HallParams.patt_enable, Motor_HallParams.patt_value));
         
-        Motor_HallParams.nextpattern = HALL_ARRAY[Motor_HallParams.curpattern+(Motor_StateParams.direction_offset)];
+        Motor_HallParams.nextpattern = (uint8_t)HALL_ARRAY[Motor_HallParams.curpattern+(Motor_StateParams.direction_offset)];
     }
     
     TC3_TimerStart();
+
 }
 
 
@@ -237,8 +240,8 @@ Note:         called when stop button is pressed
 ******************************************************************************/
 void Motor_Stop(void)
 {
-    TCC0_PWMPatternSet(0x77, 0x00);
-    TCC0_PWM24bitDutySet(TCC0_CHANNEL0, 0);
+    PWM_StatusFlag &= (uint8_t)(StatusFlag = TCC0_PWMPatternSet(0x77, 0x00));
+    PWM_StatusFlag &= (uint8_t)(StatusFlag = TCC0_PWM24bitDutySet(TCC0_CHANNEL0, 0));
     Motor_BCParams.set_speed_target = 0;
     Motor_BCParams.speed_reference_rpm = 0;
     Motor_BCParams.actual_speed = 0;
@@ -267,7 +270,9 @@ void __NO_RETURN OC_FAULT_ISR(uintptr_t context)
     Motor_StateParams.motor_stop_source = OC_FAULT_STOP;
     Motor_StateParams.state_run = 0;
     LED1_OC_FAULT_Set();
-    while(1);   
+    while(true)
+    {
+    }
 }
 
 /******************************************************************************
@@ -287,12 +292,12 @@ void ADC_ISR(ADC_STATUS status, uintptr_t context)
     /* Read the ADC result value */
     Motor_BCParams.speed_ref_pot = ADC1_ConversionResultGet();
      
-    if(!Motor_StateParams.var_time_10ms)
+    if(!(bool)Motor_StateParams.var_time_10ms)
     {
         Motor_StateParams.var_cnt_10ms++;
     }
     
-    if(Motor_StateParams.var_cnt_10ms == COUNT_10_MS)
+    if(Motor_StateParams.var_cnt_10ms ==  (uint8_t)COUNT_10_MS)
     {
         Motor_StateParams.var_time_10ms = 1;
         Motor_StateParams.var_cnt_10ms = 0;
@@ -322,7 +327,7 @@ void PDEC_VLC_InterruptHandler(PDEC_HALL_STATUS status, uintptr_t context)
     uint16_t timeElapsed; 
     uint8_t temp_pattern;
     
-    if(Motor_StateParams.state_run)
+    if((bool)Motor_StateParams.state_run)
     {
         /* Confirm the interrupt is a PDEC_VLC interrupt */
         if ((status & PDEC_INTFLAG_VLC_Msk) == PDEC_INTFLAG_VLC_Msk)
@@ -343,13 +348,13 @@ void PDEC_VLC_InterruptHandler(PDEC_HALL_STATUS status, uintptr_t context)
             {
                 /* Load the next pattern commutation to the Pattern Generator */  
                 Motor_HallParams.pattern_commutation = COMMUTATION_ARRAY[Motor_HallParams.curpattern + Motor_StateParams.direction_offset];               
-                Motor_HallParams.patt_enable = (uint8_t)(Motor_HallParams.pattern_commutation & PATT_MASK);
+                Motor_HallParams.patt_enable = (uint8_t)(Motor_HallParams.pattern_commutation & (uint8_t)PATT_MASK);
                 Motor_HallParams.patt_value  = (uint8_t)((Motor_HallParams.pattern_commutation >>PATT_MASK_POSITION ) & PATT_MASK);
 
-                TCC0_PWMPatternSet(Motor_HallParams.patt_enable, Motor_HallParams.patt_value);
+                PWM_StatusFlag &= (uint8_t)(StatusFlag = TCC0_PWMPatternSet(Motor_HallParams.patt_enable, Motor_HallParams.patt_value));
 
                 /* Update the next pattern in the pattern array */
-                Motor_HallParams.nextpattern = HALL_ARRAY[Motor_HallParams.curpattern+(Motor_StateParams.direction_offset)];
+                Motor_HallParams.nextpattern = (uint8_t)HALL_ARRAY[Motor_HallParams.curpattern+(Motor_StateParams.direction_offset)];
 
             }
            
@@ -359,7 +364,7 @@ void PDEC_VLC_InterruptHandler(PDEC_HALL_STATUS status, uintptr_t context)
                 TC3_TimerStart();
 
                 /* Use the Moving Average method to eliminate the spikes in speed calculation */
-                if (Motor_BCParams.avgctr == 0)
+                if (Motor_BCParams.avgctr == 0U)
                 {
                     
                     Motor_BCParams.avgcycletime = (Motor_BCParams.avgtimestorage / MOTOR_SPEED_CALCFACTOR);
@@ -370,17 +375,17 @@ void PDEC_VLC_InterruptHandler(PDEC_HALL_STATUS status, uintptr_t context)
                 {
                     Motor_BCParams.avgctr--;
                     Motor_BCParams.speed_reference_target = DEFAULT_SPEED_TARGET;
-                    Motor_Speed_PIParams.integratorBuf = PI_BUF_INIT;
+                    Motor_Speed_PIParams.integratorBuf =(uint32_t) PI_BUF_INIT;
 
                 }
 
                 Motor_BCParams.avgtimestorage += timeElapsed;
 
-                if(Motor_BCParams.speed_pi_enable)
+                if((bool)Motor_BCParams.speed_pi_enable)
                 {
-                    if (Motor_BCParams.avgcycletime != 0)
+                    if (Motor_BCParams.avgcycletime != 0U)
                     {
-                        Motor_BCParams.actual_speed = (Motor_BCParams.speed_constant / (Motor_BCParams.avgcycletime));        
+                        Motor_BCParams.actual_speed = (uint16_t)(Motor_BCParams.speed_constant / (Motor_BCParams.avgcycletime));        
                     }
                 }
 
@@ -414,7 +419,7 @@ void TC4_1ms_ISR(TC_TIMER_STATUS status, uintptr_t context)
     {
         speed_target = (Motor_BCParams.speed_ref_pot << 14) / MAX_POT_REF;
         
-        if(speed_target < SPEED_MIN_TARGET)
+        if(speed_target < (uint16_t)SPEED_MIN_TARGET)
         {
             Motor_BCParams.set_speed_target = SPEED_MIN_TARGET;
         }
@@ -422,35 +427,37 @@ void TC4_1ms_ISR(TC_TIMER_STATUS status, uintptr_t context)
         {
             Motor_BCParams.set_speed_target = speed_target;
         }
-
-        if (MOTOR_RAMPUP_SPEED_PER_MS == 0U)
+#ifndef MOTOR_RAMPUP_SPEED_PER_MS 
+ 
+        Motor_BCParams.speed_reference_target = Motor_BCParams.set_speed_target;
+#endif
+#ifdef MOTOR_RAMPUP_SPEED_PER_MS
+        if(Motor_BCParams.set_speed_target > (Motor_BCParams.speed_reference_target + MOTOR_RAMPUP_SPEED_PER_MS) )
         {
-            Motor_BCParams.speed_reference_target = Motor_BCParams.set_speed_target;
+            Motor_BCParams.speed_reference_target += MOTOR_RAMPUP_SPEED_PER_MS;
+        }
+        else if(Motor_BCParams.set_speed_target < (Motor_BCParams.speed_reference_target - MOTOR_RAMPUP_SPEED_PER_MS))
+        {
+            Motor_BCParams.speed_reference_target -= MOTOR_RAMPUP_SPEED_PER_MS;
         }
         else
         {
-            if(Motor_BCParams.set_speed_target > (Motor_BCParams.speed_reference_target + MOTOR_RAMPUP_SPEED_PER_MS) )
-            {
-                Motor_BCParams.speed_reference_target += MOTOR_RAMPUP_SPEED_PER_MS;
-            }
-            else if(Motor_BCParams.set_speed_target < (Motor_BCParams.speed_reference_target - MOTOR_RAMPUP_SPEED_PER_MS))
-            {
-                Motor_BCParams.speed_reference_target -= MOTOR_RAMPUP_SPEED_PER_MS;
-            }
-            else
-            {
-                Motor_BCParams.speed_reference_target = Motor_BCParams.set_speed_target;
-            }                
-        }  
-     
+            Motor_BCParams.speed_reference_target = Motor_BCParams.set_speed_target;
+        }                
+#endif        
         Motor_BCParams.speed_reference_rpm = (Motor_BCParams.speed_reference_target * MAX_MOTOR_SPEED) >> 14;         
                       
         /*    Error Calculation   Error = Reference - Actual    */
         Motor_Speed_PIParams.error    = (int32_t)Motor_BCParams.speed_reference_target - (int32_t)Motor_BCParams.actual_speed_target;
         duty_pwm = pi_lib_calculate(&Motor_Speed_PIParams);             
-        TCC0_PWM24bitDutySet(TCC0_CHANNEL0, duty_pwm);             
+        PWM_StatusFlag &= (uint8_t)(StatusFlag = TCC0_PWM24bitDutySet(TCC0_CHANNEL0, duty_pwm));
+
 
     } 
+    if( ( !(bool)PWM_StatusFlag ) )
+     {
+         /*  Error Log  */
+     }
 }
 
 
