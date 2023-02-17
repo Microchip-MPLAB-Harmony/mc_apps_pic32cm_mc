@@ -57,10 +57,11 @@ uint8_t  switch_state = 0;
 uint8_t  direction = 0x0U;
 uint16_t set_speed = 0;
 uint16_t speed_ref_pot;
+static uintptr_t dummyforMisra;
 
-void ADC_ISR(uintptr_t context);
+void ADC_ISR(ADC_STATUS status,uintptr_t context);
 void OC_FAULT_ISR(uintptr_t context);
-void motor_start_stop(void);
+void motor_start_stop(uintptr_t context);
 
 
 // *****************************************************************************
@@ -73,9 +74,9 @@ int main ( void )
 {
     /* Initialize all modules */
     SYS_Initialize ( NULL );
-    ADC1_CallbackRegister((ADC_CALLBACK) ADC_ISR, (uintptr_t)NULL);
-    EIC_CallbackRegister ((EIC_PIN)EIC_PIN_8, (EIC_CALLBACK) OC_FAULT_ISR,(uintptr_t)NULL);
-    EIC_CallbackRegister ((EIC_PIN)EIC_PIN_11, (EIC_CALLBACK) motor_start_stop,(uintptr_t)NULL);
+    ADC1_CallbackRegister((ADC_CALLBACK) ADC_ISR, (uintptr_t)dummyforMisra);
+    EIC_CallbackRegister ((EIC_PIN)EIC_PIN_8, (EIC_CALLBACK) OC_FAULT_ISR,(uintptr_t)dummyforMisra);
+    EIC_CallbackRegister ((EIC_PIN)EIC_PIN_11, (EIC_CALLBACK) motor_start_stop,(uintptr_t)dummyforMisra);
     motorcontrol_vars_init();
     ADC1_Enable();
     X2CScope_Init();
@@ -103,12 +104,15 @@ void __NO_RETURN OC_FAULT_ISR(uintptr_t context)
     motor_stop_source = OC_FAULT_STOP;
     state_run=0;
     LED1_OC_FAULT_Set();
-    while(1);
+    while(true)
+    {
+        /*Error Log*/
+    }
     
 }
 
 
-void ADC_ISR(uintptr_t context)
+void ADC_ISR(ADC_STATUS status,uintptr_t context)
 {
    
     /* Read the ADC result value */
@@ -125,9 +129,9 @@ void ADC_ISR(uintptr_t context)
     return;
 }
 
-void motor_start_stop(void)
+void motor_start_stop(uintptr_t context)
 {
-    switch_state ^= 1;         // Calling this function starts/stops motor
+    switch_state ^= 1U;         // Calling this function starts/stops motor
 		
 	if(1U == switch_state)
 	{

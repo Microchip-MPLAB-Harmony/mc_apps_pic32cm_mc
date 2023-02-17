@@ -50,6 +50,7 @@ Headers inclusions
 #include "definitions.h"
 #include <sys/attribs.h>
 #include "userparams.h"
+#include "stdbool.h"
 
 /****************************************************************************/
 /************************MISRA Violations    ********************************/
@@ -73,15 +74,15 @@ uint8_t  state_run;
 /* speed reference, derived from GUI data */
 int16_t  ext_speed_ref_rpm;  
 
-uint8_t acceleration_count = 0;
-uint8_t deceleration_count = 0;
-int16_t    ram_abs;  
+static uint8_t acceleration_count = 0;
+static uint8_t deceleration_count = 0;
+static int16_t    ram_abs;  
 uint8_t      state_halt; 
-uint16_t	 angle_incr;
+static uint16_t	 angle_incr;
 uint16_t     acc_ramp;
 uint16_t     dec_ramp;
-uint8_t      direction_changed;
-uint8_t      demand_dir;
+static uint8_t      direction_changed;
+static uint8_t      demand_dir;
 uint16_t     speed_ref_filter;
 
 
@@ -103,7 +104,7 @@ stop_source_t motor_stop_source = NO_START_CMD;
 static ang_sincos_t  sysph;    
 
 /* vector containing the PWM timer compare values */
-static int32_t dutycycle[3];  
+static uint32_t dutycycle[3];  
 
 static vec3_t  outv3;      /* three-phases vector of output voltage reference [internal voltage unit] */
 
@@ -149,17 +150,24 @@ Output:       nothing
 ******************************************************************************/
 static inline void pwm_modulation_reset(void)
 {
+    uint8_t status;
+    bool stausflag;
     outv3.u = 0;
     outv3.v = 0;
     outv3.w = 0;
-    dutycycle[0] = (int32_t)PWM_HPER_TICKS;
-    dutycycle[1] = (int32_t)PWM_HPER_TICKS;
-    dutycycle[2] = (int32_t)PWM_HPER_TICKS;
+    dutycycle[0] = PWM_HPER_TICKS;
+    dutycycle[1] = PWM_HPER_TICKS;
+    dutycycle[2] = PWM_HPER_TICKS;
     /*Using register address of TCC0 */
      
-    TCC0_PWM24bitDutySet(TCC0_CHANNEL0,(uint32_t)dutycycle[0]);
-    TCC0_PWM24bitDutySet(TCC0_CHANNEL1,(uint32_t)dutycycle[1]);
-    TCC0_PWM24bitDutySet(TCC0_CHANNEL2,(uint32_t)dutycycle[2]);        
+    status =(uint8_t)(stausflag = TCC0_PWM24bitDutySet(TCC0_CHANNEL0,dutycycle[0]));
+    status |=(uint8_t)(stausflag = TCC0_PWM24bitDutySet(TCC0_CHANNEL1,dutycycle[1]));
+    status |=(uint8_t)(stausflag = TCC0_PWM24bitDutySet(TCC0_CHANNEL2,dutycycle[2]));   
+    
+    if(status!=1U)
+    {
+       /* Error Log*/ 
+    }
 
 }
 
@@ -228,15 +236,15 @@ void pwm_modulation(void)
 	}
 
 	/*	Find the offset voltage from the minimum and maximum values	 */
-	voltage_offset = (min_val + max_val)>>1;
+	voltage_offset = mcUtils_RightShiftS32((min_val + max_val), 1U);
 
 	voltage_va3h = (outv3.u - voltage_offset);  
 	voltage_vb3h = (outv3.v - voltage_offset);
 	voltage_vc3h = (outv3.w - voltage_offset);
 
-	dutycycle[0] = (uint16_t)((voltage_va3h>>1) + (PWM_HPER_TICKS>>1));	  
-	dutycycle[1] = (uint16_t)((voltage_vb3h>>1) + (PWM_HPER_TICKS>>1));
-	dutycycle[2] = (uint16_t)((voltage_vc3h>>1) + (PWM_HPER_TICKS>>1));	
+	dutycycle[0] = (uint32_t)mcUtils_RightShiftS32(voltage_va3h, 1U) + (PWM_HPER_TICKS>>1U);	  
+	dutycycle[1] = (uint32_t)mcUtils_RightShiftS32(voltage_vb3h, 1U) + (PWM_HPER_TICKS>>1U);
+	dutycycle[2] = (uint32_t)mcUtils_RightShiftS32(voltage_vc3h, 1U) + (PWM_HPER_TICKS>>1U);	
 
 }  /* end of function pwm_modulation()*/
 
@@ -269,10 +277,11 @@ void motorcontrol(void)
 #endif
 {
   uint32_t	s32a;      
+  uint8_t status=0U;
+  bool stausflag;
+  speed_ref_filter = (uint16_t)mcUtils_RightShiftS32(((SPEED_FILTER_COEFF*(int32_t)speed_ref_pot) + ((16-SPEED_FILTER_COEFF)*(int32_t)speed_ref_filter)), 4U);  
   
-  speed_ref_filter = (uint16_t)(((SPEED_FILTER_COEFF*speed_ref_pot) + ((16-SPEED_FILTER_COEFF)*speed_ref_filter))>>4);  
-  
-  set_speed = (speed_ref_filter*MAX_MOTOR_SPEED)>>12;
+  set_speed = (speed_ref_filter*MAX_MOTOR_SPEED)>>12U;
 
     
   if(set_speed > MAX_MOTOR_SPEED)
@@ -285,7 +294,7 @@ void motorcontrol(void)
   	 direction_changed = 1;
   		   	    
   } 
-  if(( ram_abs == 0U) && (1U == direction_changed ))
+  if(( ram_abs == 0) && (1U == direction_changed ))
   {
         
 		  direction_changed = 0;
@@ -298,13 +307,13 @@ void motorcontrol(void)
   {
 	  	if(direction_changed == 0U)
 		{
-			  ext_speed_ref_rpm = set_speed;
-			  s32a = ext_speed_ref_rpm * MAX_SPEED_SCALED;
-			  ref_abs =  (uint32_t) s32a / (uint32_t) MAX_MOTOR_SPEED;			  			  
+			  ext_speed_ref_rpm = (int16_t)set_speed;
+			  s32a = (uint32_t)ext_speed_ref_rpm * MAX_SPEED_SCALED;
+			  ref_abs =  (uint16_t) (s32a / MAX_MOTOR_SPEED);			  			  
 		}
 		else
 		{
-			  ref_abs = 0;
+			  ref_abs = 0U;
 		}
   }
   else
@@ -315,16 +324,16 @@ void motorcontrol(void)
 	 }
   }
   
-	if(ref_abs > ram_abs)
+	if(ref_abs >(uint16_t) ram_abs)
 	{			  
-		if(acceleration_count == 1)   // For every 2 times of PWM Period, the ram_abs incremented by 1.  The max speed is mapped to 2^14.
+		if(acceleration_count == 1U)   // For every 2 times of PWM Period, the ram_abs incremented by 1.  The max speed is mapped to 2^14.
 		{							   // For e.g every 1 times is 2*50 us = 0.1 ms, ram_abs incremented by acc_ramp.  So Zero to max speed achieved at 16384 by 1638 ms or 1.638 S.  	
 			acceleration_count = 0;
 			
-				ram_abs += acc_ramp; //acc_ramp;
-				if(ref_abs < ram_abs)
+				ram_abs += (int16_t)acc_ramp; //acc_ramp;
+				if(ref_abs <(uint16_t) ram_abs)
 				{
-					ram_abs = ref_abs;
+					ram_abs = (int16_t)ref_abs;
 				}			
 		}
 		else
@@ -333,16 +342,16 @@ void motorcontrol(void)
 		}
 	}
 	
-	if(ref_abs < ram_abs)
+	if(ref_abs <(uint16_t) ram_abs)
 	{
-		if(deceleration_count == 1)   // For every 2 times of PWM Period, the ram_abs decremented by 1.  The max speed is mapped to 2^14.
+		if(deceleration_count == 1U)   // For every 2 times of PWM Period, the ram_abs decremented by 1.  The max speed is mapped to 2^14.
 		{							   // For e.g every 1 times is 2*50 us = 0.1 ms, ram_abs decremented by dec_ramp.  So Max speed to Zero speed achieved at 16384 by 1638 ms or 1.638 S.
 			deceleration_count = 0;
 			
-				ram_abs -= dec_ramp; //dec_ramp;
-				if(ref_abs > ram_abs)
+				ram_abs -= (int16_t)dec_ramp; //dec_ramp;
+				if(ref_abs >(uint16_t)ram_abs)
 				{
-					ram_abs = ref_abs;
+					ram_abs = (int16_t)ref_abs;
 				}
 		}
 		else
@@ -354,23 +363,23 @@ void motorcontrol(void)
 	if(0U == state_halt)
 	{	
 		/* Computing the angle to be incremented for the current speed level */ 
-		angle_incr = (uint32_t) ((uint32_t) (NUMBER_OF_POLES * ram_abs * MAX_MOTOR_SPEED)/(uint32_t)(30000 * PWM_FREQUENCY));
+		angle_incr = (uint16_t) ( (NUMBER_OF_POLES * (uint32_t)ram_abs * MAX_MOTOR_SPEED)/(30000U * PWM_FREQUENCY));
  	
 		sysph.ang = sysph.ang + angle_incr;
 		
 		library_sincos(&sysph);
 		
-		s32a = (ram_abs * VF_CONSTANT)>>12;
+		s32a = ((uint32_t)ram_abs * (uint32_t)VF_CONSTANT)>>12;
 		
-		if(s32a < VF_OFFSET)
+		if(s32a < (uint32_t)VF_OFFSET)
 		{
 			outvdq.x = 0;
-			outvdq.y = (int32_t) VF_OFFSET;
+			outvdq.y = (int16_t) VF_OFFSET;
 		}
 		else
 		{
 			outvdq.x = 0;
-			outvdq.y = (int32_t) s32a;
+			outvdq.y = (int16_t) s32a;
 		}
 
          /* voltage Inverse-Park transformation */
@@ -385,16 +394,16 @@ void motorcontrol(void)
 	   if(direction == 0x08U)
 	   {	
 			  /*Using register address of TCC0 */
-        TCC0_PWM24bitDutySet(TCC0_CHANNEL0,(uint32_t)dutycycle[0]);
-        TCC0_PWM24bitDutySet(TCC0_CHANNEL1,(uint32_t)dutycycle[1]);
-        TCC0_PWM24bitDutySet(TCC0_CHANNEL2,(uint32_t)dutycycle[2]);
+        status |=(uint8_t)(stausflag = TCC0_PWM24bitDutySet(TCC0_CHANNEL0,dutycycle[0]));
+        status |=(uint8_t)(stausflag = TCC0_PWM24bitDutySet(TCC0_CHANNEL1,dutycycle[1]));
+        status |=(uint8_t)(stausflag = TCC0_PWM24bitDutySet(TCC0_CHANNEL2,dutycycle[2]));
 	   }
 	   else
 	   {           
              /*Using register address of TCC0 */
-        TCC0_PWM24bitDutySet(TCC0_CHANNEL0,(uint32_t)dutycycle[0]);
-        TCC0_PWM24bitDutySet(TCC0_CHANNEL1,(uint32_t)dutycycle[2]);
-        TCC0_PWM24bitDutySet(TCC0_CHANNEL2,(uint32_t)dutycycle[1]);
+        status |=(uint8_t)(stausflag = TCC0_PWM24bitDutySet(TCC0_CHANNEL0,dutycycle[0]));
+        status |=(uint8_t)(stausflag = TCC0_PWM24bitDutySet(TCC0_CHANNEL1,dutycycle[2]));
+        status |=(uint8_t)(stausflag = TCC0_PWM24bitDutySet(TCC0_CHANNEL2,dutycycle[1]));
 		
 	   }
 	   
@@ -404,8 +413,8 @@ void motorcontrol(void)
         pwm_modulation_reset();
 
         sysph.ang = 0;
-        sysph.sin = 0;
-        sysph.cos = (int16_t)BASE_VALUE_INT;
+        sysph.sin_th = 0;
+        sysph.cos_th = (int16_t)BASE_VALUE_INT;
 
         outvdq.x = 0;
         outvdq.y = 0;
@@ -417,25 +426,42 @@ void motorcontrol(void)
 		direction = demand_dir;
 		direction_changed = 0;
     }
-   
+
+    
+    if(status!=1U)
+    {
+       /* Error Log*/ 
+    }
 }
 
 void PWM_Output_Disable( void )
 {
-    TCC0_PWM24bitDutySet(TCC0_CHANNEL0,(uint32_t)HALF_PWM_HPER_TICKS);
-    TCC0_PWM24bitDutySet(TCC0_CHANNEL1,(uint32_t)HALF_PWM_HPER_TICKS);
-    TCC0_PWM24bitDutySet(TCC0_CHANNEL2,(uint32_t)HALF_PWM_HPER_TICKS);
+    uint8_t status=0U;
+    bool stausflag;
+    status |=(uint8_t)(stausflag = TCC0_PWM24bitDutySet(TCC0_CHANNEL0,(uint32_t)HALF_PWM_HPER_TICKS));
+    status |=(uint8_t)(stausflag = TCC0_PWM24bitDutySet(TCC0_CHANNEL1,(uint32_t)HALF_PWM_HPER_TICKS));
+    status |=(uint8_t)(stausflag = TCC0_PWM24bitDutySet(TCC0_CHANNEL2,(uint32_t)HALF_PWM_HPER_TICKS));
     
     /*Override all PWM outputs to low*/
-    TCC0_PWMPatternSet((TCC_PATT_PGE0_Msk|TCC_PATT_PGE1_Msk|TCC_PATT_PGE2_Msk
+    status |=(uint8_t)(stausflag = TCC0_PWMPatternSet((TCC_PATT_PGE0_Msk|TCC_PATT_PGE1_Msk|TCC_PATT_PGE2_Msk
             |TCC_PATT_PGE4_Msk|TCC_PATT_PGE5_Msk|TCC_PATT_PGE6_Msk),
             (TCC_PATT_PGE0(0)|TCC_PATT_PGE1(0)|TCC_PATT_PGE2(0)|TCC_PATT_PGE4(0)
-            |TCC_PATT_PGE5(0)|TCC_PATT_PGE6(0)));
+            |TCC_PATT_PGE5(0)|TCC_PATT_PGE6(0))));
+    if(status!=1U)
+    {
+       /* Error Log*/ 
+    }
 }
 
 void PWM_Output_Enable( void)
 {
-    TCC0_PWMPatternSet(0x00,0x00);/*Disable PWM override*/
+    uint8_t status=0U;
+    bool stausflag;
+    status |=(uint8_t)(stausflag = TCC0_PWMPatternSet(0x00,0x00));/*Disable PWM override*/
+    if(status!=1U)
+    {
+       /* Error Log*/ 
+    }
 }
 
 /* EOF motor_control.c */

@@ -42,6 +42,7 @@
 #ifndef USERPARAMS_H 
 #define USERPARAMS_H
 
+typedef float   float32_t;
 /*Define the Motor Type*/
 #define AC_IM_1    
 
@@ -50,10 +51,11 @@ Macro definitions
 *******************************************************************************/
 #define MC_FREQ_HZ      ( 48000000.0f ) /* PWM peripheral frequency */
 
-#define PWM_FREQUENCY 20       /* in kHz   */
+#define PWM_FREQUENCY 20U       /* in kHz   */
 
 #define PWM_HPER_TICKS       ( 1200U )  /* 4000 ticks, total period 8000 ticks @48MHz -> 167us */
-#define HALF_PWM_HPER_TICKS  ( PWM_HPER_TICKS >> 1)
+#define PWM_HPER_TICKS_FL       ( 1200.0f )  /* 4000 ticks, total period 8000 ticks @48MHz -> 167us */
+#define HALF_PWM_HPER_TICKS  (uint16_t)(PWM_HPER_TICKS >> 1U)
 /* 1200 ticks , total period 2400 ticks -> 50 micro seconds */
 
 /* motor and application related parameters */
@@ -62,11 +64,11 @@ Macro definitions
 #ifdef  AC_IM_1                     /* ACIM Example motor */
 
 #define MOTOR_VOLTAGE           (230)                   /* Motor Voltage [Volts] */
-#define MAX_MOTOR_SPEED         (1800)                  /* maximum motor speed [RPM] */
-#define NUMBER_OF_POLES         (4)                     /* number of poles  */
+#define MAX_MOTOR_SPEED         (1800U)                  /* maximum motor speed [RPM] */
+#define NUMBER_OF_POLES         (4U)                     /* number of poles  */
 #define MAX_SPEED_SCALED        (16384U)                /* Max speed in internal Units */
 #define VF_CONSTANT             ((PWM_HPER_TICKS << 12) /MAX_SPEED_SCALED)      /* (PWM_HPER_TICKS/MAX_SPEED_SCALED) * 2^12 */
-#define VF_OFFSET               (0.09f * PWM_HPER_TICKS)/* Voltage offset at starting zero freq; Approx (0.09 * PWM_HPER_TICKS)  */
+#define VF_OFFSET               (float32_t)(0.09f * PWM_HPER_TICKS_FL)/* Voltage offset at starting zero freq; Approx (0.09 * PWM_HPER_TICKS)  */
 #define START_SPEED_DEFAULT     (200U)                  /* Default startup speed */
 #define ACC_RAMP                (1)                     /* acceleration ramp count in internal unit */
 #define DEC_RAMP                (1)                     /* deceleration ramp count in internal unit */

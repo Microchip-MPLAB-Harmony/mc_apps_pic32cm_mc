@@ -279,6 +279,7 @@
       <itemPath>../src/mc_app.c</itemPath>
       <itemPath>../src/q14_generic_mcLib.c</itemPath>
       <itemPath>../src/main_mchv3_pic32_cm_mc.c</itemPath>
+      <itemPath>../src/config/mchv3_pic32_cm_mc_pim/pin_configurations.csv</itemPath>
     </logicalFolder>
   </logicalFolder>
   <sourceRootList>

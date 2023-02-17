@@ -131,6 +131,12 @@ void  __ramfunc__ motorcontrol(void);
 void motorcontrol(void);
 #endif
 
+#ifdef RAM_EXECUTE
+void  __ramfunc__ pwm_modulation(void);
+#else
+void pwm_modulation(void);
+#endif
+
 extern void PWM_Output_Disable( void );
 extern void PWM_Output_Enable( void);
 

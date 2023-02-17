@@ -51,7 +51,7 @@ Headers inclusions
 #include "definitions.h"
 #include "userparams.h"
 
-int16_t result_soft,result_divas;
+//int16_t result_soft,result_divas;
 /*******************************************************************************
 Macro definitions
 *******************************************************************************/
@@ -60,8 +60,8 @@ Macro definitions
 #define SH_TRITAB_DIM	( 8U )
 #define TRITAB_DIM		( (uint16_t)1U << (uint16_t)SH_TRITAB_DIM )
 #define SH_SINTAB		( 14U - SH_TRITAB_DIM )	// PIHALVES=(2^16)/4=2^14
-#define SH_SACTAB		( SH_BASE_VALUE - SH_TRITAB_DIM )
-#define SH_ACTTAB		( SH_BASE_VALUE - SH_TRITAB_DIM )
+#define SH_SACTAB		(uint8_t)( SH_BASE_VALUE - SH_TRITAB_DIM )
+#define SH_ACTTAB		(uint8_t)( SH_BASE_VALUE - SH_TRITAB_DIM )
 #define	SEL1Q			( 0x3FFFU )	/* select first_quarter_value */
 #define	ISCOS			( 0x4000U )	/* table(first_quarter_value) gives cos */
 #define	ISNEG			( 0x8000U )	/* sin is neg */
@@ -255,8 +255,8 @@ void  __ramfunc__ library_sincos(ang_sincos_t *t)
 void library_sincos(ang_sincos_t *t)
 #endif
 {
-	(t->sin) = library_sin(t->ang);
-	(t->cos) = library_cos(t->ang);
+	(t->sin_th) = library_sin(t->ang);
+	(t->cos_th) = library_cos(t->ang);
 }
 
 /******************************************************************************
@@ -460,7 +460,7 @@ int16_t library_scat(int16_t hypo, int16_t fcat)
 		s16a = (int16_t)(s32a / hypo);
 		s16a = library_sinarcos(s16a);
 		s32a = ((int32_t)s16a) * ((int32_t)hypo);
-        s16a = (int16_t)(s32a >> SH_BASE_VALUE);
+        s16a = (int16_t)(mcUtils_RightShiftS32(s32a, SH_BASE_VALUE));
 	}
 	else
 	{
@@ -492,12 +492,12 @@ void library_uvw_ab(const vec3_t *uvw, vec2_t *ab)
 	s32a = ((int32_t)(uvw->u)) * TWOTHIRDS;
 	s32a -= (((int32_t)(uvw->v)) * ONETHIRD);
 	s32a -= (((int32_t)(uvw->w)) * ONETHIRD);
-    (ab->x) = (int16_t)(s32a >> SH_BASE_VALUE);
+    (ab->x) = (int16_t)(mcUtils_RightShiftS32(s32a, SH_BASE_VALUE));
 
 	/* beta, quadrature component in the static reference frame */
 	s32a = (((int32_t)(uvw->v)) * ONEBYSQRT3);
 	s32a -= (((int32_t)(uvw->w)) * ONEBYSQRT3);
-	(ab->y) = (int16_t)(s32a >> SH_BASE_VALUE);
+	(ab->y) = (int16_t)(mcUtils_RightShiftS32(s32a, SH_BASE_VALUE));
 }
 
 /******************************************************************************
@@ -522,10 +522,10 @@ void library_ab_uvw(const vec2_t *ab, vec3_t *uvw)
 
 	/* v */
 	s32a = ((int32_t)(ab->y)) * SQRT3;
-    s32a >>= SH_BASE_VALUE;
+    s32a =mcUtils_RightShiftS32(s32a, SH_BASE_VALUE);
 	s32a -= (ab->x);
 	
-    (uvw->v) = (int16_t)(s32a >> 1);
+    (uvw->v) = (int16_t)mcUtils_RightShiftS32(s32a, 1U);
 
 	/* w */
 	(uvw->w) = -(uvw->u) - (uvw->v);
@@ -552,14 +552,14 @@ void library_ab_dq(const ang_sincos_t *t, const vec2_t *ab, vec2_t *dq)
 {
 	int32_t s32a;
 	/* d, direct component in the rotating reference frame */
-	s32a = ((int32_t)(ab->x)) * ((int32_t)(t->cos));
-	s32a += (((int32_t)(ab->y)) * ((int32_t)(t->sin)));
-	(dq->x) = (int16_t)(s32a >> SH_BASE_VALUE);
+	s32a = ((int32_t)(ab->x)) * ((int32_t)(t->cos_th));
+	s32a += (((int32_t)(ab->y)) * ((int32_t)(t->sin_th)));
+	(dq->x) = (int16_t)mcUtils_RightShiftS32(s32a, SH_BASE_VALUE);
 
 	/* q, quadrature current component in the rotating reference frame */
-	s32a = ((int32_t)(ab->y)) * ((int32_t)(t->cos));
-	s32a -= (((int32_t)(ab->x)) * ((int32_t)(t->sin)));
-	(dq->y) = (int16_t)(s32a >> SH_BASE_VALUE);
+	s32a = ((int32_t)(ab->y)) * ((int32_t)(t->cos_th));
+	s32a -= (((int32_t)(ab->x)) * ((int32_t)(t->sin_th)));
+	(dq->y) = (int16_t)mcUtils_RightShiftS32(s32a, SH_BASE_VALUE);
 }
 
 /******************************************************************************
@@ -583,14 +583,14 @@ void library_dq_ab(const ang_sincos_t *t, const vec2_t *dq, vec2_t *ab)
 {
 	int32_t s32a;
 	/* alpha, direct component in the static reference frame */
-	s32a = ((int32_t)(dq->x)) * ((int32_t)(t->cos));
-	s32a -= (((int32_t)(dq->y)) * ((int32_t)(t->sin)));
-	(ab->x) = (int16_t)(s32a >> SH_BASE_VALUE);
+	s32a = ((int32_t)(dq->x)) * ((int32_t)(t->cos_th));
+	s32a -= (((int32_t)(dq->y)) * ((int32_t)(t->sin_th)));
+	(ab->x) = (int16_t)mcUtils_RightShiftS32(s32a, SH_BASE_VALUE);
 
 	/* beta, quadrature component in the static reference frame */
-	s32a = ((int32_t)(dq->x)) * ((int32_t)(t->sin));
-	s32a += (((int32_t)(dq->y)) * ((int32_t)(t->cos)));
-	(ab->y) = (int16_t)(s32a >> SH_BASE_VALUE);
+	s32a = ((int32_t)(dq->x)) * ((int32_t)(t->sin_th));
+	s32a += (((int32_t)(dq->y)) * ((int32_t)(t->cos_th)));
+	(ab->y) = (int16_t)mcUtils_RightShiftS32(s32a, SH_BASE_VALUE);
 }
 
 /******************************************************************************
@@ -617,13 +617,13 @@ void library_xy_rt(const vec2_t *xy, vecp_t *rt)
 		((FIVEPIFOURTHS < (rt->t).ang)	&& (SEVENPIFOURTHS > (rt->t).ang)) )
 	{	/* |sin(ang)|>|cos(ang)| */
 		s32a = ((int32_t)(xy->y)) * (int32_t)BASE_VALUE_INT;
-		temp =  (int16_t)(s32a / ((rt->t).sin)) ;
+		temp =  (int16_t)(s32a / ((rt->t).sin_th)) ;
         (rt->r) = (uint16_t) temp;
 	}
 	else
 	{	/* |sin(ang)|<=|cos(ang)|*/
 		s32a = ((int32_t)(xy->x)) * (int32_t)BASE_VALUE_INT;
-        temp =  (int16_t)(s32a / ((rt->t).cos)) ;
+        temp =  (int16_t)(s32a / ((rt->t).cos_th)) ;
         (rt->r) = (uint16_t)temp;
 	}
 }
@@ -646,10 +646,10 @@ void library_rt_xy(const vecp_t *rt, vec2_t *xy)
 	int32_t	s32a;
 	if(32767U >= (rt->r))
 	{
-		s32a = ((int32_t)(rt->r)) * ((int32_t)((rt->t).cos));
-		(xy->x) = (int16_t)(s32a >> SH_BASE_VALUE);
-		s32a = ((int32_t)(rt->r)) * ((int32_t)((rt->t).sin));
-		(xy->y) = (int16_t)(s32a >> SH_BASE_VALUE);
+		s32a = ((int32_t)(rt->r)) * ((int32_t)((rt->t).cos_th));
+		(xy->x) = (int16_t)mcUtils_RightShiftS32(s32a, SH_BASE_VALUE);
+		s32a = ((int32_t)(rt->r)) * ((int32_t)((rt->t).sin_th));
+		(xy->y) = (int16_t)mcUtils_RightShiftS32(s32a, SH_BASE_VALUE);
 	}
 	else
 	{
@@ -689,7 +689,7 @@ int16_t library_pi_control(int32_t erl, pi_cntrl_t *pi)
 
 		/* integral term */
 		s32i = (int32_t)s16e * (int32_t)(pi->ki);
-		s32i >>= (pi->shi);
+		s32i = mcUtils_RightShiftS32(s32i,pi->shi);
 		s32i += (pi->imem);
 
 		/* proportional term */
@@ -697,21 +697,21 @@ int16_t library_pi_control(int32_t erl, pi_cntrl_t *pi)
 
 		/* total control */
 		s32t = s32i + s32p;
-		s16t = (int16_t)(s32t >> (pi->shp));
+		s16t = (int16_t)mcUtils_RightShiftS32(s32t, pi->shp);
 
 		/* result clamp and integral memory update */
 		if(s16t > (pi->hlim))
 		{
 			s16t = (pi->hlim);
 			s32t = s16t;
-			s32t <<= (pi->shp);
+			s32t = mcUtils_LeftShiftS32(s32t, pi->shp);
 			(pi->imem) = s32t - s32p;
 		}
 		else if(s16t < (pi->llim))	/* case possible only if limit is changed */
 		{
 			s16t = (pi->llim);
 			s32t = s16t;
-			(pi->imem) = s32t << (pi->shp);
+			(pi->imem) = mcUtils_LeftShiftS32(s32t, pi->shp);
 		}
 		else
 		{
@@ -732,7 +732,7 @@ int16_t library_pi_control(int32_t erl, pi_cntrl_t *pi)
 
 		/* integral term */
 		s32i = (int32_t)s16e * (int32_t)(pi->ki);
-		s32i >>= (pi->shi);
+		s32i = mcUtils_RightShiftS32(s32i, pi->shi);
 		s32i -= (pi->imem);
 
 		/* proportional term */
@@ -740,21 +740,21 @@ int16_t library_pi_control(int32_t erl, pi_cntrl_t *pi)
 
 		/* total control */
 		s32t = s32i + s32p;
-		s16t = (int16_t)(-(s32t >> (pi->shp)));
+		s16t = (int16_t)(-(mcUtils_RightShiftS32(s32t, pi->shp)));
 
 		/* result clamp and integral memory update */
 		if(s16t < (pi->llim))
 		{
 			s16t = (pi->llim);
 			s32t = s16t;
-			s32t <<= (pi->shp);
+			s32t = mcUtils_LeftShiftS32(s32t, pi->shp);
 			(pi->imem) = s32t + s32p;
 		}
 		else if(s16t > (pi->hlim))	/* case possible only if limit is changed */
 		{
 			s16t = (pi->hlim);
 			s32t = s16t;
-			(pi->imem) = s32t << (pi->shp);
+			(pi->imem) = mcUtils_LeftShiftS32 (s32t, (pi->shp));
 		}
 		else
 		{
@@ -764,20 +764,20 @@ int16_t library_pi_control(int32_t erl, pi_cntrl_t *pi)
 	else	/* error is 0 */
 	{
 		/* total control */
-		s16t = (int16_t)((pi->imem) >> (pi->shp));
+		s16t = (int16_t)mcUtils_RightShiftS32((pi->imem), (pi->shp));
 
 		/* result clamp and integral memory update */
 		if(s16t < (pi->llim))		/* case possible only if limit is changed */
 		{
 			s16t = (pi->llim);
 			s32t = s16t;
-			(pi->imem) = s32t << (pi->shp);
+			(pi->imem) = mcUtils_LeftShiftS32(s32t, (pi->shp));
 		}
 		else if(s16t > (pi->hlim))	/* case possible only if limit is changed */
 		{
 			s16t = (pi->hlim);
 			s32t = s16t;
-			(pi->imem) = s32t << (pi->shp);
+			(pi->imem) = mcUtils_LeftShiftS32(s32t, (pi->shp));
 		}
                 else
                 {
