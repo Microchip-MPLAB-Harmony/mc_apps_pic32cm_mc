@@ -4,16 +4,16 @@
 
 
 project: bldc_bc_hall_pic32_cm_mc
-creation_date: 2023-02-16T18:08:05.004+05:30[Asia/Calcutta]    # ISO 8601 format: https://www.w3.org/TR/NOTE-datetime
+creation_date: 2023-07-18T17:59:34.415+05:30[Asia/Calcutta]    # ISO 8601 format: https://www.w3.org/TR/NOTE-datetime
 operating_system: Windows 10
 mhc_mode: Standalone            # [IDE|Standalone|Headless]
-mhc_version: NA
+mhc_version: v3.8.5
 mplabx_version: NA        # if MPLAB X plugin only
 plugin_version: NA        # if MPLAB X plugin only
 compiler: xc32
 
 modules:
-    - {name: "csp", version: "unknown"}
-    - {name: "dev_packs", version: "unknown"}
-    - {name: "x2c", version: "unknown"}
+    - {name: "csp", version: "v3.17.0"}
+    - {name: "dev_packs", version: "v3.17.0"}
+    - {name: "x2c", version: "v1.4.0"}
 

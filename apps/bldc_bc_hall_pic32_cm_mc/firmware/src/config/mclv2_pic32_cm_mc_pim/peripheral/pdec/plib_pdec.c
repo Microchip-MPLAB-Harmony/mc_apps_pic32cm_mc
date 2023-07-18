@@ -62,7 +62,7 @@
 // *****************************************************************************
 // *****************************************************************************
 /* Object to hold callback function and context */
-static PDEC_HALL_CALLBACK_OBJ PDEC_HALL_CallbackObj;
+volatile static PDEC_HALL_CALLBACK_OBJ PDEC_HALL_CallbackObj;
 
 // *****************************************************************************
 // *****************************************************************************
@@ -174,15 +174,18 @@ void PDEC_HALLCallbackRegister( PDEC_HALL_CALLBACK callback, uintptr_t context )
     PDEC_HALL_CallbackObj.context = context;
 }
 
-void PDEC_InterruptHandler( void )
+void __attribute__((used)) PDEC_InterruptHandler( void )
 {
     PDEC_HALL_STATUS status;
+    /* Additional local variable to prevent MISRA C violations (Rule 13.x) */
+    uintptr_t context;
+    context  =PDEC_HALL_CallbackObj.context;    
     status = PDEC_REGS->PDEC_INTFLAG;
     /* Clear interrupt flags */
     PDEC_REGS->PDEC_INTFLAG = 0xFF;
     if (PDEC_HALL_CallbackObj.callback != NULL)
     {
-        PDEC_HALL_CallbackObj.callback(status, PDEC_HALL_CallbackObj.context);
+        PDEC_HALL_CallbackObj.callback(status, context);
     }
 
 }

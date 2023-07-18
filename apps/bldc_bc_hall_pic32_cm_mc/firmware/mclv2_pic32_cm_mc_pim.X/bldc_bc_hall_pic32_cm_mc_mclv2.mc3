@@ -1,4 +1,4 @@
-<config configName="mclv2_pic32_cm_mc_pim" projectName="bldc_bc_hall_pic32_cm_mc_mclv2" configVersion="1.1" device="PIC32CM1216MC00048" deviceLibraryClass="com.microchip.mcc.harmony.Harmony3Library" coreVersion="5.4.4">
+<config configName="mclv2_pic32_cm_mc_pim" projectName="bldc_bc_hall_pic32_cm_mc_mclv2" configVersion="1.1" device="PIC32CM1216MC00048" deviceLibraryClass="com.microchip.mcc.harmony.Harmony3Library" coreVersion="5.5.7">
    <usedPackages class="java.util.ArrayList"/>
    <usedClasses class="java.util.TreeMap">
       <entry>
@@ -406,7 +406,8 @@
          <key class="com.microchip.mcc.core.tokenManager.CustomKey" moduleName="core" name="!@#harmonyUserData"/>
          <value>&lt;?xml version=&quot;1.0&quot; encoding=&quot;UTF-8&quot;?&gt;&lt;UserData&gt;
   &lt;UserData dnOrder=&quot;0&quot;&gt;
-    &lt;ComponentGraph dnOrder=&quot;0&quot; id=&quot;__ROOTVIEW&quot;&gt;
+    &lt;GraphSettings canvasHeight=&quot;400&quot; canvasWidth=&quot;400&quot; dnOrder=&quot;0&quot;/&gt;
+    &lt;ComponentGraph dnOrder=&quot;1&quot; id=&quot;__ROOTVIEW&quot;&gt;
       &lt;ElementPositions dnOrder=&quot;0&quot;&gt;
         &lt;ElementPosition dnOrder=&quot;0&quot; id=&quot;X2CScope&quot; x=&quot;250&quot; y=&quot;464&quot;/&gt;
         &lt;ElementPosition dnOrder=&quot;1&quot; id=&quot;adc1&quot; x=&quot;146&quot; y=&quot;200&quot;/&gt;
@@ -424,7 +425,6 @@
         &lt;ElementPosition dnOrder=&quot;13&quot; id=&quot;tcc0&quot; x=&quot;24&quot; y=&quot;200&quot;/&gt;
       &lt;/ElementPositions&gt;
     &lt;/ComponentGraph&gt;
-    &lt;GraphSettings canvasHeight=&quot;400&quot; canvasWidth=&quot;400&quot; dnOrder=&quot;1&quot;/&gt;
   &lt;/UserData&gt;
 &lt;/UserData&gt;
 </value>
@@ -5884,7 +5884,7 @@
       </entry>
       <entry>
          <file>..\src\config\mclv2_pic32_cm_mc_pim\X2CCode\X2CScope\inc\X2CScope.h</file>
-         <hash>c4c1e8964b703295e7b65ce331295da2a5b143aa63b8960f48c1e62c59fa9d07</hash>
+         <hash>d9ee6e53198dda1c1cf2982d9769cfd8f011538aa7c38304a324110cc32f8f04</hash>
       </entry>
       <entry>
          <file>..\src\packs\PIC32CM1216MC00048_DFP\component\tc.h</file>
@@ -5964,7 +5964,7 @@
       </entry>
       <entry>
          <file>..\src\config\mclv2_pic32_cm_mc_pim\peripheral\clock\plib_clock.c</file>
-         <hash>81199b50cf15e8bdbda3b41a8ce6c4ce446f9d2b4d27af1c3398b98e14bbd6f7</hash>
+         <hash>c3c943b1b9774a78e2392ae39b606eb1350b6012b2b71b526618188cc4b4dc50</hash>
       </entry>
       <entry>
          <file>..\src\packs\PIC32CM1216MC00048_DFP\component\fuses.h</file>
@@ -5996,7 +5996,7 @@
       </entry>
       <entry>
          <file>..\src\config\mclv2_pic32_cm_mc_pim\peripheral\tc\plib_tc3.c</file>
-         <hash>b33a62e77bc45163eff19f11322eb6f66f442e11cf7133fce0ba736db76dee0e</hash>
+         <hash>1dbdba99957410028e876288d7cf2783c1a71ae94ac6f00c53b3fe85a42269be</hash>
       </entry>
       <entry>
          <file>..\src\config\mclv2_pic32_cm_mc_pim\peripheral\nvmctrl\plib_nvmctrl.h</file>
@@ -6024,7 +6024,7 @@
       </entry>
       <entry>
          <file>..\src\config\mclv2_pic32_cm_mc_pim\peripheral\nvmctrl\plib_nvmctrl.c</file>
-         <hash>ab9dc81d1433f4e99c27ece541318419d27d9dde5ff01a8265617166287a51f3</hash>
+         <hash>3f7e6763589b923e883d2fd3a1ee406c62b70ef9286b2eb73865819c77143d82</hash>
       </entry>
       <entry>
          <file>..\src\config\mclv2_pic32_cm_mc_pim\peripheral\tc\plib_tc3.h</file>
@@ -6060,7 +6060,7 @@
       </entry>
       <entry>
          <file>..\src\config\mclv2_pic32_cm_mc_pim\X2CCode\X2CScope\inc\X2CScopeCommunication.h</file>
-         <hash>363b149004ecc8edb607ce172f49e7c3dc7c40fc4cec7369dd596c26519604ef</hash>
+         <hash>fd5facc76afd74c7321055a89ed98ce225e492356a6f31fb95b5f2d332de3d4a</hash>
       </entry>
       <entry>
          <file>..\src\packs\PIC32CM1216MC00048_DFP\instance\tsens.h</file>
@@ -6072,11 +6072,11 @@
       </entry>
       <entry>
          <file>..\src\config\mclv2_pic32_cm_mc_pim\peripheral\nvic\plib_nvic.c</file>
-         <hash>909b17a242071b046a57ec62019b1799b74658f9d355cf1d879e191c18d9c63f</hash>
+         <hash>7d692f9b1253c55e2944f7eec134d8209a166afdec519522d293c2d3d70d3568</hash>
       </entry>
       <entry>
          <file>..\src\config\mclv2_pic32_cm_mc_pim\exceptions.c</file>
-         <hash>b850253aacaae1bddfcb426c2dc11e0688900afffe9b22c60d0ab16298701118</hash>
+         <hash>5efbe5a64a17c496d2f5b177bc9cd66a7f0f80323d9558e220c073a13570a2a7</hash>
       </entry>
       <entry>
          <file>..\src\packs\PIC32CM1216MC00048_DFP\instance\adc1.h</file>
@@ -6088,7 +6088,7 @@
       </entry>
       <entry>
          <file>..\src\config\mclv2_pic32_cm_mc_pim\X2CCode\X2CScope\src\X2CScope.c</file>
-         <hash>8dcc8745b5a12a4c35c2893d601be3df1cfb4d522d7cb0d37627a2c3b629e7e0</hash>
+         <hash>bb60724b6946a3d5e51f5f7f227a304cabcecba3851d7e6d40a1a04306a45a2e</hash>
       </entry>
       <entry>
          <file>..\src\packs\PIC32CM1216MC00048_DFP\instance\fuses.h</file>
@@ -6104,7 +6104,7 @@
       </entry>
       <entry>
          <file>..\src\config\mclv2_pic32_cm_mc_pim\toolchain_specifics.h</file>
-         <hash>0322d8a252c0047ffd9e533cc76c470158ed1f3ac5193e63b507fe5eb6e1855f</hash>
+         <hash>a4f1774c6f1f8c6cd522567536c9e9d75ca63259b868015ac9b0fb0aeeffe1f4</hash>
       </entry>
       <entry>
          <file>..\src\packs\PIC32CM1216MC00048_DFP\component\pdec.h</file>
@@ -6112,7 +6112,7 @@
       </entry>
       <entry>
          <file>..\src\config\mclv2_pic32_cm_mc_pim\peripheral\pdec\plib_pdec.c</file>
-         <hash>13137050459a667a3ac0c15c0a6c323d2e9d6236f642759900664d753e42089f</hash>
+         <hash>fe1816c063f6519bde82d192919bd1cb83384e1fbfaada39b60b64e755d1f288</hash>
       </entry>
       <entry>
          <file>..\src\config\mclv2_pic32_cm_mc_pim\peripheral\evsys\plib_evsys.h</file>
@@ -6132,11 +6132,11 @@
       </entry>
       <entry>
          <file>..\src\config\mclv2_pic32_cm_mc_pim\peripheral\tcc\plib_tcc0.h</file>
-         <hash>dc9c1da5d7f03dc5dfdca87ffdc693a64fa8a1374862aebfc567629ebbc681f9</hash>
+         <hash>81f7d4577b88b3b9113e4e29151b4d5e8f528334ae653924dd9a6ce364147c25</hash>
       </entry>
       <entry>
          <file>..\src\config\mclv2_pic32_cm_mc_pim\peripheral\tcc\plib_tcc0.c</file>
-         <hash>334bfd5c8e2c50b9a4440f37dfcbe82bba38af96a164a3d99a46383ee542914e</hash>
+         <hash>276cea95c2765f1f97830a5cc4115649c46cc03acf394916468bfde858e08739</hash>
       </entry>
       <entry>
          <file>..\src\packs\PIC32CM1216MC00048_DFP\pic32cm1216mc00048.h</file>
@@ -6148,7 +6148,7 @@
       </entry>
       <entry>
          <file>..\src\config\mclv2_pic32_cm_mc_pim\peripheral\adc\plib_adc1.c</file>
-         <hash>e65e3064a6162636a9ccc2f87d39aec99430793a6517dd3eb85c20d6853a2379</hash>
+         <hash>9ee0dc23269f7f2a8f68fbb2bc37ceb9fec5e6d82ce02bb167e565fabbc3d898</hash>
       </entry>
       <entry>
          <file>..\src\packs\PIC32CM1216MC00048_DFP\instance\sdadc.h</file>
@@ -6168,7 +6168,7 @@
       </entry>
       <entry>
          <file>..\src\config\mclv2_pic32_cm_mc_pim\peripheral\eic\plib_eic.c</file>
-         <hash>395ef71ab1903bd5e06fe55bb3cc359c7c4e035c4f9f454a2b1910b1f8215847</hash>
+         <hash>fad8495f37e0b2c776c4ed0bb37b6cf2bfdca304b712338216462371686a1d7c</hash>
       </entry>
       <entry>
          <file>..\src\packs\PIC32CM1216MC00048_DFP\instance\pdec.h</file>
@@ -6192,7 +6192,7 @@
       </entry>
       <entry>
          <file>..\src\config\mclv2_pic32_cm_mc_pim\peripheral\tc\plib_tc4.c</file>
-         <hash>7e6e7d04f0750423d12c55341bb99fdbb5fb5e97eecc92e3374d5ed0bbfba3b1</hash>
+         <hash>e4d01a0541af3bc2a8f032f8f9dd218136e6efd3c01cb7495f974b34c810cd2c</hash>
       </entry>
       <entry>
          <file>..\src\config\mclv2_pic32_cm_mc_pim\peripheral\tc\plib_tc4.h</file>
@@ -6220,7 +6220,7 @@
       </entry>
       <entry>
          <file>..\src\config\mclv2_pic32_cm_mc_pim\interrupts.c</file>
-         <hash>bd04469f115d508e7b352d2e27f8cf0eb64978e982d79d7ef7f5fa7c13ff3820</hash>
+         <hash>0b81618bc72b1c14100326bc04ea748b02917dec53022e2ad659f4d004bd9894</hash>
       </entry>
       <entry>
          <file>..\src\packs\PIC32CM1216MC00048_DFP\instance\tc3.h</file>
@@ -6232,7 +6232,7 @@
       </entry>
       <entry>
          <file>..\src\config\mclv2_pic32_cm_mc_pim\definitions.h</file>
-         <hash>a1cc271f43a952d505cba03403f8bd208f4e0d37c9463d4284d8b6703ada1a7f</hash>
+         <hash>a9c484dd4bb3214fcc678fc44135ff3a572042142f35332186462381081a9534</hash>
       </entry>
       <entry>
          <file>..\src\packs\PIC32CM1216MC00048_DFP\component\ccl.h</file>
@@ -6252,7 +6252,7 @@
       </entry>
       <entry>
          <file>..\src\config\mclv2_pic32_cm_mc_pim\pin_configurations.csv</file>
-         <hash>5edc565fb89e3c14c9bebd69a7ffb8185fab4c2a335d109ea2828266fa0662c6</hash>
+         <hash>728371b3431212720cd22de0af98f5fe9eab0ca97666aa6abcf5aea89d280b50</hash>
       </entry>
       <entry>
          <file>..\src\packs\PIC32CM1216MC00048_DFP\component\dac.h</file>
@@ -6272,7 +6272,7 @@
       </entry>
       <entry>
          <file>..\src\config\mclv2_pic32_cm_mc_pim\peripheral\sercom\usart\plib_sercom3_usart.c</file>
-         <hash>bcfa7123f8228e7e3722a7bc3fc4a0c0b04faecb32c6b3f463f10b6d0765249f</hash>
+         <hash>157404d773c75b3d1b5bf28c1342819bbc709c3e38f47038086bafbe3b3fadc9</hash>
       </entry>
       <entry>
          <file>..\src\packs\PIC32CM1216MC00048_DFP\instance\ac.h</file>
@@ -6280,7 +6280,7 @@
       </entry>
       <entry>
          <file>..\src\config\mclv2_pic32_cm_mc_pim\peripheral\sercom\usart\plib_sercom3_usart.h</file>
-         <hash>1562a17a4068682763baf98fc159410cbd074a4083b0a2a566ea5b74d25eb1fe</hash>
+         <hash>38bd5f257a7dfce1144c3375178920ba13770e7ec6283d7e5014f8af56aeb1bc</hash>
       </entry>
       <entry>
          <file>..\src\config\mclv2_pic32_cm_mc_pim\peripheral\divas\plib_divas.h</file>
@@ -6296,7 +6296,7 @@
       </entry>
       <entry>
          <file>..\src\config\mclv2_pic32_cm_mc_pim\startup_xc32.c</file>
-         <hash>1e21579834d44c4e28eb15942a3d53793aedfaa7dcdf53e8e0cbd5b1bc07bcc0</hash>
+         <hash>6b73f68a3f402202d7405702269e85ed96d0a878ee80c3826dd61a9d43766996</hash>
       </entry>
       <entry>
          <file>..\src\packs\PIC32CM1216MC00048_DFP\component\eic.h</file>
@@ -6344,7 +6344,7 @@
       </entry>
       <entry>
          <file>..\src\config\mclv2_pic32_cm_mc_pim\peripheral\sercom\usart\plib_sercom_usart_common.h</file>
-         <hash>3feca67a173d19d45961676a16f6153a6d849ecac98e906b62a343258c8bf43b</hash>
+         <hash>f19dafabe0928d60dd83d7e19f35889f200e3fbadff09e2f42523d320acf780a</hash>
       </entry>
       <entry>
          <file>..\src\packs\PIC32CM1216MC00048_DFP\component\dmac.h</file>
@@ -6372,7 +6372,7 @@
       </entry>
       <entry>
          <file>..\src\config\mclv2_pic32_cm_mc_pim\initialization.c</file>
-         <hash>ad5e9d2baf4c7d049402ed5f3cf9d59abbea30dbaa690ccd3db0f4246e3516c3</hash>
+         <hash>6c4d27b6c4f97b87a4206e1f51014bf82c45abe5901aff8ab07b23aaf2b23599</hash>
       </entry>
       <entry>
          <file>..\src\packs\PIC32CM1216MC00048_DFP\instance\tc0.h</file>
@@ -6384,7 +6384,7 @@
       </entry>
       <entry>
          <file>..\src\config\mclv2_pic32_cm_mc_pim\X2CCode\X2CScope\src\X2CScopeCommunication.c</file>
-         <hash>c1b99f87153cf9c4b3792e4f77eed420fc5665b9534ab8f13d7996e22305b0d7</hash>
+         <hash>6bfc6d51bac56e177fcda3920e68aae7d87cc7cff77e8a24a9927622eef7cdd8</hash>
       </entry>
       <entry>
          <file>..\src\packs\PIC32CM1216MC00048_DFP\instance\dsu.h</file>

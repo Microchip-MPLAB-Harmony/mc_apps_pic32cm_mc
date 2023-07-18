@@ -57,8 +57,8 @@
 #include "peripheral/nvic/plib_nvic.h"
 #include "peripheral/eic/plib_eic.h"
 #include "peripheral/tc/plib_tc3.h"
-#include "peripheral/tc/plib_tc4.h"
 #include "peripheral/pdec/plib_pdec.h"
+#include "peripheral/tc/plib_tc4.h"
 #include "peripheral/tcc/plib_tcc0.h"
 #include "peripheral/adc/plib_adc1.h"
 #include "peripheral/divas/plib_divas.h"
@@ -70,6 +70,12 @@ extern "C" {
 
 #endif
 // DOM-IGNORE-END
+
+/* Device Information */
+#define DEVICE_NAME			 "PIC32CM1216MC00048"
+#define DEVICE_ARCH			 "CORTEX-M0PLUS"
+#define DEVICE_FAMILY		 "PIC32CMMC"
+#define DEVICE_SERIES		 "PIC32CMMC00"
 
 /* CPU clock frequency */
 #define CPU_CLOCK_FREQUENCY 48000000
