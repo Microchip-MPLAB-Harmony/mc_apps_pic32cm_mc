@@ -30,6 +30,7 @@
 /*
  * This file is part of X2C. http://www.mechatronic-simulation.org/
  */
+
 #ifndef X2CSCOPECOMMUNICATION_H
 #define	X2CSCOPECOMMUNICATION_H
 
@@ -38,10 +39,17 @@ extern "C" {
 #endif
     
 #include <stdint.h>
+#include "stdbool.h"
+#include "definitions.h"
+
+typedef void (*SERIAL_SEND)( uint8_t data );
+typedef uint8_t (*SERIAL_RECEIVE)( void );
+typedef uint8_t (*SERIAL_DATA_AVAILABLE)( void );
+typedef uint8_t (*SERIAL_SEND_READY)( void );
 
 void X2CScope_Initialise(void);
-void X2CScope_HookUARTFunctions(void (*sendSerialFcnPntr)(uint8_t), uint8_t (*receiveSerialFcnPntr)(void), \
-        uint8_t (*isReceiveDataAvailableFcnPntr)(void), uint8_t (*isSendReadyFcnPntr)(void));
+void X2CScope_HookUARTFunctions(SERIAL_SEND sendAPI, SERIAL_RECEIVE receiveAPI, \
+                                SERIAL_DATA_AVAILABLE dataAvailableAPI, SERIAL_SEND_READY sendReadyAPI );
 
 void sendSerial(uint8_t data);
 uint8_t receiveSerial(void);
