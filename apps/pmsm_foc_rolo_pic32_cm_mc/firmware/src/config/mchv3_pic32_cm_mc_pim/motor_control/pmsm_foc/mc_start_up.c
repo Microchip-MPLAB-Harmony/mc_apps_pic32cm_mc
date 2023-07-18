@@ -51,7 +51,7 @@ Headers inclusions
  * Constants 
 *******************************************************************************/
 #define DEGREE_TO_FIXED_FORMAT       (float)( 65535.0f / 360.0f )
-#define RPM_TO_SPEED_INTERNAL_UNITS  (float)( 2.0f * M_PI * NUM_POLE_PAIRS * K_SPEED / 60.0f )
+#define RPM_TO_SPEED_INTERNAL_UNITS  (float)( 2.0f * M_PI * (float)NUM_POLE_PAIRS * K_SPEED / 60.0f )
 
 /*******************************************************************************
  Module data type  
@@ -63,14 +63,14 @@ typedef enum
     startupState_OpenLoopStable     
 }tmcSup_StartupState_e;
 
-typedef struct _tmcSup_StateVariables_s
+typedef struct
 {
     tmcSup_StartupState_e startupStatus;
     uint16_t  openLoopThetaIncrement;
     uint16_t   trackCounter;
  }tmcSup_StateVariables_s;
 
-typedef struct _tmcSup_Parameters_s
+typedef struct
 {
     /* Alignment parameters */
     int16_t  alignmentCurrent;  
@@ -116,6 +116,10 @@ tmcSup_ConfigParameters_s mcSupI_ConfigurationParameters_gds = START_UP_MODULE_C
  * @param[out]:
  * @return:
  */
+/* MISRA C-2012 Rule 14.1 deviated:9 Deviation record ID -  H3_MISRAC_2012_R_14_1_DR_1 */
+#pragma GCC diagnostic push
+#pragma GCC diagnostic ignored "-Wunknown-pragmas"
+#pragma coverity compliance block deviate:9 "MISRA C-2012 Rule 14.1" "H3_MISRAC_2012_R_14_1_DR_1" 
 void  mcSupI_OpenLoopStartupInit( tmcSup_ConfigParameters_s * supParam )
 {
     float f32a;
@@ -136,7 +140,7 @@ void  mcSupI_OpenLoopStartupInit( tmcSup_ConfigParameters_s * supParam )
      /* Update start-up parameters */
      f32a = ( supParam->userParam.alignmentCurrent * K_CURRENT )  + 0.5f;
      pParam->alignmentCurrent = (int16_t)( f32a );
-     pParam->alignmentTimeLoopCount = supParam->userParam.alignmentTime  / supParam->userParam.Ts;
+     pParam->alignmentTimeLoopCount = (uint32_t)supParam->userParam.alignmentTime  / (uint32_t)supParam->userParam.Ts;
      
      f32a = (float)pParam->alignmentCurrent / (float)pParam->alignmentTimeLoopCount;
      
@@ -146,25 +150,26 @@ void  mcSupI_OpenLoopStartupInit( tmcSup_ConfigParameters_s * supParam )
          pParam->alignementCurrentRampSh++; 
      }
      
-     pParam->alignmentCurrentRampVal = (int16_t)( f32a + 0.5f );
+     pParam->alignmentCurrentRampVal = (uint16_t)((float)( f32a + 0.5f ));
              
-     pParam->openLoopCurrent = supParam->userParam.openLoopCurrent * K_CURRENT;
-     pParam->openLoopRampTimeLoopCount = supParam->userParam.openLoopRampTime / supParam->userParam.Ts;
-     pParam->openLoopStabTimeLoopCount = supParam->userParam.openLoopStabTime / supParam->userParam.Ts;
-     
+     pParam->openLoopCurrent = (int16_t)((float)(supParam->userParam.openLoopCurrent * K_CURRENT));
+     pParam->openLoopRampTimeLoopCount = (uint16_t)((float)(supParam->userParam.openLoopRampTime / supParam->userParam.Ts));
+     pParam->openLoopStabTimeLoopCount = (uint16_t)((float)(supParam->userParam.openLoopStabTime / supParam->userParam.Ts));
      f32a   = ( RPM_TO_SPEED_INTERNAL_UNITS * supParam->userParam.openLoopTransSpeed );
      pParam->openLoopTransitionSpeed = (int16_t)f32a;
-     f32a /=  pParam->openLoopRampTimeLoopCount;
+     f32a /=  (float)pParam->openLoopRampTimeLoopCount;
      
      while(( (float)BASE_VALUE < f32a ) || ( (uint16_t)SH_BASE_VALUE > pParam->openLoopSpeedRampRateSh ) )
      {
          f32a *= 2.0f;
          pParam->openLoopSpeedRampRateSh++;
      }
-     pParam->openLoopSpeedRampRateVal = (int16_t)( f32a + 0.5f );
+     pParam->openLoopSpeedRampRateVal = (uint16_t)((float)( f32a + 0.5f ));
      
  }
-
+#pragma coverity compliance end_block "MISRA C-2012 Rule 14.1"
+#pragma GCC diagnostic pop
+/* MISRAC 2012 deviation block end */
 /*! \brief Open loop start up execution function 
  * 
  * Details.
@@ -225,7 +230,7 @@ uint8_t mcSupI_OpenLoopStartupRun( const tmcSup_InstanceId_e Id )
                 u32a   =  (uint32_t)mcSup_Parameters_mas[Id].openLoopSpeedRampRateVal * (uint32_t)mcSup_StateVariables_mas[Id].trackCounter;
                 u32a >>= mcSup_Parameters_mas[Id].openLoopSpeedRampRateSh;
                 u32a *= (uint32_t)K_SPEED_L;           
-                mcSup_StateVariables_mas[Id].openLoopThetaIncrement = u32a >> SH_BASE_VALUE;
+                mcSup_StateVariables_mas[Id].openLoopThetaIncrement =(uint16_t)(u32a >> SH_BASE_VALUE);
             }
             else
             {
@@ -265,7 +270,7 @@ uint8_t mcSupI_OpenLoopStartupRun( const tmcSup_InstanceId_e Id )
             }
             
              /* Set output ports for alignment */
-             *mcSup_OutputPorts_mas[Id].Idref = 0.0f;
+             *mcSup_OutputPorts_mas[Id].Idref = 0;
           #ifdef BIDIRECTION_CONTROL
              s16a = ((int16_t)mcSup_StateVariables_mas[Id].openLoopThetaIncrement  * (int16_t)mcMocI_RotationSign_gds8);
              u16a = (uint16_t)s16a;
@@ -280,6 +285,7 @@ uint8_t mcSupI_OpenLoopStartupRun( const tmcSup_InstanceId_e Id )
         {
             /* Should not come here */
         }
+        break;
     }
     return status;
 }

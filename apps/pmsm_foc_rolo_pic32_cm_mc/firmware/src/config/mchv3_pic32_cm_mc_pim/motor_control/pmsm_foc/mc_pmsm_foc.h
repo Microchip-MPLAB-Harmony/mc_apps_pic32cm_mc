@@ -51,7 +51,7 @@
  * User defined data structure 
 *******************************************************************************/
 
-typedef enum _tmcPmsm_ControllerId_e
+typedef enum
 {
     POSITION_PID,
     SPEED_PID,
@@ -70,34 +70,10 @@ typedef enum _tmcPmsm_ControllerId_e
  
  */
 
-void PMSM_FOC_StartupParametersSet( float startCurrent, float rampTime, int16_t transSpeed );
-
-void PMSM_FOC_PidParametersSet( tmcPmsm_ControllerId_e controllerId, float Kp, float ki, float Kd, float Kc, float outMax );
-
-void PMSM_FOC_MaximumTorqueSet( float maxTorque );
-
-float PMSM_FOC_MotorTorqueGet( void );
-
-void PMSM_FOC_MotorRpmSet( const int16_t motorSpeed );
-
-void PMSM_FOC_MotorControlInit( void );
 
 void PMSM_FOC_MotorStart( void );
 
 void PMSM_FOC_MotorStop( void );
-
-int16_t PMSM_FOC_RotorSpeedGet( void );
-
-float PMSM_FOC_RotorPositionGet( void );
-
-void PMSM_FOC_1msCallbackRegister( void );
-
-void PMSM_FOC_10msCallbackRegister( void );
-
-void PMSM_FOC_100msCallbackRegister( void );
-
-void PMSM_FOC_1000msCallbackRegister( void );
-
 
 /*! \brief Motor Control functions initialization 
  *  

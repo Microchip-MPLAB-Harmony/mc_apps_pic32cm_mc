@@ -84,7 +84,7 @@ void mcFcoI_ApplicationInit( void );
  * @param[out]:
  * @return:
  */
-void mcFcoI_InterruptTasksRun( void );
+void mcFcoI_InterruptTasksRun( ADC_STATUS status, uintptr_t context  );
 
 
 /*! \brief First Cycle interrupt task run 
@@ -111,30 +111,8 @@ void mcFco_1stCycleInterruptTasksRun( void );
  */
 void mcFco_2ndCycleInterruptTasksRun( void );
 
-/*! \brief Third Cycle interrupt task run 
- * 
- * Details.
- * Third Cycle interrupt task run 
- * 
- * @param[in]: 
- * @param[in/out]:
- * @param[out]:
- * @return:
- */
-void mcFco_3rdCycleInterruptTasksRun( void );
 
 
-/*! \brief Fourth Cycle interrupt task run 
- * 
- * Details.
- * Fourth Cycle interrupt task run 
- * 
- * @param[in]: 
- * @param[in/out]:
- * @param[out]:
- * @return:
- */
-void mcFco_4thCycleInterruptTasksRun( void );
 
 /*! \brief Motor control thread tasks  
  * 
@@ -199,17 +177,7 @@ void mcFcoI_100msThreadTasksRun( void );
 void mcFcoI_1000msThreadTasksRun( void );
 
 
-/*! \brief Button polling
- * 
- * Details.
- * Button polling
- * 
- * @param[in]: 
- * @param[in/out]:
- * @param[out]:
- * @return:
- */
-void mcFcoI_ButtonPolling( void );
+
 
 #endif //_MCFCO_H
 

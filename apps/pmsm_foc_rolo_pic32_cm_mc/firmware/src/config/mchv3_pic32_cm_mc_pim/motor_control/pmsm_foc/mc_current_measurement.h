@@ -52,8 +52,8 @@
 /*******************************************************************************
  * Constants    
 *******************************************************************************/
-#define      MINIMUM_OFFSET               1950
-#define      MAXIMUM_OFFSET              2150
+#define      MINIMUM_OFFSET               1950U
+#define      MAXIMUM_OFFSET              2150U
 
 /*******************************************************************************
   Default Module Configuration Parameters     
@@ -88,34 +88,34 @@
 /*******************************************************************************
  User defined data-types
  *******************************************************************************/
-typedef enum _tmcCur_InstanceId_e
+typedef enum
 {
     curModuleInstance_01,
     curModuleInstance_02,
     CurModuleInstance_max 
 }tmcCur_InstanceId_e;
 
-typedef struct _tmcCur_InputPorts_s
+typedef struct
 {
     uint16_t * iaAdcInput;
     uint16_t * ibAdcInput;
 }tmcCur_InputPorts_s;
 
 
-typedef struct _tmcCur_PhaseCurrents_s
+typedef struct
 {
     int16_t * ia;
     int16_t * ib;
     int16_t * ic;
 }tmcCur_PhaseCurrents_s;
 
-typedef struct _tmcCur_OutputPorts_s
+typedef struct
 {
     tmcCur_PhaseCurrents_s  phaseCurrents;
     uint8_t * calibDone;
 }tmcCur_OutputPorts_s;
 
-typedef struct _tmcCur_UserParameters_s
+typedef struct
 {
    uint16_t minOffset;
    uint16_t maxOffset;
@@ -123,7 +123,7 @@ typedef struct _tmcCur_UserParameters_s
    float adcToCurrent;
 }tmcCur_UserParameters_s;
 
-typedef struct _tmcCur_ConfigParameters_s
+typedef struct
 {
    /* Instance Id */
     uint8_t Id;

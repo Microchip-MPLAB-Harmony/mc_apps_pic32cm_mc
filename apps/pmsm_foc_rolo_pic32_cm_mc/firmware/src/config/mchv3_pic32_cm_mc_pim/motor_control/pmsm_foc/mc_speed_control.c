@@ -51,7 +51,7 @@ Headers inclusions
 /*******************************************************************************
  Constants 
  *******************************************************************************/
-#define RPM_TO_RAD_PER_SEC  (float)( 2.0f * NUM_POLE_PAIRS * M_PI / 60.0f )
+#define RPM_TO_RAD_PER_SEC  (float)( 2.0f * (float)NUM_POLE_PAIRS * M_PI / 60.0f )
 #define RPM_TO_INTERNAL_UNITS (float)( K_SPEED * RPM_TO_RAD_PER_SEC )
 #define POT_TO_RAD_PER_SEC (float)( RATED_SPEED / 4096.0f )
 #define POT_TO_SPEED_INTERNAL_UNITS (float)( K_SPEED * POT_TO_RAD_PER_SEC )
@@ -59,7 +59,7 @@ Headers inclusions
 /*******************************************************************************
  Private data-types 
  *******************************************************************************/
-typedef struct _tmcSpe_Parameters_s
+typedef struct
 {
     int16_t adcCountToSpeedVal;
     uint16_t adcCountToSpeedSh;
@@ -73,7 +73,7 @@ typedef struct _tmcSpe_Parameters_s
 #endif
 }tmcSpe_Parameters_s;
 
-typedef struct _tmcSpe_StateVariables_s
+typedef struct
 {
     int16_t absReferenceSpeed;
     int32_t scaledReferenceSpeed;
@@ -96,24 +96,16 @@ static tmcLib_PiController_s mcSpe_SpeedController_mas[1u];
 *******************************************************************************/
 tmcSpe_ConfigParameters_s  mcSpeI_ConfigParameters_gds = SPEED_CONTROL_MODULE_CONFIG;
 
-tmcSpe_RampProfiler_s mcSpeI_ReferenceSpeedProfile_gas[1u] = 
-{
-    {
-        0.0f,
-        0.0f,
-        1.0f    
-    }
-};
 
 /*******************************************************************************
  * Local Functions  
 *******************************************************************************/
-void mcSpe_SpeedRampLimiter( int16_t input, tmcSpe_StateVariables_s * state, int16_t rampRate  )
+static void mcSpe_SpeedRampLimiter( int16_t input, tmcSpe_StateVariables_s * state, int16_t rampRate  )
 {
     int32_t scaledInput;
     int32_t scaledReference;
   
-    scaledInput = (int32_t)( input * BASE_VALUE );
+    scaledInput = ( (int32_t)input * BASE_VALUE );
     scaledReference = state->scaledReferenceSpeed;
     
     if( ( scaledReference + rampRate ) < scaledInput )
@@ -131,7 +123,7 @@ void mcSpe_SpeedRampLimiter( int16_t input, tmcSpe_StateVariables_s * state, int
     
     /* Set the reference value */
     state->scaledReferenceSpeed = scaledReference; 
-    state->absReferenceSpeed = scaledReference >> SH_BASE_VALUE;
+    state->absReferenceSpeed = (int16_t)mcUtils_RightShiftS32(scaledReference, SH_BASE_VALUE);
 }
 
 
@@ -149,6 +141,11 @@ Interface Functions
  * @param[out]:
  * @return:
  */ 
+/* MISRA C-2012 Rule 14.1 deviated:9 Deviation record ID -  H3_MISRAC_2012_R_14_1_DR_1 */
+#pragma GCC diagnostic push
+#pragma GCC diagnostic ignored "-Wunknown-pragmas"
+#pragma coverity compliance block deviate:9 "MISRA C-2012 Rule 14.1" "H3_MISRAC_2012_R_14_1_DR_1" 
+
 void mcSpeI_SpeedRegulationInit( const tmcSpe_ConfigParameters_s * const speParam )
 {   
     float f32a;
@@ -203,21 +200,21 @@ void mcSpeI_SpeedRegulationInit( const tmcSpe_ConfigParameters_s * const spePara
     f32a =  ( RPM_TO_INTERNAL_UNITS *  speParam->userParam.maxReferenceSpeed ) + 0.5f;
     pParam->maxReferenceSpeed = (int16_t)( f32a );
     
-    f32a = pParam->maxReferenceSpeed / 4096.0f;
+    f32a = (float)pParam->maxReferenceSpeed / 4096.0f;
     pParam->adcCountToSpeedSh = 0u;
     while( ( 10u >= pParam->adcCountToSpeedSh ) && ( 16384.0f > f32a ))
     {
         f32a *= 2.0f;
         pParam->adcCountToSpeedSh++;
     }
-    pParam->adcCountToSpeedVal = f32a;
+    pParam->adcCountToSpeedVal = (int16_t)f32a;
     
     /* Ramp rate limit calculation */
     f32a = speParam->userParam.rpmPerSecondLimit;
     f32a *= RPM_TO_RAMP_RATE_LIMIT; 
-    f32a *= BASE_VALUE;
+    f32a *= (float)BASE_VALUE;
      
-    pParam->refSpeedRampLimit = (int32_t)( f32a + 0.5f );
+    pParam->refSpeedRampLimit = (int16_t)((float)( f32a + 0.5f ));
     
 #if(( CONTROL_LOOP == TORQUE_LOOP ) && ( ENABLE == POTENTIOMETER_INPUT_ENABLED ))
     f32a = K_CURRENT * speParam->userParam.maxTorqueCurrent + 0.5f;
@@ -249,7 +246,9 @@ void mcSpeI_SpeedRegulationInit( const tmcSpe_ConfigParameters_s * const spePara
 
 }
 
-
+#pragma coverity compliance end_block "MISRA C-2012 Rule 14.1"
+#pragma GCC diagnostic pop
+/* MISRAC 2012 deviation block end */
 
 /*! \brief Speed PI controller integral setting 
  * 
@@ -265,7 +264,7 @@ void mcSpeI_SpeedControlIntegralSet( uint8_t Id )
 {
     int32_t s32a;
     
-    s32a =  mcSpeI_ReferenceIqCurrent_gds16 << SH_BASE_VALUE;
+    s32a =  mcUtils_RightShiftS32(mcSpeI_ReferenceIqCurrent_gds16, SH_BASE_VALUE);
  #ifdef BIDIRECTION_CONTROL
     s32a *= (int32_t)( *mcSpe_InputPorts_mas[Id].rotationSign );
 #endif 
@@ -303,9 +302,9 @@ void mcSpeI_SpeedRegulationRun( const tmcSpe_InstanceId_e Id )
 #elif(  CONTROL_LOOP == SPEED_LOOP )
   #if ( ENABLE == POTENTIOMETER_INPUT_ENABLED )
      int32_t s32a;
-     s32a   =  *mcSpe_InputPorts_mas[Id].potReading;
+     s32a   = (int32_t)*mcSpe_InputPorts_mas[Id].potReading;
      s32a *=    mcSpe_Parameters_mas[Id].adcCountToSpeedVal;
-     s32a >>=   mcSpe_Parameters_mas[Id].adcCountToSpeedSh;
+     s32a = mcUtils_RightShiftS32(s32a, mcSpe_Parameters_mas[Id].adcCountToSpeedSh);
            
      mcSpe_SpeedRampLimiter( (int16_t)s32a, &mcSpe_StateVariables_mas[Id], mcSpe_Parameters_mas[Id].refSpeedRampLimit );
         
@@ -329,7 +328,7 @@ void mcSpeI_SpeedRegulationRun( const tmcSpe_InstanceId_e Id )
     #endif
       
       /* Determine q-axis reference current */
-      mcSpe_SpeedController_mas[Id].feedback = (int32_t)(*mcSpe_InputPorts_mas[Id].actualSpeed );
+      mcSpe_SpeedController_mas[Id].feedback = (int16_t)(*mcSpe_InputPorts_mas[Id].actualSpeed );
     *mcSpe_OutputPorts_mas[Id].iqref = mcLib_PiControllerRun( &mcSpe_SpeedController_mas[Id] );
   #else 
       mcSpe_SpeedController_mas[Id].reference  = mcRmpI_ReferenceProfileGenerate();
@@ -363,7 +362,7 @@ void mcSpeI_SpeedRegulationReset( const tmcSpe_InstanceId_e Id )
     mcSpe_StateVariables_mas[Id].scaledReferenceSpeed = 0;
            
     /* Reset output ports */
-    *mcSpe_OutputPorts_mas[Id].iqref = 0.0f;
-    *mcSpe_OutputPorts_mas[Id].referenceSpeed = 0.0f;
+    *mcSpe_OutputPorts_mas[Id].iqref = 0;
+    *mcSpe_OutputPorts_mas[Id].referenceSpeed = 0;
     
 }

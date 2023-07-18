@@ -49,6 +49,7 @@
 #include <stdbool.h>                    // Defines true
 #include <stdlib.h>                     // Defines EXIT_FAILURE
 #include "definitions.h"                // SYS function prototypes
+#include "mc_pmsm_foc.h"
 
 // *****************************************************************************
 // *****************************************************************************
@@ -61,6 +62,9 @@ int main ( void )
 
     /* Initialize all modules */
     SYS_Initialize ( NULL );
+    
+    /* Initialize application  */
+    PMSM_FOC_Initialize();
     
     while ( true )
     {       

@@ -51,6 +51,7 @@ Headers inclusions
 #include "mc_generic_library.h"
 #include "mc_error_handler.h"
 #include "math.h"
+#include "mc_userparams.h"
 
 /*******************************************************************************
  Default Module configuration parameters 
@@ -99,14 +100,14 @@ Headers inclusions
 /*******************************************************************************
  User defined data-types
  *******************************************************************************/
-typedef enum _tmcReg_InstanceId_e
+typedef enum
 {
     regModuleInstance_01,
     regModuleInstance_02,
     regModuleInstance_max
 }tmcReg_InstanceId_e;
 
-typedef struct _tmcReg_InputPorts_s
+typedef struct
 {
     volatile int16_t * Idref;
     volatile int16_t * Iqref;
@@ -116,32 +117,32 @@ typedef struct _tmcReg_InputPorts_s
 }tmcReg_InputPorts_s;
 
 
-typedef struct _tmcReg_OutputPorts_s
+typedef struct
 {
     int16_t * Ud;
     int16_t * Uq;
 }tmcReg_OutputPorts_s;
 
-typedef struct _tmcReg_PiController_s
+typedef struct
 {
     float Kp;
     float Ki;
     float Ymax;
 }tmcReg_PiController_s;
 
-typedef struct _tmcReg_UserParameters_s
+typedef struct
 {
     tmcReg_PiController_s IdController;
     tmcReg_PiController_s IqController;
 }tmcReg_UserParameters_s;
 
-typedef struct _tmcReg_Dependencies_s
+typedef struct
 {
     
 }tmcReg_Dependencies_s;
 
 
-typedef struct _tmcReg_ConfigParameters_s
+typedef struct
 {
     /* Instance Identifier */
     uint8_t Id;

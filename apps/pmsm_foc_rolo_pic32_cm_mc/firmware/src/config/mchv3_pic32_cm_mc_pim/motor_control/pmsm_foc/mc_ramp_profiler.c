@@ -49,13 +49,13 @@ Headers inclusions
 /*******************************************************************************
  Macros
  *******************************************************************************/
-#define RPM_TO_RAD_PER_SEC  (float)( 2.0f * NUM_POLE_PAIRS * M_PI / 60.0f )
+#define RPM_TO_RAD_PER_SEC  (float)( 2.0f * (float)NUM_POLE_PAIRS * M_PI / 60.0f )
 #define RPM_TO_INTERNAL_UNITS (float)( K_SPEED * RPM_TO_RAD_PER_SEC )
 
 /*******************************************************************************
  Private data-types  
  *******************************************************************************/
-typedef struct _tmcRmp_ReferenceSpeedGenerator_s
+typedef struct
 {
     tmcRmp_ReferenceProfile_e profileType;
     int16_t inputValueInInternalUnits; 
@@ -70,7 +70,7 @@ typedef struct _tmcRmp_ReferenceSpeedGenerator_s
 /*******************************************************************************
 Private global variables
 *******************************************************************************/
-tmcRmp_ReferenceSpeedGenerator_s mcRmp_ReferenceSpeed_mds;
+static tmcRmp_ReferenceSpeedGenerator_s mcRmp_ReferenceSpeed_mds;
 
 /******************************************************************************
 Safety variables
@@ -95,7 +95,10 @@ Functions (private and public)
  * @param[out]:
  * @return: None
  */
-
+/* MISRA C-2012 Rule 14.1 deviated:9 Deviation record ID -  H3_MISRAC_2012_R_14_1_DR_1 */
+#pragma GCC diagnostic push
+#pragma GCC diagnostic ignored "-Wunknown-pragmas"
+#pragma coverity compliance block deviate:9 "MISRA C-2012 Rule 14.1" "H3_MISRAC_2012_R_14_1_DR_1" 
 void mcRmpI_ReferenceProfileInit( tmcRmp_ReferenceSpeed_s * rampProfile)
 {
     
@@ -119,23 +122,26 @@ void mcRmpI_ReferenceProfileInit( tmcRmp_ReferenceSpeed_s * rampProfile)
           
           mcRmp_ReferenceSpeed_mds.rampRateShift = 0;
                               
-          while( ( f32a < 16384.0f ) && (mcRmp_ReferenceSpeed_mds.rampRateShift < 14u ))
+          while( ( f32a < 16384.0f ) && (mcRmp_ReferenceSpeed_mds.rampRateShift < 14 ))
           {
                f32a *= 2.0f;
                mcRmp_ReferenceSpeed_mds.rampRateShift++;
           }
-          mcRmp_ReferenceSpeed_mds.rampRateValue = f32a;
+          mcRmp_ReferenceSpeed_mds.rampRateValue = (int16_t)f32a;
      }
      else 
      {
-          
+           /* Do nothing */
      }
 
-     mcRmp_ReferenceSpeed_mds.inputValueInInternalUnits =  rampProfile->defaultValue * rampProfile->realToInternalUnits;
-     mcRmp_ReferenceSpeed_mds.finalValueInInternalUnits =  rampProfile->minimumValue * rampProfile->realToInternalUnits;;
-     mcRmp_ReferenceSpeed_mds.currentValueInInternalUnits =  rampProfile->minimumValue * rampProfile->realToInternalUnits;;
+     mcRmp_ReferenceSpeed_mds.inputValueInInternalUnits =  (int16_t)((float)(rampProfile->defaultValue * rampProfile->realToInternalUnits));
+     mcRmp_ReferenceSpeed_mds.finalValueInInternalUnits =  (int16_t)((float)(rampProfile->minimumValue * rampProfile->realToInternalUnits));
+     mcRmp_ReferenceSpeed_mds.currentValueInInternalUnits =  (int16_t)((float)(rampProfile->minimumValue * rampProfile->realToInternalUnits));
 }
 
+#pragma coverity compliance end_block "MISRA C-2012 Rule 14.1"
+#pragma GCC diagnostic pop
+/* MISRAC 2012 deviation block end */
 void mcRmpI_ReferenceProfileInputCommand( int16_t commandRpm)
 {
      mcRmp_ReferenceSpeed_mds.inputValueInInternalUnits = commandRpm;
@@ -169,16 +175,16 @@ int16_t mcRmpI_ReferenceProfileGenerate( void )
                if( mcRmp_ReferenceSpeed_mds.currentValueInInternalUnits < mcRmp_ReferenceSpeed_mds.finalValueInInternalUnits)
                {
                     mcRmp_ReferenceSpeed_mds.rampProfileCounter++;
-                    s32a = mcRmp_ReferenceSpeed_mds.rampProfileCounter * mcRmp_ReferenceSpeed_mds.rampRateValue;
-                    s32a >>= mcRmp_ReferenceSpeed_mds.rampRateShift; 
-                    mcRmp_ReferenceSpeed_mds.currentValueInInternalUnits = mcRmp_ReferenceSpeed_mds.initialValueInInternalUnits + s32a;
+                    s32a = (int32_t)mcRmp_ReferenceSpeed_mds.rampProfileCounter * mcRmp_ReferenceSpeed_mds.rampRateValue;
+                    s32a =mcUtils_RightShiftS32(s32a,(uint16_t)mcRmp_ReferenceSpeed_mds.rampRateShift); 
+                    mcRmp_ReferenceSpeed_mds.currentValueInInternalUnits = (int16_t)(mcRmp_ReferenceSpeed_mds.initialValueInInternalUnits + s32a);
                }
                else if( mcRmp_ReferenceSpeed_mds.currentValueInInternalUnits > mcRmp_ReferenceSpeed_mds.finalValueInInternalUnits)
                {
                     mcRmp_ReferenceSpeed_mds.rampProfileCounter++;
-                    s32a = mcRmp_ReferenceSpeed_mds.rampProfileCounter * mcRmp_ReferenceSpeed_mds.rampRateValue;
-                    s32a >>= mcRmp_ReferenceSpeed_mds.rampRateShift; 
-                    mcRmp_ReferenceSpeed_mds.currentValueInInternalUnits = mcRmp_ReferenceSpeed_mds.initialValueInInternalUnits - s32a;
+                    s32a = (int32_t)mcRmp_ReferenceSpeed_mds.rampProfileCounter * mcRmp_ReferenceSpeed_mds.rampRateValue; 
+                    s32a =mcUtils_RightShiftS32(s32a,(uint16_t)mcRmp_ReferenceSpeed_mds.rampRateShift); 
+                    mcRmp_ReferenceSpeed_mds.currentValueInInternalUnits = (int16_t)(mcRmp_ReferenceSpeed_mds.initialValueInInternalUnits - s32a);
                }
                else 
                {
@@ -195,7 +201,7 @@ int16_t mcRmpI_ReferenceProfileGenerate( void )
 		
 	default:
 	{
-			
+		/* Undefined state: Should never come here */			
 	}
 	break;
     }

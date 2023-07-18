@@ -30,6 +30,7 @@
 /*
  * This file is part of X2C. http://www.mechatronic-simulation.org/
  */
+
 #ifndef X2CSCOPE_H
 #define X2CSCOPE_H
 
@@ -38,6 +39,7 @@ extern "C" {
 #endif
 
 #include <stdint.h>
+#include "definitions.h"
 
 void X2CScope_Init(void);
 void X2CScope_Communicate(void);

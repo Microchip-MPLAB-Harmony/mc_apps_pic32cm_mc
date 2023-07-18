@@ -48,6 +48,7 @@
 #include <sys/attribs.h>
 #include "definitions.h"
 #include "mc_interface_handling.h"
+#include "mc_userparams.h"
 
 /*******************************************************************************
  * User defined data structure 
@@ -82,7 +83,7 @@ typedef enum
  * @param[out]:
  * @return:
  */
-void mcHalI_VoltageSourceInverterPwmEnable( void );
+void mcHalI_VSI_PwmEnable( void );
 
 /*! \brief Disable PWM inverter 
  * 
@@ -94,7 +95,7 @@ void mcHalI_VoltageSourceInverterPwmEnable( void );
  * @param[out]:
  * @return:
  */
-void mcHalI_VoltageSourceInverterPwmDisable( void );
+void mcHalI_VSI_PwmDisable( void );
 
 
 /*! \brief Get start stop input status 
@@ -120,7 +121,10 @@ uint32_t mcHalI_StartStopButtonGet( void );
  * @param[out]:
  * @return:
  */
-uint32_t mcHalI_DirectionButtonGet( void );
+  #if (ENABLE == BIDIRECTION_CONTROL )        
+   uint32_t mcHalI_DirectionButtonGet( void );
+  #endif
+
 
 
 /*! \brief Set direction indicator
@@ -133,7 +137,10 @@ uint32_t mcHalI_DirectionButtonGet( void );
  * @param[out]:
  * @return:
  */
-void mcHal_DirectionIndicationSet( void );
+  #if (ENABLE == BIDIRECTION_CONTROL )        
+   void mcHal_DirectionIndicationSet( void );
+  #endif   
+
 
 
 /*! \brief Set fault indicator
@@ -197,18 +204,6 @@ void mcHalI_AdcCallBackRegister( ADC_CALLBACK callback, uintptr_t context );
  */
  void mcHalI_PwmCallBackRegister( TCC_CALLBACK callback, uintptr_t context );
 
-/*! \brief Get Inverter input DC  current 
- * 
- * Details.
- *  Get Inverter input DC  current 
- * 
- * @param[in]: 
- * @param[in/out]:
- * @param[out]:
- * @return:
- */
-void mcHal_InverterInputCurrentGet( void );
-
 /*! \brief Get inverter PWM period 
  * 
  * Details.
@@ -236,9 +231,14 @@ __STATIC_INLINE uint32_t mcHal_InverterPwmPeriodGet( void )
  */
 __STATIC_INLINE void mcHal_InverterDutySet( const uint32_t * const dutyCycle )
 {
-    TCC0_PWM24bitDutySet(TCC0_CHANNEL0, dutyCycle[0] );
-    TCC0_PWM24bitDutySet(TCC0_CHANNEL1, dutyCycle[1] );
-    TCC0_PWM24bitDutySet(TCC0_CHANNEL2, dutyCycle[2] );  
+    uint8_t status=1U;
+    bool pwm_flag;
+    status |= (uint8_t)(pwm_flag = TCC0_PWM24bitDutySet(TCC0_CHANNEL0, dutyCycle[0] ));
+    status |= (uint8_t)(pwm_flag = TCC0_PWM24bitDutySet(TCC0_CHANNEL1, dutyCycle[1] ));
+    status |= (uint8_t)(pwm_flag = TCC0_PWM24bitDutySet(TCC0_CHANNEL2, dutyCycle[2] ));  
+    if (status!=1U){
+        /* Error log*/
+    }
 }
 
 
@@ -442,6 +442,9 @@ __STATIC_INLINE void mcHalI_AdcConversionTrigger( void )
  */
 __STATIC_INLINE void mcHalI_AdcConversionWait( void )
 {
-    while(ADC0_REGS->ADC_INTFLAG != ADC_INTFLAG_RESRDY_Msk);    
+    while(ADC0_REGS->ADC_INTFLAG != ADC_INTFLAG_RESRDY_Msk)
+    {
+        /* ADC Interrupt*/
+    }
 } 
 #endif // MCHAL_H

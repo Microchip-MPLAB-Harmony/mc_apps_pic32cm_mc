@@ -43,6 +43,7 @@
 #include <stdint.h>
 #include <sys/attribs.h>
 #include "mc_interface_handling.h"
+#include "mc_userparams.h"
 
 /******************************************************************************
  * Constants 
@@ -98,8 +99,8 @@ typedef struct
 typedef struct
 {
     uint16_t	 ang;	/* angle */
-    int16_t	 sin;	/* sin(angle) */
-    int16_t	 cos;	/* cos(angle) */
+    int16_t	 sin_th;	/* sin(angle) */
+    int16_t	 cos_th;	/* cos(angle) */
 }tmcLib_PolarArg_s;
 
 
@@ -109,7 +110,7 @@ typedef struct
     tmcLib_PolarArg_s	t;		// argument
 }tmcLib_Polar_s;
 
-typedef struct _tmcLib_PiControllerState_s
+typedef struct
 {
     int16_t reference;
     int16_t feedback;
@@ -223,36 +224,6 @@ int16_t  __ramfunc__ mcLib_DetermineAdjSide(int16_t hypo, int16_t fcat);
 int16_t mcLib_DetermineAdjSide(int16_t hypo, int16_t fcat);
 #endif 
 
-
-/*! \brief Right shift  
- * 
- * Details.
- * Right shift 
- * 
- * @param[in]: 
- * @param[in/out]:
- * @param[out]:
- * @return:
- */
-#ifdef RAM_EXECUTE
-int32_t __ramfunc__ mcLib_RightShift(int32_t operand, uint16_t shift );
-#else
-int32_t mcLib_RightShift(int32_t operand, uint16_t shift );
-#endif
-
-/*! \brief Multiply and right shift  
- * 
- * Details.
- * Multiply and right shift 
- * 
- * @param[in]: 
- * @param[in/out]:
- * @param[out]:
- * @return:
- */
-int32_t mcLib_MultShiftRight( const int16_t multiplicand1, const int16_t multiplicand2, const uint16_t shift );
-
-
 /*! \brief Float Scaling 
  * 
  * Details.
@@ -321,9 +292,9 @@ void mcLib_FloatToIQ( float input, IQ * const result );
  */
 
 #ifdef RAM_EXECUTE
-void  __ramfunc__ mcLib_ClarkTransform(const tmcInf_ThreePhaseQuantity_s *uvw, tmcLib_ClarkTransform_s *ab);
+void  __ramfunc__ mcLib_ClarkTransform(const tmcInf_ThreePhaseQuantity_s *input, tmcLib_ClarkTransform_s *output);
 #else
-void mcLib_ClarkTransform(const tmcInf_ThreePhaseQuantity_s *uvw, tmcLib_ClarkTransform_s *ab);
+void mcLib_ClarkTransform(const tmcInf_ThreePhaseQuantity_s *input, tmcLib_ClarkTransform_s *output);
 #endif
 
 /*! \brief Reverse Clark transform 
@@ -338,9 +309,9 @@ void mcLib_ClarkTransform(const tmcInf_ThreePhaseQuantity_s *uvw, tmcLib_ClarkTr
  */
 
  #ifdef RAM_EXECUTE
-void __ramfunc__ mcLib_ReverseClarkTransform(const tmcLib_ClarkTransform_s *ab, tmcInf_ThreePhaseQuantity_s *uvw);
+void __ramfunc__ mcLib_ReverseClarkTransform(const tmcLib_ClarkTransform_s *input, tmcInf_ThreePhaseQuantity_s *output);
 #else
-void mcLib_ReverseClarkTransform(const tmcLib_ClarkTransform_s *ab, tmcInf_ThreePhaseQuantity_s *uvw);
+void mcLib_ReverseClarkTransform(const tmcLib_ClarkTransform_s *input, tmcInf_ThreePhaseQuantity_s *output);
 #endif
 
 /*! \brief Park Transform
@@ -471,5 +442,165 @@ void mcLib_PiControllerReset(tmcLib_PiController_s * const piState);
  * @return:
  */
 void mcLib_ButtonRespond(button_response_t * buttonResData, void (* buttonJob)(void));
+/*! \brief Right shift  for 32-bit signed integer
+ *
+ * Details
+ * Right shift  for 32-bit signed integer
+ *
+ * @param[in]:
+ * @param[in/out]:
+ * @param[out]:
+ * @return:
+ */
+static inline int32_t mcUtils_RightShiftS32(int32_t operand, uint16_t shift )
+{
+#if defined ENABLE_SIGN_INTEGER_SHIFT
+    /* MISRAC 2012 deviation block start */
+    /* MISRA C-2012 Rule 10.1 deviated in this function. Deviation record ID -  H3_MISRAC_2012_R_2_2_DR_1  */
+    return ( operand >> shift );
+    /* MISRAC 2012 deviation block end */
+#else
+    int32_t result;
+    uint32_t u32a;
 
+    if( 0 > operand )
+    {
+        u32a = ((uint32_t)(-operand ) >> shift );
+        result = -(int32_t)u32a;
+    }
+    else
+    {
+        u32a = ((uint32_t)operand >> shift);
+        result = (int32_t)u32a;
+    }
+    return result;
+#endif
+}
+
+/*! \brief Left shift  for 32-bit signed integer
+ *
+ * Details
+ * Left shift  for 32-bit signed integer
+ *
+ * @param[in]:
+ * @param[in/out]:
+ * @param[out]:
+ * @return:
+ */
+static inline int32_t mcUtils_LeftShiftS32(int32_t operand, uint16_t shift )
+{
+#if defined ENABLE_SIGN_INTEGER_SHIFT
+    /* MISRAC 2012 deviation block start */
+    /* MISRA C-2012 Rule 10.1 deviated in this function. Deviation record ID -  H3_MISRAC_2012_R_2_2_DR_1  */
+    return ( operand << shift );
+    /* MISRAC 2012 deviation block end */
+#else
+    int32_t result;
+    uint32_t u32a;
+
+    if(0 > operand )
+    {
+        u32a = ((uint32_t)(-operand ) << shift );
+        result = -(int32_t)u32a;
+    }
+    else
+    {
+        u32a = ((uint32_t)operand << shift);
+        result = (int32_t)u32a;
+    }
+    return (result);
+#endif
+}
+
+/*! \brief Right shift  for 16-bit signed short
+ *
+ * Details
+ * Right shift  for 16-bit signed short
+ *
+ * @param[in]:
+ * @param[in/out]:
+ * @param[out]:
+ * @return:
+ */
+static inline int16_t mcUtils_RightShiftS16(int16_t operand, uint16_t shift )
+{
+#if defined ENABLE_SIGN_INTEGER_SHIFT
+    /* MISRAC 2012 deviation block start */
+    /* MISRA C-2012 Rule 10.1 deviated in this function. Deviation record ID -  H3_MISRAC_2012_R_2_2_DR_1  */
+    return ( operand >> shift );
+    /* MISRAC 2012 deviation block end */
+#else
+    int16_t result;
+    uint16_t u16a;
+
+    if( 0 > operand )
+    {
+        u16a = ((uint16_t)(-operand ) >> shift );
+        result = -(int16_t)u16a;
+    }
+    else
+    {
+        u16a = ((uint16_t)operand >> shift);
+        result = (int16_t)u16a;
+    }
+    return (result);
+#endif
+}
+
+/*! \brief Left shift  for 16-bit signed short
+ *
+ * Details
+ * Left shift  for 16-bit signed short
+ *
+ * @param[in]:
+ * @param[in/out]:
+ * @param[out]:
+ * @return:
+ */
+static inline int16_t mcUtils_LeftShiftS16(int16_t operand, uint16_t shift )
+{
+#if defined ENABLE_SIGN_INTEGER_SHIFT
+    /* MISRAC 2012 deviation block start */
+    /* MISRA C-2012 Rule 10.1 deviated in this function. Deviation record ID -  H3_MISRAC_2012_R_2_2_DR_1  */
+    return ( operand << shift );
+    /* MISRAC 2012 deviation block end */
+#else
+    int16_t result;
+    uint16_t u16a;
+
+    if( 0 > operand )
+    {
+        u16a = ((uint16_t)(-operand ) << shift );
+        result = -(int16_t)u16a;
+    }
+    else
+    {
+        u16a = ((uint16_t)operand << shift);
+        result = (int16_t)u16a;
+    }
+    return (result);
+#endif
+}
+
+/*! \brief Left shift  for 16-bit signed short
+ *
+ * Details
+ * Left shift  for 16-bit signed short
+ *
+ * @param[in]:
+ * @param[in/out]:
+ * @param[out]:
+ * @return:
+ */
+static inline int16_t mcUtils_MultAndRightShiftS16(int16_t operand1, int16_t operand2, uint16_t shift )
+{
+#if defined ENABLE_SIGN_INTEGER_SHIFT
+    /* MISRAC 2012 deviation block start */
+    /* MISRA C-2012 Rule 10.1 deviated in this function. Deviation record ID -  H3_MISRAC_2012_R_2_2_DR_1  */
+    return (int16_t)(( (int32_t)operand1 * (int32_t)operand2)  >> shift );
+    /* MISRAC 2012 deviation block end */
+#else
+    return (int16_t)mcUtils_RightShiftS32((int32_t)((int32_t)operand1 * (int32_t)operand2 ), shift );
+#endif
+}
 #endif // MC_GENERIC_LIB_H

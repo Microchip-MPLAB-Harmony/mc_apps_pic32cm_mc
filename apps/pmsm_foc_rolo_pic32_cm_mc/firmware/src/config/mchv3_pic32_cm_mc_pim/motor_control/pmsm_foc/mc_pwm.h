@@ -63,7 +63,7 @@
 /*******************************************************************************
 Type Definition
 *******************************************************************************/
-typedef enum _tmcPwm_InstanceId_e
+typedef enum
 {
     pwmModuleInstance_01,
     pwmModuleInstance_02,
@@ -76,7 +76,7 @@ typedef struct
     tmcLib_ClarkTransform_s  * Uab;
 }tmcPwm_InputPorts_s;
 
-typedef struct _tmcPwm_UserParameters_s 
+typedef struct
 {
    
 }tmcPwm_UserParameters_s;
@@ -89,7 +89,7 @@ typedef struct
 }tmcPwm_OutputPorts_s;
 
 
-typedef struct _tmcPwm_ConfigParameters_s 
+typedef struct
 {
     /* Instance Id */
     tmcPwm_InstanceId_e Id; 

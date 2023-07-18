@@ -56,7 +56,10 @@ typedef enum
     MCCUR_PHASE_B_CURRENT_OFFSET_OOR
 }tmcErr_ErrorId_e;
 
-#define ASSERT(expression, message) if(!expression) mcErr_AssertionFailedReaction( message);
+#define ASSERT(expression, message) if(!expression)\
+                                      { mcErr_AssertionFailedReaction( message);}\
+                                    else{/*Do nothing */ \
+                                        }
 
 /*******************************************************************************
  * Interface Functions 
@@ -83,7 +86,7 @@ void mcErr_AssertionFailedReaction( const char * message );
  * @param[out]:
  * @return:
  */
-void mcErr_ErrorReaction( void );
+void mcErr_ErrorReaction( ADC_STATUS status, uintptr_t context );
 
 /*! \brief Logs Error 
  * 

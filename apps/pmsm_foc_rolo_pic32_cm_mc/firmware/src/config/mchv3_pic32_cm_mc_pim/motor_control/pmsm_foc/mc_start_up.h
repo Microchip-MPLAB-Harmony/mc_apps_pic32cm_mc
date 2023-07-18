@@ -67,7 +67,7 @@ Headers inclusions
     /* User parameters */ \
     {\
         /* Alignment time in seconds */ \
-        START_UP_LOCK_TIME_IN_SECOND, \
+        (float)START_UP_LOCK_TIME_IN_SECOND, \
         \
         /* Alignment current in Amperes */\
         START_UP_CURRENT_IN_AMPERE,\
@@ -76,10 +76,10 @@ Headers inclusions
         START_UP_CURRENT_IN_AMPERE, \
          \
         /* Open loop ramp time in seconds */ \
-        START_UP_RAMP_TIME_IN_SECOND,\
+        (float)START_UP_RAMP_TIME_IN_SECOND,\
          \
         /* Open loop stabilization time in seconds  */\
-        START_UP_STAB_TIME_IN_SECOND,\
+        (float)START_UP_STAB_TIME_IN_SECOND,\
          \
         /* Open loop transition speed in RPM */  \
          MINIMUM_SPEED_IN_RPM, \
@@ -92,20 +92,20 @@ Headers inclusions
 /*******************************************************************************
  Module data-types
  *******************************************************************************/
-typedef enum _tmcSup_InstanceId_e
+typedef enum
 {
     supModuleInstance_01,
     supModuleInstance_02,
     supModuleInstance_max 
 }tmcSup_InstanceId_e;
 
-typedef struct _tmcSup_InputPorts_s
+typedef struct
 {
  
 }tmcSup_InputPorts_s;
 
 
-typedef struct _tmcSup_OutputPorts_s
+typedef struct
 {
     int16_t * Idref;
     int16_t * Iqref;
@@ -113,7 +113,7 @@ typedef struct _tmcSup_OutputPorts_s
 }tmcSup_OutputPorts_s;
 
 
-typedef struct _tmcSup_UserParameters_s
+typedef struct
 {
     float alignmentTime;
     float alignmentCurrent;
@@ -124,13 +124,13 @@ typedef struct _tmcSup_UserParameters_s
     float Ts;
 }tmcSup_UserParameters_s;
 
-typedef struct _tmcSup_Dependencies_s
+typedef struct
 {
     
 }tmcSup_Dependencies_s;
 
 
-typedef struct _tmcSup_ConfigParameters_s
+typedef struct
 {
     /* Instance Identifier */
     uint8_t Id;

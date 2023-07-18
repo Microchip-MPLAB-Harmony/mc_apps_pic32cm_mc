@@ -56,8 +56,8 @@ Headers inclusions
 /*******************************************************************************
  * Interface variables 
 *******************************************************************************/
-tmcErr_ErrorId_e mcErrI_ErrorLogged_gde  =  NO_ERROR_LOGGED;
-
+static tmcErr_ErrorId_e mcErrI_ErrorLogged_gde  =  NO_ERROR_LOGGED;
+static uintptr_t dummyforMisra;
 /*******************************************************************************
  * Interface Functions  
 *******************************************************************************/
@@ -78,7 +78,7 @@ void mcErr_AssertionFailedReaction( const char * message )
     mcErrI_ErrorLogged_gde =     SOFTWARE_PLAUSIBILITY_FAILURE;
         
     /* Error Reaction */
-    mcErr_ErrorReaction();
+    mcErr_ErrorReaction((ADC_STATUS)0,(uintptr_t)dummyforMisra);
 }
 
 /*! \brief Error reaction function  
@@ -92,7 +92,7 @@ void mcErr_AssertionFailedReaction( const char * message )
  * @return:
  */
 
-void mcErr_ErrorReaction( void )
+void mcErr_ErrorReaction(ADC_STATUS status, uintptr_t context )
 {
     mcMocI_MotorStop();
     mcHal_FaultIndicationSet();

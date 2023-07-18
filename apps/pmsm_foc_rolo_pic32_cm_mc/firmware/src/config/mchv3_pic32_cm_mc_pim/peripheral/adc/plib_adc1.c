@@ -62,10 +62,10 @@
 // *****************************************************************************
 // *****************************************************************************
 
-#define ADC1_LINEARITY_POS  (6)
+#define ADC1_LINEARITY_POS  (6U)
 #define ADC1_LINEARITY_Msk   (0x7UL << ADC1_LINEARITY_POS)
 
-#define ADC1_BIASCAL_POS  (9)
+#define ADC1_BIASCAL_POS  (9U)
 #define ADC1_BIASCAL_Msk   (0x7UL << ADC1_BIASCAL_POS)
 
 
@@ -88,7 +88,7 @@ void ADC1_Initialize( void )
     }
     /* Write linearity calibration in BIASREFBUF and bias calibration in BIASCOMP */
     uint32_t calib_low_word = (uint32_t)(*(uint64_t*)OTP5_ADDR);
-    ADC1_REGS->ADC_CALIB = (uint16_t)((ADC_CALIB_BIASREFBUF((calib_low_word & ADC1_LINEARITY_Msk) >> ADC1_LINEARITY_POS)) | 
+    ADC1_REGS->ADC_CALIB = (uint16_t)((ADC_CALIB_BIASREFBUF((calib_low_word & ADC1_LINEARITY_Msk) >> ADC1_LINEARITY_POS)) |
                                       (ADC_CALIB_BIASCOMP((calib_low_word & ADC1_BIASCAL_Msk) >> ADC1_BIASCAL_POS)));
 
     ADC1_REGS->ADC_CTRLA = (uint8_t)ADC_CTRLA_SLAVEEN_Msk;
@@ -182,8 +182,7 @@ void ADC1_ComparisonWindowSet(uint16_t low_threshold, uint16_t high_threshold)
 
 void ADC1_WindowModeSet(ADC_WINMODE mode)
 {
-    ADC1_REGS->ADC_CTRLC &= (uint16_t)(~ADC_CTRLC_WINMODE_Msk);
-    ADC1_REGS->ADC_CTRLC |= (uint16_t)((uint32_t)mode << ADC_CTRLC_WINMODE_Pos);
+    ADC1_REGS->ADC_CTRLC =  (ADC1_REGS->ADC_CTRLC & (uint16_t)(~ADC_CTRLC_WINMODE_Msk)) | (uint16_t)((uint32_t)mode << ADC_CTRLC_WINMODE_Pos);
     while(0U != (ADC1_REGS->ADC_SYNCBUSY))
     {
         /* Wait for Synchronization */

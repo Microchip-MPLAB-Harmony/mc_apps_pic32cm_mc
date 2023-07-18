@@ -114,18 +114,6 @@ void mcMocI_MotorControlInit( void );
  */   
 void mcMocI_MotorControlTasksRun( void );
 
-/*! \brief Over-current Fault ISR
- * 
- * Details.
- * Over-current Fault ISR
- * 
- * @param[in]: 
- * @param[in/out]:
- * @param[out]:
- * @return:
- */   
-void mcMoc_MotorFaultReaction(uintptr_t context);
-
 
 /*! \brief Motor Stop function 
  * 
@@ -151,7 +139,7 @@ void mcMocI_MotorStop(void);
  */
 void mcMocI_MotorStart(void);
 
-#ifdef BIDIRECTION_CONTROL
+  #if (ENABLE == BIDIRECTION_CONTROL )   
 /*! \brief Motor direction toggle function 
  * 
  * Details.
@@ -164,23 +152,6 @@ void mcMocI_MotorStart(void);
  */
 void mcMocI_MotorDirectionToggle(void);
 
-#endif
-
-
-/*! \brief Motor control state machine 
- * 
- * Details.
- * Motor control state machine 
- * 
- * @param[in]: 
- * @param[in/out]:
- * @param[out]:
- * @return:
- */
-#ifdef RAM_EXECUTE
-void  __ramfunc__ mcMoc_MotorControl(void);
-#else
-void mcMoc_MotorControl(void);
 #endif
 
 

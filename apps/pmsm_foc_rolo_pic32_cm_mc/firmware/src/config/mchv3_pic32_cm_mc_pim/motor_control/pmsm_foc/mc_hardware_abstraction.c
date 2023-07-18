@@ -68,9 +68,14 @@ Headers inclusions
  * @param[out]:
  * @return:
  */
-void mcHalI_VoltageSourceInverterPwmEnable( void )
+void mcHalI_VSI_PwmEnable( void )
 {
-    TCC0_PWMPatternSet(0x00,0x00);  /*Disable PWM override*/
+
+    bool pwm_flag;
+    pwm_flag = TCC0_PWMPatternSet(0x00,0x00);  /*Disable PWM override*/
+    if (pwm_flag!=true){
+        /* Error log*/
+    }
 }
 
 /*! \brief Disable PWM inverter 
@@ -83,13 +88,17 @@ void mcHalI_VoltageSourceInverterPwmEnable( void )
  * @param[out]:
  * @return:
  */
-void mcHalI_VoltageSourceInverterPwmDisable( void )
+void mcHalI_VSI_PwmDisable( void )
 {
+    bool pwm_flag;
     /*Override all PWM outputs to low*/
-    TCC0_PWMPatternSet((TCC_PATT_PGE0_Msk|TCC_PATT_PGE1_Msk|TCC_PATT_PGE2_Msk
+    pwm_flag = TCC0_PWMPatternSet((TCC_PATT_PGE0_Msk|TCC_PATT_PGE1_Msk|TCC_PATT_PGE2_Msk
             |TCC_PATT_PGE4_Msk|TCC_PATT_PGE5_Msk|TCC_PATT_PGE6_Msk),
             (TCC_PATT_PGE0(0)|TCC_PATT_PGE1(0)|TCC_PATT_PGE2(0)|TCC_PATT_PGE4(0)
             |TCC_PATT_PGE5(0)|TCC_PATT_PGE6(0)));
+    if (pwm_flag!=true){
+        /* Error log*/
+    }
 }
 
 /*! \brief Get start stop input status 

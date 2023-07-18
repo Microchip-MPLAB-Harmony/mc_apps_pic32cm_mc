@@ -61,14 +61,14 @@ Macro definitions
 Type definitions
 *******************************************************************************/
 
-typedef enum _tmcRmp_ReferenceProfile_e
+typedef enum
 {
     referenceProfile_Step,
     referenceProfile_Linear,
     referenceProfile_Sigmoid
 }tmcRmp_ReferenceProfile_e;
   
-typedef struct _tmcRmp_ReferenceSpeed_s
+typedef struct
 {
     tmcRmp_ReferenceProfile_e profileType;
     float finalValue; 
