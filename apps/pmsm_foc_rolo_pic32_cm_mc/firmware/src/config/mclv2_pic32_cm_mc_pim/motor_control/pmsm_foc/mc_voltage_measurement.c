@@ -111,7 +111,7 @@ void  mcVolI_VoltageCalculationInit( tmcVol_ConfigParameters_s * volParam )
      mcVol_OutputPorts_mas[volParam->Id] = volParam->outPort;
      
      /* Update and calculate independent and dependent parameters respectively */
-     mcVol_Parameters_mas[volParam->Id].filterParam = volParam->userParam.busVoltageFiltParam;
+     mcVol_Parameters_mas[volParam->Id].filterParam = (int16_t)volParam->userParam.busVoltageFiltParam;
      mcVol_Parameters_mas[volParam->Id].adcToVoltageInternalUnits  = KAD_VOL;
 }
 
@@ -147,7 +147,7 @@ void mcVolI_VoltageCalculationRun( const tmcVol_InstanceId_e Id )
    *mcVol_OutputPorts_mas[Id].busVoltage = (int16_t)s32a; 
    
    s32a *=  ONEBYSQRT3; 
-   s32a >>= SH_BASE_VALUE;
+   s32a = mcUtils_RightShiftS32(s32a,SH_BASE_VALUE);
     
    *mcVol_OutputPorts_mas[Id].maximumUacPeak = (int16_t)s32a;
 }

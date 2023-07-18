@@ -55,7 +55,7 @@
  Private data-types 
  *******************************************************************************/
 
-typedef struct _mcCur_StateVariables_s
+typedef struct
 {
     uint8_t  calibDone;
     uint16_t  adcSampleCounter;
@@ -65,7 +65,7 @@ typedef struct _mcCur_StateVariables_s
     uint16_t ibOffset;
 }tmcCur_StateVariables_s;
 
-typedef struct _tmcCur_Parameters_s
+typedef struct
 {
    uint16_t  minOffset;
    uint16_t  maxOffset;
@@ -182,14 +182,14 @@ void  mcCurI_CurrentCalculationRun( const tmcCur_InstanceId_e Id )
 #endif
 {    
      /* Phase A current measurement */
-    *mcCur_OutputPorts_mas[Id].phaseCurrents.ia  = ( mcCur_StateVariables_mas[0u].iaOffset );
-    *mcCur_OutputPorts_mas[Id].phaseCurrents.ia -= (*mcCur_InputPorts_mas[0u].iaAdcInput ); 
-    *mcCur_OutputPorts_mas[Id].phaseCurrents.ia *= ( mcCur_Parameters_mas[0u].adcToCurrent );
+    *mcCur_OutputPorts_mas[Id].phaseCurrents.ia  = (int16_t)( mcCur_StateVariables_mas[0u].iaOffset );
+    *mcCur_OutputPorts_mas[Id].phaseCurrents.ia -= (int16_t)(*mcCur_InputPorts_mas[0u].iaAdcInput ); 
+    *mcCur_OutputPorts_mas[Id].phaseCurrents.ia *= (int16_t)( mcCur_Parameters_mas[0u].adcToCurrent );
     
     /* Phase B current measurement */
-    *mcCur_OutputPorts_mas[Id].phaseCurrents.ib  = ( mcCur_StateVariables_mas[0u].ibOffset );
-    *mcCur_OutputPorts_mas[Id].phaseCurrents.ib -= (*mcCur_InputPorts_mas[0u].ibAdcInput ); 
-    *mcCur_OutputPorts_mas[Id].phaseCurrents.ib *= ( mcCur_Parameters_mas[0u].adcToCurrent );
+    *mcCur_OutputPorts_mas[Id].phaseCurrents.ib  = (int16_t)( mcCur_StateVariables_mas[0u].ibOffset );
+    *mcCur_OutputPorts_mas[Id].phaseCurrents.ib -= (int16_t)(*mcCur_InputPorts_mas[0u].ibAdcInput ); 
+    *mcCur_OutputPorts_mas[Id].phaseCurrents.ib *= (int16_t)( mcCur_Parameters_mas[0u].adcToCurrent );
     
     /* Calculate phase W current by Kirchhoff's principle  */
     *mcCur_OutputPorts_mas[0u].phaseCurrents.ic   = -(*mcCur_OutputPorts_mas[0u].phaseCurrents.ia );
@@ -218,9 +218,9 @@ void mcCurI_CurrentCalculationReset( const tmcCur_InstanceId_e Id )
     mcCur_StateVariables_mas[Id].ibOffset = 0u;
     
     /* Reset output ports */
-    *mcCur_OutputPorts_mas[Id].phaseCurrents.ia = 0.0f;
-    *mcCur_OutputPorts_mas[Id].phaseCurrents.ib = 0.0f;
-    *mcCur_OutputPorts_mas[Id].phaseCurrents.ic = 0.0f;
+    *mcCur_OutputPorts_mas[Id].phaseCurrents.ia = 0;
+    *mcCur_OutputPorts_mas[Id].phaseCurrents.ib = 0;
+    *mcCur_OutputPorts_mas[Id].phaseCurrents.ic = 0;
     
 }
 

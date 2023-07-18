@@ -60,7 +60,6 @@ static button_response_t button_S3_data;
 /*******************************************************************************
 Interface Variables
 *******************************************************************************/
-uint8_t  adc_interrupt_counter;
 
 /*******************************************************************************
 Private Functions
@@ -84,7 +83,7 @@ Interface Functions
 void mcMocI_MotorControlInit( void )
 {    
     /* Disable inverter during initialization */
-    mcHalI_VoltageSourceInverterPwmDisable();
+    mcHalI_VSI_PwmDisable();
     
     /* Initialize motor start-up */
     mcSupI_OpenLoopStartupInit( &mcSupI_ConfigurationParameters_gds );
@@ -96,7 +95,7 @@ void mcMocI_MotorControlInit( void )
     mcSpeI_SpeedRegulationInit( &mcSpeI_ConfigParameters_gds );
     
     /* Initialize Rotor position calculation module */
-    mcRpoI_RotorPositionCalculationInit( &mcRpoI_ConfigParameters_gds);
+    mcRpoI_PosCal_Init( &mcRpoI_ConfigParameters_gds);
    
     /* Initialize Flux Control */
     //mcFlxI_FluxControlInit( &mcFlxI_ConfigParameters_gds );
@@ -125,7 +124,7 @@ void mcMocI_MotorControlTasksRun( void )
         mcLib_ClarkTransform(&mcCurI_PhaseCurrents_gds, &mcMocI_FeedbackAlphaBetaCurrent_gds);
         
         /* Rotor position estimation */
-        mcRpoI_RotorPositionCalculationRun( 0u );
+        mcRpoI_PosCal_Run( 0u );
 
         /* Parks Transformation  */
         mcLib_ParkTransform(mcMocI_SpaceVectorPosition_gdu16, &mcMocI_FeedbackAlphaBetaCurrent_gds, &mcMocI_FeedbackDQCurrent_gds);
@@ -141,7 +140,7 @@ void mcMocI_MotorControlTasksRun( void )
 
             case mcState_Startup:
             {
-                if ( 1u  == mcSupI_OpenLoopStartupRun(0u))
+                if ( 1u  == mcSupI_OpenLoopStartupRun((tmcSup_InstanceId_e)0u))
                 {
                 #if ( CONTROL_LOOP != OPEN_LOOP)
                     mcSpeI_SpeedControlIntegralSet( 0u );
@@ -154,7 +153,7 @@ void mcMocI_MotorControlTasksRun( void )
             case mcState_Foc:
             {  
                 mcMocI_SpaceVectorPosition_gdu16 = mcRpoI_ElectricalRotorPosition_gdu16;
-                mcSpeI_SpeedRegulationRun( 0u );
+                mcSpeI_SpeedRegulationRun( (tmcSpe_InstanceId_e)0u );
             }
             break;
             default:
@@ -166,13 +165,13 @@ void mcMocI_MotorControlTasksRun( void )
        mcMocI_MotorRunningState_gde = mcMoc_StateSignal_mds.appState;
 
        /* Torque control */
-       mcRegI_CurrentRegulationRun(0u); 
+       mcRegI_CurrentRegulationRun((tmcReg_InstanceId_e)0u); 
 
        /* Reverse-Park transformation */
        mcLib_ReverseParkTransform(mcMocI_SpaceVectorPosition_gdu16, &mcMocI_DQVoltage_gds, &mcMocI_AlphaBetaVoltage_gds);
 
        /* Execute SVPWM Modulation */
-       mcPwmI_PulseWidthModulationRun( 0u );       
+       mcPwmI_PulseWidthModulationRun( (tmcPwm_InstanceId_e)0u );       
                   
     }
       
@@ -189,25 +188,25 @@ void mcMocI_MotorControlTasksRun( void )
  * @param[out]:
  * @return:
  */
- void mcMocI_MotorControlReset(void)
+ static void mcMocI_MotorControlReset(void)
 {
      /* Set run state to zero */
      mcMoc_StateSignal_mds.runState = 0;
              
      /* Reset open loop start-up module */
-     mcSupI_OpenLoopStartupReset( 0u );
+     mcSupI_OpenLoopStartupReset( (tmcSup_InstanceId_e)0u );
     
      /* Initialize rotor position calculation module */
-     mcRpoI_RotorPositionCalculationReset(0u);
+     mcRpoI_PosCal_Reset(0u);
      
      /* Reset current regulation module */
-     mcRegI_CurrentRegulationReset( 0u );
+     mcRegI_CurrentRegulationReset( (tmcReg_InstanceId_e)0u );
     
      /* Reset speed regulation module */
-     mcSpeI_SpeedRegulationReset( 0u );
+     mcSpeI_SpeedRegulationReset( (tmcSpe_InstanceId_e)0u );
      
      /* Reset pulse width modulation function */
-     mcPwmI_PulseWidthModulationReset( 0u );
+     mcPwmI_PulseWidthModulationReset( (tmcPwm_InstanceId_e)0u );
        
 }
 
@@ -224,13 +223,13 @@ void mcMocI_MotorControlTasksRun( void )
 void mcMocI_MotorStop(void)
 {        
     /* Disable inverter */
-    mcHalI_VoltageSourceInverterPwmDisable();
+    mcHalI_VSI_PwmDisable();
      
      /* Reset start up parameters */
      mcMocI_MotorControlReset();
 
     /* Reset control */
-    mcPwmI_PulseWidthModulationReset( 0u );
+    mcPwmI_PulseWidthModulationReset( (tmcPwm_InstanceId_e)0u );
 
 }
 
@@ -246,7 +245,7 @@ void mcMocI_MotorStop(void)
  */
 void mcMocI_MotorStart(void)
 {
-    mcHalI_VoltageSourceInverterPwmEnable( );
+    mcHalI_VSI_PwmEnable( );
     mcMoc_StateSignal_mds.runState = 1;
     mcMoc_StateSignal_mds.appState = mcState_Startup;
 }
@@ -267,7 +266,7 @@ void mcMocI_MotorDirectionToggle(void)
     if( 0u == mcMoc_StateSignal_mds.runState ) 
     {
         mcMocI_RotationSign_gds8 = -mcMocI_RotationSign_gds8; 
-        mcRpoI_RotorPositionCalculationInit( &mcRpoI_ConfigParameters_gds );
+        mcRpoI_PosCal_Init( &mcRpoI_ConfigParameters_gds );
         mcHal_DirectionIndicationSet();
     }
 }

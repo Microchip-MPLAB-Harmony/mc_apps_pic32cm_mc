@@ -56,14 +56,14 @@ Macro definitions
 #define    MAX_VALUE               16384.0f
 
 
-#define OBS_MAXSHIFTS		( 32 )
+#define OBS_MAXSHIFTS		( 32U )
 
 /* trigonometric tables */
 #define SH_TRITAB_DIM	( 8U )
 #define TRITAB_DIM		( (uint16_t)1U << (uint16_t)SH_TRITAB_DIM )
 #define SH_SINTAB		( 14U - SH_TRITAB_DIM )	// PIHALVES=(2^16)/4=2^14
-#define SH_SACTAB		( SH_BASE_VALUE - SH_TRITAB_DIM )
-#define SH_ACTTAB		( SH_BASE_VALUE - SH_TRITAB_DIM )
+#define SH_SACTAB		(uint16_t)( (uint16_t)SH_BASE_VALUE - (uint16_t)SH_TRITAB_DIM )
+#define SH_ACTTAB		(uint16_t)( (uint16_t)SH_BASE_VALUE - (uint16_t)SH_TRITAB_DIM )
 #define	SEL1Q			( 0x3FFFU )	/* select first_quarter_value */
 #define	ISCOS			( 0x4000U )	/* table(first_quarter_value) gives cos */
 #define	ISNEG			( 0x8000U )	/* sin is neg */
@@ -363,7 +363,7 @@ uint32_t mcLib_SquareRoot(uint32_t number )
 #endif 
 {
     uint16_t u16a;
-    u16a = (int16_t)DIVAS_SquareRoot( number );
+    u16a = (uint16_t)DIVAS_SquareRoot( number );
     return u16a;
 }
 
@@ -387,7 +387,7 @@ int16_t mcLib_DetermineAdjSide(int16_t hypo, int16_t fcat)
   
     if( hypo > fcat)
     {
-       s16a = (int16_t)DIVAS_SquareRoot((uint32_t)(hypo * hypo) - (uint32_t)(fcat * fcat ));
+       s16a = (int16_t)(DIVAS_SquareRoot(((uint32_t)hypo * (uint32_t)hypo) - ((uint32_t)fcat * (uint32_t)fcat )));
 
     }
     else 
@@ -397,64 +397,6 @@ int16_t mcLib_DetermineAdjSide(int16_t hypo, int16_t fcat)
   
    return(s16a);
 }
-
-/*! \brief Right shift  
- * 
- * Details.
- * Right shift 
- * 
- * @param[in]: 
- * @param[in/out]:
- * @param[out]:
- * @return:
- */
-#ifdef RAM_EXECUTE
-int32_t __ramfunc__ mcLib_RightShift(int32_t operand, uint16_t shift )
-#else
-int32_t mcLib_RightShift(int32_t operand, uint16_t shift )
-#endif
-{
-    int32_t result;
-    uint32_t u32a;
-
-    if(0 > operand )
-    {
-        u32a = (uint32_t)(-operand );
-        result = -(int32_t)( u32a >> shift);
-    }
-    else
-    {
-        result = (int32_t)((uint32_t)operand >> shift);
-    }
-    return (result);
-}
-
-/*! \brief Multiply and right shift  
- * 
- * Details.
- * Multiply and right shift 
- * 
- * @param[in]: 
- * @param[in/out]:
- * @param[out]:
- * @return:
- */
-int32_t mcLib_MultShiftRight( const int16_t m1, const int16_t m2, const uint16_t sh )
-{
-    int32_t result;
-    
-    result = (int32_t)((int32_t)m1 * (int32_t)m2 );
-    if( result < 0 )
-    {
-        result = -(int32_t)((uint32_t)( -result) >> sh );
-    }
-    else
-    {
-        result = (int32_t)((uint32_t)result >> sh );
-    }	
-    return result;
-}
-
 
 /*! \brief Float Scaling 
  * 
@@ -470,12 +412,12 @@ void mcLib_FloatScaling( const float f32a, IQ * const iq, const uint8_t q)
 {
     if( 0.0f < f32a )
     {
-        iq->val = (int16_t)( f32a * (float)( 1 << q ));
+        iq->val = (int16_t)((float)( f32a * (float)((uint16_t)( (uint16_t)1U << q ))));
         iq->shr = q;
     }
     else 
     {
-        iq->val = -(int16_t)( (-f32a) * (float)( 1 << q ));
+        iq->val = -(int16_t)((float)( (-f32a) * (float)((uint16_t)( (uint16_t)1U << q ))));
         iq->shr = q;
     }
 }
@@ -500,12 +442,12 @@ void mcLib_IQMultiplication( IQ m1, IQ m2, IQ * result )
 
     while( ( MAX_VALUE_S16 < s32a  ) || ( MIN_VALUE_S16 > s32a) || ( OBS_MAXSHIFTS < u16a ))
     {
-        s32a >>= 1;
+        s32a=mcUtils_RightShiftS32(s32a,1U);
         u16a--;
     }
-    while( ( 0 == ( s32a & 0x0001 )) && ( 0 < u16a ))
+    while( ( 0U == ( (uint16_t)s32a & 0x0001u )) && ( 0U < u16a ))
     {
-        s32a >>= 1;
+        s32a=mcUtils_RightShiftS32(s32a,1U);
         u16a--;
     }
 
@@ -536,26 +478,29 @@ void mcLib_Cartesian2Polar(const tmcLib_Cartesian_s *xy, tmcLib_Polar_s *rt)
     int16_t temp;
 
     ((rt->t).ang) = mcLib_InverseTangent(xy->x, xy->y);
-    rt->t.sin =  mcLib_Sine(rt->t.ang);
-    rt->t.cos =  mcLib_Cosine(rt->t.ang);
+    rt->t.sin_th =  mcLib_Sine(rt->t.ang);
+    rt->t.cos_th =  mcLib_Cosine(rt->t.ang);
           
     if(	((PIFOURTHS < (rt->t).ang)	&& (THREEPIFOURTHS > (rt->t).ang)) ||
           ((FIVEPIFOURTHS < (rt->t).ang)	&& (SEVENPIFOURTHS > (rt->t).ang)) )
     {	
         /* |sin(ang)|>|cos(ang)| */
         s32a = ((int32_t)(xy->y)) * (int32_t)BASE_VALUE;
-        temp =  (int16_t)(s32a / ((rt->t).sin)) ;
+        temp =  (int16_t)(s32a / ((rt->t).sin_th)) ;
         (rt->r) = (uint16_t) temp;
     }
     else
     {
         /* |sin(ang)|<=|cos(ang)|*/
         s32a = ((int32_t)(xy->x)) * (int32_t)BASE_VALUE;
-        temp =  (int16_t)(s32a / ((rt->t).cos)) ;
+        temp =  (int16_t)(s32a / ((rt->t).cos_th)) ;
         (rt->r) = (uint16_t)temp;
      }
 }
-
+/* MISRA C-2012 Rule 14.1 deviated:9 Deviation record ID -  H3_MISRAC_2012_R_14_1_DR_1 */
+#pragma GCC diagnostic push
+#pragma GCC diagnostic ignored "-Wunknown-pragmas"
+#pragma coverity compliance block deviate:9 "MISRA C-2012 Rule 14.1" "H3_MISRAC_2012_R_14_1_DR_1" 
 /*! \brief Float to IQ format conversion  
  * 
  * Details.
@@ -591,9 +536,9 @@ void mcLib_FloatToIQ( float input, IQ * const result )
         }
     }
     result->val = (int16_t)f32a;        /* can be negative */
-    while((0 == ( result->val & 0x0001)) && (0U < result->shr))
+    while((0U == ( (uint16_t)result->val & 0x0001U)) && (0U < result->shr))
     {
-        result->val >>= 1;
+        result->val = mcUtils_RightShiftS16(result->val,1U);
         result->shr--;
     }
 }
@@ -623,12 +568,12 @@ void mcLib_ClarkTransform(const tmcInf_ThreePhaseQuantity_s *input, tmcLib_Clark
     s32a = ((int32_t) (input->a)) * TWOTHIRDS;
     s32a -= (((int32_t) (input->b)) * ONETHIRD);
     s32a -= (((int32_t) (input->c)) * ONETHIRD);
-    (output->alpha) = (int16_t) (s32a >> SH_BASE_VALUE);
+    (output->alpha) = (int16_t) mcUtils_RightShiftS32(s32a, SH_BASE_VALUE);
 
     /* beta, quadrature component in the static reference frame */
     s32a = (((int32_t) (input->b)) * ONEBYSQRT3);
     s32a -= (((int32_t) (input->c)) * ONEBYSQRT3);
-    (output->beta) = (int16_t) (s32a >> SH_BASE_VALUE);
+    (output->beta) = (int16_t) mcUtils_RightShiftS32(s32a, SH_BASE_VALUE);
 }
 
 
@@ -657,10 +602,10 @@ void mcLib_ReverseClarkTransform(const tmcLib_ClarkTransform_s *input, tmcInf_Th
 
     /* v */
     s32a = ((int32_t) (input->beta)) * SQRT3;
-    s32a >>= SH_BASE_VALUE;
+    s32a = mcUtils_RightShiftS32(s32a, SH_BASE_VALUE);
     s32a -= (input->alpha);
 
-    (output->b) = (int16_t) (s32a >> 1);
+    (output->b) = (int16_t) mcUtils_RightShiftS32(s32a, 1U);
 
     /* w */
     (output->c) = -(output->a) - (output->b);
@@ -695,12 +640,12 @@ void mcLib_ParkTransform(const uint16_t theta, const tmcLib_ClarkTransform_s *ab
     /* d, direct component in the rotating reference frame */
     s32a = ((int32_t) (ab->alpha)) * cosine;
     s32a += (((int32_t) (ab->beta)) * sine);
-    (dq->direct) = (int16_t) (s32a >> SH_BASE_VALUE);
+    (dq->direct) = (int16_t) mcUtils_RightShiftS32(s32a, SH_BASE_VALUE);
 
     /* q, quadrature current component in the rotating reference frame */
     s32a = ((int32_t) (ab->beta)) * cosine;
     s32a -= (((int32_t) (ab->alpha)) * sine);
-    (dq->quadrature) = (int16_t) (s32a >> SH_BASE_VALUE);
+    (dq->quadrature) = (int16_t) mcUtils_RightShiftS32(s32a, SH_BASE_VALUE);
 }
 
 
@@ -732,12 +677,12 @@ void mcLib_ReverseParkTransform(const uint16_t theta, const tmcLib_ParkTransform
     /* alpha, direct component in the static reference frame */
     s32a = ((int32_t) (dq->direct)) * cosine;
     s32a -= (((int32_t) (dq->quadrature)) * sine);
-    (ab->alpha) = (int16_t) (s32a >> SH_BASE_VALUE);
+    (ab->alpha) = (int16_t) mcUtils_RightShiftS32(s32a, SH_BASE_VALUE);
 
     /* beta, quadrature component in the static reference frame */
     s32a = ((int32_t) (dq->direct)) * sine;
     s32a += (((int32_t) (dq->quadrature)) * cosine);
-    (ab->beta) = (int16_t) (s32a >> SH_BASE_VALUE);
+    (ab->beta) = (int16_t) mcUtils_RightShiftS32(s32a, SH_BASE_VALUE);
 }
 
 /*! \brief Linear ramp
@@ -787,9 +732,11 @@ void mcLib_ButtonRespond(button_response_t * buttonResData, void (* buttonJob)(v
             }
             break;
         default:
+             /* Undefined state: Should never come here */
             break;
     }
 }
+// *****************************************************************************
 
 /*! \brief  PI Controller Parameters setting 
  * 
@@ -814,7 +761,7 @@ tStd_ReturnType_e mcLib_PiControllerParametersSet(float Kp, float Ki, float Ymax
         f32a *= 2.0f;
         shift++;
     }
-    piState->Kp = (uint16_t) (f32a + 0.5f);
+    piState->Kp = (uint16_t) ((float)(f32a + 0.5f));
     piState->KpSh = shift;
 
     if ((uint16_t)0u >= piState->Kp) {
@@ -822,13 +769,13 @@ tStd_ReturnType_e mcLib_PiControllerParametersSet(float Kp, float Ki, float Ymax
     }
 
     /* Set integral gain */
-    f32a = Ki  * (float) (1u << piState->KpSh);
+    f32a = Ki  * (float)((uint32_t)((uint32_t)1u << piState->KpSh));
     shift = 0u;
     while ((f32a < 16384.0f) && (shift < 16u)) {
         f32a *= 2.0f;
         shift++;
     }
-    piState->Ki = (uint16_t) (f32a + 0.5f);
+    piState->Ki = (uint16_t)((float)(f32a + 0.5f));
     piState->KiSh = shift;
 
     if ((uint16_t)0u >= piState->Ki) {
@@ -836,7 +783,7 @@ tStd_ReturnType_e mcLib_PiControllerParametersSet(float Kp, float Ki, float Ymax
     }
 
     /* Set Maximum output */
-    piState->Ymax = (int16_t) (Ymax * BASE_VALUE);
+    piState->Ymax = (int16_t)((float)(Ymax * (float)BASE_VALUE));
 
     /* Set Minimum input */
     piState->Ymin = -piState->Ymax;
@@ -844,6 +791,10 @@ tStd_ReturnType_e mcLib_PiControllerParametersSet(float Kp, float Ki, float Ymax
 
     return status;
 }
+
+#pragma coverity compliance end_block "MISRA C-2012 Rule 14.1"
+#pragma GCC diagnostic pop
+/* MISRAC 2012 deviation block end */
 
 /*! \brief  PI Controller integral setting 
  * 
@@ -913,7 +864,7 @@ int16_t mcLib_PiControllerRun( tmcLib_PiController_s * const piState)
     int16_t s16t;
 
     /* Tracking Error */
-    error = piState->reference - piState->feedback;
+    error = (int32_t)piState->reference - (int32_t)piState->feedback;
 
     if(0 < error)
     {
@@ -929,7 +880,7 @@ int16_t mcLib_PiControllerRun( tmcLib_PiController_s * const piState)
 
         /* integral term */
         s32i = (int32_t)s16e * (int32_t)(piState->Ki);
-        s32i >>= (piState->KiSh);
+        s32i = mcUtils_RightShiftS32(s32i, piState->KiSh);
         s32i += (piState->Yi);
 
         /* proportional term */
@@ -937,21 +888,20 @@ int16_t mcLib_PiControllerRun( tmcLib_PiController_s * const piState)
 
         /* total control */
         s32t = s32i + s32p;
-        s16t = (int16_t)(s32t >> (piState->KpSh));
-
+        s16t = (int16_t)mcUtils_RightShiftS32(s32t, (piState->KpSh));
         /* result clamp and integral memory update */
         if(s16t > (piState->Ymax))
         {
             s16t = (piState->Ymax);
             s32t = s16t;
-            s32t <<= (piState->KpSh);
+            s32t = mcUtils_LeftShiftS32(s32t, piState->KpSh);
             (piState->Yi) = s32t - s32p;
         }
         else if(s16t < (piState->Ymin))	/* case possible only if limit is changed */
         {
             s16t = (piState->Ymin);
             s32t = s16t;
-            (piState->Yi) = s32t << (piState->KpSh);
+            piState->Yi = mcUtils_LeftShiftS32(s32t, piState->KpSh);
         }
         else
         {
@@ -972,26 +922,26 @@ int16_t mcLib_PiControllerRun( tmcLib_PiController_s * const piState)
 
         /* integral term */
         s32i = (int32_t)s16e * (int32_t)(piState->Ki);
-        s32i >>= (piState->KiSh);
+        s32i = mcUtils_RightShiftS32(s32i, piState->KiSh);
         s32i -= (piState->Yi);
         /* proportional term */
         s32p = (int32_t)s16e * (int32_t)(piState->Kp);
         /* total control */
         s32t = s32i + s32p;
-        s16t = (int16_t)(-(s32t >> (piState->KpSh)));
+        s16t = (int16_t)(-mcUtils_RightShiftS32(s32t, (piState->KpSh)));
         /* result clamp and integral memory update */
         if(s16t < (piState->Ymin))
         {
             s16t = (piState->Ymin);
             s32t = s16t;
-            s32t <<= (piState->KpSh);
+            s32t = mcUtils_LeftShiftS32(s32t, piState->KpSh);
             (piState->Yi) = s32t + s32p;
         }
         else if(s16t > (piState->Ymax))	/* case possible only if limit is changed */
         {
             s16t = (piState->Ymax);
             s32t = s16t;
-            (piState->Yi) = s32t << (piState->KpSh);
+            (piState->Yi) = mcUtils_LeftShiftS32(s32t, piState->KpSh);
         }
         else
         {
@@ -1001,19 +951,19 @@ int16_t mcLib_PiControllerRun( tmcLib_PiController_s * const piState)
     else	/* error is 0 */
         {
         /* total control */
-        s16t = (int16_t)((piState->Yi) >> (piState->KpSh));
+        s16t = (int16_t)mcUtils_RightShiftS32(piState->Yi, piState->KpSh);
         /* result clamp and integral memory update */
         if(s16t < (piState->Ymin))		/* case possible only if limit is changed */
         {
             s16t = (piState->Ymin);
             s32t = s16t;
-            (piState->Yi) = s32t << (piState->KpSh);
+            (piState->Yi) = mcUtils_LeftShiftS32(s32t,piState->KpSh);
         }
         else if(s16t > (piState->Ymax))	/* case possible only if limit is changed */
         {
             s16t = (piState->Ymax);
             s32t = s16t;
-            (piState->Yi) = s32t << (piState->KpSh);
+            (piState->Yi) = mcUtils_LeftShiftS32(s32t, piState->KpSh);
         }
         else
         {
@@ -1025,21 +975,6 @@ int16_t mcLib_PiControllerRun( tmcLib_PiController_s * const piState)
 
 }
 
-/*! \brief  PI Controller maximum output value setting 
- * 
- * Details.
- *  PI Controller maximum output value setting 
- * 
- * @param[in]: 
- * @param[in/out]:
- * @param[out]:
- * @return:
- */
-void mcLib_PiControllerMaxOutSet(const int16_t Ymax, tmcLib_PiController_s * const piState) 
-{
-    piState->Ymax = Ymax;
-    piState->Ymin = -Ymax;
-}
 
 /*! \brief  PI Controller reset 
  * 

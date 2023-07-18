@@ -175,7 +175,7 @@ void mcRegI_CurrentRegulationRun( const tmcReg_InstanceId_e Id )
  */
 void mcRegI_IdCurrentControlOutputSet( uint8_t Id, float value )
 {
-    mcReg_IdController_mas[Id].Yout = value;
+    mcReg_IdController_mas[Id].Yout = (int16_t)value;
 }
 
 /*! \brief Set Id current control integrator directly 
@@ -190,7 +190,7 @@ void mcRegI_IdCurrentControlOutputSet( uint8_t Id, float value )
  */
 void mcRegI_IdCurrentControlIntegralSet( uint8_t Id, float value )
 {
-    mcReg_IdController_mas[Id].Yi = value;
+    mcReg_IdController_mas[Id].Yi = (int16_t)value;
 }
 
 
@@ -206,7 +206,7 @@ void mcRegI_IdCurrentControlIntegralSet( uint8_t Id, float value )
  */
 void mcRegI_IqCurrentControlOutputSet( uint8_t Id, float value )
 {
-    mcReg_IqController_mas[Id].Yout = value;
+    mcReg_IqController_mas[Id].Yout = (int16_t)value;
 }
 
 /*! \brief Set Iq current control integrator directly 
@@ -221,7 +221,7 @@ void mcRegI_IqCurrentControlOutputSet( uint8_t Id, float value )
  */
 void mcRegI_IqCurrentControlIntegralSet( uint8_t Id, float value )
 {
-    mcReg_IqController_mas[Id].Yi = value;
+    mcReg_IqController_mas[Id].Yi = (int16_t)value;
 }
 
 /*! \brief Current control reset function 
@@ -241,7 +241,7 @@ void mcRegI_CurrentRegulationReset( const tmcReg_InstanceId_e Id )
     mcLib_PiControllerReset(&mcReg_IqController_mas[Id]);
     
     /* Reset output ports */
-    *mcReg_OutputPorts_mas[Id].Uq =  0.0f;
-    *mcReg_OutputPorts_mas[Id].Ud =  0.0f;
+    *mcReg_OutputPorts_mas[Id].Uq =  0;
+    *mcReg_OutputPorts_mas[Id].Ud =  0;
 }
 

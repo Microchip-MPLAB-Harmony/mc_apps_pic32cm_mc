@@ -55,7 +55,7 @@
 /**
  */
 
-#define MAXIMUM_SPEED_FROM_POT_IN_RPM  RATED_SPEED_IN_RPM
+#define MAXIMUM_SPEED_FROM_POT_IN_RPM  (float)RATED_SPEED_IN_RPM
 
 /**
  *  Potentiometer first order filter parameter ( 0.0 -  1.0 )
@@ -104,14 +104,14 @@
  Module data type
  *******************************************************************************/
 
-typedef enum _tmcSpe_InstanceId_e
+typedef enum
 {
     speModuleInstance_01,
     speModuleInstance_02,
     speModuleInstance_max 
 }tmcSpe_InstanceId_e;
 
-typedef struct _tmcSpe_RampProfiler_s
+typedef struct
 {
     float newSpeed;
     float filtSpeed;
@@ -119,7 +119,7 @@ typedef struct _tmcSpe_RampProfiler_s
 }tmcSpe_RampProfiler_s;
 
 
-typedef struct _tmcSpe_InputPorts_s 
+typedef struct 
 {
     volatile uint16_t * potReading;
     volatile int16_t * referenceSpeed;
@@ -127,7 +127,7 @@ typedef struct _tmcSpe_InputPorts_s
     volatile int8_t * rotationSign;
 }tmcSpe_InputPorts_s;
 
-typedef struct _tmcSpe_OutputPorts_s
+typedef struct
 {
     int16_t * iqref;
     int16_t *  referenceSpeed;
@@ -135,7 +135,7 @@ typedef struct _tmcSpe_OutputPorts_s
 
 
 
-typedef struct tmcSpe_PiController_s
+typedef struct
 {   
     /* Proportional gain */
     float Kp;
@@ -149,7 +149,7 @@ typedef struct tmcSpe_PiController_s
 }tmcSpe_PiController_s;
 
 
-typedef struct _tmcSpe_UserParameters_s
+typedef struct
 {
     tmcSpe_PiController_s    speedController;
     float rpmPerSecondLimit;
@@ -158,7 +158,7 @@ typedef struct _tmcSpe_UserParameters_s
     float maxTorqueCurrent;
 }tmcSpe_UserParameters_s;
 
-typedef struct _tmcSpe_ConfigParameters_s
+typedef struct
 {
     /* Instance identifier */
     uint8_t Id;
@@ -217,17 +217,6 @@ void mcSpeI_SpeedRegulationRun( const tmcSpe_InstanceId_e Id );
 #endif
 
 
-/*! \brief Set speed control control output directly 
- * 
- * Details.
- *  Set speed control output directly 
- * 
- * @param[in]: 
- * @param[in/out]:
- * @param[out]:
- * @return:
- */
-void mcSpeI_SpeedControlOutputSet( uint8_t Id, float value );
 
 /*! \brief Speed PI controller integral setting 
  * 

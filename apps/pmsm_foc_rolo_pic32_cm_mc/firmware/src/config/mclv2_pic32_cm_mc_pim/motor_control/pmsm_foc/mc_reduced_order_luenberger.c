@@ -51,7 +51,7 @@ Headers inclusions
  Private data-types  
  *******************************************************************************/
 
-typedef struct _tmcRpo_Parameters_s
+typedef struct
 {
    float f32_sam_fre; /* sampling frequency [Hz] */
    float f32_bas_spe;/* base speed [rad/sec] */
@@ -65,7 +65,7 @@ typedef struct _tmcRpo_Parameters_s
 #endif
 }tmcRpo_Parameters_s;
 
-typedef struct _tmcRpo_ObserverCoefficients_s
+typedef struct
 {
   IQ l11;   /* constant observer coefficient */
   IQ m11;   /* constant observer coefficient */
@@ -82,7 +82,7 @@ typedef struct _tmcRpo_ObserverCoefficients_s
     
 }tmcRpo_ObserverCoefficients_s;
 
-typedef struct _tmcRpo_StateVariables_s
+typedef struct
 {
    tmcLib_Cartesian_s   obs_z;   /* observer estimated status vector */
    tmcLib_Cartesian_s   obs_e;   /* observer estimated  bemf vector */
@@ -142,7 +142,7 @@ Functions (private and public)
  * @param[out]: None 
  * @return: Angular position 
  */
-void mcRpo_SetObserverCoefficients( uint8_t Id, float rsta, float lsyn)
+static void mcRpo_SetObserverCoefficients( uint8_t Id, float rsta, float lsyn)
 {
     float  f32a;
 
@@ -202,9 +202,9 @@ void mcRpo_SetObserverCoefficients( uint8_t Id, float rsta, float lsyn)
  * @return: Angular position 
  */
 #ifdef RAM_EXECUTE
-void __ramfunc__ mcRpo_EstimateObserverCoefficients( uint8_t Id )
+static void __ramfunc__ mcRpo_EstimateObserverCoefficients( uint8_t Id )
 #else
-void mcRpo_EstimateObserverCoefficients(  uint8_t Id )
+static void mcRpo_EstimateObserverCoefficients(  uint8_t Id )
 #endif
 {
  #ifdef  CROSS_COUPLING_ENABLED
@@ -219,7 +219,7 @@ void mcRpo_EstimateObserverCoefficients(  uint8_t Id )
     }
     else
     {
-        spabs = mcRpo_StateVariables_mas[Id].speed_abs;
+        spabs = (int16_t)mcRpo_StateVariables_mas[Id].speed_abs;
     }
 
     /* variable coefficient (mcRpo_ObserverCoefficients_mds.n21) (mcRpo_ObserverCoefficients_mds.xxx.val is positive) */
@@ -227,13 +227,13 @@ void mcRpo_EstimateObserverCoefficients(  uint8_t Id )
     mcRpo_ObserverCoefficients_mas[Id].n21.shr = mcRpo_ObserverCoefficients_mas[Id].xxx.shr;
     while((32767 < s32a) || (OBS_MAXSHIFTS < mcRpo_ObserverCoefficients_mas[Id].n21.shr))
     {
-        s32a >>= 1;
+        s32a =mcUtils_RightShiftS32(s32a,1U);
         mcRpo_ObserverCoefficients_mas[Id].n21.shr--;   // if negative algo. will fail
     }
     mcRpo_ObserverCoefficients_mas[Id].n21.val = (int16_t)s32a;
-    while((0 == (mcRpo_ObserverCoefficients_mas[Id].n21.val & 0x0001)) && (0u < mcRpo_ObserverCoefficients_mas[Id].n21.shr))
+    while((0U == ((uint16_t)mcRpo_ObserverCoefficients_mas[Id].n21.val & 0x0001U)) && (0u < mcRpo_ObserverCoefficients_mas[Id].n21.shr))
     {
-        mcRpo_ObserverCoefficients_mas[Id].n21.val >>= 1;
+        mcRpo_ObserverCoefficients_mas[Id].n21.val=mcUtils_RightShiftS16(mcRpo_ObserverCoefficients_mas[Id].n21.val,1U);
         mcRpo_ObserverCoefficients_mas[Id].n21.shr--;
     }
 
@@ -242,13 +242,13 @@ void mcRpo_EstimateObserverCoefficients(  uint8_t Id )
     mcRpo_ObserverCoefficients_mas[Id].m21.shr = mcRpo_ObserverCoefficients_mas[Id].n21.shr + mcRpo_ObserverCoefficients_mas[Id].hhh.shr;
     while(((32767 < s32a) || (-32767 > s32a)) || (OBS_MAXSHIFTS < mcRpo_ObserverCoefficients_mas[Id].m21.shr))
     {
-        s32a >>= 1;
+        s32a =mcUtils_RightShiftS32(s32a,1U);
         mcRpo_ObserverCoefficients_mas[Id].m21.shr--;   // if negative algo. will fail
     }
     mcRpo_ObserverCoefficients_mas[Id].m21.val = (int16_t)s32a;
-    while((0 == (mcRpo_ObserverCoefficients_mas[Id].m21.val & 0x0001)) && (0u < mcRpo_ObserverCoefficients_mas[Id].m21.shr))
+    while((0U == ((uint16_t)mcRpo_ObserverCoefficients_mas[Id].m21.val & 0x0001u)) && (0u < mcRpo_ObserverCoefficients_mas[Id].m21.shr))
     {
-        mcRpo_ObserverCoefficients_mas[Id].m21.val >>= 1;
+        mcRpo_ObserverCoefficients_mas[Id].m21.val=mcUtils_RightShiftS16(mcRpo_ObserverCoefficients_mas[Id].m21.val,1U);
         mcRpo_ObserverCoefficients_mas[Id].m21.shr--;
     }
 
@@ -257,13 +257,13 @@ void mcRpo_EstimateObserverCoefficients(  uint8_t Id )
     mcRpo_ObserverCoefficients_mas[Id].k21.shr = mcRpo_ObserverCoefficients_mas[Id].lll.shr;
     while((32767 < s32a) || (OBS_MAXSHIFTS < mcRpo_ObserverCoefficients_mas[Id].k21.shr))
     {
-        s32a >>= 1;
+        s32a =mcUtils_RightShiftS32(s32a,1U);
         mcRpo_ObserverCoefficients_mas[Id].k21.shr--;   /* if negative algo. will fail */
     }
     mcRpo_ObserverCoefficients_mas[Id].k21.val = (int16_t)s32a;
-    while((0 == (mcRpo_ObserverCoefficients_mas[Id].k21.val & 0x0001)) && (0u < mcRpo_ObserverCoefficients_mas[Id].k21.shr))
+    while((0U == ((uint16_t)mcRpo_ObserverCoefficients_mas[Id].k21.val & 0x0001u)) && (0u < mcRpo_ObserverCoefficients_mas[Id].k21.shr))
     {
-        mcRpo_ObserverCoefficients_mas[Id].k21.val >>= 1;
+        mcRpo_ObserverCoefficients_mas[Id].k21.val=mcUtils_RightShiftS16(mcRpo_ObserverCoefficients_mas[Id].k21.val,1U);
         mcRpo_ObserverCoefficients_mas[Id].k21.shr--;
     }
 
@@ -276,40 +276,6 @@ void mcRpo_EstimateObserverCoefficients(  uint8_t Id )
     }
 
  #endif  /* ifdef CROSS_COUPLING_ENABLED */
-}
-
-/* !\brief Arithmetic shift 
- * 
- * Details.
- * Arithmetic shift down, which goes to zero also with negative
- * numbers, but keeps output >=1 (<=-1) if the input is >1 (<-1)
- * 
- * @param[in]: None 
- * @param[in/out]: None
- * @param[out]: None 
- * @return: Angular position 
- */
-#ifdef RAM_EXECUTE
-int32_t __ramfunc__ shfdw2(int32_t a, uint16_t s)
-#else
-int32_t shfdw2(int32_t a, uint16_t s)
-#endif
-{
-    int32_t r;
-
-    if((-2 < a) && (2 > a))
-    {
-         r = 0;
-    }
-    else
-    {
-        r = a >> s;
-        if(0 == r)
-        {
-            r = 1;
-        }
-    }
-    return (r);
 }
 
 
@@ -328,12 +294,10 @@ static inline int32_t mulshr(int16_t a, const IQ *c)
     int32_t r;
 
     r = ((int32_t)a) * ((int32_t)(c->val));
-    r >>= (c->shr);
+    r = mcUtils_RightShiftS32(r, c->shr);
 
     return (r);
 }
-
-
 
 /* !\brief Execute Luenberger Observer
  * 
@@ -347,9 +311,9 @@ static inline int32_t mulshr(int16_t a, const IQ *c)
  */
 
 #ifdef RAM_EXECUTE
-void __ramfunc__ mcRpo_LuenbergerObserver( uint8_t Id )
+static void __ramfunc__ mcRpo_LuenbergerObserver( uint8_t Id )
 #else
-void mcRpo_LuenbergerObserver(  uint8_t Id )
+static void mcRpo_LuenbergerObserver(  uint8_t Id )
 #endif
 {
     int32_t s32x; 
@@ -392,8 +356,8 @@ void mcRpo_LuenbergerObserver(  uint8_t Id )
     luzy = s32y;
     while((-32767 > luzx) || (32767 < luzx) || (-32767 > luzy) || (32767 < luzy))
     {
-     luzx = mcLib_RightShift(luzx, 1);
-     luzy = mcLib_RightShift(luzy, 1);
+     luzx = mcUtils_RightShiftS32(luzx, 1U);
+     luzy = mcUtils_RightShiftS32(luzy, 1U);
      debug_cnt1++;
     }
     Z->x = (int16_t)luzx;
@@ -416,8 +380,8 @@ void mcRpo_LuenbergerObserver(  uint8_t Id )
  #ifdef AMP_CLAMP
     while((-32767 > s32x) || (32767 < s32x) || (-32767 > s32y) || (32767 < s32y))
     {
-     s32x = mcLib_RightShift(s32x, 1);
-     s32y = mcLib_RightShift(s32y, 1);
+     s32x = mcUtils_RightShiftS32(s32x, 1U);
+     s32y = mcUtils_RightShiftS32(s32y, 1U);
      debug_cnt2++;
     }
  #endif // ifdef AMP_CLAMP
@@ -443,26 +407,26 @@ void mcRpo_LuenbergerObserver(  uint8_t Id )
  * @return: None
  */
 #ifdef RAM_EXECUTE
-uint16_t __ramfunc__ mcRpo_DelayCompensation(uint8_t Id)
+static uint16_t __ramfunc__ mcRpo_DelayCompensation(uint8_t Id)
 #else
-uint16_t mcRpo_DelayCompensation( uint8_t Id)
+static uint16_t mcRpo_DelayCompensation( uint8_t Id)
 #endif
 {
  int32_t s32a;
  int16_t s16a;
  uint16_t retval;
 
- s32a = mcRpo_StateVariables_mas[Id].sp_iir3_mem; 
+ s32a = (int32_t)mcRpo_StateVariables_mas[Id].sp_iir3_mem; 
  if((int32_t)BASE_VALUE <= s32a)
  {
   if(0 > ( *mcRpo_InputPorts_mas[Id].rotSign ))
   {
-     s16a = (int16_t)(-(s32a >> SH_BASE_VALUE));
+     s16a = (int16_t)(-mcUtils_RightShiftS32(s32a, SH_BASE_VALUE));
      retval = ((uint16_t)s16a);
   }
   else
   {
-         s16a = (int16_t)((s32a >> SH_BASE_VALUE));
+         s16a = (int16_t)(mcUtils_RightShiftS32(s32a, SH_BASE_VALUE));
          retval = ((uint16_t)s16a);
   }
  }
@@ -484,9 +448,9 @@ uint16_t mcRpo_DelayCompensation( uint8_t Id)
  * @return: Angular position 
  */
 #ifdef RAM_EXECUTE
-void __ramfunc__ mcRpo_PhaseEstimation(uint8_t Id)
+static void __ramfunc__ mcRpo_PhaseEstimation(uint8_t Id)
 #else
-void mcRpo_PhaseEstimation( uint8_t Id)
+static void mcRpo_PhaseEstimation( uint8_t Id)
 #endif
 {
     uint16_t u16a;
@@ -563,7 +527,7 @@ void mcRpo_PhaseEstimation( uint8_t Id)
     }
     mcRpo_StateVariables_mas[Id].flx_arg = u16a;
    *mcRpo_OutputPorts_mas[Id].angle =  u16a + mcRpo_DelayCompensation( Id );
-   *mcRpo_OutputPorts_mas[Id].Es =  mcRpo_StateVariables_mas[Id].bemf.r;
+   *mcRpo_OutputPorts_mas[Id].Es =  (int16_t)mcRpo_StateVariables_mas[Id].bemf.r;
 }
 
 
@@ -578,9 +542,9 @@ void mcRpo_PhaseEstimation( uint8_t Id)
  * @return: Angular position 
  */
 #ifdef RAM_EXECUTE
-void __ramfunc__ mcRpo_SpeedEstimation( uint8_t Id )
+static void __ramfunc__ mcRpo_SpeedEstimation( uint8_t Id )
 #else
-void mcRpo_SpeedEstimation(  uint8_t Id )
+static void mcRpo_SpeedEstimation(  uint8_t Id )
 #endif
 {
     int16_t dph;
@@ -597,9 +561,9 @@ void mcRpo_SpeedEstimation(  uint8_t Id )
     mcRpo_StateVariables_mas[Id].flx_arg_mem = mcRpo_StateVariables_mas[Id].flx_arg;
     if(1 > dph)
     {
-        dph = mcRpo_StateVariables_mas[Id].dph_min;
+        dph = (int16_t)mcRpo_StateVariables_mas[Id].dph_min;
     }
-     mcRpo_StateVariables_mas[Id].dph_global = dph;
+     mcRpo_StateVariables_mas[Id].dph_global = (uint16_t)dph;
     /* first filter (FIR) */
     /* since we use as output the accumulator undivided, the amplification is
      4=2^2 if we calculate the speed over 4 samples; if the speed is
@@ -611,7 +575,7 @@ void mcRpo_SpeedEstimation(  uint8_t Id )
     mcRpo_StateVariables_mas[Id].sp_fir_vec[mcRpo_StateVariables_mas[Id].sp_fir_ind] = (uint16_t)dph;  /* max speed: pi[rad/s]/Ts[s] */
     mcRpo_StateVariables_mas[Id].sp_fir_ind++;
     /* mcRpo_StateSignal_mds.sp_fir_ind &= 0x07; speed calculated over 8 samples */
-    mcRpo_StateVariables_mas[Id].sp_fir_ind &= 0x03; /* speed calculated over 4 samples */
+    mcRpo_StateVariables_mas[Id].sp_fir_ind &= 0x03U; /* speed calculated over 4 samples */
 
     /* now we will apply three IIR in cascade configuration;
      the IIR time constant is ((2^4)-1)*Ts, so the cut-off frequency is Fs/(30pi)
@@ -638,17 +602,17 @@ void mcRpo_SpeedEstimation(  uint8_t Id )
     mcRpo_StateVariables_mas[Id].sp_iir3_mem += mcRpo_StateVariables_mas[Id].sp_iir2_mem;
 
     /* the total amplification is 2^(2+3*4=14); now come back to the internal units */
-    mcRpo_StateVariables_mas[Id].speed_abs = (int16_t)(mcRpo_StateVariables_mas[Id].sp_iir3_mem / (uint32_t)mcRpo_StateVariables_mas[Id].k_spe12);
+    mcRpo_StateVariables_mas[Id].speed_abs = (uint16_t)(mcRpo_StateVariables_mas[Id].sp_iir3_mem / (uint32_t)mcRpo_StateVariables_mas[Id].k_spe12);
     #ifdef PH_CLAMP
     mcRpo_StateVariables_mas[Id].dph_abs_fil = (int16_t)(mcRpo_StateVariables_mas[Id].sp_iir3_mem >> 14);
     #endif 
     if(0 >  ( *mcRpo_InputPorts_mas[Id].rotSign ))
     {
-        mcRpo_StateVariables_mas[Id].speed_est = -mcRpo_StateVariables_mas[Id].speed_abs;
+        mcRpo_StateVariables_mas[Id].speed_est = -((int16_t)mcRpo_StateVariables_mas[Id].speed_abs);
     }
     else
     {
-        mcRpo_StateVariables_mas[Id].speed_est = mcRpo_StateVariables_mas[Id].speed_abs;
+        mcRpo_StateVariables_mas[Id].speed_est = (int16_t)mcRpo_StateVariables_mas[Id].speed_abs;
     }
 
   *mcRpo_OutputPorts_mas[Id].speed =   mcRpo_StateVariables_mas[Id].speed_est;
@@ -668,7 +632,7 @@ void mcRpo_SpeedEstimation(  uint8_t Id )
  * @param[out]:
  * @return: None
  */
-void mcRpoI_RotorPositionCalculationInit( tmcRpo_ConfigParameters_s * const rpoParam )
+void mcRpoI_PosCal_Init( tmcRpo_ConfigParameters_s * const rpoParam )
  {
      float f32a;
      tmcRpo_Parameters_s * pParam;
@@ -697,15 +661,15 @@ void mcRpoI_RotorPositionCalculationInit( tmcRpo_ConfigParameters_s * const rpoP
       mcRpo_StateVariables_mas[rpoParam->Id] .speed_min = (int16_t)f32a;
     
       /* minimum phase difference */
-      f32a = OBS_MINFREQ_HZ * 65536.0 /  pParam->f32_sam_fre;
+      f32a = OBS_MINFREQ_HZ * 65536.0f /  pParam->f32_sam_fre;
       mcRpo_StateVariables_mas[rpoParam->Id] .dph_min = (uint16_t)f32a;
 
       /* conversion constants between speed in internal units and speed as
           filtered phase difference */
       f32a = ((32768.0f / FLOAT_PI)) * ( pParam->f32_bas_spe /  pParam->f32_sam_fre);
-      mcRpo_StateVariables_mas[rpoParam->Id] .k_spe12 = (int16_t)f32a;
+      mcRpo_StateVariables_mas[rpoParam->Id] .k_spe12 = (uint16_t)f32a;
       mcRpo_SetObserverCoefficients( rpoParam->Id, rpoParam->userParam.Rs, rpoParam->userParam.Ls);
-      mcRpoI_RotorPositionCalculationReset( 0u );
+      mcRpoI_PosCal_Reset( 0u );
  }
 
 /* !\brief Execute Luenberger Observer 
@@ -720,9 +684,9 @@ void mcRpoI_RotorPositionCalculationInit( tmcRpo_ConfigParameters_s * const rpoP
  * @return: None
  */
 #ifdef RAM_EXECUTE
-void __ramfunc__ mcRpoI_RotorPositionCalculationRun( uint8_t Id )
+void __ramfunc__ mcRpoI_PosCal_Run( uint8_t Id )
 #else
-void mcRpoI_RotorPositionCalculationRun(  uint8_t Id  )
+void mcRpoI_PosCal_Run(  uint8_t Id  )
 #endif
 {    
     /* Calculate speed dependent observer parameters */
@@ -748,7 +712,7 @@ void mcRpoI_RotorPositionCalculationRun(  uint8_t Id  )
  * @param[out]:
  * @return: None
  */
-void mcRpoI_RotorPositionCalculationReset( uint8_t Id )
+void mcRpoI_PosCal_Reset( uint8_t Id )
 {
     /* Other variables initialization  */
     mcRpo_StateVariables_mas[Id].flx_arg_mem = 0;
@@ -757,8 +721,8 @@ void mcRpoI_RotorPositionCalculationReset( uint8_t Id )
     mcRpo_StateVariables_mas[Id].obs_e.y = 0;
     mcRpo_StateVariables_mas[Id].bemf.r = 0;
     mcRpo_StateVariables_mas[Id].bemf.t.ang = 0;
-    mcRpo_StateVariables_mas[Id].bemf.t.sin = 0;
-    mcRpo_StateVariables_mas[Id].bemf.t.cos = (int16_t)BASE_VALUE;
+    mcRpo_StateVariables_mas[Id].bemf.t.sin_th = 0;
+    mcRpo_StateVariables_mas[Id].bemf.t.cos_th = (int16_t)BASE_VALUE;
 
      /* observer status initialization */
     mcRpo_StateVariables_mas[Id].obs_z.x = 0;

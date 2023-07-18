@@ -79,7 +79,7 @@
     /* User Parameters */\
     {\
         BASE_VOLTAGE, \
-        KAD_VOL,\
+        (float)KAD_VOL,\
         BUS_VOLTAGE_FILTER_PARAMETER \
     }  \
 }
@@ -88,7 +88,7 @@
   User-defined data-structure   
 *******************************************************************************/
 
-typedef enum _tmcVol_InstanceId_e
+typedef enum
 {
     volModuleInstance_01,
     volModuleInstance_02,
@@ -108,20 +108,20 @@ typedef struct
 }tmcVol_OutputPorts_s;
 
 
-typedef struct _tmcVol_UserParameters_s
+typedef struct
 {
     float baseVoltage;
     float adcToVoltage;
     float busVoltageFiltParam;
 }tmcVol_UserParameters_s;
 
-typedef struct _tmcVol_Dependencies_s
+typedef struct
 {
     
 }tmcVol_Dependencies_s;
 
 
-typedef struct _tmcVol_ConfigParameters_s
+typedef struct
 {
     /* Instance Identifier */
     uint8_t Id;

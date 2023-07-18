@@ -48,7 +48,7 @@
 /*******************************************************************************
  Private data-types 
  *******************************************************************************/
-typedef struct _tmcSafe_UnsignedInt_s
+typedef struct
 {
     uint16_t primaryValue;
     uint16_t redundantValue;

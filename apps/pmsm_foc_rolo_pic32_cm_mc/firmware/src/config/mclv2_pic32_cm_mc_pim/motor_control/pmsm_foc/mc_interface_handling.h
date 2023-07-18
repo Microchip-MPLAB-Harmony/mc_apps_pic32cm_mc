@@ -51,7 +51,7 @@
 /*******************************************************************************
  User defined data-types
  *******************************************************************************/
-typedef struct _tmcInf_ThreePhaseQuantity_s
+typedef struct
 {
     int16_t a;
     int16_t b;
@@ -70,7 +70,7 @@ typedef struct
     int16_t quadrature;
 }tmcLib_ParkTransform_s;
 
-typedef enum _tStd_ReturnType_e
+typedef enum
 {
     returnType_Running,
     returnType_Passed,

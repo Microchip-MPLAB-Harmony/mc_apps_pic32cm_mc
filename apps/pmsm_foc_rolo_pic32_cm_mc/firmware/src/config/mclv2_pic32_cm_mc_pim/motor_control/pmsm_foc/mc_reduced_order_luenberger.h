@@ -46,6 +46,7 @@
 #include <sys/attribs.h>
 #include "mc_generic_library.h"
 #include "mc_interface_handling.h"
+#include "mc_userparams.h"
 
 /*******************************************************************************
 Macro definitions
@@ -111,7 +112,7 @@ Macro definitions
 /*******************************************************************************
 Type definitions
 *******************************************************************************/
-typedef struct _tmcRpo_InputPorts_s
+typedef struct
 {
     int16_t  * ia;		// measured alpha current 
     int16_t  * ib;		// measured beta current
@@ -121,7 +122,7 @@ typedef struct _tmcRpo_InputPorts_s
     int8_t  * rotSign;
 }tmcRpo_InputPorts_s;
 
-typedef struct _tmcRpo_UserParameters_s
+typedef struct
 {
     float samfreq;
     float basespe;
@@ -133,7 +134,7 @@ typedef struct _tmcRpo_UserParameters_s
     float Ts;      
 }tmcRpo_UserParameters_s;
 
-typedef struct _tmcRpo_OutputPorts_s
+typedef struct
 {
     uint16_t * angle;
     int16_t * speed;
@@ -142,7 +143,7 @@ typedef struct _tmcRpo_OutputPorts_s
 }tmcRpo_OutputPorts_s;
 
 
-typedef struct _tmcRpo_ConfigParameters_s
+typedef struct
 {
     /* Instance Id */
     uint8_t Id;
@@ -178,7 +179,7 @@ extern tmcRpo_ConfigParameters_s  mcRpoI_ConfigParameters_gds;
  * @param[out]:
  * @return: None
  */
-void mcRpoI_RotorPositionCalculationInit( tmcRpo_ConfigParameters_s * const rolParam );
+void mcRpoI_PosCal_Init(tmcRpo_ConfigParameters_s * const rpoParam );
 
 /* !\brief Execute Luenberger Observer 
  * 
@@ -192,9 +193,9 @@ void mcRpoI_RotorPositionCalculationInit( tmcRpo_ConfigParameters_s * const rolP
  * @return: None
  */
 #ifdef RAM_EXECUTE
-void __ramfunc__ mcRpoI_RotorPositionCalculationRun( uint8_t Id );
+void __ramfunc__ mcRpoI_PosCal_Run( uint8_t Id );
 #else
-void mcRpoI_RotorPositionCalculationRun(  uint8_t Id  );
+void mcRpoI_PosCal_Run(  uint8_t Id  );
 #endif
 
 /* !\brief Reset Observer  
@@ -207,6 +208,6 @@ void mcRpoI_RotorPositionCalculationRun(  uint8_t Id  );
  * @param[out]:
  * @return: None
  */
-void mcRpoI_RotorPositionCalculationReset( uint8_t Id );
+void mcRpoI_PosCal_Reset( uint8_t Id );
 
 #endif // _MCRPO_H

@@ -30,7 +30,8 @@
 /*
  * This file is part of X2C. http://www.mechatronic-simulation.org/
  */
-#include "definitions.h"
+
+#include "../inc/X2CScope.h"
 #include "../inc/X2CScopeCommunication.h"
 
 

@@ -123,7 +123,7 @@
  *  Current control Frequency                           
  */ 
 #ifdef CONTROL_TO_PWM_1_2
-#define CURRENT_CONTROL_FREQUENCY      ( 0.5f * PWM_FREQUENCY ) 
+#define CURRENT_CONTROL_FREQUENCY      ( 0.5f * (float)PWM_FREQUENCY ) 
 #else 
 #define CURRENT_CONTROL_FREQUENCY      ( 1.0f * PWM_FREQUENCY ) 
 #endif
@@ -159,7 +159,7 @@
 /**
  * Minimum close loop electrical speed of the motor in RPM
  */
-#define MINIMUM_SPEED_IN_RPM   (500) 
+#define MINIMUM_SPEED_IN_RPM   (500.0f) 
 
 /**
  * Number of pole pairs  
@@ -262,12 +262,12 @@
 /**
  * Forced alignment lock time 
  */ 
-#define START_UP_LOCK_TIME_IN_SECOND   (2) 
+#define START_UP_LOCK_TIME_IN_SECOND   (2.0f) 
 
 /**
   * Start-up current in amperes                          
   */
-#define START_UP_CURRENT_IN_AMPERE   (0.4) 
+#define START_UP_CURRENT_IN_AMPERE   (0.4f) 
 
 
 /**
@@ -297,12 +297,12 @@
 /**
  * Base voltage 
  */ 
-#define BASE_VOLTAGE   (float)( 3.30 / VOLTAGE_SENSE_DIVIDER_RATIO )
+#define BASE_VOLTAGE   (float)( 3.30f / VOLTAGE_SENSE_DIVIDER_RATIO )
 
 /**
  * Base current
  */ 
-#define BASE_CURRENT  (float)( 1.65 / ( CURRENT_SENSE_AMPLIFIER_GAIN * CURRENT_SENSE_SHUNT_RESISTANCE_IN_OHM ))
+#define BASE_CURRENT  (float)( 1.65f / ( CURRENT_SENSE_AMPLIFIER_GAIN * CURRENT_SENSE_SHUNT_RESISTANCE_IN_OHM ))
 
 /**
  * Base speed
@@ -360,7 +360,7 @@
 /**
  * ADC count to scaled voltage conversion factor 
  */ 
-#define KAD_VOL  (uint16_t)(4)  
+#define KAD_VOL (4)  
 
 /**
  *  ADC count to scaled voltage conversion shift
@@ -371,9 +371,9 @@
  * ADC count to scaled current conversion factor 
  */ 
 #ifdef INVERTING_CURRENT_GAIN_AMPLIFIER
-#define KAD_CUR  (uint16_t)(  -8 )  
+#define KAD_CUR  (float)(  -8.0f )  
 #else   
-#define KAD_CUR  (uint16_t)( 8 )  
+#define KAD_CUR  (float)( 8.0f )  
 #endif  
 
 /**

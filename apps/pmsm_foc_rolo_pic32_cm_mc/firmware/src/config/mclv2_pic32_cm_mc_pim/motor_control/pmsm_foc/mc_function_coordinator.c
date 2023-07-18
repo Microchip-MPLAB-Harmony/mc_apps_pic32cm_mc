@@ -49,10 +49,10 @@ Headers inclusions
 /*******************************************************************************
  * Constants 
  *******************************************************************************/
-#define INTERRUPT_COUNTS_IN_1MS        ( uint32_t )( 0.001f * CURRENT_CONTROL_FREQUENCY + 0.5f )
-#define INTERRUPT_COUNTS_IN_10MS      ( uint32_t )( 0.010f * CURRENT_CONTROL_FREQUENCY + 0.5f )
-#define INTERRUPT_COUNTS_IN_100MS    ( uint32_t )( 0.100f * CURRENT_CONTROL_FREQUENCY + 0.5f )
-#define INTERRUPT_COUNTS_IN_1000MS  ( uint32_t )( 1.000f * CURRENT_CONTROL_FREQUENCY + 0.5f )
+#define INTERRUPT_COUNTS_IN_1MS        ( uint32_t )((float)( 0.001f * CURRENT_CONTROL_FREQUENCY + 0.5f ))
+#define INTERRUPT_COUNTS_IN_10MS      ( uint32_t )((float)( 0.010f * CURRENT_CONTROL_FREQUENCY + 0.5f ))
+#define INTERRUPT_COUNTS_IN_100MS    ( uint32_t )((float)( 0.100f * CURRENT_CONTROL_FREQUENCY + 0.5f ))
+#define INTERRUPT_COUNTS_IN_1000MS  ( uint32_t )((float)( 1.000f * CURRENT_CONTROL_FREQUENCY + 0.5f ))
 
 /*******************************************************************************
  Private data-types 
@@ -62,7 +62,7 @@ Headers inclusions
 /*******************************************************************************
  Private variables 
  *******************************************************************************/
-void (*InterruptTasks[2])(void)  = { 
+static void (*InterruptTasks[2])(void)  = { 
     mcFco_1stCycleInterruptTasksRun, 
     mcFco_2ndCycleInterruptTasksRun,
 };
@@ -77,7 +77,7 @@ static uint8_t mcFco_10msInterruptSyncPulse_mdu8 = 0u;
 static uint8_t mcFco_100msInterruptSyncPulse_mdu8 = 0u;
 static uint8_t mcFco_1000msInterruptSyncPulse_mdu8 = 0u;
 
-
+static uintptr_t dummyforMisra;
 /*******************************************************************************
  Interface variables 
  *******************************************************************************/
@@ -110,7 +110,7 @@ Private Functions
  * @return:
  */
 
-void mcFco_InterruptAndThreadSync( void )
+static void mcFco_InterruptAndThreadSync( void )
 {
     /* 1 ms thread task synchronization */    
     if(  INTERRUPT_COUNTS_IN_1MS <=  mcFco_1msInterruptSyncPulseCounter_mdu32 )
@@ -196,11 +196,11 @@ void mcFco_InterruptAndThreadSync( void )
  * @param[out]:
  * @return:
  */   
-void mcFcoI_MotorControlHardwareInit( void )
+static void mcFcoI_MotorControlHardwareInit(ADC_STATUS status, uintptr_t context)
 {
     if( 1u == mcCurI_CurrentOffsetCalibDone_gdu8 )
     {
-        mcHalI_AdcCallBackRegister((ADC_CALLBACK) mcFcoI_InterruptTasksRun, (uintptr_t)NULL);
+        mcHalI_AdcCallBackRegister((ADC_CALLBACK) mcFcoI_InterruptTasksRun, (uintptr_t)dummyforMisra);
     }
     else
     {
@@ -210,7 +210,7 @@ void mcFcoI_MotorControlHardwareInit( void )
         /* Get phase b current from ADC port */
         mcHalI_PhaseBCurrentGet();
         
-        mcCurI_CurrentSensorOffsetCalculate( 0u );
+        mcCurI_CurrentSensorOffsetCalculate( (tmcCur_InstanceId_e)0u );
     }
 }
 
@@ -232,10 +232,10 @@ Interface Functions
 void mcFcoI_ApplicationInit( void )
 { 
      /* Configure ADC Finish ISR */
-    mcHalI_AdcCallBackRegister((ADC_CALLBACK) mcFcoI_MotorControlHardwareInit, (uintptr_t)NULL);
+    mcHalI_AdcCallBackRegister((ADC_CALLBACK) mcFcoI_MotorControlHardwareInit, (uintptr_t)dummyforMisra);
      
     /* Configure fault ISR */
-    mcHalI_PwmCallBackRegister ((TCC_CALLBACK) mcErr_ErrorReaction,(uintptr_t)NULL);
+    mcHalI_PwmCallBackRegister ((TCC_CALLBACK) mcErr_ErrorReaction,(uintptr_t)dummyforMisra);
      
     /* Enable ADC */     
     mcHalI_ADCEnable();
@@ -272,7 +272,7 @@ void mcFcoI_ApplicationInit( void )
  * @param[out]:
  * @return:
  */   
-void mcFcoI_InterruptTasksRun( void )
+void mcFcoI_InterruptTasksRun( ADC_STATUS status, uintptr_t context )
 {   
     /* Interrupt index */
     static uint8_t index = 0u;
@@ -315,7 +315,7 @@ void mcFco_1stCycleInterruptTasksRun( void )
      mcHalI_PhaseBCurrentGet();
      
      /* Current calculation */		
-     mcCurI_CurrentCalculationRun(0u);
+     mcCurI_CurrentCalculationRun((tmcCur_InstanceId_e)0u);
      
      /* Motor control tasks */
      mcMocI_MotorControlTasksRun( );
@@ -347,7 +347,7 @@ void mcFco_2ndCycleInterruptTasksRun( void )
     mcHalI_PotentiometerInputGet();
     
     /* DC bus voltage measurement */
-    mcVolI_VoltageCalculationRun( 0u );
+    mcVolI_VoltageCalculationRun( (tmcVol_InstanceId_e)0u );
     
     /* Set ADC Channel for Phase A current */
     mcHalI_PhaseACurrentChannelSet();

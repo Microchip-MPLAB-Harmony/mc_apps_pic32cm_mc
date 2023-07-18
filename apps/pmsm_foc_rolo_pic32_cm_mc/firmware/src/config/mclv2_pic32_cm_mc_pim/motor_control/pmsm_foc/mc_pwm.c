@@ -76,8 +76,19 @@ Interface  variables
 *******************************************************************************/
 tmcPwm_ConfigParameters_s mcPwmI_ConfigParameters_gds = PWM_MODULE_CONFIG;
 
+/* MISRAC 2012 deviation block start */
+/* MISRA C-2012 Rule 21.2 deviated 1 times in this file.  Deviation record ID -  H3_MISRAC_2012_R_21_2_DR_1 */
+#pragma GCC diagnostic push
+#pragma GCC diagnostic ignored "-Wunknown-pragmas"
+#pragma coverity compliance block \
+(deviate:1 "MISRA C-2012 Rule 21.2" "H3_MISRAC_2012_R_21_2_DR_1")\
+(deviate:1 "MISRA C-2012 Rule 8.6" "H3_MISRAC_2012_R_8_6_DR_1")
+
 extern int32_t __aeabi_idiv(int32_t numerator, int32_t denominator);
 
+#pragma coverity compliance end_block "MISRA C-2012 Rule 21.2"
+#pragma coverity compliance end_block "MISRA C-2012 Rule 8.6"
+#pragma GCC diagnostic pop
 /*******************************************************************************
 Private Functions
 *******************************************************************************/
@@ -210,15 +221,15 @@ void mcPwmI_PulseWidthModulationRun( const  tmcPwm_InstanceId_e Id )
     Umin= mcPwm_FindMinimum( &mcPwm_StatePorts_mas[Id].Uuvw );
  
     /* Determine offset */
-    Uoffset = ( *mcPwm_InputPorts_mas[0u].Ubus - Umax - Umin ) >> 1 ;
+    Uoffset = (int16_t)mcUtils_RightShiftS16(( *mcPwm_InputPorts_mas[0u].Ubus - Umax - Umin ), 1U) ;
     
     /* Determine voltage to duty conversion factor */
-    Factor =  __aeabi_idiv( (int32_t)( mcPwm_Parameters_mas[Id].period  << SH_BASE_VALUE ),  (int32_t)*mcPwm_InputPorts_mas[Id].Ubus );
+    Factor =  __aeabi_idiv( (int32_t)((uint32_t)( mcPwm_Parameters_mas[Id].period  << SH_BASE_VALUE )),  (int32_t)*mcPwm_InputPorts_mas[Id].Ubus );
 
     /* Determine PWM duty */
-    mcPwm_OutputPorts_mas[Id].dutyCycle[0] = mcPwm_Parameters_mas[Id].period - ((( mcPwm_StatePorts_mas[Id].Uuvw.a + Uoffset ) * Factor ) >> SH_BASE_VALUE ); 
-    mcPwm_OutputPorts_mas[Id].dutyCycle[1] = mcPwm_Parameters_mas[Id].period - ((( mcPwm_StatePorts_mas[Id].Uuvw.b + Uoffset ) * Factor ) >> SH_BASE_VALUE ); 
-    mcPwm_OutputPorts_mas[Id].dutyCycle[2] = mcPwm_Parameters_mas[Id].period - ((( mcPwm_StatePorts_mas[Id].Uuvw.c + Uoffset ) * Factor ) >> SH_BASE_VALUE ); 
+    mcPwm_OutputPorts_mas[Id].dutyCycle[0] = mcPwm_Parameters_mas[Id].period - (uint32_t)((int32_t)mcUtils_RightShiftS32((( (int32_t)mcPwm_StatePorts_mas[Id].Uuvw.a + (int32_t)Uoffset ) * Factor ), SH_BASE_VALUE )); 
+    mcPwm_OutputPorts_mas[Id].dutyCycle[1] = mcPwm_Parameters_mas[Id].period - (uint32_t)((int32_t)mcUtils_RightShiftS32((( (int32_t)mcPwm_StatePorts_mas[Id].Uuvw.b + (int32_t)Uoffset ) * Factor ), SH_BASE_VALUE )); 
+    mcPwm_OutputPorts_mas[Id].dutyCycle[2] = mcPwm_Parameters_mas[Id].period - (uint32_t)((int32_t)mcUtils_RightShiftS32((( (int32_t)mcPwm_StatePorts_mas[Id].Uuvw.c + (int32_t)Uoffset ) * Factor ), SH_BASE_VALUE )); 
 
     /* Update duty */ 
     mcHal_InverterDutySet(mcPwm_OutputPorts_mas[Id].dutyCycle); 
