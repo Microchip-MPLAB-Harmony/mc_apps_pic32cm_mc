@@ -1,0 +1,15 @@
+package:
+  format-version: "1.0.0"
+  name: "mc_apps_pic32cm_mc"
+  type: "application"
+  status: "production"
+  required: true
+  version: "3.3.0"
+
+  dependencies:
+    - name: "csp"
+      type: "package"
+      version: "3.17.0"
+    - name: "x2c"
+      type: "package"
+      version: "v1.4.0"
