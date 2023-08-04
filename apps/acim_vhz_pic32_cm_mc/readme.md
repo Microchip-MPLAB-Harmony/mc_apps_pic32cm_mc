@@ -20,7 +20,7 @@ Key features enabled in this project are:
 - VHz Control
 
 
-## MHC Project Configurations
+## MCC Project Configurations
 
 ![MHC Project Graph](images/acim_vhz_project_graph.jpg)
 
@@ -177,6 +177,5 @@ To build the application, refer to the following table and open the project usin
 | Project Name            | Description                                    | Demo User Guide |
 | ----------------------- | ---------------------------------------------- |--------------------|
 | mchv3_pic32cm_mc_pim.X | MPLABX project for MCHV3 board with PIC32CM MC PIM |[MCHV3 with PIC32CM MC PIM](../docs/mchv3_pic32cm_mc_pim_acim_vhz.md)|
-||||
 
 

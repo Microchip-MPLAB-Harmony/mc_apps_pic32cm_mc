@@ -20,7 +20,7 @@ Key features enabled in this project are:
 - BLDC Commutaton
 
 
-## MHC Project Configurations
+## MCC Project Configurations
 
 ![MHC Project Graph](images/bldc_hall_project_graph.jpg)
 
