@@ -4,27 +4,27 @@
 	"content": {
 		"metaDataVersion": "1.1.0",
 		"name": "com.microchip.mcu32.mplabx.project.mc_apps_pic32cm_mc_acim_vhz_pic32_cm_mc_mchv3_pic32_cm_mc_pim",
-		"version": "3.0.0",
+		"version": "3.3.0",
 		"displayName": "ACIM VHz Control Example for PIC32CM MC Family",
 		"projectName": "acim_vhz_pic32_cm_mc_mchv3",
 		"shortDescription": "This application implements the V/Hz Open loop speed control of an AC Induction motor (ACIM). This application generates the three phase sinusoidal voltages based on the speed command using the V/Hz profile. The algorithm is implemented on a PIC32CM MC MCU.",
 		"ide": {
 			"name": "MPLABX",
-			"semverRange": ">=6.00.0"
+			"semverRange": ">=6.10"
 		},
 		"compiler": [
 			{
 				"name": "XC32",
-				"semverRange": ">=4.00.0"
+				"semverRange": ">=4.30"
 			}
 		],
 		"dfp": {
 			"name": "PIC32CM-MC_DFP",
-			"semverRange": "^1.3.58"
+			"semverRange": "^1.4.67"
 		},
 		"configurator": {
 			"name": "MCC",
-			"semverRange": ">=1.0.9"
+			"semverRange": ">=5.3.7"
 		},
 		"device": {
 			"metaDataVersion": "1.0.0",
