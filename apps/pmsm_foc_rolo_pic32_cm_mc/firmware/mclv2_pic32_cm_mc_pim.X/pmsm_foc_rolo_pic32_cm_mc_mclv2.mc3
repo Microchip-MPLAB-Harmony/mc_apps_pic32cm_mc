@@ -69,16 +69,6 @@
           &lt;/String&gt;
         &lt;/Attributes&gt;
       &lt;/DirectDependency&gt;
-      &lt;DirectCapability dnOrder=&quot;1&quot; id=&quot;x2cScope_Scope&quot;&gt;
-        &lt;Attributes dnOrder=&quot;0&quot;&gt;
-          &lt;String dnOrder=&quot;0&quot; id=&quot;targetComponentID&quot;&gt;
-            &lt;Value dnOrder=&quot;0&quot;&gt;pmsm_foc&lt;/Value&gt;
-          &lt;/String&gt;
-          &lt;String dnOrder=&quot;1&quot; id=&quot;targetAttachmentID&quot;&gt;
-            &lt;Value dnOrder=&quot;0&quot;&gt;pmsmfoc_X2CSCOPE&lt;/Value&gt;
-          &lt;/String&gt;
-        &lt;/Attributes&gt;
-      &lt;/DirectCapability&gt;
     &lt;/Attachments&gt;
   &lt;/X2CScope&gt;
 &lt;/X2CScope&gt;
@@ -206,6 +196,7 @@
   &lt;adc0 dnOrder=&quot;0&quot; id=&quot;ADC_CONV_TRIGGER&quot;&gt;
     &lt;Values dnOrder=&quot;0&quot;&gt;
       &lt;Dynamic dnOrder=&quot;0&quot; id=&quot;adc0&quot; value=&quot;HW Event Trigger&quot;/&gt;
+      &lt;User dnOrder=&quot;1&quot; value=&quot;HW Event Trigger&quot;/&gt;
     &lt;/Values&gt;
   &lt;/adc0&gt;
 &lt;/adc0&gt;
@@ -235,6 +226,7 @@
     &lt;/Attributes&gt;
     &lt;Values dnOrder=&quot;1&quot;&gt;
       &lt;Dynamic dnOrder=&quot;0&quot; id=&quot;adc0&quot; value=&quot;1&quot;/&gt;
+      &lt;User dnOrder=&quot;1&quot; value=&quot;1&quot;/&gt;
     &lt;/Values&gt;
   &lt;/adc0&gt;
 &lt;/adc0&gt;
@@ -268,6 +260,7 @@
   &lt;adc0 dnOrder=&quot;0&quot; id=&quot;ADC_INPUTCTRL_MUXPOS&quot;&gt;
     &lt;Values dnOrder=&quot;0&quot;&gt;
       &lt;Dynamic dnOrder=&quot;0&quot; id=&quot;adc0&quot; value=&quot;2&quot;/&gt;
+      &lt;User dnOrder=&quot;1&quot; value=&quot;2&quot;/&gt;
     &lt;/Values&gt;
   &lt;/adc0&gt;
 &lt;/adc0&gt;
@@ -279,6 +272,7 @@
   &lt;adc0 dnOrder=&quot;0&quot; id=&quot;ADC_INTENSET_RESRDY&quot;&gt;
     &lt;Values dnOrder=&quot;0&quot;&gt;
       &lt;Dynamic dnOrder=&quot;0&quot; id=&quot;adc0&quot; value=&quot;true&quot;/&gt;
+      &lt;User dnOrder=&quot;1&quot; value=&quot;true&quot;/&gt;
     &lt;/Values&gt;
   &lt;/adc0&gt;
 &lt;/adc0&gt;
@@ -523,6 +517,7 @@
   &lt;adc1 dnOrder=&quot;0&quot; id=&quot;ADC_CTRLA_SLAVEEN&quot;&gt;
     &lt;Values dnOrder=&quot;0&quot;&gt;
       &lt;Dynamic dnOrder=&quot;0&quot; id=&quot;adc1&quot; value=&quot;true&quot;/&gt;
+      &lt;User dnOrder=&quot;1&quot; value=&quot;true&quot;/&gt;
     &lt;/Values&gt;
   &lt;/adc1&gt;
 &lt;/adc1&gt;
@@ -569,6 +564,7 @@
   &lt;adc1 dnOrder=&quot;0&quot; id=&quot;ADC_INPUTCTRL_MUXPOS&quot;&gt;
     &lt;Values dnOrder=&quot;0&quot;&gt;
       &lt;Dynamic dnOrder=&quot;0&quot; id=&quot;adc1&quot; value=&quot;3&quot;/&gt;
+      &lt;User dnOrder=&quot;1&quot; value=&quot;3&quot;/&gt;
     &lt;/Values&gt;
   &lt;/adc1&gt;
 &lt;/adc1&gt;
@@ -580,6 +576,7 @@
   &lt;adc1 dnOrder=&quot;0&quot; id=&quot;ADC_INTENSET_RESRDY&quot;&gt;
     &lt;Values dnOrder=&quot;0&quot;&gt;
       &lt;Dynamic dnOrder=&quot;0&quot; id=&quot;adc1&quot; value=&quot;false&quot;/&gt;
+      &lt;User dnOrder=&quot;1&quot; value=&quot;false&quot;/&gt;
     &lt;/Values&gt;
   &lt;/adc1&gt;
 &lt;/adc1&gt;
@@ -3182,7 +3179,7 @@
          <value>&lt;?xml version=&quot;1.0&quot; encoding=&quot;UTF-8&quot;?&gt;&lt;eic&gt;
   &lt;eic dnOrder=&quot;0&quot; id=&quot;EIC_CHAN_8&quot;&gt;
     &lt;Values dnOrder=&quot;0&quot;&gt;
-      &lt;Dynamic dnOrder=&quot;0&quot; id=&quot;pmsm_foc&quot; value=&quot;true&quot;/&gt;
+      &lt;User dnOrder=&quot;0&quot; value=&quot;true&quot;/&gt;
     &lt;/Values&gt;
   &lt;/eic&gt;
 &lt;/eic&gt;
@@ -3206,7 +3203,7 @@
          <value>&lt;?xml version=&quot;1.0&quot; encoding=&quot;UTF-8&quot;?&gt;&lt;eic&gt;
   &lt;eic dnOrder=&quot;0&quot; id=&quot;EIC_CONFIG_SENSE_8&quot;&gt;
     &lt;Values dnOrder=&quot;0&quot;&gt;
-      &lt;Dynamic dnOrder=&quot;0&quot; id=&quot;pmsm_foc&quot; value=&quot;2&quot;/&gt;
+      &lt;User dnOrder=&quot;0&quot; value=&quot;2&quot;/&gt;
     &lt;/Values&gt;
   &lt;/eic&gt;
 &lt;/eic&gt;
@@ -3228,7 +3225,7 @@
          <value>&lt;?xml version=&quot;1.0&quot; encoding=&quot;UTF-8&quot;?&gt;&lt;eic&gt;
   &lt;eic dnOrder=&quot;0&quot; id=&quot;EIC_EXTINTEO_8&quot;&gt;
     &lt;Values dnOrder=&quot;0&quot;&gt;
-      &lt;Dynamic dnOrder=&quot;0&quot; id=&quot;pmsm_foc&quot; value=&quot;true&quot;/&gt;
+      &lt;User dnOrder=&quot;0&quot; value=&quot;true&quot;/&gt;
     &lt;/Values&gt;
   &lt;/eic&gt;
 &lt;/eic&gt;
@@ -3267,7 +3264,7 @@
          <value>&lt;?xml version=&quot;1.0&quot; encoding=&quot;UTF-8&quot;?&gt;&lt;evsys&gt;
   &lt;evsys dnOrder=&quot;0&quot; id=&quot;EVSYS_CHANNEL_0&quot;&gt;
     &lt;Values dnOrder=&quot;0&quot;&gt;
-      &lt;Dynamic dnOrder=&quot;0&quot; id=&quot;pmsm_foc&quot; value=&quot;true&quot;/&gt;
+      &lt;User dnOrder=&quot;0&quot; value=&quot;true&quot;/&gt;
     &lt;/Values&gt;
   &lt;/evsys&gt;
 &lt;/evsys&gt;
@@ -3278,7 +3275,7 @@
          <value>&lt;?xml version=&quot;1.0&quot; encoding=&quot;UTF-8&quot;?&gt;&lt;evsys&gt;
   &lt;evsys dnOrder=&quot;0&quot; id=&quot;EVSYS_CHANNEL_0_EDGE&quot;&gt;
     &lt;Values dnOrder=&quot;0&quot;&gt;
-      &lt;Dynamic dnOrder=&quot;0&quot; id=&quot;pmsm_foc&quot; value=&quot;1&quot;/&gt;
+      &lt;User dnOrder=&quot;0&quot; value=&quot;1&quot;/&gt;
     &lt;/Values&gt;
   &lt;/evsys&gt;
 &lt;/evsys&gt;
@@ -3289,7 +3286,7 @@
          <value>&lt;?xml version=&quot;1.0&quot; encoding=&quot;UTF-8&quot;?&gt;&lt;evsys&gt;
   &lt;evsys dnOrder=&quot;0&quot; id=&quot;EVSYS_CHANNEL_0_GENERATOR&quot;&gt;
     &lt;Values dnOrder=&quot;0&quot;&gt;
-      &lt;Dynamic dnOrder=&quot;0&quot; id=&quot;pmsm_foc&quot; value=&quot;74&quot;/&gt;
+      &lt;User dnOrder=&quot;0&quot; value=&quot;74&quot;/&gt;
     &lt;/Values&gt;
   &lt;/evsys&gt;
 &lt;/evsys&gt;
@@ -3322,7 +3319,7 @@
          <value>&lt;?xml version=&quot;1.0&quot; encoding=&quot;UTF-8&quot;?&gt;&lt;evsys&gt;
   &lt;evsys dnOrder=&quot;0&quot; id=&quot;EVSYS_CHANNEL_1&quot;&gt;
     &lt;Values dnOrder=&quot;0&quot;&gt;
-      &lt;Dynamic dnOrder=&quot;0&quot; id=&quot;pmsm_foc&quot; value=&quot;true&quot;/&gt;
+      &lt;User dnOrder=&quot;0&quot; value=&quot;true&quot;/&gt;
     &lt;/Values&gt;
   &lt;/evsys&gt;
 &lt;/evsys&gt;
@@ -3377,7 +3374,7 @@
          <value>&lt;?xml version=&quot;1.0&quot; encoding=&quot;UTF-8&quot;?&gt;&lt;evsys&gt;
   &lt;evsys dnOrder=&quot;0&quot; id=&quot;EVSYS_CHANNEL_1_EDGE&quot;&gt;
     &lt;Values dnOrder=&quot;0&quot;&gt;
-      &lt;Dynamic dnOrder=&quot;0&quot; id=&quot;pmsm_foc&quot; value=&quot;1&quot;/&gt;
+      &lt;User dnOrder=&quot;0&quot; value=&quot;1&quot;/&gt;
     &lt;/Values&gt;
   &lt;/evsys&gt;
 &lt;/evsys&gt;
@@ -3388,7 +3385,7 @@
          <value>&lt;?xml version=&quot;1.0&quot; encoding=&quot;UTF-8&quot;?&gt;&lt;evsys&gt;
   &lt;evsys dnOrder=&quot;0&quot; id=&quot;EVSYS_CHANNEL_1_GENERATOR&quot;&gt;
     &lt;Values dnOrder=&quot;0&quot;&gt;
-      &lt;Dynamic dnOrder=&quot;0&quot; id=&quot;pmsm_foc&quot; value=&quot;30&quot;/&gt;
+      &lt;User dnOrder=&quot;0&quot; value=&quot;30&quot;/&gt;
     &lt;/Values&gt;
   &lt;/evsys&gt;
 &lt;/evsys&gt;
@@ -3623,7 +3620,7 @@
          <value>&lt;?xml version=&quot;1.0&quot; encoding=&quot;UTF-8&quot;?&gt;&lt;evsys&gt;
   &lt;evsys dnOrder=&quot;0&quot; id=&quot;EVSYS_USER_10&quot;&gt;
     &lt;Values dnOrder=&quot;0&quot;&gt;
-      &lt;Dynamic dnOrder=&quot;0&quot; id=&quot;pmsm_foc&quot; value=&quot;2&quot;/&gt;
+      &lt;User dnOrder=&quot;0&quot; value=&quot;2&quot;/&gt;
     &lt;/Values&gt;
   &lt;/evsys&gt;
 &lt;/evsys&gt;
@@ -3634,7 +3631,18 @@
          <value>&lt;?xml version=&quot;1.0&quot; encoding=&quot;UTF-8&quot;?&gt;&lt;evsys&gt;
   &lt;evsys dnOrder=&quot;0&quot; id=&quot;EVSYS_USER_28&quot;&gt;
     &lt;Values dnOrder=&quot;0&quot;&gt;
-      &lt;Dynamic dnOrder=&quot;0&quot; id=&quot;pmsm_foc&quot; value=&quot;1&quot;/&gt;
+      &lt;User dnOrder=&quot;0&quot; value=&quot;1&quot;/&gt;
+    &lt;/Values&gt;
+  &lt;/evsys&gt;
+&lt;/evsys&gt;
+</value>
+      </entry>
+      <entry>
+         <key class="com.microchip.mcc.core.tokenManager.CustomKey" moduleName="evsys" name="EVSYS_USER_9"/>
+         <value>&lt;?xml version=&quot;1.0&quot; encoding=&quot;UTF-8&quot;?&gt;&lt;evsys&gt;
+  &lt;evsys dnOrder=&quot;0&quot; id=&quot;EVSYS_USER_9&quot;&gt;
+    &lt;Values dnOrder=&quot;0&quot;&gt;
+      &lt;User dnOrder=&quot;0&quot; value=&quot;2&quot;/&gt;
     &lt;/Values&gt;
   &lt;/evsys&gt;
 &lt;/evsys&gt;
@@ -4146,6 +4154,7 @@
   &lt;tcc0 dnOrder=&quot;0&quot; id=&quot;TCC_0_CC&quot;&gt;
     &lt;Values dnOrder=&quot;0&quot;&gt;
       &lt;Dynamic dnOrder=&quot;0&quot; id=&quot;tcc0&quot; value=&quot;0&quot;/&gt;
+      &lt;User dnOrder=&quot;1&quot; value=&quot;0&quot;/&gt;
     &lt;/Values&gt;
   &lt;/tcc0&gt;
 &lt;/tcc0&gt;
@@ -4199,6 +4208,7 @@
   &lt;tcc0 dnOrder=&quot;0&quot; id=&quot;TCC_0_WEXCTRL_DTIEN&quot;&gt;
     &lt;Values dnOrder=&quot;0&quot;&gt;
       &lt;Dynamic dnOrder=&quot;0&quot; id=&quot;tcc0&quot; value=&quot;true&quot;/&gt;
+      &lt;User dnOrder=&quot;1&quot; value=&quot;true&quot;/&gt;
     &lt;/Values&gt;
   &lt;/tcc0&gt;
 &lt;/tcc0&gt;
@@ -4210,6 +4220,7 @@
   &lt;tcc0 dnOrder=&quot;0&quot; id=&quot;TCC_1_CC&quot;&gt;
     &lt;Values dnOrder=&quot;0&quot;&gt;
       &lt;Dynamic dnOrder=&quot;0&quot; id=&quot;tcc0&quot; value=&quot;0&quot;/&gt;
+      &lt;User dnOrder=&quot;1&quot; value=&quot;0&quot;/&gt;
     &lt;/Values&gt;
   &lt;/tcc0&gt;
 &lt;/tcc0&gt;
@@ -4263,6 +4274,7 @@
   &lt;tcc0 dnOrder=&quot;0&quot; id=&quot;TCC_1_WEXCTRL_DTIEN&quot;&gt;
     &lt;Values dnOrder=&quot;0&quot;&gt;
       &lt;Dynamic dnOrder=&quot;0&quot; id=&quot;tcc0&quot; value=&quot;true&quot;/&gt;
+      &lt;User dnOrder=&quot;1&quot; value=&quot;true&quot;/&gt;
     &lt;/Values&gt;
   &lt;/tcc0&gt;
 &lt;/tcc0&gt;
@@ -4274,6 +4286,7 @@
   &lt;tcc0 dnOrder=&quot;0&quot; id=&quot;TCC_2_CC&quot;&gt;
     &lt;Values dnOrder=&quot;0&quot;&gt;
       &lt;Dynamic dnOrder=&quot;0&quot; id=&quot;tcc0&quot; value=&quot;0&quot;/&gt;
+      &lt;User dnOrder=&quot;1&quot; value=&quot;0&quot;/&gt;
     &lt;/Values&gt;
   &lt;/tcc0&gt;
 &lt;/tcc0&gt;
@@ -4327,6 +4340,7 @@
   &lt;tcc0 dnOrder=&quot;0&quot; id=&quot;TCC_2_WEXCTRL_DTIEN&quot;&gt;
     &lt;Values dnOrder=&quot;0&quot;&gt;
       &lt;Dynamic dnOrder=&quot;0&quot; id=&quot;tcc0&quot; value=&quot;true&quot;/&gt;
+      &lt;User dnOrder=&quot;1&quot; value=&quot;true&quot;/&gt;
     &lt;/Values&gt;
   &lt;/tcc0&gt;
 &lt;/tcc0&gt;
@@ -4522,6 +4536,7 @@
   &lt;tcc0 dnOrder=&quot;0&quot; id=&quot;TCC_EVCTRL_EVACT1&quot;&gt;
     &lt;Values dnOrder=&quot;0&quot;&gt;
       &lt;Dynamic dnOrder=&quot;0&quot; id=&quot;tcc0&quot; value=&quot;5&quot;/&gt;
+      &lt;User dnOrder=&quot;1&quot; value=&quot;5&quot;/&gt;
     &lt;/Values&gt;
   &lt;/tcc0&gt;
 &lt;/tcc0&gt;
@@ -4533,6 +4548,7 @@
   &lt;tcc0 dnOrder=&quot;0&quot; id=&quot;TCC_EVCTRL_OVFEO&quot;&gt;
     &lt;Values dnOrder=&quot;0&quot;&gt;
       &lt;Dynamic dnOrder=&quot;0&quot; id=&quot;tcc0&quot; value=&quot;true&quot;/&gt;
+      &lt;User dnOrder=&quot;1&quot; value=&quot;true&quot;/&gt;
     &lt;/Values&gt;
   &lt;/tcc0&gt;
 &lt;/tcc0&gt;
@@ -4601,6 +4617,7 @@
     &lt;/Attributes&gt;
     &lt;Values dnOrder=&quot;1&quot;&gt;
       &lt;Dynamic dnOrder=&quot;0&quot; id=&quot;tcc0&quot; value=&quot;true&quot;/&gt;
+      &lt;User dnOrder=&quot;1&quot; value=&quot;true&quot;/&gt;
     &lt;/Values&gt;
   &lt;/tcc0&gt;
 &lt;/tcc0&gt;
@@ -4623,6 +4640,7 @@
   &lt;tcc0 dnOrder=&quot;0&quot; id=&quot;TCC_PER_PER&quot;&gt;
     &lt;Values dnOrder=&quot;0&quot;&gt;
       &lt;Dynamic dnOrder=&quot;0&quot; id=&quot;tcc0&quot; value=&quot;2400&quot;/&gt;
+      &lt;User dnOrder=&quot;1&quot; value=&quot;2400&quot;/&gt;
     &lt;/Values&gt;
   &lt;/tcc0&gt;
 &lt;/tcc0&gt;
@@ -4634,6 +4652,17 @@
   &lt;tcc0 dnOrder=&quot;0&quot; id=&quot;TCC_PWM_INTERRUPT_MODE&quot;&gt;
     &lt;Values dnOrder=&quot;0&quot;&gt;
       &lt;Dynamic dnOrder=&quot;0&quot; id=&quot;tcc0&quot; value=&quot;true&quot;/&gt;
+    &lt;/Values&gt;
+  &lt;/tcc0&gt;
+&lt;/tcc0&gt;
+</value>
+      </entry>
+      <entry>
+         <key class="com.microchip.mcc.core.tokenManager.CustomKey" moduleName="tcc0" name="TCC_RAMP_CYCLEB_PERIOD"/>
+         <value>&lt;?xml version=&quot;1.0&quot; encoding=&quot;UTF-8&quot;?&gt;&lt;tcc0&gt;
+  &lt;tcc0 dnOrder=&quot;0&quot; id=&quot;TCC_RAMP_CYCLEB_PERIOD&quot;&gt;
+    &lt;Values dnOrder=&quot;0&quot;&gt;
+      &lt;Dynamic dnOrder=&quot;0&quot; id=&quot;tcc0&quot; value=&quot;2400&quot;/&gt;
     &lt;/Values&gt;
   &lt;/tcc0&gt;
 &lt;/tcc0&gt;
@@ -4656,6 +4685,7 @@
   &lt;tcc0 dnOrder=&quot;0&quot; id=&quot;TCC_WAVE_WAVEGEN&quot;&gt;
     &lt;Values dnOrder=&quot;0&quot;&gt;
       &lt;Dynamic dnOrder=&quot;0&quot; id=&quot;tcc0&quot; value=&quot;1&quot;/&gt;
+      &lt;User dnOrder=&quot;1&quot; value=&quot;1&quot;/&gt;
     &lt;/Values&gt;
   &lt;/tcc0&gt;
 &lt;/tcc0&gt;
@@ -4667,6 +4697,7 @@
   &lt;tcc0 dnOrder=&quot;0&quot; id=&quot;TCC_WEXCTRL_DTHS&quot;&gt;
     &lt;Values dnOrder=&quot;0&quot;&gt;
       &lt;Dynamic dnOrder=&quot;0&quot; id=&quot;tcc0&quot; value=&quot;48&quot;/&gt;
+      &lt;User dnOrder=&quot;1&quot; value=&quot;48&quot;/&gt;
     &lt;/Values&gt;
   &lt;/tcc0&gt;
 &lt;/tcc0&gt;
@@ -4678,6 +4709,7 @@
   &lt;tcc0 dnOrder=&quot;0&quot; id=&quot;TCC_WEXCTRL_DTLS&quot;&gt;
     &lt;Values dnOrder=&quot;0&quot;&gt;
       &lt;Dynamic dnOrder=&quot;0&quot; id=&quot;tcc0&quot; value=&quot;48&quot;/&gt;
+      &lt;User dnOrder=&quot;1&quot; value=&quot;48&quot;/&gt;
     &lt;/Values&gt;
   &lt;/tcc0&gt;
 &lt;/tcc0&gt;
@@ -4711,7 +4743,7 @@
       </entry>
       <entry>
          <file>..\src\config\mclv2_pic32_cm_mc_pim\X2CCode\X2CScope\inc\X2CScope.h</file>
-         <hash>d9ee6e53198dda1c1cf2982d9769cfd8f011538aa7c38304a324110cc32f8f04</hash>
+         <hash>7f721b6a96d0c5a0cf3894824323e253ed87afd8b3fd3bba5830f74df4261f70</hash>
       </entry>
       <entry>
          <file>..\src\packs\PIC32CM1216MC00048_DFP\component\tc.h</file>
@@ -4871,7 +4903,7 @@
       </entry>
       <entry>
          <file>..\src\config\mclv2_pic32_cm_mc_pim\X2CCode\X2CScope\inc\X2CScopeCommunication.h</file>
-         <hash>fd5facc76afd74c7321055a89ed98ce225e492356a6f31fb95b5f2d332de3d4a</hash>
+         <hash>2d17bba9a1c3228f4704298b0c06a3397d9e5f9bb6c215202249cfe76cc83750</hash>
       </entry>
       <entry>
          <file>..\src\packs\PIC32CM1216MC00048_DFP\instance\tsens.h</file>
@@ -4899,7 +4931,7 @@
       </entry>
       <entry>
          <file>..\src\config\mclv2_pic32_cm_mc_pim\X2CCode\X2CScope\src\X2CScope.c</file>
-         <hash>bb60724b6946a3d5e51f5f7f227a304cabcecba3851d7e6d40a1a04306a45a2e</hash>
+         <hash>a1d408c082ab60740cec1e371807db074468fb363185c9041f4663d33921edd4</hash>
       </entry>
       <entry>
          <file>..\src\packs\PIC32CM1216MC00048_DFP\instance\fuses.h</file>
@@ -5031,7 +5063,7 @@
       </entry>
       <entry>
          <file>..\src\config\mclv2_pic32_cm_mc_pim\definitions.h</file>
-         <hash>412bc48393a6fc6e00646c99db34e73724249ea47b47826878649c412b9a41e0</hash>
+         <hash>c22d327899d83113337f1dea4f5712a27aebf940b8516bd9a3c45c80f53e57a0</hash>
       </entry>
       <entry>
          <file>..\src\packs\PIC32CM1216MC00048_DFP\component\ccl.h</file>
@@ -5191,7 +5223,7 @@
       </entry>
       <entry>
          <file>..\src\config\mclv2_pic32_cm_mc_pim\X2CCode\X2CScope\src\X2CScopeCommunication.c</file>
-         <hash>6bfc6d51bac56e177fcda3920e68aae7d87cc7cff77e8a24a9927622eef7cdd8</hash>
+         <hash>33dc5a07b050f9aca831a8edc3eeec068b92b93f6ad4e0f08b61a4657d6d87aa</hash>
       </entry>
       <entry>
          <file>..\src\packs\PIC32CM1216MC00048_DFP\instance\dsu.h</file>

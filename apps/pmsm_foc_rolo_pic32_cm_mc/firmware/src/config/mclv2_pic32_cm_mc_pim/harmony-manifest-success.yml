@@ -4,7 +4,7 @@
 
 
 project: pmsm_foc_rolo_pic32_cm_mc
-creation_date: 2023-07-18T18:19:22.088+05:30[Asia/Calcutta]    # ISO 8601 format: https://www.w3.org/TR/NOTE-datetime
+creation_date: 2023-08-01T00:58:19.297+05:30[Asia/Calcutta]    # ISO 8601 format: https://www.w3.org/TR/NOTE-datetime
 operating_system: Windows 10
 mhc_mode: Standalone            # [IDE|Standalone|Headless]
 mhc_version: v3.8.5
@@ -15,5 +15,5 @@ compiler: xc32
 modules:
     - {name: "csp", version: "v3.17.0"}
     - {name: "dev_packs", version: "v3.17.0"}
-    - {name: "x2c", version: "v1.4.0"}
+    - {name: "x2c", version: "unknown"}
 
