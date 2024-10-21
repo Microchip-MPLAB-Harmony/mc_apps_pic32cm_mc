@@ -1,30 +1,28 @@
 ---
-parent: Microchip MPLAB® Harmony 3 Motor Control Application Examples for PIC32CM MC family
-title: PMSM FOC using Reduced Order Luenberger Observer
+parent: Microchip MPLAB® Harmony 3 Motor Control Application Examples for SAM C2x family
+title: PMSM FOC using PLL Estimator
 has_children: false
 has_toc: false
 ---
 
 [![MCHP](https://www.microchip.com/ResourcePackages/Microchip/assets/dist/images/logo.png)](https://www.microchip.com)
 
-# PMSM FOC using Reduced Order Luenberger Observer
+# PMSM FOC using PLL Estimator
 
-This application implements the sensorless field oriented control (FOC) of a permanent magnet synchronous motor (PMSM). It estimates rotor position from measured phase currents and a reduced order luenberger observer (ROLO). This algorithm is implemented on a PIC32CM MC MCU.
+This application implements the sensorless field oriented control (FOC) of a permanent magnet synchronous motor (PMSM). It estimates rotor position from measured phase currents and a PLL estimator. This algorithm is implemented on a PIC32CM1216MC0048 MCU. It uses MCLV-48V-300W motor control development board.
 
 ## Description
 
-Permanent Magnet Synchronous Motor (PMSM) is controlled using Field Oriented Control (FOC). Rotor position and speed is determined using Reduced Order Luenberger Observer. Motor start/stop operation is controlled by the switch and motor speed can be changed by the on-board potentiometer. Waveforms and variables can be monitored runtime using X2CScope. 
+Permanent Magnet Synchronous Motor (PMSM) is controlled using Field Oriented Control (FOC). Rotor position and speed is determined using a PLL estimator. Motor start/stop operation is controlled by the switch and motor speed can be changed by the on-board potentiometer. Waveforms and variables can be monitored runtime using X2CScope. 
 
 Key features enabled in this project are:
-
 - Dual shunt current measurement
 - Speed control loop
 
 
+## MCC Project Configurations
 
-## MHC Project Configurations
-
-![Project Graph](images/pmsm_foc_rolo_project_graph.jpg)
+![MCC Project Graph](images/pmsm_foc_pll_project_graph.jpg)
 
 - **PMSM_FOC**:
 
@@ -41,9 +39,7 @@ Key features enabled in this project are:
 
   Configured to generate three pairs of complimentary PWM signals at a frequency of 10 kHz in "Dual Slope PWM with interrupt/event when counter = ZERO" a.k.a. "Center Aligned Mode".
   - Event output is enabled which is generated when the counter reaches ZERO.
-  - Dead-time is enabled and set to
-    - mchv3_pic32cm_mc_pim.X. - 2uS
-    - mclv2_pic32cm_mc_pim.X. - 1uS
+  - Dead-time is enabled and set
   - Non-recoverable Fault is enabled on EV0. When an event is detected on EV0, all PWM channels are held low.
 
   
@@ -64,119 +60,22 @@ Key features enabled in this project are:
   - This USART channel is used by the X2CScope plugin to plot or watch global variables in run-time. Refer to X2C Scope Plugin section for more details on how to install and use the X2CScope.
 
 ## Control Algorithm
-
-This section briefly explains the FOC control algorithm, software design and implementation. Refer to [Application note AN2590](http://ww1.microchip.com/downloads/en/Appnotes/00002590B.pdf) for the ROLO based estimator based sensor-less FOC technique in detail. 
-
-Field Oriented Control is the technique used to achieve the decoupled control of torque and flux. This is done by transforming the stator current quantities (phase currents) from stationary reference frame to torque and flux producing currents components in rotating reference frame using mathematical transformations. The Field Oriented Control is done as follows: 
-
-1. Measure the motor phase currents. 
-2. Transform them into the two phase system (a, b) using the Clarke transformation. 
-3. Measure the rotor position angle. 
-4. Transform stator currents into the d,q-coordinate system using the Park transformation. 
-5. The stator current torque (iq) and flux (id) producing components are controlled separately by the controllers. 
-6. The output stator voltage space vector is transformed back from the d,q-coordinate system into the two phase system fixed with the stator by the Inverse Park transformation. 
-7. Using the space vector modulation, the three-phase output voltage is generated. 
-
-
-The following block diagram shows the software realization of the FOC algorithm.
-
-![Block Diagram](images/sensorless_foc_block_diagram.jpg)
-
-
-## Software Design
-### PIC32CM MC
--   PMSM FOC Control loop is implemented in the ADC result ready interrupt. Refer to the flow chart given below. 
--   ADC channel conversion is triggered by the PWM overflow/zero match event. This trigger point could vary based on the current measurement techniques and MCU PWM IP implementation.
--   For bandwidth constraints, the FOC is executed every alternate PWM cycle
--   Slow loop task is executed in every 10ms in the task process. Polling of switches for user inputs is handled in the slow loop task. 
-
-### Timing Diagram
-
-![timing_diagram](images/timing_diagram_fixed_point.jpg)
-
-### Flow Chart
-
-![flow_chart](images/flow_chart_fixed_point.jpg)
-
-### State Machine
-
--   **Idle**:
-
-In this state, control waits for the switch press. 
-
--   **Field Alignment**:
-
-Rotor is aligned to known position at D-axis or Q-axis by applying a pre-defined value of the current for a pre-defined length of time. The magnitude of the current and the length of the time for which it is applied depends upon the electrical and mechanical time constant of the PMSM motor drive. Electrical time constant of the motor is a function of R and L values of the motor windings, whereas the mechanical time constant of the motor drive is primarily a function of the static load on the motor shaft. 
-
--   **Open Loop**:
-
-This state is applicable to sensorless position feedback methods. In this state, the speed of the PMSM motor is gradually ramped up using an open loop control. During this mode, the rotor angle is derived from the asserted open loop speed reference. This derived rotor angle would be lagging from the actual rotor angle. The speed is ramped up linearly to a minimum value required for the PLL estimator to estimate the electrical speed of the PMSM motor with sufficient accuracy. Rotor angle information is obtained by integrating the estimated electrical speed of the motor. 
-
--   **Closed Loop**:
-
-Control switched to closed loop and rotor angle is obtained from the configured position feedback method. 
-
-
-### Code Structure
-![code_structure](images/code_structure_fixed_point.jpg)
-
-Configurations: 
--   mc_userparameters.h contains the user configurations. 
-
-PMSM FOC Application: 
--   mc_pmsm_foc.c/h - PMSM FOC algorithm interface file 
-
-Interrupts: 
--   mc_function_coordinator.c - Initializes and coordinates motor control ISR and slow task processes
--   mc_error_handler.c - PWM fault ISR to take corrective action on over-current 
-
-Control Middleware: 
--   mc_motor_control.c/h - Implements the motor control state machines.
-
-Control library: 
--   mc_start_up.c/h - Implements the initial field alignment and open loop start-up profile.
--   mc_speed_control.c/h - Calculate and regulates the reference speed
--   mc_current_control.c/h - Controls the direct and quadrature axis currents
--   mc_rotor_position.c/.h - Calculate the position and speed of the rotor 
--   mc_voltage_measurement.c/h - Get the DC Bus voltage 
--   mc_current_measurement.c/h - Get the motor phase currents 
--   mc_interface_handling.c/h - Manages global variables and data-types
--   mc_generic_library.c/h - FOC library 
--   mc_pwm.c/h - Space Vector modulation (SVM) and updating PWM duty cycles 
--   mc_ramp_profiler.c/h - Speed reference profiles for user inputs 
-
-HAL: 
--   mc_hardware_abstraction.c/h - Hardware Abstraction Layer to interact with PLIBs 
+This project has been created using Harmony QSpin Tool. For details refer [Harmony QSpin](https://microchip-mplab-harmony.github.io/motor_control/index.html)
 
 ## Development Kits
 
-### MCLV2 with PIC32CM MC Family Motor Control PIM
+
+### MCLV-48V-300W with PIC32CM MC Family Motor Control PIM
 #### Downloading and building the application
 
-To clone or download this application from Github, go to the [main page of this repository](https://github.com/Microchip-MPLAB-Harmony/mc_apps_pic32cm_mc) and then click **Clone** button to clone this repository or download as zip file.
+To clone or download this application from Github, go to the [main page of this repository](https://github.com/Microchip-MPLAB-Harmony/mc_apps_sam_c2x) and then click **Clone** button to clone this repository or download as zip file.
 This content can also be downloaded using content manager by following these [instructions](https://github.com/Microchip-MPLAB-Harmony/contentmanager/wiki).
 
-Path of the application within the repository is **apps/pmsm_foc_rolo_pic32cm_mc** .
+Path of the application within the repository is **apps/pmsm_foc_pll_estimator_sam_c21** .
 
 To build the application, refer to the following table and open the project using its IDE.
 
 | Project Name            | Description                                    | Demo User Guide |
 | ----------------------- | ---------------------------------------------- |--------------------|
-| mclv2_pic32cm_mc_pim.X | MPLABX project for MCLV2 board with PIC32CM MC PIM |[MCLV2 with PIC32CM MC PIM](../docs/mclv2_pic32cm_mc_pim_sensorless.md)|
-
-
-### MCHV3 with PIC32CM MC Family Motor Control PIM
-#### Downloading and building the application
-
-To clone or download this application from Github, go to the [main page of this repository](https://github.com/Microchip-MPLAB-Harmony/mc_apps_pic32cm_mc) and then click **Clone** button to clone this repository or download as zip file.
-This content can also be downloaded using content manager by following these [instructions](https://github.com/Microchip-MPLAB-Harmony/contentmanager/wiki).
-
-Path of the application within the repository is **apps/pmsm_foc_rolo_pic32cm_mc** .
-
-To build the application, refer to the following table and open the project using its IDE.
-
-| Project Name            | Description                                    | Demo User Guide |
-| ----------------------- | ---------------------------------------------- |--------------------|
-| mchv3_pic32cm_mc_pim.X | MPLABX project for MCHV3 board with PIC32CM MC PIM |[MCHV3 with PIC32CM MC PIM](../docs/mchv3_pic32cm_mc_pim_sensorless.md)|
-
-
+| qspin_pmsm_foc.X | MPLABX project for MCLV-48V-300W board with  PIC32CM MC PIM |[MCLV-48V-300W with  PIC32CM MC DIM](../docs/mclv_pic32cm_mc_dim_sensorless.md)|
+||||
