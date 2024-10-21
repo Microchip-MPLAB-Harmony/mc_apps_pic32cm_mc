@@ -49,7 +49,7 @@
 #include <stdbool.h>                    // Defines true
 #include <stdlib.h>                     // Defines EXIT_FAILURE
 #include "definitions.h"                // SYS function prototypes
-#include "X2CScope.h"
+#include "X2Cscope.h"
 #include "mc_app.h"
 #include "X2CscopeComm.h"
 

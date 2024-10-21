@@ -52,7 +52,7 @@
 #include <stddef.h>
 #include <stdint.h>
 #include "mc_userparams.h"
-#include "mc_Types.h"
+#include "mc_types.h"
 /*******************************************************************************
  Parameters
  *******************************************************************************/
@@ -116,7 +116,7 @@ static inline void mcMotI_ParametersSet(tmcMot_PMSM_s * const pParameters)
     pParameters->KeInVrmsPerKrpm = (float32_t)(4.764254);
     pParameters->IrmsMaxInAmps = (float32_t)(4.53);
     pParameters->NratedInRpm = (float32_t)(2804);
-    pParameters->NmaxInRpm = (float32_t)(3600);
+    pParameters->NmaxInRpm = (float32_t)(3400);
     pParameters->JmInKgPerCmSquare = 0.2f;
 }
 

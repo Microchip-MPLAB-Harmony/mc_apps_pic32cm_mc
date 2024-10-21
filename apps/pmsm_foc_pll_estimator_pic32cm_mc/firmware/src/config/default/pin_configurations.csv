@@ -3,13 +3,13 @@ Pin Number,Pin ID,Custom Name,Function,Mode, Direction,Latch,Pull Up,Pull Down,D
 2,PA01,,Available,,,,,,NORMAL
 3,PA02,,Available,,,,,,NORMAL
 4,PA03,,Available,,,,,,NORMAL
-7,PB08,IA,ADC0_AIN2,Analog,High Impedance,n/a,,,NORMAL
-8,PB09,VDC,ADC0_AIN3,Analog,High Impedance,n/a,,,NORMAL
+7,PB08,,Available,,,,,,NORMAL
+8,PB09,VDC,ADC0_AIN3,Digital,High Impedance,n/a,No,No,NORMAL
 9,PA04,PHASE_A_PWMH,TCC0_WO0,Digital,High Impedance,n/a,No,No,NORMAL
 10,PA05,PHASE_B_PWMH,TCC0_WO1,Digital,High Impedance,n/a,No,No,NORMAL
 11,PA06,,Available,,,,,,NORMAL
 12,PA07,,Available,,,,,,NORMAL
-13,PA08,IB,ADC1_AIN10,Analog,High Impedance,n/a,,,NORMAL
+13,PA08,IB,ADC1_AIN10,Digital,High Impedance,n/a,No,No,NORMAL
 14,PA09,,Available,,,,,,NORMAL
 15,PA10,PHASE_C_PWMH,TCC0_WO2,Digital,High Impedance,n/a,No,No,NORMAL
 16,PA11,BUTTON_01,GPIO,Digital,In,n/a,No,No,NORMAL
@@ -19,8 +19,8 @@ Pin Number,Pin ID,Custom Name,Function,Mode, Direction,Latch,Pull Up,Pull Down,D
 22,PA13,,Available,,,,,,NORMAL
 23,PA14,PHASE_A_PWML,TCC0_WO4,Digital,High Impedance,n/a,No,No,NORMAL
 24,PA15,PHASE_B_PWML,TCC0_WO5,Digital,High Impedance,n/a,No,No,NORMAL
-25,PA16,ENCODER_QEA,Available,,,,,,NORMAL
-26,PA17,ENCODER_QEB,Available,,,,,,NORMAL
+25,PA16,ENCODER_QEA,PDEC_QDI0,Digital,High Impedance,n/a,No,No,NORMAL
+26,PA17,ENCODER_QEB,PDEC_QDI1,Digital,High Impedance,n/a,No,No,NORMAL
 27,PA18,,Available,,,,,,NORMAL
 28,PA19,,Available,,,,,,NORMAL
 29,PA20,PHASE_C_PWML,TCC0_WO6,Digital,High Impedance,n/a,No,No,NORMAL
@@ -35,5 +35,5 @@ Pin Number,Pin ID,Custom Name,Function,Mode, Direction,Latch,Pull Up,Pull Down,D
 41,PA28,,Available,,,,,,NORMAL
 45,PA30,,Available,,,,,,NORMAL
 46,PA31,,Available,,,,,,NORMAL
-47,PB02,VPOT,ADC1_AIN2,Analog,High Impedance,n/a,,,NORMAL
+47,PB02,VPOT,ADC1_AIN2,Digital,High Impedance,n/a,No,No,NORMAL
 48,PB03,,Available,,,,,,NORMAL

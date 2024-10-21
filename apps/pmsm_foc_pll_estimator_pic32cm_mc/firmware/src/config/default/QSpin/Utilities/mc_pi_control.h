@@ -1,21 +1,16 @@
-/**
- * @brief
- *  Header file which contains variables and function prototypes of PI controller functions.
- *
- * @Company
- *  Microchip Technology Inc.
- *
- * @File name
- *  mc_pi_control.h
- *
- * @Summary
- *  Header file which contains variables and function prototypes for PI controller functions
- *
- * @Description
- *  This file contains variables and function prototypes for PI controller functions  which
- *  are generally used in Motor Control. Implemented in Q2.14 Fixed Point Arithmetic.
- *
- */
+/*******************************************************************************
+  System Definitions
+
+  File Name:
+    mc_generic_library.h
+
+  Summary:
+    Header file which contains variables and function prototypes of  generic library functions.
+
+  Description:
+    This file contains variables and function prototypes of generic library functions
+    which are generally used in Motor Control. Implemented in Q2.14 Fixed Point Arithmetic.
+ *******************************************************************************/
 
 //DOM-IGNORE-BEGIN
 /*******************************************************************************
@@ -42,8 +37,8 @@
  *******************************************************************************/
 //DOM-IGNORE-END
 
-#ifndef MC_PI
-#define MC_PI
+#ifndef MC_PI_CONTROL
+#define MC_PI_CONTROL
 
 #include "mc_types.h"
 #include "mc_utilities.h"
@@ -55,25 +50,19 @@
 /******************************************************************************
  * User-defined data structure
 ******************************************************************************/
-/**
- * @brief PI control structure.
- *
- * This structure holds the necessary parameters and state variables for the PI (Proportional-Integral) controller.
- */
 typedef struct
 {
-    int16_t error;     /**< The current error value. */
-    int16_t KpVal;     /**< Proportional gain value. */
-    uint16_t KpShift;  /**< Shift value for the proportional gain in fixed-point arithmetic. */
-    int16_t KiVal;     /**< Integral gain value. */
-    uint16_t KiShift;  /**< Shift value for the integral gain in fixed-point arithmetic. */
-    int16_t Yp;        /**< Proportional term output. */
-    int32_t Yint;      /**< Integral term output. */
-    int16_t Ymin;      /**< Minimum output limit. */
-    int16_t Ymax;      /**< Maximum output limit. */
-    int16_t Yo;        /**< Final output value. */
-} tmcUtils_PiControl_s;
-
+    int16_t error;
+    int16_t KpVal;
+    uint16_t KpShift;
+    int16_t KiVal;
+    uint16_t KiShift;
+    int32_t Yp;
+    int64_t Yint;
+    int16_t Ymin;
+    int16_t Ymax;
+    int16_t Yo;
+}tmcUtils_PiControl_s;
 
 /******************************************************************************
  * Interface variables
@@ -82,81 +71,79 @@ typedef struct
 /******************************************************************************
  * Interface functions
 ******************************************************************************/
-/**
- * @brief Initializes the PI control structure with the given parameters.
+/*! \brief
  *
- * This function sets up the PI control structure with proportional and integral
- * gains, and computes the shifts required for fixed-point arithmetic.
+ * Details
  *
- * @param[in] Kp Proportional gain.
- * @param[in] Ki Integral gain.
- * @param[in] dt Sampling time.
- * @param[in,out] pControl Pointer to the PI control structure to be initialized.
  *
- * @return None.
+ * @param[in]:
+ * @param[in/out]:
+ * @param[out]:
+ * @return:
  */
 void mcUtils_PiControlInit( float32_t Kp, float32_t Ki, float32_t dt,  tmcUtils_PiControl_s  * const pControl);
 
-/**
- * @brief Updates the PI control limits.
+/*! \brief
  *
- * This function updates the minimum and maximum output limits for the PI control.
+ * Details
  *
- * @param[in] Ymin Minimum output limit.
- * @param[in] Ymax Maximum output limit.
- * @param[in,out] pControl Pointer to the PI control structure to be updated.
  *
- * @return None.
+ * @param[in]:
+ * @param[in/out]:
+ * @param[out]:
+ * @return:
  */
+
 #ifdef RAM_EXECUTE
 void __ramfunc__ mcUtils_PiLimitUpdate( const int16_t Ymin, const int16_t Ymax, tmcUtils_PiControl_s  * const pControl );
 #else
 void mcUtils_PiLimitUpdate( const int16_t Ymin, const int16_t Ymax, tmcUtils_PiControl_s  * const pControl );
 #endif
 
-/**
- * @brief Updates the integral part of the PI control.
+/*! \brief
  *
- * This function updates the integral term of the PI control with the given value.
+ * Details
  *
- * @param[in] value Integral value to be updated.
- * @param[in,out] pControl Pointer to the PI control structure to be updated.
  *
- * @return None.
+ * @param[in]:
+ * @param[in/out]:
+ * @param[out]:
+ * @return:
  */
+
 #ifdef RAM_EXECUTE
 void __ramfunc__ mcUtils_PiIntegralUpdate( const int16_t value, tmcUtils_PiControl_s  * const pControl );
 #else
 void mcUtils_PiIntegralUpdate( const int16_t value, tmcUtils_PiControl_s  * const pControl );
 #endif
 
-/**
- * @brief Executes the PI control algorithm.
+/*! \brief
  *
- * This function computes the PI control output based on the given error and
- * updates the control structure accordingly.
+ * Details
  *
- * @param[in] error The current error value.
- * @param[in,out] pControl Pointer to the PI control structure to be updated.
  *
- * @return None.
+ * @param[in]:
+ * @param[in/out]:
+ * @param[out]:
+ * @return:
  */
+
 #ifdef RAM_EXECUTE
 void __ramfunc__ mcUtils_PiControl( const int16_t error, tmcUtils_PiControl_s  * const pControl );
 #else
 void mcUtils_PiControl(const int16_t error, tmcUtils_PiControl_s  * const pControl  );
 #endif
 
-/**
- * @brief Resets the PI control output.
+/*! \brief
  *
- * This function resets the PI control output to the given value.
+ * Details
  *
- * @param[in] out The output value to reset.
- * @param[in,out] pControl Pointer to the PI control structure to be reset.
  *
- * @return None.
+ * @param[in]:
+ * @param[in/out]:
+ * @param[out]:
+ * @return:
  */
-void mcUtils_PiControlReset(const int32_t integral, tmcUtils_PiControl_s  * const pControl);
+void mcUtils_PiControlReset(const int32_t out, tmcUtils_PiControl_s  * const pControl);
 
-#endif // MC_PI
+#endif // MC_PI_CONTROL

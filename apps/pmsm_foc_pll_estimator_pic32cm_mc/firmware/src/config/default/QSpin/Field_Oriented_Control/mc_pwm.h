@@ -13,7 +13,7 @@
  *
  * @Description
  *    This file contains variables and function prototypes which are generally used for pulse
- *    width modulation. It is implemented in Q2.14 fixed point arithmetic.
+ *    width modulation. 
  */
 
 
@@ -127,6 +127,7 @@ void mcPwmI_PulseWidthModulationDisable(tmcPwm_Parameters_s * const pParameters)
  * @param[out] pDuty Pointer to the duty cycle
  */
 void __ramfunc__ mcPwmI_PulseWidthModulation(const tmcPwm_Parameters_s * const pParameters,
+                                             const int32_t uBus,
                                              const tmcTypes_AlphaBeta_s * const pUalphaBeta,
                                              int16_t * const pDuty);
 #else
@@ -140,6 +141,7 @@ void __ramfunc__ mcPwmI_PulseWidthModulation(const tmcPwm_Parameters_s * const p
  * @param[out] pDuty Pointer to the duty cycle
  */
 void mcPwmI_PulseWidthModulation(const tmcPwm_Parameters_s * const pParameters,
+                                 const int32_t uBus,
                                  const tmcTypes_AlphaBeta_s * const pIalphaBeta,
                                  int16_t * const pDuty);
 #endif

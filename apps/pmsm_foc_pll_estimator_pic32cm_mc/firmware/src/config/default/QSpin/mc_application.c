@@ -195,8 +195,8 @@ void mcAppI_ApplicationInit( void )
     /** Enable interrupt for fault detection */
     mcHalI_PwmCallbackRegister( (TCC_CALLBACK)mcAppI_OverCurrentReactionIsr, (uintptr_t)dummyForMisra );
 
-    /** ToDO: Check if it is needed */
-    // mcHalI_PwmInterruptEnable( );
+    /** TEnable PWM fault interrupt for Over-current reaction */
+    mcHalI_PwmInterruptEnable( );
 
     /** Enables PWM channels. */
     mcHalI_PwmTimerStart( );
@@ -255,6 +255,8 @@ void mcAppI_OverCurrentReactionIsr( uint32_t status,  uintptr_t context )
  */
 void mcAppI_AdcCalibrationIsr( ADC_STATUS status, uintptr_t context )
 {
+    tmcTypes_StdReturn_e returnStatus;
+
     /** ADC end of conversion interrupt generation for FOC control */
     mcHalI_AdcInterruptDisable();
     mcHalI_AdcInterruptClear();
@@ -263,18 +265,21 @@ void mcAppI_AdcCalibrationIsr( ADC_STATUS status, uintptr_t context )
     mcHalI_PhaseACurrentGet();
     mcHalI_PhaseBCurrentGet();
 
+    /** Phase current offset measurement  */
+    returnStatus = mcCurI_CurrentOffsetCalculation(&mcCurI_ModuleData_gds );
+
     /** Current sense amplifiers offset calculation */
-    if( 0u == mcCurI_ModuleData_gds.dOutput.calibDone )
-    {
-        mcCurI_CurrentSensorOffsetCalculate( &mcCurI_ModuleData_gds );
-    }
-    else
+    if( StdReturn_Complete == returnStatus )
     {
         mcHalI_AdcCallBackRegister( (ADC_CALLBACK)mcAppI_AdcFinishedIsr, (uintptr_t)dummyForMisra );
     }
+    else
+    {
+        /** For MISRA compliance */
+    }
 
     /** Calibration and monitoring update */
-    X2CScope_Update();
+    X2Cscope_Update();
 
      /** ADC end of conversion interrupt generation for FOC control */
     mcHalI_AdcInterruptClear();
@@ -341,7 +346,7 @@ void  mcAppI_AdcFinishedIsr( ADC_STATUS status, uintptr_t context )
     mcHalI_PhaseACurrentChannelSelect();
     mcHalI_PhaseBCurrentChannelSelect();
     /** Calibration and monitoring update */
-    X2CScope_Update();
+    X2Cscope_Update();
 
     /** Increment interrupt counter */
     mcAppI_1msSyncCounter_gdu32++;
@@ -364,7 +369,7 @@ void  mcAppI_AdcFinishedIsr( ADC_STATUS status, uintptr_t context )
  */
 void mcAppI_NonISRTasks( void )
 {
-    float32_t loopCount = 0.001f * (float32_t)16000;
+    float32_t loopCount = 0.001f * (float32_t)10000;
     if( mcAppI_1msSyncCounter_gdu32 >= (uint32_t)loopCount )
     {
         mcAppI_1msSyncCounter_gdu32 = 0u;

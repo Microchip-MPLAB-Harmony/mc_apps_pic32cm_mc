@@ -65,10 +65,6 @@
 // *****************************************************************************
 // *****************************************************************************
 
-/*** Macros for IA pin ***/
-#define IA_Get()               (((PORT_REGS->GROUP[1].PORT_IN >> 8U)) & 0x01U)
-#define IA_PIN                  PORT_PIN_PB08
-
 /*** Macros for VDC pin ***/
 #define VDC_Get()               (((PORT_REGS->GROUP[1].PORT_IN >> 9U)) & 0x01U)
 #define VDC_PIN                  PORT_PIN_PB09
@@ -105,6 +101,14 @@
 /*** Macros for PHASE_B_PWML pin ***/
 #define PHASE_B_PWML_Get()               (((PORT_REGS->GROUP[0].PORT_IN >> 15U)) & 0x01U)
 #define PHASE_B_PWML_PIN                  PORT_PIN_PA15
+
+/*** Macros for ENCODER_QEA pin ***/
+#define ENCODER_QEA_Get()               (((PORT_REGS->GROUP[0].PORT_IN >> 16U)) & 0x01U)
+#define ENCODER_QEA_PIN                  PORT_PIN_PA16
+
+/*** Macros for ENCODER_QEB pin ***/
+#define ENCODER_QEB_Get()               (((PORT_REGS->GROUP[0].PORT_IN >> 17U)) & 0x01U)
+#define ENCODER_QEB_PIN                  PORT_PIN_PA17
 
 /*** Macros for PHASE_C_PWML pin ***/
 #define PHASE_C_PWML_Get()               (((PORT_REGS->GROUP[0].PORT_IN >> 20U)) & 0x01U)

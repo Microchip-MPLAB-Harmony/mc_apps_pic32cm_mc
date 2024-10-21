@@ -60,18 +60,23 @@
 /*******************************************************************************
  * Type Definitions
 *******************************************************************************/
+
+
 typedef struct
 {
     float32_t Kp;                    /**< Proportional gain for PI controller */
     float32_t Ki;                    /**< Integral gain for PI controller */
     float32_t dt;                    /**< Sampling time */
+
+
+
     void * pStatePointer;            /**< Pointer to the state structure */
 } tmcFlx_Parameters_s;
 
 /*******************************************************************************
  * Interface Variables
 *******************************************************************************/
-//#define RAM_EXECUTE
+
 /*******************************************************************************
  * Static Interface Functions
 *******************************************************************************/
@@ -85,9 +90,9 @@ typedef struct
  */
 __STATIC_INLINE void mcFlxI_ParametersSet(tmcFlx_Parameters_s * const pParameters)
 {
-    pParameters->Kp = (float32_t)0.009573;
+    pParameters->Kp = (float32_t)0.016776;
     pParameters->Ki = (float32_t)17.366188;
-    pParameters->dt = (float32_t)0.000063;
+    pParameters->dt = (float32_t)0.00005;
 
 
 }
@@ -152,9 +157,11 @@ void mcFlxI_FluxControlManual(const tmcFlx_Parameters_s * const pParameters, con
  * @return None
  */
 #ifdef RAM_EXECUTE
-void __ramfunc__ mcFlxI_FluxControlAuto(const tmcFlx_Parameters_s * const pParameters, const int16_t iDref, const int16_t iDact, int16_t * const pOut);
+void __ramfunc__  mcFlxI_FluxControlAuto( const tmcFlx_Parameters_s * const pParameters,
+                                        const int16_t iDref, const int16_t iDact, int16_t iDmax, int16_t * const pOut );
 #else
-void mcFlxI_FluxControlAuto(const tmcFlx_Parameters_s * const pParameters, const int16_t iDref, const int16_t iDact, int16_t * const pOut);
+void mcFlxI_FluxControlAuto( const tmcFlx_Parameters_s * const pParameters,
+                                        const int16_t iDref, const int16_t iDact, int16_t iDmax, int16_t * const pOut );
 #endif
 
 /*! 
@@ -166,6 +173,7 @@ void mcFlxI_FluxControlAuto(const tmcFlx_Parameters_s * const pParameters, const
  * @return None
  */
 void mcFlxI_FluxControlReset(const tmcFlx_Parameters_s * const pParameters);
+
 
 
 

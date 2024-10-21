@@ -8,6 +8,41 @@ nav_order: 99
 
 # Microchip MPLAB® Harmony 3 Release Notes
 
+
+## Microchip MPLAB® Harmony 3 Motor Control Application Examples for PIC32CM MC family v3.4.0
+
+### Applications
+
+| Development Board | Number of Applications | 
+| --- | --- | 
+|[dsPICDEM™ MCLV-2 Low Voltage Development Board](https://www.microchip.com/DevelopmentTools/ProductDetails/DM330021-2) | 2 |
+|[dsPICDEM™ MCHV-3 High Voltage Development Board](https://www.microchip.com/developmenttools/ProductDetails/dm330023-3) | 1 |
+|[MCS MCLV-48V-300W Development Board](https://www.microchip.com/en-us/development-tool/ev18h47a) | 3 |
+
+### Example projects update
+
+* Added PLL based sensorless FOC example project with MCLV-48V-300W development board
+* Added sensorless BLDC BC example project with MCLV-48V-300W development board
+* Replaced manual Reduced Order Luenberger Observer based FOC project with QSpin generated FOC example project. 
+
+### Known Issues
+* same as v3.1.0
+
+### Required MPLAB Harmony v3 Modules
+* motor_control v3.11.0
+* csp v3.19.7
+* bsp v3.20.2
+* x2c v1.5.0
+* harmony-services v1.5.0
+
+### Development Tools
+
+* [MPLAB X IDE v6.20](https://www.microchip.com/mplab/mplab-x-ide)
+* [MPLAB XC32 C/C++ Compiler v4.45](https://www.microchip.com/mplab/compilers)
+* MPLAB X IDE plug-ins:
+  * MPLAB Code Configurator (MCC) v5.7.1
+  * X2CScope v1.6.6
+
 ## Microchip MPLAB® Harmony 3 Motor Control Application Examples for PIC32CM MC family v3.3.1
 
 ### Applications

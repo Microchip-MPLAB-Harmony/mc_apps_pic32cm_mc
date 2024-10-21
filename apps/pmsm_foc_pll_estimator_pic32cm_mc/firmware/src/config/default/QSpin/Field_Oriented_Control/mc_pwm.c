@@ -13,7 +13,7 @@
  *
  * @Description
  *    This file contains variables and function implementations which are generally used for pulse
- *    width modulation. It is implemented in Q2.14 fixed point arithmetic.
+ *    width modulation. 
  */
 
 
@@ -51,7 +51,6 @@ Headers inclusions
 Local configurations
 *******************************************************************************/
 #define ENABLE_CLASSICAL_SVPWM /**< Enable classical Space Vector PWM */
-#define SQRT3     (28378)      /**< Square root of 3 constant in Q2.14 format */
 
 /**
  * @brief Enumeration for PWM sectors.
@@ -94,8 +93,6 @@ Interface  variables
 /*******************************************************************************
 Macro Functions
 *******************************************************************************/
-#define MULT_SHIFT     mcUtils_MultAndRightShiftS16
-#define RIGHT_SHIFT   mcUtils_RightShiftS16
 
 /*******************************************************************************
 Private Functions
@@ -192,15 +189,18 @@ void  mcPwmI_PulseWidthModulationDisable( tmcPwm_Parameters_s * const pParameter
  */
 #ifdef RAM_EXECUTE
 void __ramfunc__  mcPwmI_PulseWidthModulation( const tmcPwm_Parameters_s * const pParameters,
+                                        const int32_t uBus,
                                         const tmcTypes_AlphaBeta_s * const pUalphaBeta,
                                         int16_t * const pDuty )
 #else
 void mcPwmI_PulseWidthModulation( const tmcPwm_Parameters_s * const pParameters,
+                            const int32_t uBus,
                             const tmcTypes_AlphaBeta_s * const pUalphaBeta,
                             int16_t * const pDuty )
 #endif
 {
-    int16_t uA, uB, uC;
+    int16_t  uA, uB, uC;
+    int16_t  uAlpha, uBeta;
 
     tmcPwm_Sector_e bSector;
 
@@ -208,11 +208,15 @@ void mcPwmI_PulseWidthModulation( const tmcPwm_Parameters_s * const pParameters,
     tmcPwm_State_s * pState;
     pState = (tmcPwm_State_s *)pParameters->pStatePointer;
 
+    /** Apply circle limit */
+    uAlpha = Q_DIVISION( pUalphaBeta->alpha, uBus );
+    uBeta = Q_DIVISION( pUalphaBeta->beta, uBus );
+
     if( pState->enable )
     {
         /** Calculate abc voltage from alpha-beta voltage  */
-        uA = pUalphaBeta->beta;
-        uB = RIGHT_SHIFT(( -pUalphaBeta->beta + MULT_SHIFT( pUalphaBeta->alpha, SQRT3, 14u ) ), 1u );
+        uA = uBeta;
+        uB =  -Q_MULTIPLY( uBeta, Q_SCALE(ONE_OVER_TWO) ) + Q_MULTIPLY( uAlpha, Q_SCALE(SQRT_3_OVER_2) );
         uC =-uA -uB;
 
         /** Determine space vector sector */
@@ -253,17 +257,16 @@ void mcPwmI_PulseWidthModulation( const tmcPwm_Parameters_s * const pParameters,
             }
         }
 
-#if defined ENABLE_CLASSICAL_SVPWM
         switch(bSector)
         {
             case SECTOR_1:
             {
                 /** Active vector times */
-                int16_t t1 = MULT_SHIFT( -uB,  pState->pwmPeriodCount, 14u );
-                int16_t t2 = MULT_SHIFT( -uC, pState->pwmPeriodCount, 14u );
+                int16_t t1 = Q_MULTIPLY( -uB,  pState->pwmPeriodCount );
+                int16_t t2 = Q_MULTIPLY( -uC, pState->pwmPeriodCount );
 
                 /** PWM timings */
-                pDuty[2u] = RIGHT_SHIFT((pState->pwmPeriodCount  - t1 - t2 ), 1u );
+                pDuty[2u] =  (int16_t)Q_RIGHT_SHIFT((int32_t)( (int32_t)pState->pwmPeriodCount  - (int32_t)t1 - (int32_t)t2 ), 1u );
                 pDuty[0u] = pDuty[2u] + t2;
                 pDuty[1u] = pDuty[0u] + t1;
 
@@ -273,11 +276,11 @@ void mcPwmI_PulseWidthModulation( const tmcPwm_Parameters_s * const pParameters,
             case SECTOR_2:
             {
                 /** Active vector times */
-                int16_t t1 = MULT_SHIFT( -uC, pState->pwmPeriodCount, 14u );
-                int16_t t2 = MULT_SHIFT( -uA, pState->pwmPeriodCount, 14u );
+                int16_t t1 = Q_MULTIPLY( -uC, pState->pwmPeriodCount );
+                int16_t t2 = Q_MULTIPLY( -uA, pState->pwmPeriodCount );
 
                 /** PWM timings */
-                pDuty[1u] = RIGHT_SHIFT((pState->pwmPeriodCount  - t1 - t2 ), 1u );
+                pDuty[1u] = (int16_t)Q_RIGHT_SHIFT((int32_t)( (int32_t)pState->pwmPeriodCount  - (int32_t)t1 - (int32_t)t2 ), 1u );
                 pDuty[2u] = pDuty[1u] + t2;
                 pDuty[0u] = pDuty[2u] + t1;
 
@@ -287,11 +290,11 @@ void mcPwmI_PulseWidthModulation( const tmcPwm_Parameters_s * const pParameters,
             case SECTOR_3:
             {
                 /** Active vector times */
-                int16_t t1 = MULT_SHIFT( uB,  pState->pwmPeriodCount, 14u );
-                int16_t t2 = MULT_SHIFT( uA, pState->pwmPeriodCount, 14u );
+                int16_t t1 = Q_MULTIPLY( uB,  pState->pwmPeriodCount );
+                int16_t t2 = Q_MULTIPLY( uA, pState->pwmPeriodCount );
 
                 /** PWM timings */
-                pDuty[2u] = RIGHT_SHIFT((pState->pwmPeriodCount  - t1 - t2 ), 1u );
+                pDuty[2u] = (int16_t)Q_RIGHT_SHIFT((int32_t)( (int32_t)pState->pwmPeriodCount  - (int32_t)t1 - (int32_t)t2 ), 1u );
                 pDuty[1u] = pDuty[2u] + t2;
                 pDuty[0u] = pDuty[1u] + t1;
 
@@ -301,11 +304,11 @@ void mcPwmI_PulseWidthModulation( const tmcPwm_Parameters_s * const pParameters,
             case SECTOR_4:
             {
                 /** Active vector times */
-                int16_t t1 = MULT_SHIFT( -uA, pState->pwmPeriodCount, 14u );
-                int16_t t2 = MULT_SHIFT( -uB, pState->pwmPeriodCount, 14u );
+                int16_t t1 = Q_MULTIPLY( -uA, pState->pwmPeriodCount );
+                int16_t t2 = Q_MULTIPLY( -uB, pState->pwmPeriodCount );
 
                 /** PWM timings */
-                pDuty[0u] = RIGHT_SHIFT((pState->pwmPeriodCount  - t1 - t2 ), 1u );
+                pDuty[0u] = (int16_t)Q_RIGHT_SHIFT((int32_t)( (int32_t)pState->pwmPeriodCount  - (int32_t)t1 - (int32_t)t2 ), 1u );
                 pDuty[1u] = pDuty[0u] + t2;
                 pDuty[2u] = pDuty[1u] + t1;
 
@@ -315,11 +318,11 @@ void mcPwmI_PulseWidthModulation( const tmcPwm_Parameters_s * const pParameters,
             case SECTOR_5:
             {
                 /** Active vector times */
-                int16_t t1 = MULT_SHIFT( uA, pState->pwmPeriodCount, 14u );
-                int16_t t2 = MULT_SHIFT( uC, pState->pwmPeriodCount, 14u );
+                int16_t t1 = Q_MULTIPLY( uA, pState->pwmPeriodCount );
+                int16_t t2 = Q_MULTIPLY( uC, pState->pwmPeriodCount );
 
                 /** PWM timings */
-                pDuty[0u] = RIGHT_SHIFT((pState->pwmPeriodCount  - t1 - t2 ), 1u );
+                pDuty[0u] = (int16_t)Q_RIGHT_SHIFT((int32_t)( (int32_t)pState->pwmPeriodCount  - (int32_t)t1 - (int32_t)t2 ), 1u );
                 pDuty[2u] = pDuty[0u] + t2;
                 pDuty[1u] = pDuty[2u] + t1;
 
@@ -329,11 +332,11 @@ void mcPwmI_PulseWidthModulation( const tmcPwm_Parameters_s * const pParameters,
             case SECTOR_6:
             {
                 /** Active vector times */
-                int16_t t1 = MULT_SHIFT( uC, pState->pwmPeriodCount, 14u );
-                int16_t t2 = MULT_SHIFT( uB, pState->pwmPeriodCount, 14u );
+                int16_t t1 = Q_MULTIPLY( uC, pState->pwmPeriodCount );
+                int16_t t2 = Q_MULTIPLY( uB, pState->pwmPeriodCount );
 
                 /** PWM timings */
-                pDuty[1u] = RIGHT_SHIFT(( pState->pwmPeriodCount  - t1 - t2 ), 1u );
+                pDuty[1u] = (int16_t)Q_RIGHT_SHIFT((int32_t)( (int32_t)pState->pwmPeriodCount  - (int32_t)t1 - (int32_t)t2 ), 1u );
                 pDuty[0u] = pDuty[1u] + t2;
                 pDuty[2u] = pDuty[0u] + t1;
                 break;
@@ -344,7 +347,6 @@ void mcPwmI_PulseWidthModulation( const tmcPwm_Parameters_s * const pParameters,
             }
             break;
         }
-#endif
     }
     else
     {
@@ -363,4 +365,3 @@ void mcPwmI_PulseWidthModulationReset( const tmcPwm_Parameters_s * const pParame
 {
 
 }
-

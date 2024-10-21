@@ -13,7 +13,7 @@
  *
  * @Description
  *    This file contains variables and function prototypes which are generally used for reference
- *    control in pulse width modulation. It is implemented in Q2.14 fixed point arithmetic.
+ *    control in pulse width modulation. 
  */
 
 //DOM-IGNORE-BEGIN
@@ -48,6 +48,7 @@
  * Header inclusions
 *******************************************************************************/
 #include "mc_types.h"
+#include "mc_utilities.h"
 #include "mc_userparams.h"
 
 /*******************************************************************************
@@ -86,10 +87,10 @@ typedef struct
 __STATIC_INLINE void mcRefI_ParametersSet(tmcRef_Parameters_s * const pParameters)
 {
     pParameters->minimumRpm = (float32_t)500;
-    pParameters->maximumRpm = (float32_t)3600;
+    pParameters->maximumRpm = (float32_t)2804;
 
     pParameters->rpmPerSecond = (float32_t)(300);
-    pParameters->dt = (float32_t)(0.000063);
+    pParameters->dt = (float32_t)(0.00005);
 }
 
 /*******************************************************************************

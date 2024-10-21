@@ -91,13 +91,9 @@ typedef struct
  */
 __STATIC_INLINE void mcTorI_ParametersSet( tmcTor_Parameters_s * const pParameters )
 {
-#if defined ENABLE_AUTO_TUNING
-/** ToDO: */
-#else
     pParameters->Kp = (float32_t)0.016776;
     pParameters->Ki = (float32_t)17.366188;
-    pParameters->dt = (float32_t)0.000063;
-#endif
+    pParameters->dt = (float32_t)0.00005;
 }
 
 /*******************************************************************************
@@ -168,11 +164,11 @@ void mcTorI_TorqueControlManual( const tmcTor_Parameters_s * const pParameters,
  * @param[out] pOut - Pointer to the output torque value.
  */
 #ifdef RAM_EXECUTE
-void __ramfunc__ mcTorI_TorqueControlAuto( const tmcTor_Parameters_s * const pParameters,
-                                           const int16_t iQref, const int16_t iQact, int16_t * const pOut );
+void __ramfunc__  mcTorI_TorqueControlAuto( const tmcTor_Parameters_s * const pParameters,
+                                                                   const int16_t iQref, const int16_t iQact, int16_t iQmax,int16_t * const pOut );
 #else
-void mcTorI_TorqueControlAuto( const tmcTor_Parameters_s * const pParameters,
-                               const int16_t iQref, const int16_t iQact, int16_t * const pOut );
+void mcTorI_TorqueControlAuto(  const tmcTor_Parameters_s * const pParameters,
+                                              const int16_t iQref, const int16_t iQact, int16_t iQmax, int16_t * const pOut );
 #endif
 
 /**

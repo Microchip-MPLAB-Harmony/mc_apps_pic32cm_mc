@@ -6,9 +6,6 @@
                    projectFiles="true">
       <logicalFolder name="config" displayName="config" projectFiles="true">
         <logicalFolder name="default" displayName="default" projectFiles="true">
-          <logicalFolder name="bsp" displayName="bsp" projectFiles="true">
-            <itemPath>../src/config/default/bsp/bsp.h</itemPath>
-          </logicalFolder>
           <logicalFolder name="peripheral" displayName="peripheral" projectFiles="true">
             <logicalFolder name="adc" displayName="adc" projectFiles="true">
               <itemPath>../src/config/default/peripheral/adc/plib_adc0.h</itemPath>
@@ -74,6 +71,7 @@
             <logicalFolder name="Utilities" displayName="Utilities" projectFiles="true">
               <itemPath>../src/config/default/QSpin/Utilities/mc_utilities.h</itemPath>
               <itemPath>../src/config/default/QSpin/Utilities/mc_pi_control.h</itemPath>
+              <itemPath>../src/config/default/QSpin/Utilities/mc_constants.h</itemPath>
             </logicalFolder>
             <logicalFolder name="Voltage_Calculation"
                            displayName="Voltage_Calculation"
@@ -84,11 +82,9 @@
             <itemPath>../src/config/default/QSpin/mc_userparams.h</itemPath>
             <itemPath>../src/config/default/QSpin/mc_application.h</itemPath>
           </logicalFolder>
-          <logicalFolder name="X2CCode" displayName="X2CCode" projectFiles="true">
-            <logicalFolder name="X2CScope" displayName="X2CScope" projectFiles="true">
-              <itemPath>../src/config/default/X2CCode/X2CScope/inc/X2CScopeCommunication.h</itemPath>
-              <itemPath>../src/config/default/X2CCode/X2CScope/inc/X2CScope.h</itemPath>
-            </logicalFolder>
+          <logicalFolder name="X2Cscope" displayName="X2Cscope" projectFiles="true">
+            <itemPath>../src/config/default/X2Cscope/X2CscopeComm.h</itemPath>
+            <itemPath>../src/config/default/X2Cscope/X2Cscope.h</itemPath>
           </logicalFolder>
           <itemPath>../src/config/default/device.h</itemPath>
           <itemPath>../src/config/default/toolchain_specifics.h</itemPath>
@@ -207,7 +203,7 @@
                    displayName="Important Files"
                    projectFiles="true">
       <itemPath>Makefile</itemPath>
-      <itemPath>MCLV-48V-300W.mc3</itemPath>
+      <itemPath>qspin_pmsm_foc.mc3</itemPath>
     </logicalFolder>
     <logicalFolder name="LinkerScript"
                    displayName="Linker Files"
@@ -223,9 +219,6 @@
                    projectFiles="true">
       <logicalFolder name="config" displayName="config" projectFiles="true">
         <logicalFolder name="default" displayName="default" projectFiles="true">
-          <logicalFolder name="bsp" displayName="bsp" projectFiles="true">
-            <itemPath>../src/config/default/bsp/bsp.c</itemPath>
-          </logicalFolder>
           <logicalFolder name="peripheral" displayName="peripheral" projectFiles="true">
             <logicalFolder name="adc" displayName="adc" projectFiles="true">
               <itemPath>../src/config/default/peripheral/adc/plib_adc0.c</itemPath>
@@ -299,11 +292,9 @@
           <logicalFolder name="stdio" displayName="stdio" projectFiles="true">
             <itemPath>../src/config/default/stdio/xc32_monitor.c</itemPath>
           </logicalFolder>
-          <logicalFolder name="X2CCode" displayName="X2CCode" projectFiles="true">
-            <logicalFolder name="X2CScope" displayName="X2CScope" projectFiles="true">
-              <itemPath>../src/config/default/X2CCode/X2CScope/src/X2CScopeCommunication.c</itemPath>
-              <itemPath>../src/config/default/X2CCode/X2CScope/src/X2CScope.c</itemPath>
-            </logicalFolder>
+          <logicalFolder name="X2Cscope" displayName="X2Cscope" projectFiles="true">
+            <itemPath>../src/config/default/X2Cscope/X2CscopeComm.c</itemPath>
+            <itemPath>../src/config/default/X2Cscope/X2Cscope.c</itemPath>
           </logicalFolder>
           <itemPath>../src/config/default/exceptions.c</itemPath>
           <itemPath>../src/config/default/startup_xc32.c</itemPath>
@@ -324,28 +315,27 @@
         <targetDevice>PIC32CM1216MC00048</targetDevice>
         <targetHeader></targetHeader>
         <targetPluginBoard></targetPluginBoard>
-        <platformTool>pkob4hybrid</platformTool>
+        <platformTool>noID</platformTool>
         <languageToolchain>XC32</languageToolchain>
-        <languageToolchainVersion>4.40</languageToolchainVersion>
+        <languageToolchainVersion>4.45</languageToolchainVersion>
         <platform>3</platform>
       </toolsSet>
       <packs>
         <pack name="PIC32CM-MC_DFP" vendor="Microchip" version="1.4.67"/>
-        <pack name="CMSIS" vendor="ARM" version="5.8.0"/>
       </packs>
       <ScriptingSettings>
       </ScriptingSettings>
       <compileType>
         <linkerTool>
           <linkerLibItems>
-            <linkerLibFileItem>../src/config/default/X2CCode/X2CScope/lib/libCORTEXM0PLUS_X2CScope.a</linkerLibFileItem>
+            <linkerLibFileItem>../src/config/default/X2Cscope/libx2cscope2-cm0-elf.a</linkerLibFileItem>
           </linkerLibItems>
         </linkerTool>
         <archiverTool>
         </archiverTool>
         <loading>
           <useAlternateLoadableFile>false</useAlternateLoadableFile>
-          <parseOnProdLoad>false</parseOnProdLoad>
+          <parseOnProdLoad>true</parseOnProdLoad>
           <alternateLoadableFile></alternateLoadableFile>
         </loading>
         <subordinates>
@@ -371,7 +361,7 @@
         <property key="enable-unroll-loops" value="false"/>
         <property key="exclude-floating-point" value="false"/>
         <property key="extra-include-directories"
-                  value="../src;../src/config/default;../src/config/default/QSpin;../src/config/default/QSpin/Current_Calculation/;../src/config/default/QSpin/Field_Oriented_Control/;../src/config/default/QSpin/Hardware_Abstraction/;../src/config/default/QSpin/Parameters/;../src/config/default/QSpin/Rotor_Position_Calculation/;../src/config/default/QSpin/Utilities/;../src/config/default/QSpin/Voltage_Calculation/;../src/config/default/X2CCode;../src/packs/CMSIS/;../src/packs/CMSIS/CMSIS/Core/Include;../src/packs/PIC32CM1216MC00048_DFP"/>
+                  value="../src;../src/config/default;../src/config/default/QSpin;../src/config/default/QSpin/Current_Calculation/;../src/config/default/QSpin/Field_Oriented_Control/;../src/config/default/QSpin/Hardware_Abstraction/;../src/config/default/QSpin/Parameters/;../src/config/default/QSpin/Rotor_Position_Calculation/;../src/config/default/QSpin/Utilities/;../src/config/default/QSpin/Voltage_Calculation/;../src/config/default/X2CCode;../src/config/default/X2Cscope;../src/packs/CMSIS/;../src/packs/CMSIS/CMSIS/Core/Include;../src/packs/PIC32CM1216MC00048_DFP"/>
         <property key="generate-16-bit-code" value="false"/>
         <property key="generate-micro-compressed-code" value="false"/>
         <property key="isolate-each-function" value="true"/>
@@ -502,6 +492,120 @@
         <property key="stack-smashing" value=""/>
         <property key="wpo-lto" value="false"/>
       </C32Global>
+      <Tool>
+        <property key="AutoSelectMemRanges" value="auto"/>
+        <property key="SecureSegment.SegmentProgramming" value="FullChipProgramming"/>
+        <property key="ToolFirmwareFilePath"
+                  value="Press to browse for a specific firmware version"/>
+        <property key="ToolFirmwareOption.UpdateOptions"
+                  value="ToolFirmwareOption.UseLatest"/>
+        <property key="ToolFirmwareToolPack"
+                  value="Press to select which tool pack to use"/>
+        <property key="communication.interface" value="swd"/>
+        <property key="communication.interface.jtag" value="2wire"/>
+        <property key="communication.speed" value="2.000"/>
+        <property key="debugoptions.debug-startup" value="Use system settings"/>
+        <property key="debugoptions.reset-behaviour" value="Use system settings"/>
+        <property key="debugoptions.simultaneous.debug" value="false"/>
+        <property key="debugoptions.useswbreakpoints" value="false"/>
+        <property key="event.recorder.debugger.behavior" value="Running"/>
+        <property key="event.recorder.enabled" value="false"/>
+        <property key="event.recorder.scvd.files" value=""/>
+        <property key="freeze.timers" value="false"/>
+        <property key="lastid" value=""/>
+        <property key="memories.aux" value="false"/>
+        <property key="memories.bootflash" value="true"/>
+        <property key="memories.configurationmemory" value="true"/>
+        <property key="memories.configurationmemory2" value="true"/>
+        <property key="memories.dataflash" value="true"/>
+        <property key="memories.eeprom" value="true"/>
+        <property key="memories.exclude.configurationmemory" value="true"/>
+        <property key="memories.flashdata" value="true"/>
+        <property key="memories.id" value="true"/>
+        <property key="memories.instruction.ram.ranges"
+                  value="${memories.instruction.ram.ranges}"/>
+        <property key="memories.programmemory" value="true"/>
+        <property key="memories.programmemory.ranges" value="0-1ffff"/>
+        <property key="programoptions.donoteraseauxmem" value="false"/>
+        <property key="programoptions.eraseb4program" value="true"/>
+        <property key="programoptions.pgmentry.voltage" value="low"/>
+        <property key="programoptions.pgmspeed" value="Med"/>
+        <property key="programoptions.preservedataflash" value="false"/>
+        <property key="programoptions.preservedataflash.ranges"
+                  value="${memories.dataflash.default}"/>
+        <property key="programoptions.preserveeeprom" value="false"/>
+        <property key="programoptions.preserveeeprom.ranges" value=""/>
+        <property key="programoptions.preserveprogram.ranges" value=""/>
+        <property key="programoptions.preserveprogramrange" value="false"/>
+        <property key="programoptions.preserveuserid" value="false"/>
+        <property key="programoptions.program.otpconfig" value="false"/>
+        <property key="programoptions.programcalmem" value="false"/>
+        <property key="programoptions.programuserotp" value="false"/>
+        <property key="programoptions.smart.program" value="When debugging only"/>
+        <property key="programoptions.testmodeentrymethod" value="VDDFirst"/>
+        <property key="toolpack.updateoptions"
+                  value="toolpack.updateoptions.uselatestoolpack"/>
+        <property key="toolpack.updateoptions.packversion"
+                  value="Press to select which tool pack to use"/>
+        <property key="x.erase.clearprot" value="true"/>
+      </Tool>
+      <pkob4hybrid>
+        <property key="AutoSelectMemRanges" value="auto"/>
+        <property key="SecureSegment.SegmentProgramming" value="FullChipProgramming"/>
+        <property key="ToolFirmwareFilePath"
+                  value="Press to browse for a specific firmware version"/>
+        <property key="ToolFirmwareOption.UpdateOptions"
+                  value="ToolFirmwareOption.UseLatest"/>
+        <property key="ToolFirmwareToolPack"
+                  value="Press to select which tool pack to use"/>
+        <property key="communication.interface" value="swd"/>
+        <property key="communication.interface.jtag" value="2wire"/>
+        <property key="communication.speed" value="2.000"/>
+        <property key="debugoptions.debug-startup" value="Use system settings"/>
+        <property key="debugoptions.reset-behaviour" value="Use system settings"/>
+        <property key="debugoptions.simultaneous.debug" value="false"/>
+        <property key="debugoptions.useswbreakpoints" value="false"/>
+        <property key="event.recorder.debugger.behavior" value="Running"/>
+        <property key="event.recorder.enabled" value="false"/>
+        <property key="event.recorder.scvd.files" value=""/>
+        <property key="freeze.timers" value="false"/>
+        <property key="lastid" value=""/>
+        <property key="memories.aux" value="false"/>
+        <property key="memories.bootflash" value="true"/>
+        <property key="memories.configurationmemory" value="true"/>
+        <property key="memories.configurationmemory2" value="true"/>
+        <property key="memories.dataflash" value="true"/>
+        <property key="memories.eeprom" value="true"/>
+        <property key="memories.exclude.configurationmemory" value="true"/>
+        <property key="memories.flashdata" value="true"/>
+        <property key="memories.id" value="true"/>
+        <property key="memories.instruction.ram.ranges"
+                  value="${memories.instruction.ram.ranges}"/>
+        <property key="memories.programmemory" value="true"/>
+        <property key="memories.programmemory.ranges" value="0-1ffff"/>
+        <property key="programoptions.donoteraseauxmem" value="false"/>
+        <property key="programoptions.eraseb4program" value="true"/>
+        <property key="programoptions.pgmentry.voltage" value="low"/>
+        <property key="programoptions.pgmspeed" value="Med"/>
+        <property key="programoptions.preservedataflash" value="false"/>
+        <property key="programoptions.preservedataflash.ranges"
+                  value="${memories.dataflash.default}"/>
+        <property key="programoptions.preserveeeprom" value="false"/>
+        <property key="programoptions.preserveeeprom.ranges" value=""/>
+        <property key="programoptions.preserveprogram.ranges" value=""/>
+        <property key="programoptions.preserveprogramrange" value="false"/>
+        <property key="programoptions.preserveuserid" value="false"/>
+        <property key="programoptions.program.otpconfig" value="false"/>
+        <property key="programoptions.programcalmem" value="false"/>
+        <property key="programoptions.programuserotp" value="false"/>
+        <property key="programoptions.smart.program" value="When debugging only"/>
+        <property key="programoptions.testmodeentrymethod" value="VDDFirst"/>
+        <property key="toolpack.updateoptions"
+                  value="toolpack.updateoptions.uselatestoolpack"/>
+        <property key="toolpack.updateoptions.packversion"
+                  value="Press to select which tool pack to use"/>
+        <property key="x.erase.clearprot" value="true"/>
+      </pkob4hybrid>
     </conf>
   </confs>
 </configurationDescriptor>

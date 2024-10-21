@@ -1,15 +1,12 @@
 package:
   format-version: "1.0.0"
   name: "mc_apps_pic32cm_mc"
-  version: "v3.3.1"
+  version: "v3.4.0"
   type: "application"
   status: "production"
   required: false
 
   dependencies:
-    - name: "csp"
-      type: "package"
-      version: "v3.17.0"
-    - name: "x2c"
-      type: "package"
-      version: "v1.4.0"
+     - name: "motor_control"
+       type: "package"
+       version: "fixed_point_dev_imprv"

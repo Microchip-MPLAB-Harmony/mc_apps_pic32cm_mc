@@ -51,25 +51,10 @@ Headers inclusions
 /*******************************************************************************
  * Local configuration options
 *******************************************************************************/
-#define ONE_BY_SQRT3_FLOAT (float32_t)(0.577350269) /*!< Value of 1/sqrt(3) as a float */
-#define TWO_PI_FLOAT (float32_t)(6.28318530f)     /*!< Value of 2*pi as a float */
 
 /*******************************************************************************
  * Private data types
 *******************************************************************************/
-/**
- * @brief Structure defining MTPA module state
- */
-typedef struct
-{
-    bool enable;         /*!< Flag indicating if MTPA module is enabled */
-    bool initDone;       /*!< Flag indicating if MTPA module initialization is done */
-    int16_t psi;         /*!< Psi parameter */
-    int32_t K1;          /*!< K1 parameter */
-    int32_t K2;          /*!< K2 parameter */
-    int16_t idref;       /*!< Reference id current */
-} tmcFlx_MTPA_s;
-
 /**
  * @brief Structure defining flux control state
  */
@@ -77,7 +62,6 @@ typedef struct
 {
     bool enable;                    /*!< Flag indicating if flux control is enabled */
     bool initDone;                  /*!< Flag indicating if flux control initialization is done */
-    tmcFlx_MTPA_s bMTPA;            /*!< MTPA module state structure */
     tmcUtils_PiControl_s bPIController; /*!< PI controller state structure */
 } tmcFlx_State_s;
 
@@ -97,6 +81,7 @@ Macro Functions
 /*******************************************************************************
 Private Functions
 *******************************************************************************/
+
 
 /*******************************************************************************
  * Interface Functions
@@ -118,13 +103,12 @@ void  mcFlxI_FluxControlInit( tmcFlx_Parameters_s * const pParameters )
     mcFlxI_ParametersSet(pParameters);
 
     /** Set PI controller parameters */
-    float32_t Kp = pParameters->Kp;// * BASE_SPEED_IN_RPM / BASE_CURRENT_IN_AMPS;
-    float32_t Ki  = pParameters->Ki;// * BASE_SPEED_IN_RPM / BASE_CURRENT_IN_AMPS;
+    float32_t Kp = pParameters->Kp * BASE_CURRENT_IN_AMPS / BASE_VOLTAGE_IN_VOLTS;
+    float32_t Ki  = pParameters->Ki * BASE_CURRENT_IN_AMPS / BASE_VOLTAGE_IN_VOLTS;
     mcUtils_PiControlInit( Kp, Ki, pParameters->dt, &mcFlx_State_mds.bPIController );
 
     /** Set initialization flag as true */
     mcFlx_State_mds.initDone = true;
-
 }
 
 /*! 
@@ -148,8 +132,10 @@ void  mcFlxI_FluxControlEnable( tmcFlx_Parameters_s * const pParameters )
     }
     else
     {
-         /** For MISRA Compliance */
+        /** For MISRA Compliance */
     }
+
+
 
     /** Set enable flag as true */
     pState->enable = true;
@@ -181,7 +167,6 @@ void  mcFlxI_FluxControlDisable( tmcFlx_Parameters_s * const pParameters )
 
     /** Set enable flag as true */
     pState->enable = false;
-
 }
 
 /*! 
@@ -230,10 +215,10 @@ void mcFlxI_FluxControlManual(  const tmcFlx_Parameters_s * const pParameters,
  */
 #ifdef RAM_EXECUTE
 void __ramfunc__  mcFlxI_FluxControlAuto( const tmcFlx_Parameters_s * const pParameters,
-                                        const int16_t iDref, const int16_t iDact, int16_t * const pOut   )
+                                        const int16_t iDref, const int16_t iDact, int16_t iDmax, int16_t * const pOut   )
 #else
-void mcFlxI_FluxControlAuto(  const tmcFlx_Parameters_s * const pParameters,
-                           const int16_t iDref, const int16_t iDact, int16_t * const pOut )
+void __ramfunc__  mcFlxI_FluxControlAuto( const tmcFlx_Parameters_s * const pParameters,
+                                        const int16_t iDref, const int16_t iDact, int16_t iDmax, int16_t * const pOut   )
 #endif
 {
     /** Get the linked state variable */
@@ -246,7 +231,7 @@ void mcFlxI_FluxControlAuto(  const tmcFlx_Parameters_s * const pParameters,
         int16_t error = iDref - iDact;
 
         /** Limit update for PI controller */
-        mcUtils_PiLimitUpdate( -16384, 16383, &pState->bPIController );
+        mcUtils_PiLimitUpdate( -iDmax, iDmax, &pState->bPIController );
 
         /** Excecute PI controller */
         mcUtils_PiControl( error, &pState->bPIController );
@@ -277,7 +262,6 @@ void mcFlxI_FluxControlReset( const tmcFlx_Parameters_s * const pParameters )
 
     /** Reset PI Controller */
     mcUtils_PiControlReset( 0, &pState->bPIController );
+
 }
-
-
 

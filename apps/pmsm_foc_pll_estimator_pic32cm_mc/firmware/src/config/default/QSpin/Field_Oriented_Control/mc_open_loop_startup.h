@@ -96,7 +96,7 @@ typedef struct
 __STATIC_INLINE void mcSupI_ParametersSet(tmcSup_Parameters_s * const pParameters)
 {
     pParameters->pMotorParameters = &mcMotI_PMSM_gds;
-    pParameters->dt = (float32_t)(0.000063);
+    pParameters->dt = (float32_t)(0.00005);
     pParameters->alignmentTime = (float32_t)(0.5);
     pParameters->alignmentCurrent = (float32_t)(1);
     pParameters->openLoopCurrent = (float32_t)(1);

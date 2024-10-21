@@ -13,7 +13,7 @@
  *
  * @Description
  *    This file contains variables and function implementations which are generally used for reference
- *    control in pulse width modulation. It is implemented in Q2.14 fixed point arithmetic.
+ *    control in pulse width modulation. 
  */
 
 
@@ -59,12 +59,15 @@ Local configuration options
  */
 typedef struct
 {
-    bool enable;        /**< Flag indicating if the module is enabled */
-    bool initDone;      /**< Flag indicating if initialization is done */
-    int16_t lowerLimit; /**< Lower limit for the reference value */
-    int16_t upperLimit; /**< Upper limit for the reference value */
-    int16_t reference;  /**< Reference value */
-    int16_t rampRate;   /**< Ramp rate for the reference value */
+    bool enable;                /**< Flag indicating if the module is enabled */
+    bool initDone;              /**< Flag indicating if initialization is done */
+    int16_t lowerLimit;         /**< Lower limit for the reference value */
+    int16_t upperLimit;         /**< Upper limit for the reference value */
+    int32_t scaledLowerLimit;   /**< Scaled lower limit for the reference value */
+    int32_t scaledUpperLimit;   /**< Scaled upper limit for the reference value */
+    int32_t scaledReference;    /**< Scaled reference value */
+    int32_t scaledRampRate;     /**< Scaled ramp rate       */
+    int16_t reference;          /**< Reference value */
 } tmcRef_State_s;
 
 /*******************************************************************************
@@ -97,18 +100,27 @@ Private Functions
  */
 void  mcRefI_ReferenceControlInit( tmcRef_Parameters_s * const pParameters )
 {
+    float32_t  temp;
+
     /** Link state variable structure to the module */
     pParameters->pStatePointer = (void *)&mcRef_State_mds;
 
     /** Set parameters */
     mcRefI_ParametersSet(pParameters);
 
-    mcRef_State_mds.lowerLimit = K_SPEED * pParameters->minimumRpm;
-    mcRef_State_mds.upperLimit = K_SPEED * pParameters->maximumRpm;
+    temp = ( K_SPEED * pParameters->minimumRpm ) + 0.5f;
+    mcRef_State_mds.lowerLimit = (int16_t)temp;
+
+    temp = ( K_SPEED * pParameters->maximumRpm ) + 0.5f;
+    mcRef_State_mds.upperLimit = (int16_t)temp;
+
+    mcRef_State_mds.scaledLowerLimit = Q_LEFT_SHIFT((int32_t)mcRef_State_mds.lowerLimit, 15u );
+    mcRef_State_mds.scaledUpperLimit = Q_LEFT_SHIFT((int32_t)mcRef_State_mds.upperLimit, 15u );
+
 
     /** Update state variables */
-    /** ToDO: To calculate based on fed parameters  */
-    mcRef_State_mds.rampRate = 1;
+    temp = (float32_t)( (float32_t)Q_SCALE( pParameters->rpmPerSecond / BASE_SPEED_IN_RPM ) ) /  PWM_FREQUENCY;
+    mcRef_State_mds.scaledRampRate =  Q_SCALE( temp );
     mcRef_State_mds.initDone = true;
 }
 
@@ -164,7 +176,6 @@ void  mcRefI_ReferenceControlDisable( tmcRef_Parameters_s * const pParameters )
 
     /** Set enable flag as true */
     pState->enable = false;
-
 }
 
 /**
@@ -192,40 +203,29 @@ void mcRefI_ReferenceControl(  tmcRef_Parameters_s * const pParameters,
     {
         /** Execute reference control */
 
-        if( ( pState->reference + pState->rampRate ) < command )
+        /** Execute reference control */
+        int32_t scaledCommand = Q_LEFT_SHIFT((int32_t)command, 15u );
+        if( (  pState->scaledReference + pState->scaledRampRate )  < scaledCommand )
         {
-            /** Ramp-up*/
-            pState->reference += pState->rampRate;
+            pState->scaledReference += pState->scaledRampRate;
         }
-        else if( ( pState->reference - pState->rampRate ) > command )
+        else if(  (  pState->scaledReference - pState->scaledRampRate )  > scaledCommand )
         {
-            /** Ramp-down */
-            pState->reference -= pState->rampRate;
-        }
-        else
-        {
-            pState->reference = command;
-        }
-
-        /** Clamp the reference  */
-        if( pState->reference > pState->upperLimit )
-        {
-            pState->reference = pState->upperLimit;
-        }
-        else if( pState->reference < pState->lowerLimit)
-        {
-            pState->reference = pState->lowerLimit;
+            pState->scaledReference -= pState->scaledRampRate;
         }
         else
         {
-            /** For MISRA Compliance */
+            pState->scaledReference = scaledCommand;
         }
 
+        UTIL_ApplyClampS32( &pState->scaledReference, pState->scaledUpperLimit, pState->scaledLowerLimit);
+        pState->reference = (int16_t)mcUtils_RightShiftS32(pState->scaledReference, 15 );
         *pOut = pState->reference;
     }
     else
     {
         /** Reset reference control */
+        mcRefI_ReferenceControlReset(pParameters);
     }
 }
 
@@ -238,5 +238,11 @@ void mcRefI_ReferenceControl(  tmcRef_Parameters_s * const pParameters,
  */
 void mcRefI_ReferenceControlReset( tmcRef_Parameters_s * const pParameters )
 {
+    /** Get the linked state variable */
+    tmcRef_State_s * pState;
+    pState = (tmcRef_State_s *)pParameters->pStatePointer;
+
     /** Reset reference control state variables  */
+    pState->reference = pState->lowerLimit;
+    pState->scaledReference = Q_LEFT_SHIFT((int32_t)pState->lowerLimit, 15u );
 }

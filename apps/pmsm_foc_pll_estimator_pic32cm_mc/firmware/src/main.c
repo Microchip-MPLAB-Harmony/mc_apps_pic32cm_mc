@@ -76,7 +76,7 @@ int main ( void )
         mcAppI_NonISRTasks();
 
         /* X2C Communication */
-        X2CScope_Communicate();
+        X2Cscope_Communicate();
 
     }
 

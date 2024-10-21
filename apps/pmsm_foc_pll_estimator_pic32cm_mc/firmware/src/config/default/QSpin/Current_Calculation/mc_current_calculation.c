@@ -74,6 +74,8 @@ typedef struct
     int16_t  ibOffset;          /**< Offset for phase B current */
     int16_t  minOffset;         /**< Minimum offset value */
     int16_t  maxOffset;         /**< Maximum offset value */
+    int16_t  convFactorValue;    /**<  Coversion factor value */
+    uint16_t  convFactorShift;   /**<  Coversion factor shift */
     int32_t  iaOffsetBuffer;    /**< Buffer for phase A current offset calculation */
     int32_t  ibOffsetBuffer;    /**< Buffer for phase B current offset calculation */
 } tmcCur_States_s;
@@ -116,18 +118,15 @@ tmcCur_ModuleData_s mcCurI_ModuleData_gds;
  */
 void mcCurI_CurrentCalculationInit(tmcCur_ModuleData_s * const pModule)
 {
-#if MCPMSMFOC_OFFSET_OOR == true
-    tmcCur_States_s *pState;
-
-    pState = &mcCur_State_mds;
-
-    /* Update intermediate parameters */
-    pState->maxOffset = pModule->pParameters.maxOffset;
-    pState->minOffset = pModule->pParameters.minOffset;
-#endif
 
     /* Set parameters */
-    mcCur_ParametersSet(&pModule->pParameters);
+    mcCur_ParametersSet(&pModule->dParameters);
+
+    /* Set parameters */
+    mcCur_ParametersSet( &pModule->dParameters);
+
+    float32_t f32a = 16.0f * pModule->dParameters.maxBoardCurrent / pModule->dParameters.baseCurrent;
+    mcUtils_FloatToValueShiftPair( f32a, &mcCur_State_mds.convFactorValue, &mcCur_State_mds.convFactorShift );
 }
 
 /**
@@ -139,19 +138,20 @@ void mcCurI_CurrentCalculationInit(tmcCur_ModuleData_s * const pModule)
  * 
  * @return None
  */
-void mcCurI_CurrentSensorOffsetCalculate(tmcCur_ModuleData_s * const pModule)
+tmcTypes_StdReturn_e mcCurI_CurrentOffsetCalculation(tmcCur_ModuleData_s * const pModule)
 {
-    tmcCur_States_s *pState;
-    tmcCur_Input_s *pInput;
-    tmcCur_Output_s *pOutput;
+    tmcTypes_StdReturn_e eStatus = StdReturn_Progress;
+    tmcCur_States_s * pState;
+    tmcCur_Input_s * pInput;
+    tmcCur_Output_s * pOutput;
 
-    pInput = &pModule->pInput;
+    pInput = &pModule->dInput;
     pOutput = &pModule->dOutput;
     pState = &mcCur_State_mds;
 
-    mcCur_InputPortsRead(pInput);
+    mcCur_InputPortsRead( pInput );
 
-    if (pState->adcSampleCounter < OFFSET_SAMPLES)
+    if ( pState->adcSampleCounter < OFFSET_SAMPLES)
     {
         pState->iaOffsetBuffer += pInput->iaAdcInput;
         pState->ibOffsetBuffer += pInput->ibAdcInput;
@@ -159,17 +159,22 @@ void mcCurI_CurrentSensorOffsetCalculate(tmcCur_ModuleData_s * const pModule)
     }
     else
     {
-        pState->iaOffset = (int16_t)(pState->iaOffsetBuffer / (int16_t)OFFSET_SAMPLES);
-        pState->ibOffset = (int16_t)(pState->ibOffsetBuffer / (int16_t)OFFSET_SAMPLES);
 
-        /** Set ADC Calibration Done Flag */
+        pState->iaOffset = (int16_t)( pState->iaOffsetBuffer/ (int16_t)OFFSET_SAMPLES );
+        pState->ibOffset = (int16_t)( pState->ibOffsetBuffer/ (int16_t)OFFSET_SAMPLES );
+
+
+        /** Set the return status as success */
+        eStatus = StdReturn_Complete;
+
+        /**Set ADC Calibration Done Flag */
         pOutput->calibDone = 1u;
+
     }
-#if MCPMSMFOC_OFFSET_OOR == true
-    /** ToDO: Add plausibility check */
-#endif
 
     mcCur_OutputPortsWrite(&pModule->dOutput);
+
+    return eStatus;
 }
 
 /**
@@ -182,25 +187,31 @@ void mcCurI_CurrentSensorOffsetCalculate(tmcCur_ModuleData_s * const pModule)
  * 
  * @return None
  */
+#ifdef RAM_EXECUTE
+void __ramfunc__ mcCurI_CurrentCalculation(tmcCur_ModuleData_s * const pModule)
+#else
 void mcCurI_CurrentCalculation(tmcCur_ModuleData_s * const pModule)
+#endif
 {
-    tmcCur_States_s *pState;
-    tmcCur_Input_s *pInput;
-    tmcCur_Output_s *pOutput;
+    tmcCur_States_s * pState;
+    tmcCur_Input_s * pInput;
+    tmcCur_Output_s * pOutput;
 
-    pInput = &pModule->pInput;
+    pInput = &pModule->dInput;
     pOutput = &pModule->dOutput;
     pState = &mcCur_State_mds;
 
-    mcCur_InputPortsRead(&pModule->pInput);
+    mcCur_InputPortsRead( &pModule->dInput );
 
     /** Phase A current measurement */
-    pOutput->iABC.a = mcUtils_LeftShiftS16((pState->iaOffset - pInput->iaAdcInput), 3u);
+    int16_t   temp  = pState->iaOffset - pInput->iaAdcInput;
+    pOutput->iABC.a = (int16_t)Q_RIGHT_SHIFT(((int32_t)temp * (int32_t)pState->convFactorValue ), pState->convFactorShift );
 
     /** Phase B current measurement */
-    pOutput->iABC.b = mcUtils_LeftShiftS16((pState->ibOffset - pInput->ibAdcInput), 3u);
+    temp  = pState->ibOffset - pInput->ibAdcInput;
+    pOutput->iABC.b = (int16_t)Q_RIGHT_SHIFT(((int32_t)temp * (int32_t)pState->convFactorValue ), pState->convFactorShift );
 
-    mcCur_OutputPortsWrite(&pModule->dOutput);
+    mcCur_OutputPortsWrite( &pModule->dOutput );
 }
 
 /**
@@ -215,7 +226,7 @@ void mcCurI_CurrentCalculation(tmcCur_ModuleData_s * const pModule)
  */
 void mcCurI_CurrentCalculationReset(tmcCur_ModuleData_s * const pModule)
 {
-    tmcCur_Output_s *pOutput;
+    tmcCur_Output_s * pOutput;
     pOutput = &pModule->dOutput;
 
     /** Reset state variables */
@@ -226,6 +237,6 @@ void mcCurI_CurrentCalculationReset(tmcCur_ModuleData_s * const pModule)
     pOutput->iABC.c = 0;
 
     /** Update output ports */
-    mcCur_OutputPortsWrite(&pModule->dOutput);
+    mcCur_OutputPortsWrite( &pModule->dOutput );
 }
 
