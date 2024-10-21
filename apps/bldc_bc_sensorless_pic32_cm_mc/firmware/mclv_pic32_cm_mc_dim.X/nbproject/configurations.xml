@@ -54,11 +54,9 @@
               <itemPath>../src/config/default/peripheral/tcc/plib_tcc0.h</itemPath>
             </logicalFolder>
           </logicalFolder>
-          <logicalFolder name="X2CCode" displayName="X2CCode" projectFiles="true">
-            <logicalFolder name="X2CScope" displayName="X2CScope" projectFiles="true">
-              <itemPath>../src/config/default/X2CCode/X2CScope/inc/X2CScope.h</itemPath>
-              <itemPath>../src/config/default/X2CCode/X2CScope/inc/X2CScopeCommunication.h</itemPath>
-            </logicalFolder>
+          <logicalFolder name="X2Cscope" displayName="X2Cscope" projectFiles="true">
+            <itemPath>../src/config/default/X2Cscope/X2CscopeComm.h</itemPath>
+            <itemPath>../src/config/default/X2Cscope/X2Cscope.h</itemPath>
           </logicalFolder>
           <itemPath>../src/config/default/device_vectors.h</itemPath>
           <itemPath>../src/config/default/interrupts.h</itemPath>
@@ -242,11 +240,9 @@
           <logicalFolder name="stdio" displayName="stdio" projectFiles="true">
             <itemPath>../src/config/default/stdio/xc32_monitor.c</itemPath>
           </logicalFolder>
-          <logicalFolder name="X2CCode" displayName="X2CCode" projectFiles="true">
-            <logicalFolder name="X2CScope" displayName="X2CScope" projectFiles="true">
-              <itemPath>../src/config/default/X2CCode/X2CScope/src/X2CScope.c</itemPath>
-              <itemPath>../src/config/default/X2CCode/X2CScope/src/X2CScopeCommunication.c</itemPath>
-            </logicalFolder>
+          <logicalFolder name="X2Cscope" displayName="X2Cscope" projectFiles="true">
+            <itemPath>../src/config/default/X2Cscope/X2CscopeComm.c</itemPath>
+            <itemPath>../src/config/default/X2Cscope/X2Cscope.c</itemPath>
           </logicalFolder>
           <itemPath>../src/config/default/libc_syscalls.c</itemPath>
           <itemPath>../src/config/default/startup_xc32.c</itemPath>
@@ -277,21 +273,20 @@
         <targetDevice>PIC32CM1216MC00048</targetDevice>
         <targetHeader></targetHeader>
         <targetPluginBoard></targetPluginBoard>
-        <platformTool>pkob4hybrid</platformTool>
+        <platformTool>noID</platformTool>
         <languageToolchain>XC32</languageToolchain>
-        <languageToolchainVersion>4.35</languageToolchainVersion>
+        <languageToolchainVersion>4.45</languageToolchainVersion>
         <platform>3</platform>
       </toolsSet>
       <packs>
         <pack name="PIC32CM-MC_DFP" vendor="Microchip" version="1.4.67"/>
-        <pack name="CMSIS" vendor="ARM" version="5.8.0"/>
       </packs>
       <ScriptingSettings>
       </ScriptingSettings>
       <compileType>
         <linkerTool>
           <linkerLibItems>
-            <linkerLibFileItem>../src/config/default/X2CCode/X2CScope/lib/libCORTEXM0PLUS_X2CScope.a</linkerLibFileItem>
+            <linkerLibFileItem>../src/config/default/X2Cscope/libx2cscope2-cm0-elf.a</linkerLibFileItem>
           </linkerLibItems>
         </linkerTool>
         <archiverTool>
@@ -324,7 +319,7 @@
         <property key="enable-unroll-loops" value="false"/>
         <property key="exclude-floating-point" value="false"/>
         <property key="extra-include-directories"
-                  value="../src;../src/config/default;../src/config/default/X2CCode;../src/config/default/X2CCode/X2CScope/inc;../src/packs/CMSIS/;../src/packs/CMSIS/CMSIS/Core/Include;../src/packs/PIC32CM1216MC00048_DFP"/>
+                  value="../src;../src/config/default;../src/config/default/X2CCode;../src/config/default/X2CCode/X2CScope/inc;../src/config/default/X2Cscope;../src/packs/CMSIS/;../src/packs/CMSIS/CMSIS/Core/Include;../src/packs/PIC32CM1216MC00048_DFP"/>
         <property key="generate-16-bit-code" value="false"/>
         <property key="generate-micro-compressed-code" value="false"/>
         <property key="isolate-each-function" value="true"/>

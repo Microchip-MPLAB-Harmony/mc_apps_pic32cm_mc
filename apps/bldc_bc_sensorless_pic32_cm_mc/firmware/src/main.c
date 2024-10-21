@@ -51,7 +51,7 @@
 #include "definitions.h"                // SYS function prototypes
 #include "X2CScope.h"
 #include "mc_app.h"
-#include "X2CScopeCommunication.h"
+#include "X2CscopeComm.h"
 
 
 extern motor_state_params_t    Motor_StateParams;
@@ -88,7 +88,6 @@ int main ( void )
 {
     /* Initialize all modules */
     SYS_Initialize ( NULL );
-    X2CScope_Init();
 
     LED1_OC_FAULT_Clear();
 
@@ -98,7 +97,7 @@ int main ( void )
     {
         /* Maintain state machines of all polled MPLAB Harmony modules. */
         SYS_Tasks ( );
-        X2CScope_Communicate();
+        X2Cscope_Communicate();
 
         if(1U == Motor_StateParams.var_time_10ms)
         {
