@@ -85,7 +85,7 @@ int main ( void )
     
         /* Maintain state machines of all polled MPLAB Harmony modules. */
         SYS_Tasks ( );
-        X2CScope_Communicate();
+        X2Cscope_Communicate();
         
         
         if(1U == Motor_StateParams.var_time_10ms)

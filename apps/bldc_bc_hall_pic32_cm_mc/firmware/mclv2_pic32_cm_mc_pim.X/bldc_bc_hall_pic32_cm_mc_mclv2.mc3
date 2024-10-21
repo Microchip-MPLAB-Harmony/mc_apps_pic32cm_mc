@@ -1,8 +1,8 @@
-<config configName="mclv2_pic32_cm_mc_pim" projectName="bldc_bc_hall_pic32_cm_mc_mclv2" configVersion="1.1" device="PIC32CM1216MC00048" deviceLibraryClass="com.microchip.mcc.harmony.Harmony3Library" coreVersion="5.5.7">
+<config configName="mclv2_pic32_cm_mc_pim" projectName="bldc_bc_hall_pic32_cm_mc_mclv2" configVersion="1.1" device="PIC32CM1216MC00048" deviceLibraryClass="com.microchip.mcc.harmony.Harmony3Library" coreVersion="5.7.1">
    <usedPackages class="java.util.ArrayList"/>
    <usedClasses class="java.util.TreeMap">
       <entry>
-         <string>X2CScope</string>
+         <string>X2Cscope</string>
          <string>class com.microchip.mcc.harmony.HarmonyModule</string>
       </entry>
       <entry>
@@ -63,11 +63,11 @@
    </usedLibraries>
    <tokenMap class="java.util.TreeMap">
       <entry>
-         <key class="com.microchip.mcc.core.tokenManager.CustomKey" moduleName="X2CScope" name="!@#harmonyAttachmentState"/>
-         <value>&lt;?xml version=&quot;1.0&quot; encoding=&quot;UTF-8&quot;?&gt;&lt;X2CScope&gt;
-  &lt;X2CScope dnOrder=&quot;0&quot;&gt;
+         <key class="com.microchip.mcc.core.tokenManager.CustomKey" moduleName="X2Cscope" name="!@#harmonyAttachmentState"/>
+         <value>&lt;?xml version=&quot;1.0&quot; encoding=&quot;UTF-8&quot;?&gt;&lt;X2Cscope&gt;
+  &lt;X2Cscope dnOrder=&quot;0&quot;&gt;
     &lt;Attachments dnOrder=&quot;0&quot;&gt;
-      &lt;DirectDependency dnOrder=&quot;0&quot; id=&quot;x2cScopeUartDependency&quot;&gt;
+      &lt;DirectDependency dnOrder=&quot;0&quot; id=&quot;X2CscopeUartDependency&quot;&gt;
         &lt;Attributes dnOrder=&quot;0&quot;&gt;
           &lt;String dnOrder=&quot;0&quot; id=&quot;targetComponentID&quot;&gt;
             &lt;Value dnOrder=&quot;0&quot;&gt;sercom3&lt;/Value&gt;
@@ -78,34 +78,83 @@
         &lt;/Attributes&gt;
       &lt;/DirectDependency&gt;
     &lt;/Attachments&gt;
-  &lt;/X2CScope&gt;
-&lt;/X2CScope&gt;
+  &lt;/X2Cscope&gt;
+&lt;/X2Cscope&gt;
 </value>
       </entry>
       <entry>
-         <key class="com.microchip.mcc.core.tokenManager.CustomKey" moduleName="X2CScope" name="#&amp;__MCC_Group_Parrent_id"/>
+         <key class="com.microchip.mcc.core.tokenManager.CustomKey" moduleName="X2Cscope" name="#&amp;__MCC_Group_Parrent_id"/>
          <value>__ROOTVIEW</value>
       </entry>
       <entry>
-         <key class="com.microchip.mcc.core.tokenManager.CustomKey" moduleName="X2CScope" name="X2C_SCOPE_PERIPH_USED"/>
-         <value>&lt;?xml version=&quot;1.0&quot; encoding=&quot;UTF-8&quot;?&gt;&lt;X2CScope&gt;
-  &lt;X2CScope dnOrder=&quot;0&quot; id=&quot;X2C_SCOPE_PERIPH_USED&quot;&gt;
+         <key class="com.microchip.mcc.core.tokenManager.CustomKey" moduleName="X2Cscope" name="X2C_COMM_INSTANCE"/>
+         <value>&lt;?xml version=&quot;1.0&quot; encoding=&quot;UTF-8&quot;?&gt;&lt;X2Cscope&gt;
+  &lt;X2Cscope dnOrder=&quot;0&quot; id=&quot;X2C_COMM_INSTANCE&quot;&gt;
     &lt;Values dnOrder=&quot;0&quot;&gt;
-      &lt;Dynamic dnOrder=&quot;0&quot; id=&quot;X2CScope&quot; value=&quot;SERCOM3_USART&quot;/&gt;
+      &lt;Dynamic dnOrder=&quot;0&quot; id=&quot;X2Cscope&quot; value=&quot;SERCOM3&quot;/&gt;
     &lt;/Values&gt;
-  &lt;/X2CScope&gt;
-&lt;/X2CScope&gt;
+  &lt;/X2Cscope&gt;
+&lt;/X2Cscope&gt;
 </value>
       </entry>
       <entry>
-         <key class="com.microchip.mcc.core.tokenManager.CustomKey" moduleName="X2CScope" name="X2C_SCOPE_UART_ID"/>
-         <value>&lt;?xml version=&quot;1.0&quot; encoding=&quot;UTF-8&quot;?&gt;&lt;X2CScope&gt;
-  &lt;X2CScope dnOrder=&quot;0&quot; id=&quot;X2C_SCOPE_UART_ID&quot;&gt;
+         <key class="com.microchip.mcc.core.tokenManager.CustomKey" moduleName="X2Cscope" name="X2C_COMM_INSTANCE_OLD"/>
+         <value>&lt;?xml version=&quot;1.0&quot; encoding=&quot;UTF-8&quot;?&gt;&lt;X2Cscope&gt;
+  &lt;X2Cscope dnOrder=&quot;0&quot; id=&quot;X2C_COMM_INSTANCE_OLD&quot;&gt;
     &lt;Values dnOrder=&quot;0&quot;&gt;
-      &lt;Dynamic dnOrder=&quot;0&quot; id=&quot;X2CScope&quot; value=&quot;sercom3&quot;/&gt;
+      &lt;Dynamic dnOrder=&quot;0&quot; id=&quot;X2Cscope&quot; value=&quot;SERCOM3&quot;/&gt;
     &lt;/Values&gt;
-  &lt;/X2CScope&gt;
-&lt;/X2CScope&gt;
+  &lt;/X2Cscope&gt;
+&lt;/X2Cscope&gt;
+</value>
+      </entry>
+      <entry>
+         <key class="com.microchip.mcc.core.tokenManager.CustomKey" moduleName="X2Cscope" name="X2C_COMM_INT"/>
+         <value>&lt;?xml version=&quot;1.0&quot; encoding=&quot;UTF-8&quot;?&gt;&lt;X2Cscope&gt;
+  &lt;X2Cscope dnOrder=&quot;0&quot; id=&quot;X2C_COMM_INT&quot;&gt;
+    &lt;Values dnOrder=&quot;0&quot;/&gt;
+  &lt;/X2Cscope&gt;
+&lt;/X2Cscope&gt;
+</value>
+      </entry>
+      <entry>
+         <key class="com.microchip.mcc.core.tokenManager.CustomKey" moduleName="X2Cscope" name="X2C_SCOPE_BAUD_RATE"/>
+         <value>&lt;?xml version=&quot;1.0&quot; encoding=&quot;UTF-8&quot;?&gt;&lt;X2Cscope&gt;
+  &lt;X2Cscope dnOrder=&quot;0&quot; id=&quot;X2C_SCOPE_BAUD_RATE&quot;&gt;
+    &lt;Values dnOrder=&quot;0&quot;/&gt;
+  &lt;/X2Cscope&gt;
+&lt;/X2Cscope&gt;
+</value>
+      </entry>
+      <entry>
+         <key class="com.microchip.mcc.core.tokenManager.CustomKey" moduleName="X2Cscope" name="X2C_SCOPE_BUFFER_SIZE"/>
+         <value>&lt;?xml version=&quot;1.0&quot; encoding=&quot;UTF-8&quot;?&gt;&lt;X2Cscope&gt;
+  &lt;X2Cscope dnOrder=&quot;0&quot; id=&quot;X2C_SCOPE_BUFFER_SIZE&quot;&gt;
+    &lt;Values dnOrder=&quot;0&quot;/&gt;
+  &lt;/X2Cscope&gt;
+&lt;/X2Cscope&gt;
+</value>
+      </entry>
+      <entry>
+         <key class="com.microchip.mcc.core.tokenManager.CustomKey" moduleName="X2Cscope" name="X2C_SCOPE_PERIPH_USED"/>
+         <value>&lt;?xml version=&quot;1.0&quot; encoding=&quot;UTF-8&quot;?&gt;&lt;X2Cscope&gt;
+  &lt;X2Cscope dnOrder=&quot;0&quot; id=&quot;X2C_SCOPE_PERIPH_USED&quot;&gt;
+    &lt;Values dnOrder=&quot;0&quot;&gt;
+      &lt;Dynamic dnOrder=&quot;0&quot; id=&quot;X2Cscope&quot; value=&quot;SERCOM3_USART&quot;/&gt;
+    &lt;/Values&gt;
+  &lt;/X2Cscope&gt;
+&lt;/X2Cscope&gt;
+</value>
+      </entry>
+      <entry>
+         <key class="com.microchip.mcc.core.tokenManager.CustomKey" moduleName="X2Cscope" name="X2C_SCOPE_UART_ID"/>
+         <value>&lt;?xml version=&quot;1.0&quot; encoding=&quot;UTF-8&quot;?&gt;&lt;X2Cscope&gt;
+  &lt;X2Cscope dnOrder=&quot;0&quot; id=&quot;X2C_SCOPE_UART_ID&quot;&gt;
+    &lt;Values dnOrder=&quot;0&quot;&gt;
+      &lt;Dynamic dnOrder=&quot;0&quot; id=&quot;X2Cscope&quot; value=&quot;sercom3&quot;/&gt;
+    &lt;/Values&gt;
+  &lt;/X2Cscope&gt;
+&lt;/X2Cscope&gt;
 </value>
       </entry>
       <entry>
@@ -406,10 +455,10 @@
          <key class="com.microchip.mcc.core.tokenManager.CustomKey" moduleName="core" name="!@#harmonyUserData"/>
          <value>&lt;?xml version=&quot;1.0&quot; encoding=&quot;UTF-8&quot;?&gt;&lt;UserData&gt;
   &lt;UserData dnOrder=&quot;0&quot;&gt;
-    &lt;GraphSettings canvasHeight=&quot;400&quot; canvasWidth=&quot;400&quot; dnOrder=&quot;0&quot;/&gt;
+    &lt;GraphSettings canvasHeight=&quot;583&quot; canvasWidth=&quot;412&quot; dnOrder=&quot;0&quot;/&gt;
     &lt;ComponentGraph dnOrder=&quot;1&quot; id=&quot;__ROOTVIEW&quot;&gt;
       &lt;ElementPositions dnOrder=&quot;0&quot;&gt;
-        &lt;ElementPosition dnOrder=&quot;0&quot; id=&quot;X2CScope&quot; x=&quot;250&quot; y=&quot;464&quot;/&gt;
+        &lt;ElementPosition dnOrder=&quot;0&quot; id=&quot;X2Cscope&quot; x=&quot;198&quot; y=&quot;447&quot;/&gt;
         &lt;ElementPosition dnOrder=&quot;1&quot; id=&quot;adc1&quot; x=&quot;146&quot; y=&quot;200&quot;/&gt;
         &lt;ElementPosition dnOrder=&quot;2&quot; id=&quot;cmsis&quot; x=&quot;230&quot; y=&quot;108&quot;/&gt;
         &lt;ElementPosition dnOrder=&quot;3&quot; id=&quot;core&quot; x=&quot;149&quot; y=&quot;107&quot;/&gt;
@@ -419,7 +468,7 @@
         &lt;ElementPosition dnOrder=&quot;7&quot; id=&quot;evsys&quot; x=&quot;15&quot; y=&quot;301&quot;/&gt;
         &lt;ElementPosition dnOrder=&quot;8&quot; id=&quot;nvmctrl&quot; x=&quot;12&quot; y=&quot;70&quot;/&gt;
         &lt;ElementPosition dnOrder=&quot;9&quot; id=&quot;pdec&quot; x=&quot;401&quot; y=&quot;199&quot;/&gt;
-        &lt;ElementPosition dnOrder=&quot;10&quot; id=&quot;sercom3&quot; x=&quot;18&quot; y=&quot;463&quot;/&gt;
+        &lt;ElementPosition dnOrder=&quot;10&quot; id=&quot;sercom3&quot; x=&quot;38&quot; y=&quot;418&quot;/&gt;
         &lt;ElementPosition dnOrder=&quot;11&quot; id=&quot;tc3&quot; x=&quot;275&quot; y=&quot;201&quot;/&gt;
         &lt;ElementPosition dnOrder=&quot;12&quot; id=&quot;tc4&quot; x=&quot;278&quot; y=&quot;293&quot;/&gt;
         &lt;ElementPosition dnOrder=&quot;13&quot; id=&quot;tcc0&quot; x=&quot;24&quot; y=&quot;200&quot;/&gt;
@@ -4708,10 +4757,10 @@
       &lt;DirectCapability dnOrder=&quot;2&quot; id=&quot;SERCOM3_UART&quot;&gt;
         &lt;Attributes dnOrder=&quot;0&quot;&gt;
           &lt;String dnOrder=&quot;0&quot; id=&quot;targetComponentID&quot;&gt;
-            &lt;Value dnOrder=&quot;0&quot;&gt;X2CScope&lt;/Value&gt;
+            &lt;Value dnOrder=&quot;0&quot;&gt;X2Cscope&lt;/Value&gt;
           &lt;/String&gt;
           &lt;String dnOrder=&quot;1&quot; id=&quot;targetAttachmentID&quot;&gt;
-            &lt;Value dnOrder=&quot;0&quot;&gt;x2cScopeUartDependency&lt;/Value&gt;
+            &lt;Value dnOrder=&quot;0&quot;&gt;X2CscopeUartDependency&lt;/Value&gt;
           &lt;/String&gt;
         &lt;/Attributes&gt;
       &lt;/DirectCapability&gt;
@@ -4725,6 +4774,15 @@
          <value>__ROOTVIEW</value>
       </entry>
       <entry>
+         <key class="com.microchip.mcc.core.tokenManager.CustomKey" moduleName="sercom3" name="I2CM_ADDR_SIZE"/>
+         <value>&lt;?xml version=&quot;1.0&quot; encoding=&quot;UTF-8&quot;?&gt;&lt;sercom3&gt;
+  &lt;sercom3 dnOrder=&quot;0&quot; id=&quot;I2CM_ADDR_SIZE&quot;&gt;
+    &lt;Values dnOrder=&quot;0&quot;/&gt;
+  &lt;/sercom3&gt;
+&lt;/sercom3&gt;
+</value>
+      </entry>
+      <entry>
          <key class="com.microchip.mcc.core.tokenManager.CustomKey" moduleName="sercom3" name="I2CM_BAUD"/>
          <value>&lt;?xml version=&quot;1.0&quot; encoding=&quot;UTF-8&quot;?&gt;&lt;sercom3&gt;
   &lt;sercom3 dnOrder=&quot;0&quot; id=&quot;I2CM_BAUD&quot;&gt;
@@ -4736,14 +4794,226 @@
 </value>
       </entry>
       <entry>
-         <key class="com.microchip.mcc.core.tokenManager.CustomKey" moduleName="sercom3" name="I2C_BAUD_ERROR_COMMENT"/>
+         <key class="com.microchip.mcc.core.tokenManager.CustomKey" moduleName="sercom3" name="I2CM_BAUD_SIZE"/>
          <value>&lt;?xml version=&quot;1.0&quot; encoding=&quot;UTF-8&quot;?&gt;&lt;sercom3&gt;
-  &lt;sercom3 dnOrder=&quot;0&quot; id=&quot;I2C_BAUD_ERROR_COMMENT&quot;&gt;
-    &lt;Attributes dnOrder=&quot;0&quot;&gt;
-      &lt;String dnOrder=&quot;0&quot; id=&quot;text&quot;&gt;
-        &lt;Value dnOrder=&quot;0&quot;&gt;****&amp;amp;#160;Reference&amp;amp;#160;Clock&amp;amp;#160;Frequency&amp;amp;#160;too&amp;amp;#160;low&amp;amp;#160;for&amp;amp;#160;generating&amp;amp;#160;the&amp;amp;#160;desired&amp;amp;#160;I2C&amp;amp;#160;Clock&amp;amp;#160;&lt;/Value&gt;
-      &lt;/String&gt;
-    &lt;/Attributes&gt;
+  &lt;sercom3 dnOrder=&quot;0&quot; id=&quot;I2CM_BAUD_SIZE&quot;&gt;
+    &lt;Values dnOrder=&quot;0&quot;/&gt;
+  &lt;/sercom3&gt;
+&lt;/sercom3&gt;
+</value>
+      </entry>
+      <entry>
+         <key class="com.microchip.mcc.core.tokenManager.CustomKey" moduleName="sercom3" name="I2CM_MODE"/>
+         <value>&lt;?xml version=&quot;1.0&quot; encoding=&quot;UTF-8&quot;?&gt;&lt;sercom3&gt;
+  &lt;sercom3 dnOrder=&quot;0&quot; id=&quot;I2CM_MODE&quot;&gt;
+    &lt;Values dnOrder=&quot;0&quot;/&gt;
+  &lt;/sercom3&gt;
+&lt;/sercom3&gt;
+</value>
+      </entry>
+      <entry>
+         <key class="com.microchip.mcc.core.tokenManager.CustomKey" moduleName="sercom3" name="I2CM_TRISE"/>
+         <value>&lt;?xml version=&quot;1.0&quot; encoding=&quot;UTF-8&quot;?&gt;&lt;sercom3&gt;
+  &lt;sercom3 dnOrder=&quot;0&quot; id=&quot;I2CM_TRISE&quot;&gt;
+    &lt;Values dnOrder=&quot;0&quot;/&gt;
+  &lt;/sercom3&gt;
+&lt;/sercom3&gt;
+</value>
+      </entry>
+      <entry>
+         <key class="com.microchip.mcc.core.tokenManager.CustomKey" moduleName="sercom3" name="I2CS_INTENSET_ERROR"/>
+         <value>&lt;?xml version=&quot;1.0&quot; encoding=&quot;UTF-8&quot;?&gt;&lt;sercom3&gt;
+  &lt;sercom3 dnOrder=&quot;0&quot; id=&quot;I2CS_INTENSET_ERROR&quot;&gt;
+    &lt;Values dnOrder=&quot;0&quot;/&gt;
+  &lt;/sercom3&gt;
+&lt;/sercom3&gt;
+</value>
+      </entry>
+      <entry>
+         <key class="com.microchip.mcc.core.tokenManager.CustomKey" moduleName="sercom3" name="I2CS_INTERRUPT_MODE"/>
+         <value>&lt;?xml version=&quot;1.0&quot; encoding=&quot;UTF-8&quot;?&gt;&lt;sercom3&gt;
+  &lt;sercom3 dnOrder=&quot;0&quot; id=&quot;I2CS_INTERRUPT_MODE&quot;&gt;
+    &lt;Values dnOrder=&quot;0&quot;/&gt;
+  &lt;/sercom3&gt;
+&lt;/sercom3&gt;
+</value>
+      </entry>
+      <entry>
+         <key class="com.microchip.mcc.core.tokenManager.CustomKey" moduleName="sercom3" name="I2CS_LOWTOUT_ERROR_SUPPORT"/>
+         <value>&lt;?xml version=&quot;1.0&quot; encoding=&quot;UTF-8&quot;?&gt;&lt;sercom3&gt;
+  &lt;sercom3 dnOrder=&quot;0&quot; id=&quot;I2CS_LOWTOUT_ERROR_SUPPORT&quot;&gt;
+    &lt;Values dnOrder=&quot;0&quot;/&gt;
+  &lt;/sercom3&gt;
+&lt;/sercom3&gt;
+</value>
+      </entry>
+      <entry>
+         <key class="com.microchip.mcc.core.tokenManager.CustomKey" moduleName="sercom3" name="I2CS_LOWTOUT_SUPPORT"/>
+         <value>&lt;?xml version=&quot;1.0&quot; encoding=&quot;UTF-8&quot;?&gt;&lt;sercom3&gt;
+  &lt;sercom3 dnOrder=&quot;0&quot; id=&quot;I2CS_LOWTOUT_SUPPORT&quot;&gt;
+    &lt;Values dnOrder=&quot;0&quot;/&gt;
+  &lt;/sercom3&gt;
+&lt;/sercom3&gt;
+</value>
+      </entry>
+      <entry>
+         <key class="com.microchip.mcc.core.tokenManager.CustomKey" moduleName="sercom3" name="I2CS_MODE"/>
+         <value>&lt;?xml version=&quot;1.0&quot; encoding=&quot;UTF-8&quot;?&gt;&lt;sercom3&gt;
+  &lt;sercom3 dnOrder=&quot;0&quot; id=&quot;I2CS_MODE&quot;&gt;
+    &lt;Values dnOrder=&quot;0&quot;/&gt;
+  &lt;/sercom3&gt;
+&lt;/sercom3&gt;
+</value>
+      </entry>
+      <entry>
+         <key class="com.microchip.mcc.core.tokenManager.CustomKey" moduleName="sercom3" name="I2CS_PLIB_API_PREFIX"/>
+         <value>&lt;?xml version=&quot;1.0&quot; encoding=&quot;UTF-8&quot;?&gt;&lt;sercom3&gt;
+  &lt;sercom3 dnOrder=&quot;0&quot; id=&quot;I2CS_PLIB_API_PREFIX&quot;&gt;
+    &lt;Values dnOrder=&quot;0&quot;/&gt;
+  &lt;/sercom3&gt;
+&lt;/sercom3&gt;
+</value>
+      </entry>
+      <entry>
+         <key class="com.microchip.mcc.core.tokenManager.CustomKey" moduleName="sercom3" name="I2CS_RUNSTDBY"/>
+         <value>&lt;?xml version=&quot;1.0&quot; encoding=&quot;UTF-8&quot;?&gt;&lt;sercom3&gt;
+  &lt;sercom3 dnOrder=&quot;0&quot; id=&quot;I2CS_RUNSTDBY&quot;&gt;
+    &lt;Values dnOrder=&quot;0&quot;/&gt;
+  &lt;/sercom3&gt;
+&lt;/sercom3&gt;
+</value>
+      </entry>
+      <entry>
+         <key class="com.microchip.mcc.core.tokenManager.CustomKey" moduleName="sercom3" name="I2CS_SCLSM"/>
+         <value>&lt;?xml version=&quot;1.0&quot; encoding=&quot;UTF-8&quot;?&gt;&lt;sercom3&gt;
+  &lt;sercom3 dnOrder=&quot;0&quot; id=&quot;I2CS_SCLSM&quot;&gt;
+    &lt;Values dnOrder=&quot;0&quot;/&gt;
+  &lt;/sercom3&gt;
+&lt;/sercom3&gt;
+</value>
+      </entry>
+      <entry>
+         <key class="com.microchip.mcc.core.tokenManager.CustomKey" moduleName="sercom3" name="I2CS_SDAHOLD_TIME"/>
+         <value>&lt;?xml version=&quot;1.0&quot; encoding=&quot;UTF-8&quot;?&gt;&lt;sercom3&gt;
+  &lt;sercom3 dnOrder=&quot;0&quot; id=&quot;I2CS_SDAHOLD_TIME&quot;&gt;
+    &lt;Values dnOrder=&quot;0&quot;/&gt;
+  &lt;/sercom3&gt;
+&lt;/sercom3&gt;
+</value>
+      </entry>
+      <entry>
+         <key class="com.microchip.mcc.core.tokenManager.CustomKey" moduleName="sercom3" name="I2CS_SEXTTOEN_SUPPORT"/>
+         <value>&lt;?xml version=&quot;1.0&quot; encoding=&quot;UTF-8&quot;?&gt;&lt;sercom3&gt;
+  &lt;sercom3 dnOrder=&quot;0&quot; id=&quot;I2CS_SEXTTOEN_SUPPORT&quot;&gt;
+    &lt;Values dnOrder=&quot;0&quot;/&gt;
+  &lt;/sercom3&gt;
+&lt;/sercom3&gt;
+</value>
+      </entry>
+      <entry>
+         <key class="com.microchip.mcc.core.tokenManager.CustomKey" moduleName="sercom3" name="I2CS_SEXTTOOUT_ERROR_SUPPORT"/>
+         <value>&lt;?xml version=&quot;1.0&quot; encoding=&quot;UTF-8&quot;?&gt;&lt;sercom3&gt;
+  &lt;sercom3 dnOrder=&quot;0&quot; id=&quot;I2CS_SEXTTOOUT_ERROR_SUPPORT&quot;&gt;
+    &lt;Values dnOrder=&quot;0&quot;/&gt;
+  &lt;/sercom3&gt;
+&lt;/sercom3&gt;
+</value>
+      </entry>
+      <entry>
+         <key class="com.microchip.mcc.core.tokenManager.CustomKey" moduleName="sercom3" name="I2CS_SLAVE_ADDDRESS"/>
+         <value>&lt;?xml version=&quot;1.0&quot; encoding=&quot;UTF-8&quot;?&gt;&lt;sercom3&gt;
+  &lt;sercom3 dnOrder=&quot;0&quot; id=&quot;I2CS_SLAVE_ADDDRESS&quot;&gt;
+    &lt;Values dnOrder=&quot;0&quot;/&gt;
+  &lt;/sercom3&gt;
+&lt;/sercom3&gt;
+</value>
+      </entry>
+      <entry>
+         <key class="com.microchip.mcc.core.tokenManager.CustomKey" moduleName="sercom3" name="I2CS_SMEN"/>
+         <value>&lt;?xml version=&quot;1.0&quot; encoding=&quot;UTF-8&quot;?&gt;&lt;sercom3&gt;
+  &lt;sercom3 dnOrder=&quot;0&quot; id=&quot;I2CS_SMEN&quot;&gt;
+    &lt;Values dnOrder=&quot;0&quot;/&gt;
+  &lt;/sercom3&gt;
+&lt;/sercom3&gt;
+</value>
+      </entry>
+      <entry>
+         <key class="com.microchip.mcc.core.tokenManager.CustomKey" moduleName="sercom3" name="I2C_ADDR_TENBITEN"/>
+         <value>&lt;?xml version=&quot;1.0&quot; encoding=&quot;UTF-8&quot;?&gt;&lt;sercom3&gt;
+  &lt;sercom3 dnOrder=&quot;0&quot; id=&quot;I2C_ADDR_TENBITEN&quot;&gt;
+    &lt;Values dnOrder=&quot;0&quot;/&gt;
+  &lt;/sercom3&gt;
+&lt;/sercom3&gt;
+</value>
+      </entry>
+      <entry>
+         <key class="com.microchip.mcc.core.tokenManager.CustomKey" moduleName="sercom3" name="I2C_CLOCK_SPEED"/>
+         <value>&lt;?xml version=&quot;1.0&quot; encoding=&quot;UTF-8&quot;?&gt;&lt;sercom3&gt;
+  &lt;sercom3 dnOrder=&quot;0&quot; id=&quot;I2C_CLOCK_SPEED&quot;&gt;
+    &lt;Values dnOrder=&quot;0&quot;/&gt;
+  &lt;/sercom3&gt;
+&lt;/sercom3&gt;
+</value>
+      </entry>
+      <entry>
+         <key class="com.microchip.mcc.core.tokenManager.CustomKey" moduleName="sercom3" name="I2C_CLOCK_SPEED_HZ"/>
+         <value>&lt;?xml version=&quot;1.0&quot; encoding=&quot;UTF-8&quot;?&gt;&lt;sercom3&gt;
+  &lt;sercom3 dnOrder=&quot;0&quot; id=&quot;I2C_CLOCK_SPEED_HZ&quot;&gt;
+    &lt;Values dnOrder=&quot;0&quot;/&gt;
+  &lt;/sercom3&gt;
+&lt;/sercom3&gt;
+</value>
+      </entry>
+      <entry>
+         <key class="com.microchip.mcc.core.tokenManager.CustomKey" moduleName="sercom3" name="I2C_INTERRUPT_MODE"/>
+         <value>&lt;?xml version=&quot;1.0&quot; encoding=&quot;UTF-8&quot;?&gt;&lt;sercom3&gt;
+  &lt;sercom3 dnOrder=&quot;0&quot; id=&quot;I2C_INTERRUPT_MODE&quot;&gt;
+    &lt;Values dnOrder=&quot;0&quot;/&gt;
+  &lt;/sercom3&gt;
+&lt;/sercom3&gt;
+</value>
+      </entry>
+      <entry>
+         <key class="com.microchip.mcc.core.tokenManager.CustomKey" moduleName="sercom3" name="I2C_MASTER_CODE"/>
+         <value>&lt;?xml version=&quot;1.0&quot; encoding=&quot;UTF-8&quot;?&gt;&lt;sercom3&gt;
+  &lt;sercom3 dnOrder=&quot;0&quot; id=&quot;I2C_MASTER_CODE&quot;&gt;
+    &lt;Values dnOrder=&quot;0&quot;/&gt;
+  &lt;/sercom3&gt;
+&lt;/sercom3&gt;
+</value>
+      </entry>
+      <entry>
+         <key class="com.microchip.mcc.core.tokenManager.CustomKey" moduleName="sercom3" name="I2C_PLIB_API_PREFIX"/>
+         <value>&lt;?xml version=&quot;1.0&quot; encoding=&quot;UTF-8&quot;?&gt;&lt;sercom3&gt;
+  &lt;sercom3 dnOrder=&quot;0&quot; id=&quot;I2C_PLIB_API_PREFIX&quot;&gt;
+    &lt;Values dnOrder=&quot;0&quot;/&gt;
+  &lt;/sercom3&gt;
+&lt;/sercom3&gt;
+</value>
+      </entry>
+      <entry>
+         <key class="com.microchip.mcc.core.tokenManager.CustomKey" moduleName="sercom3" name="I2C_RUNSTDBY"/>
+         <value>&lt;?xml version=&quot;1.0&quot; encoding=&quot;UTF-8&quot;?&gt;&lt;sercom3&gt;
+  &lt;sercom3 dnOrder=&quot;0&quot; id=&quot;I2C_RUNSTDBY&quot;&gt;
+    &lt;Values dnOrder=&quot;0&quot;/&gt;
+  &lt;/sercom3&gt;
+&lt;/sercom3&gt;
+</value>
+      </entry>
+      <entry>
+         <key class="com.microchip.mcc.core.tokenManager.CustomKey" moduleName="sercom3" name="I2C_SCLSM"/>
+         <value>&lt;?xml version=&quot;1.0&quot; encoding=&quot;UTF-8&quot;?&gt;&lt;sercom3&gt;
+  &lt;sercom3 dnOrder=&quot;0&quot; id=&quot;I2C_SCLSM&quot;&gt;
+    &lt;Values dnOrder=&quot;0&quot;/&gt;
+  &lt;/sercom3&gt;
+&lt;/sercom3&gt;
+</value>
+      </entry>
+      <entry>
+         <key class="com.microchip.mcc.core.tokenManager.CustomKey" moduleName="sercom3" name="I2C_SDAHOLD_TIME"/>
+         <value>&lt;?xml version=&quot;1.0&quot; encoding=&quot;UTF-8&quot;?&gt;&lt;sercom3&gt;
+  &lt;sercom3 dnOrder=&quot;0&quot; id=&quot;I2C_SDAHOLD_TIME&quot;&gt;
+    &lt;Values dnOrder=&quot;0&quot;/&gt;
   &lt;/sercom3&gt;
 &lt;/sercom3&gt;
 </value>
@@ -4760,6 +5030,15 @@
 </value>
       </entry>
       <entry>
+         <key class="com.microchip.mcc.core.tokenManager.CustomKey" moduleName="sercom3" name="SERCOM_INSTANCE_NAME"/>
+         <value>&lt;?xml version=&quot;1.0&quot; encoding=&quot;UTF-8&quot;?&gt;&lt;sercom3&gt;
+  &lt;sercom3 dnOrder=&quot;0&quot; id=&quot;SERCOM_INSTANCE_NAME&quot;&gt;
+    &lt;Values dnOrder=&quot;0&quot;/&gt;
+  &lt;/sercom3&gt;
+&lt;/sercom3&gt;
+</value>
+      </entry>
+      <entry>
          <key class="com.microchip.mcc.core.tokenManager.CustomKey" moduleName="sercom3" name="SERCOM_MODE"/>
          <value>&lt;?xml version=&quot;1.0&quot; encoding=&quot;UTF-8&quot;?&gt;&lt;sercom3&gt;
   &lt;sercom3 dnOrder=&quot;0&quot; id=&quot;SERCOM_MODE&quot;&gt;
@@ -4771,6 +5050,15 @@
     &lt;Values dnOrder=&quot;1&quot;&gt;
       &lt;Dynamic dnOrder=&quot;0&quot; id=&quot;sercom3&quot; value=&quot;0&quot;/&gt;
     &lt;/Values&gt;
+  &lt;/sercom3&gt;
+&lt;/sercom3&gt;
+</value>
+      </entry>
+      <entry>
+         <key class="com.microchip.mcc.core.tokenManager.CustomKey" moduleName="sercom3" name="SERCOM_SYNCBUSY"/>
+         <value>&lt;?xml version=&quot;1.0&quot; encoding=&quot;UTF-8&quot;?&gt;&lt;sercom3&gt;
+  &lt;sercom3 dnOrder=&quot;0&quot; id=&quot;SERCOM_SYNCBUSY&quot;&gt;
+    &lt;Values dnOrder=&quot;0&quot;/&gt;
   &lt;/sercom3&gt;
 &lt;/sercom3&gt;
 </value>
@@ -4815,12 +5103,336 @@
 </value>
       </entry>
       <entry>
+         <key class="com.microchip.mcc.core.tokenManager.CustomKey" moduleName="sercom3" name="SPIS_BUSY_PIN"/>
+         <value>&lt;?xml version=&quot;1.0&quot; encoding=&quot;UTF-8&quot;?&gt;&lt;sercom3&gt;
+  &lt;sercom3 dnOrder=&quot;0&quot; id=&quot;SPIS_BUSY_PIN&quot;&gt;
+    &lt;Values dnOrder=&quot;0&quot;/&gt;
+  &lt;/sercom3&gt;
+&lt;/sercom3&gt;
+</value>
+      </entry>
+      <entry>
+         <key class="com.microchip.mcc.core.tokenManager.CustomKey" moduleName="sercom3" name="SPIS_BUSY_PIN_LOGIC_LEVEL"/>
+         <value>&lt;?xml version=&quot;1.0&quot; encoding=&quot;UTF-8&quot;?&gt;&lt;sercom3&gt;
+  &lt;sercom3 dnOrder=&quot;0&quot; id=&quot;SPIS_BUSY_PIN_LOGIC_LEVEL&quot;&gt;
+    &lt;Values dnOrder=&quot;0&quot;/&gt;
+  &lt;/sercom3&gt;
+&lt;/sercom3&gt;
+</value>
+      </entry>
+      <entry>
+         <key class="com.microchip.mcc.core.tokenManager.CustomKey" moduleName="sercom3" name="SPIS_CHARSIZE_BITS"/>
+         <value>&lt;?xml version=&quot;1.0&quot; encoding=&quot;UTF-8&quot;?&gt;&lt;sercom3&gt;
+  &lt;sercom3 dnOrder=&quot;0&quot; id=&quot;SPIS_CHARSIZE_BITS&quot;&gt;
+    &lt;Values dnOrder=&quot;0&quot;/&gt;
+  &lt;/sercom3&gt;
+&lt;/sercom3&gt;
+</value>
+      </entry>
+      <entry>
+         <key class="com.microchip.mcc.core.tokenManager.CustomKey" moduleName="sercom3" name="SPIS_CLOCK_PHASE"/>
+         <value>&lt;?xml version=&quot;1.0&quot; encoding=&quot;UTF-8&quot;?&gt;&lt;sercom3&gt;
+  &lt;sercom3 dnOrder=&quot;0&quot; id=&quot;SPIS_CLOCK_PHASE&quot;&gt;
+    &lt;Values dnOrder=&quot;0&quot;/&gt;
+  &lt;/sercom3&gt;
+&lt;/sercom3&gt;
+</value>
+      </entry>
+      <entry>
+         <key class="com.microchip.mcc.core.tokenManager.CustomKey" moduleName="sercom3" name="SPIS_CLOCK_POLARITY"/>
+         <value>&lt;?xml version=&quot;1.0&quot; encoding=&quot;UTF-8&quot;?&gt;&lt;sercom3&gt;
+  &lt;sercom3 dnOrder=&quot;0&quot; id=&quot;SPIS_CLOCK_POLARITY&quot;&gt;
+    &lt;Values dnOrder=&quot;0&quot;/&gt;
+  &lt;/sercom3&gt;
+&lt;/sercom3&gt;
+</value>
+      </entry>
+      <entry>
+         <key class="com.microchip.mcc.core.tokenManager.CustomKey" moduleName="sercom3" name="SPIS_DATA_ORDER"/>
+         <value>&lt;?xml version=&quot;1.0&quot; encoding=&quot;UTF-8&quot;?&gt;&lt;sercom3&gt;
+  &lt;sercom3 dnOrder=&quot;0&quot; id=&quot;SPIS_DATA_ORDER&quot;&gt;
+    &lt;Values dnOrder=&quot;0&quot;/&gt;
+  &lt;/sercom3&gt;
+&lt;/sercom3&gt;
+</value>
+      </entry>
+      <entry>
+         <key class="com.microchip.mcc.core.tokenManager.CustomKey" moduleName="sercom3" name="SPIS_DATA_SIZE"/>
+         <value>&lt;?xml version=&quot;1.0&quot; encoding=&quot;UTF-8&quot;?&gt;&lt;sercom3&gt;
+  &lt;sercom3 dnOrder=&quot;0&quot; id=&quot;SPIS_DATA_SIZE&quot;&gt;
+    &lt;Values dnOrder=&quot;0&quot;/&gt;
+  &lt;/sercom3&gt;
+&lt;/sercom3&gt;
+</value>
+      </entry>
+      <entry>
+         <key class="com.microchip.mcc.core.tokenManager.CustomKey" moduleName="sercom3" name="SPIS_DIPO"/>
+         <value>&lt;?xml version=&quot;1.0&quot; encoding=&quot;UTF-8&quot;?&gt;&lt;sercom3&gt;
+  &lt;sercom3 dnOrder=&quot;0&quot; id=&quot;SPIS_DIPO&quot;&gt;
+    &lt;Values dnOrder=&quot;0&quot;/&gt;
+  &lt;/sercom3&gt;
+&lt;/sercom3&gt;
+</value>
+      </entry>
+      <entry>
+         <key class="com.microchip.mcc.core.tokenManager.CustomKey" moduleName="sercom3" name="SPIS_DOPO"/>
+         <value>&lt;?xml version=&quot;1.0&quot; encoding=&quot;UTF-8&quot;?&gt;&lt;sercom3&gt;
+  &lt;sercom3 dnOrder=&quot;0&quot; id=&quot;SPIS_DOPO&quot;&gt;
+    &lt;Values dnOrder=&quot;0&quot;/&gt;
+  &lt;/sercom3&gt;
+&lt;/sercom3&gt;
+</value>
+      </entry>
+      <entry>
+         <key class="com.microchip.mcc.core.tokenManager.CustomKey" moduleName="sercom3" name="SPIS_INTENSET_ERROR"/>
+         <value>&lt;?xml version=&quot;1.0&quot; encoding=&quot;UTF-8&quot;?&gt;&lt;sercom3&gt;
+  &lt;sercom3 dnOrder=&quot;0&quot; id=&quot;SPIS_INTENSET_ERROR&quot;&gt;
+    &lt;Values dnOrder=&quot;0&quot;/&gt;
+  &lt;/sercom3&gt;
+&lt;/sercom3&gt;
+</value>
+      </entry>
+      <entry>
+         <key class="com.microchip.mcc.core.tokenManager.CustomKey" moduleName="sercom3" name="SPIS_INTERRUPT_MODE"/>
+         <value>&lt;?xml version=&quot;1.0&quot; encoding=&quot;UTF-8&quot;?&gt;&lt;sercom3&gt;
+  &lt;sercom3 dnOrder=&quot;0&quot; id=&quot;SPIS_INTERRUPT_MODE&quot;&gt;
+    &lt;Values dnOrder=&quot;0&quot;/&gt;
+  &lt;/sercom3&gt;
+&lt;/sercom3&gt;
+</value>
+      </entry>
+      <entry>
+         <key class="com.microchip.mcc.core.tokenManager.CustomKey" moduleName="sercom3" name="SPIS_RUNSTDBY"/>
+         <value>&lt;?xml version=&quot;1.0&quot; encoding=&quot;UTF-8&quot;?&gt;&lt;sercom3&gt;
+  &lt;sercom3 dnOrder=&quot;0&quot; id=&quot;SPIS_RUNSTDBY&quot;&gt;
+    &lt;Values dnOrder=&quot;0&quot;/&gt;
+  &lt;/sercom3&gt;
+&lt;/sercom3&gt;
+</value>
+      </entry>
+      <entry>
+         <key class="com.microchip.mcc.core.tokenManager.CustomKey" moduleName="sercom3" name="SPIS_RX_BUFFER_SIZE"/>
+         <value>&lt;?xml version=&quot;1.0&quot; encoding=&quot;UTF-8&quot;?&gt;&lt;sercom3&gt;
+  &lt;sercom3 dnOrder=&quot;0&quot; id=&quot;SPIS_RX_BUFFER_SIZE&quot;&gt;
+    &lt;Values dnOrder=&quot;0&quot;/&gt;
+  &lt;/sercom3&gt;
+&lt;/sercom3&gt;
+</value>
+      </entry>
+      <entry>
+         <key class="com.microchip.mcc.core.tokenManager.CustomKey" moduleName="sercom3" name="SPIS_SSDE"/>
+         <value>&lt;?xml version=&quot;1.0&quot; encoding=&quot;UTF-8&quot;?&gt;&lt;sercom3&gt;
+  &lt;sercom3 dnOrder=&quot;0&quot; id=&quot;SPIS_SSDE&quot;&gt;
+    &lt;Values dnOrder=&quot;0&quot;/&gt;
+  &lt;/sercom3&gt;
+&lt;/sercom3&gt;
+</value>
+      </entry>
+      <entry>
+         <key class="com.microchip.mcc.core.tokenManager.CustomKey" moduleName="sercom3" name="SPIS_TX_BUFFER_SIZE"/>
+         <value>&lt;?xml version=&quot;1.0&quot; encoding=&quot;UTF-8&quot;?&gt;&lt;sercom3&gt;
+  &lt;sercom3 dnOrder=&quot;0&quot; id=&quot;SPIS_TX_BUFFER_SIZE&quot;&gt;
+    &lt;Values dnOrder=&quot;0&quot;/&gt;
+  &lt;/sercom3&gt;
+&lt;/sercom3&gt;
+</value>
+      </entry>
+      <entry>
+         <key class="com.microchip.mcc.core.tokenManager.CustomKey" moduleName="sercom3" name="SPIS_USE_BUSY_PIN"/>
+         <value>&lt;?xml version=&quot;1.0&quot; encoding=&quot;UTF-8&quot;?&gt;&lt;sercom3&gt;
+  &lt;sercom3 dnOrder=&quot;0&quot; id=&quot;SPIS_USE_BUSY_PIN&quot;&gt;
+    &lt;Values dnOrder=&quot;0&quot;/&gt;
+  &lt;/sercom3&gt;
+&lt;/sercom3&gt;
+</value>
+      </entry>
+      <entry>
+         <key class="com.microchip.mcc.core.tokenManager.CustomKey" moduleName="sercom3" name="SPI_BAUD_RATE"/>
+         <value>&lt;?xml version=&quot;1.0&quot; encoding=&quot;UTF-8&quot;?&gt;&lt;sercom3&gt;
+  &lt;sercom3 dnOrder=&quot;0&quot; id=&quot;SPI_BAUD_RATE&quot;&gt;
+    &lt;Values dnOrder=&quot;0&quot;/&gt;
+  &lt;/sercom3&gt;
+&lt;/sercom3&gt;
+</value>
+      </entry>
+      <entry>
          <key class="com.microchip.mcc.core.tokenManager.CustomKey" moduleName="sercom3" name="SPI_BAUD_REG_VALUE"/>
          <value>&lt;?xml version=&quot;1.0&quot; encoding=&quot;UTF-8&quot;?&gt;&lt;sercom3&gt;
   &lt;sercom3 dnOrder=&quot;0&quot; id=&quot;SPI_BAUD_REG_VALUE&quot;&gt;
     &lt;Values dnOrder=&quot;0&quot;&gt;
       &lt;Dynamic dnOrder=&quot;0&quot; id=&quot;sercom3&quot; value=&quot;23&quot;/&gt;
     &lt;/Values&gt;
+  &lt;/sercom3&gt;
+&lt;/sercom3&gt;
+</value>
+      </entry>
+      <entry>
+         <key class="com.microchip.mcc.core.tokenManager.CustomKey" moduleName="sercom3" name="SPI_CHARSIZE_BITS"/>
+         <value>&lt;?xml version=&quot;1.0&quot; encoding=&quot;UTF-8&quot;?&gt;&lt;sercom3&gt;
+  &lt;sercom3 dnOrder=&quot;0&quot; id=&quot;SPI_CHARSIZE_BITS&quot;&gt;
+    &lt;Values dnOrder=&quot;0&quot;/&gt;
+  &lt;/sercom3&gt;
+&lt;/sercom3&gt;
+</value>
+      </entry>
+      <entry>
+         <key class="com.microchip.mcc.core.tokenManager.CustomKey" moduleName="sercom3" name="SPI_CHARSIZE_BITS_8_BIT_MASK"/>
+         <value>&lt;?xml version=&quot;1.0&quot; encoding=&quot;UTF-8&quot;?&gt;&lt;sercom3&gt;
+  &lt;sercom3 dnOrder=&quot;0&quot; id=&quot;SPI_CHARSIZE_BITS_8_BIT_MASK&quot;&gt;
+    &lt;Values dnOrder=&quot;0&quot;/&gt;
+  &lt;/sercom3&gt;
+&lt;/sercom3&gt;
+</value>
+      </entry>
+      <entry>
+         <key class="com.microchip.mcc.core.tokenManager.CustomKey" moduleName="sercom3" name="SPI_CHARSIZE_BITS_9_BIT_MASK"/>
+         <value>&lt;?xml version=&quot;1.0&quot; encoding=&quot;UTF-8&quot;?&gt;&lt;sercom3&gt;
+  &lt;sercom3 dnOrder=&quot;0&quot; id=&quot;SPI_CHARSIZE_BITS_9_BIT_MASK&quot;&gt;
+    &lt;Values dnOrder=&quot;0&quot;/&gt;
+  &lt;/sercom3&gt;
+&lt;/sercom3&gt;
+</value>
+      </entry>
+      <entry>
+         <key class="com.microchip.mcc.core.tokenManager.CustomKey" moduleName="sercom3" name="SPI_CLOCK_PHASE"/>
+         <value>&lt;?xml version=&quot;1.0&quot; encoding=&quot;UTF-8&quot;?&gt;&lt;sercom3&gt;
+  &lt;sercom3 dnOrder=&quot;0&quot; id=&quot;SPI_CLOCK_PHASE&quot;&gt;
+    &lt;Values dnOrder=&quot;0&quot;/&gt;
+  &lt;/sercom3&gt;
+&lt;/sercom3&gt;
+</value>
+      </entry>
+      <entry>
+         <key class="com.microchip.mcc.core.tokenManager.CustomKey" moduleName="sercom3" name="SPI_CLOCK_PHASE_LEADING_MASK"/>
+         <value>&lt;?xml version=&quot;1.0&quot; encoding=&quot;UTF-8&quot;?&gt;&lt;sercom3&gt;
+  &lt;sercom3 dnOrder=&quot;0&quot; id=&quot;SPI_CLOCK_PHASE_LEADING_MASK&quot;&gt;
+    &lt;Values dnOrder=&quot;0&quot;/&gt;
+  &lt;/sercom3&gt;
+&lt;/sercom3&gt;
+</value>
+      </entry>
+      <entry>
+         <key class="com.microchip.mcc.core.tokenManager.CustomKey" moduleName="sercom3" name="SPI_CLOCK_PHASE_TRAILING_MASK"/>
+         <value>&lt;?xml version=&quot;1.0&quot; encoding=&quot;UTF-8&quot;?&gt;&lt;sercom3&gt;
+  &lt;sercom3 dnOrder=&quot;0&quot; id=&quot;SPI_CLOCK_PHASE_TRAILING_MASK&quot;&gt;
+    &lt;Values dnOrder=&quot;0&quot;/&gt;
+  &lt;/sercom3&gt;
+&lt;/sercom3&gt;
+</value>
+      </entry>
+      <entry>
+         <key class="com.microchip.mcc.core.tokenManager.CustomKey" moduleName="sercom3" name="SPI_CLOCK_POLARITY"/>
+         <value>&lt;?xml version=&quot;1.0&quot; encoding=&quot;UTF-8&quot;?&gt;&lt;sercom3&gt;
+  &lt;sercom3 dnOrder=&quot;0&quot; id=&quot;SPI_CLOCK_POLARITY&quot;&gt;
+    &lt;Values dnOrder=&quot;0&quot;/&gt;
+  &lt;/sercom3&gt;
+&lt;/sercom3&gt;
+</value>
+      </entry>
+      <entry>
+         <key class="com.microchip.mcc.core.tokenManager.CustomKey" moduleName="sercom3" name="SPI_CLOCK_POLARITY_HIGH_MASK"/>
+         <value>&lt;?xml version=&quot;1.0&quot; encoding=&quot;UTF-8&quot;?&gt;&lt;sercom3&gt;
+  &lt;sercom3 dnOrder=&quot;0&quot; id=&quot;SPI_CLOCK_POLARITY_HIGH_MASK&quot;&gt;
+    &lt;Values dnOrder=&quot;0&quot;/&gt;
+  &lt;/sercom3&gt;
+&lt;/sercom3&gt;
+</value>
+      </entry>
+      <entry>
+         <key class="com.microchip.mcc.core.tokenManager.CustomKey" moduleName="sercom3" name="SPI_CLOCK_POLARITY_LOW_MASK"/>
+         <value>&lt;?xml version=&quot;1.0&quot; encoding=&quot;UTF-8&quot;?&gt;&lt;sercom3&gt;
+  &lt;sercom3 dnOrder=&quot;0&quot; id=&quot;SPI_CLOCK_POLARITY_LOW_MASK&quot;&gt;
+    &lt;Values dnOrder=&quot;0&quot;/&gt;
+  &lt;/sercom3&gt;
+&lt;/sercom3&gt;
+</value>
+      </entry>
+      <entry>
+         <key class="com.microchip.mcc.core.tokenManager.CustomKey" moduleName="sercom3" name="SPI_DATA_ORDER"/>
+         <value>&lt;?xml version=&quot;1.0&quot; encoding=&quot;UTF-8&quot;?&gt;&lt;sercom3&gt;
+  &lt;sercom3 dnOrder=&quot;0&quot; id=&quot;SPI_DATA_ORDER&quot;&gt;
+    &lt;Values dnOrder=&quot;0&quot;/&gt;
+  &lt;/sercom3&gt;
+&lt;/sercom3&gt;
+</value>
+      </entry>
+      <entry>
+         <key class="com.microchip.mcc.core.tokenManager.CustomKey" moduleName="sercom3" name="SPI_DIPO"/>
+         <value>&lt;?xml version=&quot;1.0&quot; encoding=&quot;UTF-8&quot;?&gt;&lt;sercom3&gt;
+  &lt;sercom3 dnOrder=&quot;0&quot; id=&quot;SPI_DIPO&quot;&gt;
+    &lt;Values dnOrder=&quot;0&quot;/&gt;
+  &lt;/sercom3&gt;
+&lt;/sercom3&gt;
+</value>
+      </entry>
+      <entry>
+         <key class="com.microchip.mcc.core.tokenManager.CustomKey" moduleName="sercom3" name="SPI_DOPO"/>
+         <value>&lt;?xml version=&quot;1.0&quot; encoding=&quot;UTF-8&quot;?&gt;&lt;sercom3&gt;
+  &lt;sercom3 dnOrder=&quot;0&quot; id=&quot;SPI_DOPO&quot;&gt;
+    &lt;Values dnOrder=&quot;0&quot;/&gt;
+  &lt;/sercom3&gt;
+&lt;/sercom3&gt;
+</value>
+      </entry>
+      <entry>
+         <key class="com.microchip.mcc.core.tokenManager.CustomKey" moduleName="sercom3" name="SPI_INTENSET_ERROR"/>
+         <value>&lt;?xml version=&quot;1.0&quot; encoding=&quot;UTF-8&quot;?&gt;&lt;sercom3&gt;
+  &lt;sercom3 dnOrder=&quot;0&quot; id=&quot;SPI_INTENSET_ERROR&quot;&gt;
+    &lt;Values dnOrder=&quot;0&quot;/&gt;
+  &lt;/sercom3&gt;
+&lt;/sercom3&gt;
+</value>
+      </entry>
+      <entry>
+         <key class="com.microchip.mcc.core.tokenManager.CustomKey" moduleName="sercom3" name="SPI_INTERRUPT_MODE"/>
+         <value>&lt;?xml version=&quot;1.0&quot; encoding=&quot;UTF-8&quot;?&gt;&lt;sercom3&gt;
+  &lt;sercom3 dnOrder=&quot;0&quot; id=&quot;SPI_INTERRUPT_MODE&quot;&gt;
+    &lt;Values dnOrder=&quot;0&quot;/&gt;
+  &lt;/sercom3&gt;
+&lt;/sercom3&gt;
+</value>
+      </entry>
+      <entry>
+         <key class="com.microchip.mcc.core.tokenManager.CustomKey" moduleName="sercom3" name="SPI_MSSEN"/>
+         <value>&lt;?xml version=&quot;1.0&quot; encoding=&quot;UTF-8&quot;?&gt;&lt;sercom3&gt;
+  &lt;sercom3 dnOrder=&quot;0&quot; id=&quot;SPI_MSSEN&quot;&gt;
+    &lt;Values dnOrder=&quot;0&quot;/&gt;
+  &lt;/sercom3&gt;
+&lt;/sercom3&gt;
+</value>
+      </entry>
+      <entry>
+         <key class="com.microchip.mcc.core.tokenManager.CustomKey" moduleName="sercom3" name="SPI_PLIB_API_PREFIX"/>
+         <value>&lt;?xml version=&quot;1.0&quot; encoding=&quot;UTF-8&quot;?&gt;&lt;sercom3&gt;
+  &lt;sercom3 dnOrder=&quot;0&quot; id=&quot;SPI_PLIB_API_PREFIX&quot;&gt;
+    &lt;Values dnOrder=&quot;0&quot;/&gt;
+  &lt;/sercom3&gt;
+&lt;/sercom3&gt;
+</value>
+      </entry>
+      <entry>
+         <key class="com.microchip.mcc.core.tokenManager.CustomKey" moduleName="sercom3" name="SPI_RECIEVER_ENABLE"/>
+         <value>&lt;?xml version=&quot;1.0&quot; encoding=&quot;UTF-8&quot;?&gt;&lt;sercom3&gt;
+  &lt;sercom3 dnOrder=&quot;0&quot; id=&quot;SPI_RECIEVER_ENABLE&quot;&gt;
+    &lt;Values dnOrder=&quot;0&quot;/&gt;
+  &lt;/sercom3&gt;
+&lt;/sercom3&gt;
+</value>
+      </entry>
+      <entry>
+         <key class="com.microchip.mcc.core.tokenManager.CustomKey" moduleName="sercom3" name="SPI_RUNSTDBY"/>
+         <value>&lt;?xml version=&quot;1.0&quot; encoding=&quot;UTF-8&quot;?&gt;&lt;sercom3&gt;
+  &lt;sercom3 dnOrder=&quot;0&quot; id=&quot;SPI_RUNSTDBY&quot;&gt;
+    &lt;Values dnOrder=&quot;0&quot;/&gt;
+  &lt;/sercom3&gt;
+&lt;/sercom3&gt;
+</value>
+      </entry>
+      <entry>
+         <key class="com.microchip.mcc.core.tokenManager.CustomKey" moduleName="sercom3" name="SPI_STATUS_OVERRUN_MASK"/>
+         <value>&lt;?xml version=&quot;1.0&quot; encoding=&quot;UTF-8&quot;?&gt;&lt;sercom3&gt;
+  &lt;sercom3 dnOrder=&quot;0&quot; id=&quot;SPI_STATUS_OVERRUN_MASK&quot;&gt;
+    &lt;Values dnOrder=&quot;0&quot;/&gt;
   &lt;/sercom3&gt;
 &lt;/sercom3&gt;
 </value>
@@ -4840,9 +5452,7 @@
          <key class="com.microchip.mcc.core.tokenManager.CustomKey" moduleName="sercom3" name="USART_BAUD_RATE"/>
          <value>&lt;?xml version=&quot;1.0&quot; encoding=&quot;UTF-8&quot;?&gt;&lt;sercom3&gt;
   &lt;sercom3 dnOrder=&quot;0&quot; id=&quot;USART_BAUD_RATE&quot;&gt;
-    &lt;Values dnOrder=&quot;0&quot;&gt;
-      &lt;Dynamic dnOrder=&quot;0&quot; id=&quot;X2CScope&quot; value=&quot;115200&quot;/&gt;
-    &lt;/Values&gt;
+    &lt;Values dnOrder=&quot;0&quot;/&gt;
   &lt;/sercom3&gt;
 &lt;/sercom3&gt;
 </value>
@@ -4859,12 +5469,109 @@
 </value>
       </entry>
       <entry>
+         <key class="com.microchip.mcc.core.tokenManager.CustomKey" moduleName="sercom3" name="USART_CHARSIZE_BITS"/>
+         <value>&lt;?xml version=&quot;1.0&quot; encoding=&quot;UTF-8&quot;?&gt;&lt;sercom3&gt;
+  &lt;sercom3 dnOrder=&quot;0&quot; id=&quot;USART_CHARSIZE_BITS&quot;&gt;
+    &lt;Values dnOrder=&quot;0&quot;/&gt;
+  &lt;/sercom3&gt;
+&lt;/sercom3&gt;
+</value>
+      </entry>
+      <entry>
+         <key class="com.microchip.mcc.core.tokenManager.CustomKey" moduleName="sercom3" name="USART_CTRLC_GTIME"/>
+         <value>&lt;?xml version=&quot;1.0&quot; encoding=&quot;UTF-8&quot;?&gt;&lt;sercom3&gt;
+  &lt;sercom3 dnOrder=&quot;0&quot; id=&quot;USART_CTRLC_GTIME&quot;&gt;
+    &lt;Values dnOrder=&quot;0&quot;/&gt;
+  &lt;/sercom3&gt;
+&lt;/sercom3&gt;
+</value>
+      </entry>
+      <entry>
+         <key class="com.microchip.mcc.core.tokenManager.CustomKey" moduleName="sercom3" name="USART_DATA_5_BIT_MASK"/>
+         <value>&lt;?xml version=&quot;1.0&quot; encoding=&quot;UTF-8&quot;?&gt;&lt;sercom3&gt;
+  &lt;sercom3 dnOrder=&quot;0&quot; id=&quot;USART_DATA_5_BIT_MASK&quot;&gt;
+    &lt;Values dnOrder=&quot;0&quot;/&gt;
+  &lt;/sercom3&gt;
+&lt;/sercom3&gt;
+</value>
+      </entry>
+      <entry>
+         <key class="com.microchip.mcc.core.tokenManager.CustomKey" moduleName="sercom3" name="USART_DATA_6_BIT_MASK"/>
+         <value>&lt;?xml version=&quot;1.0&quot; encoding=&quot;UTF-8&quot;?&gt;&lt;sercom3&gt;
+  &lt;sercom3 dnOrder=&quot;0&quot; id=&quot;USART_DATA_6_BIT_MASK&quot;&gt;
+    &lt;Values dnOrder=&quot;0&quot;/&gt;
+  &lt;/sercom3&gt;
+&lt;/sercom3&gt;
+</value>
+      </entry>
+      <entry>
+         <key class="com.microchip.mcc.core.tokenManager.CustomKey" moduleName="sercom3" name="USART_DATA_7_BIT_MASK"/>
+         <value>&lt;?xml version=&quot;1.0&quot; encoding=&quot;UTF-8&quot;?&gt;&lt;sercom3&gt;
+  &lt;sercom3 dnOrder=&quot;0&quot; id=&quot;USART_DATA_7_BIT_MASK&quot;&gt;
+    &lt;Values dnOrder=&quot;0&quot;/&gt;
+  &lt;/sercom3&gt;
+&lt;/sercom3&gt;
+</value>
+      </entry>
+      <entry>
+         <key class="com.microchip.mcc.core.tokenManager.CustomKey" moduleName="sercom3" name="USART_DATA_8_BIT_MASK"/>
+         <value>&lt;?xml version=&quot;1.0&quot; encoding=&quot;UTF-8&quot;?&gt;&lt;sercom3&gt;
+  &lt;sercom3 dnOrder=&quot;0&quot; id=&quot;USART_DATA_8_BIT_MASK&quot;&gt;
+    &lt;Values dnOrder=&quot;0&quot;/&gt;
+  &lt;/sercom3&gt;
+&lt;/sercom3&gt;
+</value>
+      </entry>
+      <entry>
+         <key class="com.microchip.mcc.core.tokenManager.CustomKey" moduleName="sercom3" name="USART_DATA_9_BIT_MASK"/>
+         <value>&lt;?xml version=&quot;1.0&quot; encoding=&quot;UTF-8&quot;?&gt;&lt;sercom3&gt;
+  &lt;sercom3 dnOrder=&quot;0&quot; id=&quot;USART_DATA_9_BIT_MASK&quot;&gt;
+    &lt;Values dnOrder=&quot;0&quot;/&gt;
+  &lt;/sercom3&gt;
+&lt;/sercom3&gt;
+</value>
+      </entry>
+      <entry>
+         <key class="com.microchip.mcc.core.tokenManager.CustomKey" moduleName="sercom3" name="USART_DATA_BITS"/>
+         <value>&lt;?xml version=&quot;1.0&quot; encoding=&quot;UTF-8&quot;?&gt;&lt;sercom3&gt;
+  &lt;sercom3 dnOrder=&quot;0&quot; id=&quot;USART_DATA_BITS&quot;&gt;
+    &lt;Values dnOrder=&quot;0&quot;/&gt;
+  &lt;/sercom3&gt;
+&lt;/sercom3&gt;
+</value>
+      </entry>
+      <entry>
+         <key class="com.microchip.mcc.core.tokenManager.CustomKey" moduleName="sercom3" name="USART_FLOW_CONTROL"/>
+         <value>&lt;?xml version=&quot;1.0&quot; encoding=&quot;UTF-8&quot;?&gt;&lt;sercom3&gt;
+  &lt;sercom3 dnOrder=&quot;0&quot; id=&quot;USART_FLOW_CONTROL&quot;&gt;
+    &lt;Values dnOrder=&quot;0&quot;/&gt;
+  &lt;/sercom3&gt;
+&lt;/sercom3&gt;
+</value>
+      </entry>
+      <entry>
          <key class="com.microchip.mcc.core.tokenManager.CustomKey" moduleName="sercom3" name="USART_FORM"/>
          <value>&lt;?xml version=&quot;1.0&quot; encoding=&quot;UTF-8&quot;?&gt;&lt;sercom3&gt;
   &lt;sercom3 dnOrder=&quot;0&quot; id=&quot;USART_FORM&quot;&gt;
-    &lt;Values dnOrder=&quot;0&quot;&gt;
-      &lt;Dynamic dnOrder=&quot;0&quot; id=&quot;sercom3&quot; value=&quot;0&quot;/&gt;
-    &lt;/Values&gt;
+    &lt;Values dnOrder=&quot;0&quot;/&gt;
+  &lt;/sercom3&gt;
+&lt;/sercom3&gt;
+</value>
+      </entry>
+      <entry>
+         <key class="com.microchip.mcc.core.tokenManager.CustomKey" moduleName="sercom3" name="USART_FRAMING_ERROR_VALUE"/>
+         <value>&lt;?xml version=&quot;1.0&quot; encoding=&quot;UTF-8&quot;?&gt;&lt;sercom3&gt;
+  &lt;sercom3 dnOrder=&quot;0&quot; id=&quot;USART_FRAMING_ERROR_VALUE&quot;&gt;
+    &lt;Values dnOrder=&quot;0&quot;/&gt;
+  &lt;/sercom3&gt;
+&lt;/sercom3&gt;
+</value>
+      </entry>
+      <entry>
+         <key class="com.microchip.mcc.core.tokenManager.CustomKey" moduleName="sercom3" name="USART_INTENSET_ERROR"/>
+         <value>&lt;?xml version=&quot;1.0&quot; encoding=&quot;UTF-8&quot;?&gt;&lt;sercom3&gt;
+  &lt;sercom3 dnOrder=&quot;0&quot; id=&quot;USART_INTENSET_ERROR&quot;&gt;
+    &lt;Values dnOrder=&quot;0&quot;/&gt;
   &lt;/sercom3&gt;
 &lt;/sercom3&gt;
 </value>
@@ -4879,8 +5586,7 @@
       &lt;/String&gt;
     &lt;/Attributes&gt;
     &lt;Values dnOrder=&quot;1&quot;&gt;
-      &lt;Dynamic dnOrder=&quot;0&quot; id=&quot;X2CScope&quot; value=&quot;false&quot;/&gt;
-      &lt;User dnOrder=&quot;1&quot; value=&quot;false&quot;/&gt;
+      &lt;Dynamic dnOrder=&quot;0&quot; id=&quot;X2Cscope&quot; value=&quot;false&quot;/&gt;
     &lt;/Values&gt;
   &lt;/sercom3&gt;
 &lt;/sercom3&gt;
@@ -4893,6 +5599,24 @@
     &lt;Values dnOrder=&quot;0&quot;&gt;
       &lt;Dynamic dnOrder=&quot;0&quot; id=&quot;sercom3&quot; value=&quot;false&quot;/&gt;
     &lt;/Values&gt;
+  &lt;/sercom3&gt;
+&lt;/sercom3&gt;
+</value>
+      </entry>
+      <entry>
+         <key class="com.microchip.mcc.core.tokenManager.CustomKey" moduleName="sercom3" name="USART_LIN_MASTER_BREAK_LEN"/>
+         <value>&lt;?xml version=&quot;1.0&quot; encoding=&quot;UTF-8&quot;?&gt;&lt;sercom3&gt;
+  &lt;sercom3 dnOrder=&quot;0&quot; id=&quot;USART_LIN_MASTER_BREAK_LEN&quot;&gt;
+    &lt;Values dnOrder=&quot;0&quot;/&gt;
+  &lt;/sercom3&gt;
+&lt;/sercom3&gt;
+</value>
+      </entry>
+      <entry>
+         <key class="com.microchip.mcc.core.tokenManager.CustomKey" moduleName="sercom3" name="USART_LIN_MASTER_HDRDLY"/>
+         <value>&lt;?xml version=&quot;1.0&quot; encoding=&quot;UTF-8&quot;?&gt;&lt;sercom3&gt;
+  &lt;sercom3 dnOrder=&quot;0&quot; id=&quot;USART_LIN_MASTER_HDRDLY&quot;&gt;
+    &lt;Values dnOrder=&quot;0&quot;/&gt;
   &lt;/sercom3&gt;
 &lt;/sercom3&gt;
 </value>
@@ -4920,20 +5644,73 @@
 </value>
       </entry>
       <entry>
+         <key class="com.microchip.mcc.core.tokenManager.CustomKey" moduleName="sercom3" name="USART_OVERRUN_ERROR_VALUE"/>
+         <value>&lt;?xml version=&quot;1.0&quot; encoding=&quot;UTF-8&quot;?&gt;&lt;sercom3&gt;
+  &lt;sercom3 dnOrder=&quot;0&quot; id=&quot;USART_OVERRUN_ERROR_VALUE&quot;&gt;
+    &lt;Values dnOrder=&quot;0&quot;/&gt;
+  &lt;/sercom3&gt;
+&lt;/sercom3&gt;
+</value>
+      </entry>
+      <entry>
+         <key class="com.microchip.mcc.core.tokenManager.CustomKey" moduleName="sercom3" name="USART_PARITY_ERROR_VALUE"/>
+         <value>&lt;?xml version=&quot;1.0&quot; encoding=&quot;UTF-8&quot;?&gt;&lt;sercom3&gt;
+  &lt;sercom3 dnOrder=&quot;0&quot; id=&quot;USART_PARITY_ERROR_VALUE&quot;&gt;
+    &lt;Values dnOrder=&quot;0&quot;/&gt;
+  &lt;/sercom3&gt;
+&lt;/sercom3&gt;
+</value>
+      </entry>
+      <entry>
+         <key class="com.microchip.mcc.core.tokenManager.CustomKey" moduleName="sercom3" name="USART_PARITY_EVEN_MASK"/>
+         <value>&lt;?xml version=&quot;1.0&quot; encoding=&quot;UTF-8&quot;?&gt;&lt;sercom3&gt;
+  &lt;sercom3 dnOrder=&quot;0&quot; id=&quot;USART_PARITY_EVEN_MASK&quot;&gt;
+    &lt;Values dnOrder=&quot;0&quot;/&gt;
+  &lt;/sercom3&gt;
+&lt;/sercom3&gt;
+</value>
+      </entry>
+      <entry>
+         <key class="com.microchip.mcc.core.tokenManager.CustomKey" moduleName="sercom3" name="USART_PARITY_MODE"/>
+         <value>&lt;?xml version=&quot;1.0&quot; encoding=&quot;UTF-8&quot;?&gt;&lt;sercom3&gt;
+  &lt;sercom3 dnOrder=&quot;0&quot; id=&quot;USART_PARITY_MODE&quot;&gt;
+    &lt;Values dnOrder=&quot;0&quot;/&gt;
+  &lt;/sercom3&gt;
+&lt;/sercom3&gt;
+</value>
+      </entry>
+      <entry>
+         <key class="com.microchip.mcc.core.tokenManager.CustomKey" moduleName="sercom3" name="USART_PARITY_NONE_MASK"/>
+         <value>&lt;?xml version=&quot;1.0&quot; encoding=&quot;UTF-8&quot;?&gt;&lt;sercom3&gt;
+  &lt;sercom3 dnOrder=&quot;0&quot; id=&quot;USART_PARITY_NONE_MASK&quot;&gt;
+    &lt;Values dnOrder=&quot;0&quot;/&gt;
+  &lt;/sercom3&gt;
+&lt;/sercom3&gt;
+</value>
+      </entry>
+      <entry>
+         <key class="com.microchip.mcc.core.tokenManager.CustomKey" moduleName="sercom3" name="USART_PARITY_ODD_MASK"/>
+         <value>&lt;?xml version=&quot;1.0&quot; encoding=&quot;UTF-8&quot;?&gt;&lt;sercom3&gt;
+  &lt;sercom3 dnOrder=&quot;0&quot; id=&quot;USART_PARITY_ODD_MASK&quot;&gt;
+    &lt;Values dnOrder=&quot;0&quot;/&gt;
+  &lt;/sercom3&gt;
+&lt;/sercom3&gt;
+</value>
+      </entry>
+      <entry>
+         <key class="com.microchip.mcc.core.tokenManager.CustomKey" moduleName="sercom3" name="USART_PLIB_API_PREFIX"/>
+         <value>&lt;?xml version=&quot;1.0&quot; encoding=&quot;UTF-8&quot;?&gt;&lt;sercom3&gt;
+  &lt;sercom3 dnOrder=&quot;0&quot; id=&quot;USART_PLIB_API_PREFIX&quot;&gt;
+    &lt;Values dnOrder=&quot;0&quot;/&gt;
+  &lt;/sercom3&gt;
+&lt;/sercom3&gt;
+</value>
+      </entry>
+      <entry>
          <key class="com.microchip.mcc.core.tokenManager.CustomKey" moduleName="sercom3" name="USART_RING_BUFFER_ENABLE"/>
          <value>&lt;?xml version=&quot;1.0&quot; encoding=&quot;UTF-8&quot;?&gt;&lt;sercom3&gt;
   &lt;sercom3 dnOrder=&quot;0&quot; id=&quot;USART_RING_BUFFER_ENABLE&quot;&gt;
-    &lt;Attributes dnOrder=&quot;0&quot;&gt;
-      &lt;String dnOrder=&quot;0&quot; id=&quot;label&quot;&gt;
-        &lt;Value dnOrder=&quot;0&quot;&gt;---&lt;/Value&gt;
-      &lt;/String&gt;
-      &lt;Boolean dnOrder=&quot;1&quot; id=&quot;readOnly&quot;&gt;
-        &lt;Value dnOrder=&quot;0&quot;&gt;false&lt;/Value&gt;
-      &lt;/Boolean&gt;
-    &lt;/Attributes&gt;
-    &lt;Values dnOrder=&quot;1&quot;&gt;
-      &lt;Dynamic dnOrder=&quot;0&quot; id=&quot;sercom3&quot; value=&quot;false&quot;/&gt;
-    &lt;/Values&gt;
+    &lt;Values dnOrder=&quot;0&quot;/&gt;
   &lt;/sercom3&gt;
 &lt;/sercom3&gt;
 </value>
@@ -4950,12 +5727,48 @@
 </value>
       </entry>
       <entry>
+         <key class="com.microchip.mcc.core.tokenManager.CustomKey" moduleName="sercom3" name="USART_RS485"/>
+         <value>&lt;?xml version=&quot;1.0&quot; encoding=&quot;UTF-8&quot;?&gt;&lt;sercom3&gt;
+  &lt;sercom3 dnOrder=&quot;0&quot; id=&quot;USART_RS485&quot;&gt;
+    &lt;Values dnOrder=&quot;0&quot;/&gt;
+  &lt;/sercom3&gt;
+&lt;/sercom3&gt;
+</value>
+      </entry>
+      <entry>
+         <key class="com.microchip.mcc.core.tokenManager.CustomKey" moduleName="sercom3" name="USART_RUNSTDBY"/>
+         <value>&lt;?xml version=&quot;1.0&quot; encoding=&quot;UTF-8&quot;?&gt;&lt;sercom3&gt;
+  &lt;sercom3 dnOrder=&quot;0&quot; id=&quot;USART_RUNSTDBY&quot;&gt;
+    &lt;Values dnOrder=&quot;0&quot;/&gt;
+  &lt;/sercom3&gt;
+&lt;/sercom3&gt;
+</value>
+      </entry>
+      <entry>
          <key class="com.microchip.mcc.core.tokenManager.CustomKey" moduleName="sercom3" name="USART_RXPO"/>
          <value>&lt;?xml version=&quot;1.0&quot; encoding=&quot;UTF-8&quot;?&gt;&lt;sercom3&gt;
   &lt;sercom3 dnOrder=&quot;0&quot; id=&quot;USART_RXPO&quot;&gt;
     &lt;Values dnOrder=&quot;0&quot;&gt;
-      &lt;User dnOrder=&quot;0&quot; value=&quot;1&quot;/&gt;
+      &lt;Dynamic dnOrder=&quot;0&quot; id=&quot;X2Cscope&quot; value=&quot;1&quot;/&gt;
     &lt;/Values&gt;
+  &lt;/sercom3&gt;
+&lt;/sercom3&gt;
+</value>
+      </entry>
+      <entry>
+         <key class="com.microchip.mcc.core.tokenManager.CustomKey" moduleName="sercom3" name="USART_RX_ENABLE"/>
+         <value>&lt;?xml version=&quot;1.0&quot; encoding=&quot;UTF-8&quot;?&gt;&lt;sercom3&gt;
+  &lt;sercom3 dnOrder=&quot;0&quot; id=&quot;USART_RX_ENABLE&quot;&gt;
+    &lt;Values dnOrder=&quot;0&quot;/&gt;
+  &lt;/sercom3&gt;
+&lt;/sercom3&gt;
+</value>
+      </entry>
+      <entry>
+         <key class="com.microchip.mcc.core.tokenManager.CustomKey" moduleName="sercom3" name="USART_RX_RING_BUFFER_SIZE"/>
+         <value>&lt;?xml version=&quot;1.0&quot; encoding=&quot;UTF-8&quot;?&gt;&lt;sercom3&gt;
+  &lt;sercom3 dnOrder=&quot;0&quot; id=&quot;USART_RX_RING_BUFFER_SIZE&quot;&gt;
+    &lt;Values dnOrder=&quot;0&quot;/&gt;
   &lt;/sercom3&gt;
 &lt;/sercom3&gt;
 </value>
@@ -4978,6 +5791,69 @@
     &lt;Values dnOrder=&quot;0&quot;&gt;
       &lt;Dynamic dnOrder=&quot;0&quot; id=&quot;sercom3&quot; value=&quot;0&quot;/&gt;
     &lt;/Values&gt;
+  &lt;/sercom3&gt;
+&lt;/sercom3&gt;
+</value>
+      </entry>
+      <entry>
+         <key class="com.microchip.mcc.core.tokenManager.CustomKey" moduleName="sercom3" name="USART_SFDE"/>
+         <value>&lt;?xml version=&quot;1.0&quot; encoding=&quot;UTF-8&quot;?&gt;&lt;sercom3&gt;
+  &lt;sercom3 dnOrder=&quot;0&quot; id=&quot;USART_SFDE&quot;&gt;
+    &lt;Values dnOrder=&quot;0&quot;/&gt;
+  &lt;/sercom3&gt;
+&lt;/sercom3&gt;
+</value>
+      </entry>
+      <entry>
+         <key class="com.microchip.mcc.core.tokenManager.CustomKey" moduleName="sercom3" name="USART_STOP_1_BIT_MASK"/>
+         <value>&lt;?xml version=&quot;1.0&quot; encoding=&quot;UTF-8&quot;?&gt;&lt;sercom3&gt;
+  &lt;sercom3 dnOrder=&quot;0&quot; id=&quot;USART_STOP_1_BIT_MASK&quot;&gt;
+    &lt;Values dnOrder=&quot;0&quot;/&gt;
+  &lt;/sercom3&gt;
+&lt;/sercom3&gt;
+</value>
+      </entry>
+      <entry>
+         <key class="com.microchip.mcc.core.tokenManager.CustomKey" moduleName="sercom3" name="USART_STOP_2_BIT_MASK"/>
+         <value>&lt;?xml version=&quot;1.0&quot; encoding=&quot;UTF-8&quot;?&gt;&lt;sercom3&gt;
+  &lt;sercom3 dnOrder=&quot;0&quot; id=&quot;USART_STOP_2_BIT_MASK&quot;&gt;
+    &lt;Values dnOrder=&quot;0&quot;/&gt;
+  &lt;/sercom3&gt;
+&lt;/sercom3&gt;
+</value>
+      </entry>
+      <entry>
+         <key class="com.microchip.mcc.core.tokenManager.CustomKey" moduleName="sercom3" name="USART_STOP_BIT"/>
+         <value>&lt;?xml version=&quot;1.0&quot; encoding=&quot;UTF-8&quot;?&gt;&lt;sercom3&gt;
+  &lt;sercom3 dnOrder=&quot;0&quot; id=&quot;USART_STOP_BIT&quot;&gt;
+    &lt;Values dnOrder=&quot;0&quot;/&gt;
+  &lt;/sercom3&gt;
+&lt;/sercom3&gt;
+</value>
+      </entry>
+      <entry>
+         <key class="com.microchip.mcc.core.tokenManager.CustomKey" moduleName="sercom3" name="USART_TXPO"/>
+         <value>&lt;?xml version=&quot;1.0&quot; encoding=&quot;UTF-8&quot;?&gt;&lt;sercom3&gt;
+  &lt;sercom3 dnOrder=&quot;0&quot; id=&quot;USART_TXPO&quot;&gt;
+    &lt;Values dnOrder=&quot;0&quot;/&gt;
+  &lt;/sercom3&gt;
+&lt;/sercom3&gt;
+</value>
+      </entry>
+      <entry>
+         <key class="com.microchip.mcc.core.tokenManager.CustomKey" moduleName="sercom3" name="USART_TX_ENABLE"/>
+         <value>&lt;?xml version=&quot;1.0&quot; encoding=&quot;UTF-8&quot;?&gt;&lt;sercom3&gt;
+  &lt;sercom3 dnOrder=&quot;0&quot; id=&quot;USART_TX_ENABLE&quot;&gt;
+    &lt;Values dnOrder=&quot;0&quot;/&gt;
+  &lt;/sercom3&gt;
+&lt;/sercom3&gt;
+</value>
+      </entry>
+      <entry>
+         <key class="com.microchip.mcc.core.tokenManager.CustomKey" moduleName="sercom3" name="USART_TX_RING_BUFFER_SIZE"/>
+         <value>&lt;?xml version=&quot;1.0&quot; encoding=&quot;UTF-8&quot;?&gt;&lt;sercom3&gt;
+  &lt;sercom3 dnOrder=&quot;0&quot; id=&quot;USART_TX_RING_BUFFER_SIZE&quot;&gt;
+    &lt;Values dnOrder=&quot;0&quot;/&gt;
   &lt;/sercom3&gt;
 &lt;/sercom3&gt;
 </value>
@@ -5857,338 +6733,166 @@
 </value>
       </entry>
    </tokenMap>
-   <generatedFileHashHistoryMap class="java.util.HashMap">
+   <generatedFileHashHistoryMap class="java.util.TreeMap">
       <entry>
-         <file>..\src\packs\PIC32CM1216MC00048_DFP\instance\tcc2.h</file>
-         <hash>4690e17a6a14bf907ae1a0d0c40b21a57c14a6962f3ff45628200ea399abcfc9</hash>
+         <file>..\src\config\mclv2_pic32_cm_mc_pim\PIC32CM1216MC00048.ld</file>
+         <hash>11b2e79351f17bdfe205a31c2541f17585450ca3a93333dbc9d5aa62c93b2818</hash>
       </entry>
       <entry>
-         <file>..\src\packs\CMSIS\CMSIS\Core\Include\cachel1_armv7.h</file>
-         <hash>6cdb5b324f2fd1bb5b2f47298ba6e6777e735d7cad3bb8d942cd36e2c6e65328</hash>
+         <file>..\src\config\mclv2_pic32_cm_mc_pim\X2Cscope\X2Cscope.c</file>
+         <hash>c27b73ea52593163c291d6ef2750c4a68681b5a9ca907271a44b273429cd5788</hash>
       </entry>
       <entry>
-         <file>..\src\packs\CMSIS\CMSIS\Core\Include\cmsis_gcc.h</file>
-         <hash>3d4e265d0aa42f888385ccf073666e6ebb5ec9f834760b9da27c474e177f708d</hash>
+         <file>..\src\config\mclv2_pic32_cm_mc_pim\X2Cscope\X2Cscope.h</file>
+         <hash>453b61b843e193b4f37abd386e2e467033e2b7aa1d8017b6dff6c2684d5faca3</hash>
       </entry>
       <entry>
-         <file>..\src\packs\PIC32CM1216MC00048_DFP\instance\sercom2.h</file>
-         <hash>2a785ee636df96a1945fbe996088e6559aa4dfaea5b5c7e153cb01b0351b0f75</hash>
+         <file>..\src\config\mclv2_pic32_cm_mc_pim\X2Cscope\X2CscopeComm.c</file>
+         <hash>b979eb41a313dba7584e1492ffb875d9eb44ccfa30a06c74e7ad70833441602e</hash>
       </entry>
       <entry>
-         <file>..\src\packs\PIC32CM1216MC00048_DFP\component\ac.h</file>
-         <hash>3f71cef422a424c910110bc58cecd0f870c6c2ac0156159e23f2409e15430c0a</hash>
+         <file>..\src\config\mclv2_pic32_cm_mc_pim\X2Cscope\X2CscopeComm.h</file>
+         <hash>fe4058d0b1fbfa8c3ed799292a4924cd365628d55656982bb075796f76f714dd</hash>
       </entry>
       <entry>
-         <file>..\src\packs\PIC32CM1216MC00048_DFP\instance\ccl.h</file>
-         <hash>0d9ae303b377d6e1e68a0a0638d2dc15613b1786521217eb6690c97c8294479e</hash>
+         <file>..\src\config\mclv2_pic32_cm_mc_pim\X2Cscope\libx2cscope2-cm0-elf.a</file>
+         <hash>cd7f866f123ee802616d4127945f7b35a1881cd5cb7c4331ec560977a35febd1</hash>
       </entry>
       <entry>
-         <file>..\src\config\mclv2_pic32_cm_mc_pim\X2CCode\X2CScope\inc\X2CScope.h</file>
-         <hash>d9ee6e53198dda1c1cf2982d9769cfd8f011538aa7c38304a324110cc32f8f04</hash>
+         <file>..\src\config\mclv2_pic32_cm_mc_pim\definitions.h</file>
+         <hash>d11575d70a1ebf34fe03e84a2e56780a9f40c2a31b741eefe83a9dd58563b176</hash>
       </entry>
       <entry>
-         <file>..\src\packs\PIC32CM1216MC00048_DFP\component\tc.h</file>
-         <hash>fa069e4d9e830308cb206ad967fb83b7dfd71d1e0ad842f7bb505dbe99f8b15b</hash>
-      </entry>
-      <entry>
-         <file>..\src\packs\PIC32CM1216MC00048_DFP\instance\osc32kctrl.h</file>
-         <hash>706cc176a76dfad658293c43d31322e79bc4cd5ac10f8844286f80d01e9b3eeb</hash>
-      </entry>
-      <entry>
-         <file>..\src\packs\PIC32CM1216MC00048_DFP\instance\dmac.h</file>
-         <hash>23c414464ad2f8ef868a759e3f67e18850a88b75703e0343b0e1c1e489a28d0e</hash>
-      </entry>
-      <entry>
-         <file>..\src\packs\PIC32CM1216MC00048_DFP\component\divas.h</file>
-         <hash>e9323f5d3a75fa1351ca9061ca1ba31db820dd8280bb353e6e30fd4998ae317a</hash>
+         <file>..\src\config\mclv2_pic32_cm_mc_pim\device.h</file>
+         <hash>a949320357019a1686cd853fd63776b387e3a3bfe7a359c3be02484b6b4525db</hash>
       </entry>
       <entry>
          <file>..\src\config\mclv2_pic32_cm_mc_pim\device_cache.h</file>
          <hash>e2914501b361bbc93a56d6915b1bf4fac00277e61f31fdee87a587bc15dea5b6</hash>
       </entry>
       <entry>
-         <file>..\src\packs\PIC32CM1216MC00048_DFP\instance\supc.h</file>
-         <hash>0316dc3927c25e1890dfb403ac2e816ed6b3ea5bcd7e9d627f7e4d653927a46b</hash>
-      </entry>
-      <entry>
-         <file>..\src\packs\PIC32CM1216MC00048_DFP\instance\port.h</file>
-         <hash>81c97f215a6f9447c82f484d337c9d911cc2c0b7049e05a6900639a3b7fa01f0</hash>
-      </entry>
-      <entry>
-         <file>..\src\packs\PIC32CM1216MC00048_DFP\instance\mclk.h</file>
-         <hash>c3fa257b366f291b72b6e57ca07cfd0fc094ba47a109b7bac98a8de7f36a760c</hash>
-      </entry>
-      <entry>
-         <file>..\src\packs\PIC32CM1216MC00048_DFP\instance\evsys.h</file>
-         <hash>4ac753008e6f326e66e82b9be066be437a67259c4bc1f6d1a286989b68c72686</hash>
-      </entry>
-      <entry>
-         <file>..\src\packs\PIC32CM1216MC00048_DFP\instance\dac.h</file>
-         <hash>91df3ef0d687660a3cb67b366310c9a10722d530833916092cfb3874387be26c</hash>
-      </entry>
-      <entry>
-         <file>..\src\packs\PIC32CM1216MC00048_DFP\component\adc.h</file>
-         <hash>fe2fc2e77bf9b6aaf9a627673d8d44f2e53cdf8eeea3911e25f4cce502f524f4</hash>
-      </entry>
-      <entry>
-         <file>..\src\packs\PIC32CM1216MC00048_DFP\component\mclk.h</file>
-         <hash>4c679852372c40be2d1d0b695c0b6f052adb6c6a25cfa5ef79a482184ccb0e9a</hash>
-      </entry>
-      <entry>
-         <file>..\src\packs\PIC32CM1216MC00048_DFP\instance\tc1.h</file>
-         <hash>48c8d3c7d5833eb450e0be21b6626ce141bddce7dae7188413baff3585beb816</hash>
-      </entry>
-      <entry>
-         <file>..\src\packs\CMSIS\CMSIS\Core\Include\core_cm0plus.h</file>
-         <hash>a19e24c136145b4c72630d0ab7c83a7aef010f3ba165e34c56a05057a2d9fed5</hash>
-      </entry>
-      <entry>
-         <file>..\src\packs\PIC32CM1216MC00048_DFP\component\wdt.h</file>
-         <hash>62b857038195bf53fc26cb83538a0481885f1fe0fb446b69dc1007071e6185f4</hash>
-      </entry>
-      <entry>
-         <file>..\src\packs\PIC32CM1216MC00048_DFP\component\tsens.h</file>
-         <hash>44a32c2f93bca4214a675d52df5f2ce165a081e1f1622ad206afb1748b1ebdfb</hash>
-      </entry>
-      <entry>
-         <file>..\src\packs\PIC32CM1216MC00048_DFP\instance\pm.h</file>
-         <hash>11417d50f303334ccb6c1a7241f85f030e5ae60f2d0aabb941a05f811c1be2c6</hash>
-      </entry>
-      <entry>
-         <file>..\src\config\mclv2_pic32_cm_mc_pim\X2CCode\X2CScope\lib\libCORTEXM0PLUS_X2CScope.a</file>
-         <hash>ce0636dffefd35462fc7e04b6554d901001a189413f32b055387946147f85c22</hash>
-      </entry>
-      <entry>
-         <file>..\src\config\mclv2_pic32_cm_mc_pim\peripheral\clock\plib_clock.h</file>
-         <hash>01c269741541514e997ef61546f4dbb0e23f66e27c6a957162557f13b4638baf</hash>
-      </entry>
-      <entry>
-         <file>..\src\config\mclv2_pic32_cm_mc_pim\peripheral\clock\plib_clock.c</file>
-         <hash>c3c943b1b9774a78e2392ae39b606eb1350b6012b2b71b526618188cc4b4dc50</hash>
-      </entry>
-      <entry>
-         <file>..\src\packs\PIC32CM1216MC00048_DFP\component\fuses.h</file>
-         <hash>1f5e57db029e0fd7a245a2cf1f5f96d444bfc64045fd19107c8b864b8c593612</hash>
-      </entry>
-      <entry>
-         <file>..\src\packs\PIC32CM1216MC00048_DFP\component\port.h</file>
-         <hash>e54a4fa3040dbb9047b9188ed401886acff156720049201535c71bbd6c7272d5</hash>
-      </entry>
-      <entry>
-         <file>..\src\packs\PIC32CM1216MC00048_DFP\instance\pac.h</file>
-         <hash>4045585da0f8e0f120c9fc4fe0c44439a4464b1bd374a9dbb93d2fedf5ab3d1b</hash>
-      </entry>
-      <entry>
-         <file>..\src\config\mclv2_pic32_cm_mc_pim\peripheral\pdec\plib_pdec_common.h</file>
-         <hash>18ec335d938995bcc13a9269ef324b40cd5b3e044647a5238df178881c6238c4</hash>
-      </entry>
-      <entry>
-         <file>..\src\packs\PIC32CM1216MC00048_DFP\instance\sercom1.h</file>
-         <hash>92bcc28bde2fb52e4eaf46e156fc7b85e892a94e2fa35d698f4acd2990d2a22e</hash>
-      </entry>
-      <entry>
-         <file>..\src\packs\CMSIS\CMSIS\Core\Include\mpu_armv7.h</file>
-         <hash>de1b5eb9ed566527b66dc06f4ecb6a43ab6800f7dac47e87c9cb42984dca41bb</hash>
-      </entry>
-      <entry>
-         <file>..\src\packs\CMSIS\CMSIS\Core\Include\cmsis_armcc.h</file>
-         <hash>d074534d7106cec83474b3b0a897bd2553e1a8895ecbd54f4f4fb25928066eee</hash>
-      </entry>
-      <entry>
-         <file>..\src\config\mclv2_pic32_cm_mc_pim\peripheral\tc\plib_tc3.c</file>
-         <hash>1dbdba99957410028e876288d7cf2783c1a71ae94ac6f00c53b3fe85a42269be</hash>
-      </entry>
-      <entry>
-         <file>..\src\config\mclv2_pic32_cm_mc_pim\peripheral\nvmctrl\plib_nvmctrl.h</file>
-         <hash>a9b3e9e4a404f03636d3d55f9fb8edb4922bfff93f421494c272ac04e691af49</hash>
-      </entry>
-      <entry>
-         <file>..\src\packs\PIC32CM1216MC00048_DFP\component\sdadc.h</file>
-         <hash>b54fdf1f66d061e9974d0713e1f4c57fea68f619843ddd1a3a4435891d9df080</hash>
-      </entry>
-      <entry>
-         <file>..\src\packs\PIC32CM1216MC00048_DFP\instance\freqm.h</file>
-         <hash>df29b0010b83cf7e73bfbdb56424cad2850c374d4f19b2a34357a06415f0aa55</hash>
-      </entry>
-      <entry>
-         <file>..\src\config\mclv2_pic32_cm_mc_pim\stdio\xc32_monitor.c</file>
-         <hash>858f8710d4287200a5ee7f3b3ad7c24f505aed9c05c16956ab0ff9f7bb162a6a</hash>
-      </entry>
-      <entry>
-         <file>..\src\packs\PIC32CM1216MC00048_DFP\component\evsys.h</file>
-         <hash>30895f7533c2b5158dd2c87c7317fd763e1f5d40b033441d2ad532ec05ebe9c3</hash>
-      </entry>
-      <entry>
-         <file>..\src\packs\PIC32CM1216MC00048_DFP\component\osc32kctrl.h</file>
-         <hash>7300b2e2a1351c74f3c15f0e24d1026072311b6a938d7b03dc06a5b9b973db72</hash>
-      </entry>
-      <entry>
-         <file>..\src\config\mclv2_pic32_cm_mc_pim\peripheral\nvmctrl\plib_nvmctrl.c</file>
-         <hash>3f7e6763589b923e883d2fd3a1ee406c62b70ef9286b2eb73865819c77143d82</hash>
-      </entry>
-      <entry>
-         <file>..\src\config\mclv2_pic32_cm_mc_pim\peripheral\tc\plib_tc3.h</file>
-         <hash>7e3d98eab6c799ffb1131984ac9ab7d7b0bb7863738d9681fc44810230fb7135</hash>
-      </entry>
-      <entry>
-         <file>..\src\packs\CMSIS\CMSIS\Core\Include\cmsis_armclang.h</file>
-         <hash>11b39b96ddc1125124762b3423a77b90dd40ea5b4582a3513830245046b24311</hash>
-      </entry>
-      <entry>
-         <file>..\src\packs\PIC32CM1216MC00048_DFP\component\mtb.h</file>
-         <hash>d3ae3e83d180cbbdf0a0d621bffec4f94077ccfdae0a070371807775518d4479</hash>
-      </entry>
-      <entry>
-         <file>..\src\packs\PIC32CM1216MC00048_DFP\instance\rtc.h</file>
-         <hash>398b977f1a39d551aba287228383fadb2e6fe281b73497b9fcdf6f3131cb8ec8</hash>
-      </entry>
-      <entry>
-         <file>..\src\config\mclv2_pic32_cm_mc_pim\peripheral\tc\plib_tc_common.h</file>
-         <hash>487b4f489229b8e16b24ab48ddc1f414b095585439f0e10d53b2285fc3979f63</hash>
-      </entry>
-      <entry>
-         <file>..\src\packs\PIC32CM1216MC00048_DFP\instance\divas.h</file>
-         <hash>583777ae721feddc275ecc2966bcaa5f90f13ae4e71df41103de3f25b575b749</hash>
-      </entry>
-      <entry>
-         <file>..\src\packs\PIC32CM1216MC00048_DFP\component\nvmctrl.h</file>
-         <hash>98399189510585da3e90b10b33dbb86771431deacba83260e78457f07f3d8309</hash>
-      </entry>
-      <entry>
-         <file>..\src\packs\CMSIS\CMSIS\Core\Include\cmsis_compiler.h</file>
-         <hash>869640702d811c4c63abb52206715c891a93fd03be954df5ad40d378355af3d6</hash>
-      </entry>
-      <entry>
-         <file>..\src\config\mclv2_pic32_cm_mc_pim\X2CCode\X2CScope\inc\X2CScopeCommunication.h</file>
-         <hash>fd5facc76afd74c7321055a89ed98ce225e492356a6f31fb95b5f2d332de3d4a</hash>
-      </entry>
-      <entry>
-         <file>..\src\packs\PIC32CM1216MC00048_DFP\instance\tsens.h</file>
-         <hash>f002748b8a0a7f49a7c596f909ea4c23fb39919a35177b05025b451421c2a770</hash>
-      </entry>
-      <entry>
-         <file>..\src\packs\PIC32CM1216MC00048_DFP\instance\tc2.h</file>
-         <hash>e6dc7b0c0f62a1096cb394d488087076953631c888d96938a2a9ee83aae06edd</hash>
-      </entry>
-      <entry>
-         <file>..\src\config\mclv2_pic32_cm_mc_pim\peripheral\nvic\plib_nvic.c</file>
-         <hash>7d692f9b1253c55e2944f7eec134d8209a166afdec519522d293c2d3d70d3568</hash>
+         <file>..\src\config\mclv2_pic32_cm_mc_pim\device_vectors.h</file>
+         <hash>ee78154039cff965c10a83b68ce56eec614a8e4486a44c6d44a9d0e794da1bad</hash>
       </entry>
       <entry>
          <file>..\src\config\mclv2_pic32_cm_mc_pim\exceptions.c</file>
          <hash>5efbe5a64a17c496d2f5b177bc9cd66a7f0f80323d9558e220c073a13570a2a7</hash>
       </entry>
       <entry>
-         <file>..\src\packs\PIC32CM1216MC00048_DFP\instance\adc1.h</file>
-         <hash>5e81f7b35965cc5bbba89ee364a273716d0ab6f27de7a970d09b638f2d5a29d0</hash>
+         <file>..\src\config\mclv2_pic32_cm_mc_pim\initialization.c</file>
+         <hash>2fc2a107e379c24fd2c44735b7144d40d72525ff857e52b805df8ff9110f3e62</hash>
       </entry>
       <entry>
-         <file>..\src\config\mclv2_pic32_cm_mc_pim\peripheral\nvic\plib_nvic.h</file>
-         <hash>81e813a093101d546799e00723cbf7245e2d18471fa51c8d130c5809cecca03e</hash>
+         <file>..\src\config\mclv2_pic32_cm_mc_pim\interrupts.c</file>
+         <hash>0b81618bc72b1c14100326bc04ea748b02917dec53022e2ad659f4d004bd9894</hash>
       </entry>
       <entry>
-         <file>..\src\config\mclv2_pic32_cm_mc_pim\X2CCode\X2CScope\src\X2CScope.c</file>
-         <hash>bb60724b6946a3d5e51f5f7f227a304cabcecba3851d7e6d40a1a04306a45a2e</hash>
+         <file>..\src\config\mclv2_pic32_cm_mc_pim\interrupts.h</file>
+         <hash>65e39f3e91bc2b836ddc2a1fc054e384c78f391951e8978e18deb1f15b20fea2</hash>
       </entry>
       <entry>
-         <file>..\src\packs\PIC32CM1216MC00048_DFP\instance\fuses.h</file>
-         <hash>626ac82601517ac456d835322fa4355e799f0d7065b74b4c6bdc8428023544d6</hash>
-      </entry>
-      <entry>
-         <file>..\src\packs\PIC32CM1216MC00048_DFP\instance\nvmctrl.h</file>
-         <hash>dacb40b9a60c6f19a98d2a1c22754ff5c25d22309102d2c285116cccb22c9601</hash>
-      </entry>
-      <entry>
-         <file>..\src\config\mclv2_pic32_cm_mc_pim\peripheral\evsys\plib_evsys.c</file>
-         <hash>067e3a6b5b21f7e350b20bbd4dcc451f26cf3100f80bb05b0d30dec9e21df414</hash>
-      </entry>
-      <entry>
-         <file>..\src\config\mclv2_pic32_cm_mc_pim\toolchain_specifics.h</file>
-         <hash>a4f1774c6f1f8c6cd522567536c9e9d75ca63259b868015ac9b0fb0aeeffe1f4</hash>
-      </entry>
-      <entry>
-         <file>..\src\packs\PIC32CM1216MC00048_DFP\component\pdec.h</file>
-         <hash>eb75160ed1860caee40a9c6bc1e3fefc60df0eb604146003a1c114db8df166ef</hash>
-      </entry>
-      <entry>
-         <file>..\src\config\mclv2_pic32_cm_mc_pim\peripheral\pdec\plib_pdec.c</file>
-         <hash>fe1816c063f6519bde82d192919bd1cb83384e1fbfaada39b60b64e755d1f288</hash>
-      </entry>
-      <entry>
-         <file>..\src\config\mclv2_pic32_cm_mc_pim\peripheral\evsys\plib_evsys.h</file>
-         <hash>4ca49e2650f1cbc38a8eaa4835b398b54823f7bc5abc8c2d66d1cbd5dccf723d</hash>
-      </entry>
-      <entry>
-         <file>..\src\packs\PIC32CM1216MC00048_DFP\component\dsu.h</file>
-         <hash>7714a7a85991b518889139ecc6b4eb930b60949dce880739eaf862733fec69f6</hash>
-      </entry>
-      <entry>
-         <file>..\src\config\mclv2_pic32_cm_mc_pim\peripheral\pdec\plib_pdec.h</file>
-         <hash>51d79211587d085397d102b464583455d9597c662a865e02c5b1c51c6c9f0dec</hash>
-      </entry>
-      <entry>
-         <file>..\src\config\mclv2_pic32_cm_mc_pim\peripheral\tcc\plib_tcc_common.h</file>
-         <hash>2bd78c7b794475007265f122ca57ef54a64efc8894cc2423a1d0f74caa627b2b</hash>
-      </entry>
-      <entry>
-         <file>..\src\config\mclv2_pic32_cm_mc_pim\peripheral\tcc\plib_tcc0.h</file>
-         <hash>81f7d4577b88b3b9113e4e29151b4d5e8f528334ae653924dd9a6ce364147c25</hash>
-      </entry>
-      <entry>
-         <file>..\src\config\mclv2_pic32_cm_mc_pim\peripheral\tcc\plib_tcc0.c</file>
-         <hash>276cea95c2765f1f97830a5cc4115649c46cc03acf394916468bfde858e08739</hash>
-      </entry>
-      <entry>
-         <file>..\src\packs\PIC32CM1216MC00048_DFP\pic32cm1216mc00048.h</file>
-         <hash>7bc01b486cbefb6064c9f523b064f3fb7424f9531343c6b0793cb62afde2ef8b</hash>
-      </entry>
-      <entry>
-         <file>..\src\config\mclv2_pic32_cm_mc_pim\PIC32CM1216MC00048.ld</file>
-         <hash>11b2e79351f17bdfe205a31c2541f17585450ca3a93333dbc9d5aa62c93b2818</hash>
+         <file>..\src\config\mclv2_pic32_cm_mc_pim\libc_syscalls.c</file>
+         <hash>df1be7627b968b650c3389237792bf3bf4f4318a64a06a4bfe7b76730551c252</hash>
       </entry>
       <entry>
          <file>..\src\config\mclv2_pic32_cm_mc_pim\peripheral\adc\plib_adc1.c</file>
          <hash>9ee0dc23269f7f2a8f68fbb2bc37ceb9fec5e6d82ce02bb167e565fabbc3d898</hash>
       </entry>
       <entry>
-         <file>..\src\packs\PIC32CM1216MC00048_DFP\instance\sdadc.h</file>
-         <hash>171dd2f6ebdd86221925324837c225fbdbe175bdc5747bdf9006f879ff3f51aa</hash>
-      </entry>
-      <entry>
-         <file>..\src\packs\PIC32CM1216MC00048_DFP\instance\hmatrixhs.h</file>
-         <hash>d4c1c214580b09dd5f88c22105fdb319b7c79c54605dc336498e14a1268129a1</hash>
-      </entry>
-      <entry>
          <file>..\src\config\mclv2_pic32_cm_mc_pim\peripheral\adc\plib_adc1.h</file>
          <hash>c1b3594d1b351c0a386791e21835b1126218031b53ba9681b0fcf0b88ed89db1</hash>
       </entry>
       <entry>
-         <file>..\src\packs\PIC32CM1216MC00048_DFP\instance\tcc0.h</file>
-         <hash>a7d9495fe3fe502c5e3e2d929ebade5037665e15acd2f0b28be85ca2b0924c68</hash>
+         <file>..\src\config\mclv2_pic32_cm_mc_pim\peripheral\adc\plib_adc_common.h</file>
+         <hash>1c309fecc66cf18a0996bdafc0281e8d5e6e8862056738f5ba6f1eacd26eb28f</hash>
+      </entry>
+      <entry>
+         <file>..\src\config\mclv2_pic32_cm_mc_pim\peripheral\clock\plib_clock.c</file>
+         <hash>c3c943b1b9774a78e2392ae39b606eb1350b6012b2b71b526618188cc4b4dc50</hash>
+      </entry>
+      <entry>
+         <file>..\src\config\mclv2_pic32_cm_mc_pim\peripheral\clock\plib_clock.h</file>
+         <hash>01c269741541514e997ef61546f4dbb0e23f66e27c6a957162557f13b4638baf</hash>
+      </entry>
+      <entry>
+         <file>..\src\config\mclv2_pic32_cm_mc_pim\peripheral\divas\plib_divas.c</file>
+         <hash>af5217b56a84e26c9718fec1d1271330b291abfb1f0164c046f221cba96e8ecd</hash>
+      </entry>
+      <entry>
+         <file>..\src\config\mclv2_pic32_cm_mc_pim\peripheral\divas\plib_divas.h</file>
+         <hash>3057b8172ac64739dc62a5df906316ac4eb98625554406c3ad6fa280e1514ff8</hash>
       </entry>
       <entry>
          <file>..\src\config\mclv2_pic32_cm_mc_pim\peripheral\eic\plib_eic.c</file>
          <hash>fad8495f37e0b2c776c4ed0bb37b6cf2bfdca304b712338216462371686a1d7c</hash>
       </entry>
       <entry>
-         <file>..\src\packs\PIC32CM1216MC00048_DFP\instance\pdec.h</file>
-         <hash>d256fe1bc7a065973e8a48060f57366e15a838518ed99f8677f911ae74ffeb29</hash>
-      </entry>
-      <entry>
-         <file>..\src\packs\PIC32CM1216MC00048_DFP\instance\sercom0.h</file>
-         <hash>995eb93ba5195c8f161f05cf5ae33da9bf26d4f63af06986da807fa28a6b391b</hash>
-      </entry>
-      <entry>
          <file>..\src\config\mclv2_pic32_cm_mc_pim\peripheral\eic\plib_eic.h</file>
          <hash>60aa00620d99be6361abafa4b3f57c264ad2f9cc78e05ba7783128cbfc70c341</hash>
       </entry>
       <entry>
-         <file>..\src\packs\PIC32CM1216MC00048_DFP\instance\adc0.h</file>
-         <hash>1f691c3d4df4b0a3cb624c601f6399476d15b6037c7f52ff68a1d3f9c09d1eb8</hash>
+         <file>..\src\config\mclv2_pic32_cm_mc_pim\peripheral\evsys\plib_evsys.c</file>
+         <hash>067e3a6b5b21f7e350b20bbd4dcc451f26cf3100f80bb05b0d30dec9e21df414</hash>
       </entry>
       <entry>
-         <file>..\src\packs\PIC32CM1216MC00048_DFP\instance\rstc.h</file>
-         <hash>87e820bbd78847682fd694afd673f66a6401abcc82e107529e06e64b584e9681</hash>
+         <file>..\src\config\mclv2_pic32_cm_mc_pim\peripheral\evsys\plib_evsys.h</file>
+         <hash>4ca49e2650f1cbc38a8eaa4835b398b54823f7bc5abc8c2d66d1cbd5dccf723d</hash>
+      </entry>
+      <entry>
+         <file>..\src\config\mclv2_pic32_cm_mc_pim\peripheral\nvic\plib_nvic.c</file>
+         <hash>beffb6ae2f2152da912738320a06bbb70daffe4dbafd3f4644250f9325d5400b</hash>
+      </entry>
+      <entry>
+         <file>..\src\config\mclv2_pic32_cm_mc_pim\peripheral\nvic\plib_nvic.h</file>
+         <hash>9936ac782115af41003255283fa2f603f4ff2212d16275b7c80ea8d067a9e208</hash>
+      </entry>
+      <entry>
+         <file>..\src\config\mclv2_pic32_cm_mc_pim\peripheral\nvmctrl\plib_nvmctrl.c</file>
+         <hash>3f7e6763589b923e883d2fd3a1ee406c62b70ef9286b2eb73865819c77143d82</hash>
+      </entry>
+      <entry>
+         <file>..\src\config\mclv2_pic32_cm_mc_pim\peripheral\nvmctrl\plib_nvmctrl.h</file>
+         <hash>a9b3e9e4a404f03636d3d55f9fb8edb4922bfff93f421494c272ac04e691af49</hash>
+      </entry>
+      <entry>
+         <file>..\src\config\mclv2_pic32_cm_mc_pim\peripheral\pdec\plib_pdec.c</file>
+         <hash>fe1816c063f6519bde82d192919bd1cb83384e1fbfaada39b60b64e755d1f288</hash>
+      </entry>
+      <entry>
+         <file>..\src\config\mclv2_pic32_cm_mc_pim\peripheral\pdec\plib_pdec.h</file>
+         <hash>51d79211587d085397d102b464583455d9597c662a865e02c5b1c51c6c9f0dec</hash>
+      </entry>
+      <entry>
+         <file>..\src\config\mclv2_pic32_cm_mc_pim\peripheral\pdec\plib_pdec_common.h</file>
+         <hash>18ec335d938995bcc13a9269ef324b40cd5b3e044647a5238df178881c6238c4</hash>
+      </entry>
+      <entry>
+         <file>..\src\config\mclv2_pic32_cm_mc_pim\peripheral\port\plib_port.c</file>
+         <hash>4ff38f4fb8458754dbaf516736d05f011cef8f95f0548633f893d42a4339570c</hash>
+      </entry>
+      <entry>
+         <file>..\src\config\mclv2_pic32_cm_mc_pim\peripheral\port\plib_port.h</file>
+         <hash>2768740b7da407ff650c71178cc5925825c2083abb78de9c1648dbdda2931124</hash>
+      </entry>
+      <entry>
+         <file>..\src\config\mclv2_pic32_cm_mc_pim\peripheral\sercom\usart\plib_sercom3_usart.c</file>
+         <hash>157404d773c75b3d1b5bf28c1342819bbc709c3e38f47038086bafbe3b3fadc9</hash>
+      </entry>
+      <entry>
+         <file>..\src\config\mclv2_pic32_cm_mc_pim\peripheral\sercom\usart\plib_sercom3_usart.h</file>
+         <hash>38bd5f257a7dfce1144c3375178920ba13770e7ec6283d7e5014f8af56aeb1bc</hash>
+      </entry>
+      <entry>
+         <file>..\src\config\mclv2_pic32_cm_mc_pim\peripheral\sercom\usart\plib_sercom_usart_common.h</file>
+         <hash>f19dafabe0928d60dd83d7e19f35889f200e3fbadff09e2f42523d320acf780a</hash>
+      </entry>
+      <entry>
+         <file>..\src\config\mclv2_pic32_cm_mc_pim\peripheral\tc\plib_tc3.c</file>
+         <hash>1dbdba99957410028e876288d7cf2783c1a71ae94ac6f00c53b3fe85a42269be</hash>
+      </entry>
+      <entry>
+         <file>..\src\config\mclv2_pic32_cm_mc_pim\peripheral\tc\plib_tc3.h</file>
+         <hash>7e3d98eab6c799ffb1131984ac9ab7d7b0bb7863738d9681fc44810230fb7135</hash>
       </entry>
       <entry>
          <file>..\src\config\mclv2_pic32_cm_mc_pim\peripheral\tc\plib_tc4.c</file>
@@ -6199,200 +6903,372 @@
          <hash>53a95a6e6ff977c1ca1400cd22608ff2606a6c7ef7f47917696e41a543bc8e52</hash>
       </entry>
       <entry>
-         <file>..\src\config\mclv2_pic32_cm_mc_pim\device.h</file>
-         <hash>a949320357019a1686cd853fd63776b387e3a3bfe7a359c3be02484b6b4525db</hash>
+         <file>..\src\config\mclv2_pic32_cm_mc_pim\peripheral\tc\plib_tc_common.h</file>
+         <hash>487b4f489229b8e16b24ab48ddc1f414b095585439f0e10d53b2285fc3979f63</hash>
       </entry>
       <entry>
-         <file>..\src\packs\CMSIS\CMSIS\Core\Include\cmsis_version.h</file>
-         <hash>2de01ae2556a38eb82c389de23c701805ec63308cfbcf3f84cb12141589b0858</hash>
+         <file>..\src\config\mclv2_pic32_cm_mc_pim\peripheral\tcc\plib_tcc0.c</file>
+         <hash>276cea95c2765f1f97830a5cc4115649c46cc03acf394916468bfde858e08739</hash>
       </entry>
       <entry>
-         <file>..\src\packs\CMSIS\CMSIS\Core\Include\cmsis_iccarm.h</file>
-         <hash>f28119adbc81fb0e3c957c9aebe8fb423ad93634e76ead3caa2b0818d2e123ae</hash>
+         <file>..\src\config\mclv2_pic32_cm_mc_pim\peripheral\tcc\plib_tcc0.h</file>
+         <hash>81f7d4577b88b3b9113e4e29151b4d5e8f528334ae653924dd9a6ce364147c25</hash>
       </entry>
       <entry>
-         <file>..\src\packs\PIC32CM1216MC00048_DFP\component\gclk.h</file>
-         <hash>230192de2a8c12e49ac305fe00089b98ec76c4bf934d246d33998d821d0bd5f6</hash>
-      </entry>
-      <entry>
-         <file>..\src\config\mclv2_pic32_cm_mc_pim\interrupts.h</file>
-         <hash>65e39f3e91bc2b836ddc2a1fc054e384c78f391951e8978e18deb1f15b20fea2</hash>
-      </entry>
-      <entry>
-         <file>..\src\config\mclv2_pic32_cm_mc_pim\interrupts.c</file>
-         <hash>0b81618bc72b1c14100326bc04ea748b02917dec53022e2ad659f4d004bd9894</hash>
-      </entry>
-      <entry>
-         <file>..\src\packs\PIC32CM1216MC00048_DFP\instance\tc3.h</file>
-         <hash>14f5be35bbaea27ef30bbfef17b504f1d47ab1f98a51513ed03b7bc209e2bc35</hash>
-      </entry>
-      <entry>
-         <file>..\src\packs\PIC32CM1216MC00048_DFP\component\freqm.h</file>
-         <hash>979361dcebb004200e7e8a3fa82bb991e5669701a125d899e01bd01e40c37333</hash>
-      </entry>
-      <entry>
-         <file>..\src\config\mclv2_pic32_cm_mc_pim\definitions.h</file>
-         <hash>a9c484dd4bb3214fcc678fc44135ff3a572042142f35332186462381081a9534</hash>
-      </entry>
-      <entry>
-         <file>..\src\packs\PIC32CM1216MC00048_DFP\component\ccl.h</file>
-         <hash>661fe489a50dd7e8b16bbc7721ce69cab52027279c2ba0ea4f09bf2a7f135a9e</hash>
-      </entry>
-      <entry>
-         <file>..\src\packs\PIC32CM1216MC00048_DFP\instance\wdt.h</file>
-         <hash>40b4f18f047867e976e11caec6141c48c9d9999ca2cfb03d446ca6b3446202e7</hash>
-      </entry>
-      <entry>
-         <file>..\src\config\mclv2_pic32_cm_mc_pim\device_vectors.h</file>
-         <hash>ee78154039cff965c10a83b68ce56eec614a8e4486a44c6d44a9d0e794da1bad</hash>
-      </entry>
-      <entry>
-         <file>..\src\packs\PIC32CM1216MC00048_DFP\instance\eic.h</file>
-         <hash>de8dcb35027e60c53742659d4b7a51966fe52b7f868b2fc6b051d79911e15fc1</hash>
+         <file>..\src\config\mclv2_pic32_cm_mc_pim\peripheral\tcc\plib_tcc_common.h</file>
+         <hash>2bd78c7b794475007265f122ca57ef54a64efc8894cc2423a1d0f74caa627b2b</hash>
       </entry>
       <entry>
          <file>..\src\config\mclv2_pic32_cm_mc_pim\pin_configurations.csv</file>
          <hash>728371b3431212720cd22de0af98f5fe9eab0ca97666aa6abcf5aea89d280b50</hash>
       </entry>
       <entry>
-         <file>..\src\packs\PIC32CM1216MC00048_DFP\component\dac.h</file>
-         <hash>727503207a20b402f2523bf3dc49892f5099dfc495760075cd3815f8e1830843</hash>
+         <file>..\src\config\mclv2_pic32_cm_mc_pim\startup_xc32.c</file>
+         <hash>6b73f68a3f402202d7405702269e85ed96d0a878ee80c3826dd61a9d43766996</hash>
+      </entry>
+      <entry>
+         <file>..\src\config\mclv2_pic32_cm_mc_pim\stdio\xc32_monitor.c</file>
+         <hash>858f8710d4287200a5ee7f3b3ad7c24f505aed9c05c16956ab0ff9f7bb162a6a</hash>
+      </entry>
+      <entry>
+         <file>..\src\config\mclv2_pic32_cm_mc_pim\toolchain_specifics.h</file>
+         <hash>a4f1774c6f1f8c6cd522567536c9e9d75ca63259b868015ac9b0fb0aeeffe1f4</hash>
+      </entry>
+      <entry>
+         <file>..\src\packs\CMSIS\CMSIS\Core\Include\cachel1_armv7.h</file>
+         <hash>6cdb5b324f2fd1bb5b2f47298ba6e6777e735d7cad3bb8d942cd36e2c6e65328</hash>
+      </entry>
+      <entry>
+         <file>..\src\packs\CMSIS\CMSIS\Core\Include\cmsis_armcc.h</file>
+         <hash>d074534d7106cec83474b3b0a897bd2553e1a8895ecbd54f4f4fb25928066eee</hash>
+      </entry>
+      <entry>
+         <file>..\src\packs\CMSIS\CMSIS\Core\Include\cmsis_armclang.h</file>
+         <hash>11b39b96ddc1125124762b3423a77b90dd40ea5b4582a3513830245046b24311</hash>
       </entry>
       <entry>
          <file>..\src\packs\CMSIS\CMSIS\Core\Include\cmsis_armclang_ltm.h</file>
          <hash>8621969ea669a1b230ff2125a760ef66d575c48cb45e9e457f768909abcbda46</hash>
       </entry>
       <entry>
-         <file>..\src\packs\PIC32CM1216MC00048_DFP\instance\tcc1.h</file>
-         <hash>647570cc815658bea31026b32db42fc3b0943a24b62a217c0b4c52095e1afad4</hash>
+         <file>..\src\packs\CMSIS\CMSIS\Core\Include\cmsis_compiler.h</file>
+         <hash>869640702d811c4c63abb52206715c891a93fd03be954df5ad40d378355af3d6</hash>
       </entry>
       <entry>
-         <file>..\src\packs\PIC32CM1216MC00048_DFP\component\pac.h</file>
-         <hash>b2a68e834a76af3506eedf78c4cba515da1ab8eb3745c71527d51ab413a116c4</hash>
+         <file>..\src\packs\CMSIS\CMSIS\Core\Include\cmsis_gcc.h</file>
+         <hash>3d4e265d0aa42f888385ccf073666e6ebb5ec9f834760b9da27c474e177f708d</hash>
       </entry>
       <entry>
-         <file>..\src\config\mclv2_pic32_cm_mc_pim\peripheral\sercom\usart\plib_sercom3_usart.c</file>
-         <hash>157404d773c75b3d1b5bf28c1342819bbc709c3e38f47038086bafbe3b3fadc9</hash>
+         <file>..\src\packs\CMSIS\CMSIS\Core\Include\cmsis_iccarm.h</file>
+         <hash>f28119adbc81fb0e3c957c9aebe8fb423ad93634e76ead3caa2b0818d2e123ae</hash>
       </entry>
       <entry>
-         <file>..\src\packs\PIC32CM1216MC00048_DFP\instance\ac.h</file>
-         <hash>ecf14f3ff5044dd8696202a28b208a76d80fe7035394c6f1bf2a368e6787b100</hash>
+         <file>..\src\packs\CMSIS\CMSIS\Core\Include\cmsis_version.h</file>
+         <hash>2de01ae2556a38eb82c389de23c701805ec63308cfbcf3f84cb12141589b0858</hash>
       </entry>
       <entry>
-         <file>..\src\config\mclv2_pic32_cm_mc_pim\peripheral\sercom\usart\plib_sercom3_usart.h</file>
-         <hash>38bd5f257a7dfce1144c3375178920ba13770e7ec6283d7e5014f8af56aeb1bc</hash>
+         <file>..\src\packs\CMSIS\CMSIS\Core\Include\core_cm0plus.h</file>
+         <hash>a19e24c136145b4c72630d0ab7c83a7aef010f3ba165e34c56a05057a2d9fed5</hash>
       </entry>
       <entry>
-         <file>..\src\config\mclv2_pic32_cm_mc_pim\peripheral\divas\plib_divas.h</file>
-         <hash>3057b8172ac64739dc62a5df906316ac4eb98625554406c3ad6fa280e1514ff8</hash>
+         <file>..\src\packs\CMSIS\CMSIS\Core\Include\mpu_armv7.h</file>
+         <hash>de1b5eb9ed566527b66dc06f4ecb6a43ab6800f7dac47e87c9cb42984dca41bb</hash>
       </entry>
       <entry>
-         <file>..\src\packs\PIC32CM1216MC00048_DFP\component\tcc.h</file>
-         <hash>0d7901b645f0aff26f5476e0a2feb8dea06cb508c8c1c75c9de14ee71687681f</hash>
+         <file>..\src\packs\PIC32CM1216MC00048_DFP\component\ac.h</file>
+         <hash>3f71cef422a424c910110bc58cecd0f870c6c2ac0156159e23f2409e15430c0a</hash>
       </entry>
       <entry>
-         <file>..\src\config\mclv2_pic32_cm_mc_pim\peripheral\adc\plib_adc_common.h</file>
-         <hash>af1810bb21507a6cb9da08f85bbcfd4ad6e85d57009cfbef6ff5f429b1ffda09</hash>
+         <file>..\src\packs\PIC32CM1216MC00048_DFP\component\adc.h</file>
+         <hash>fe2fc2e77bf9b6aaf9a627673d8d44f2e53cdf8eeea3911e25f4cce502f524f4</hash>
       </entry>
       <entry>
-         <file>..\src\config\mclv2_pic32_cm_mc_pim\startup_xc32.c</file>
-         <hash>6b73f68a3f402202d7405702269e85ed96d0a878ee80c3826dd61a9d43766996</hash>
+         <file>..\src\packs\PIC32CM1216MC00048_DFP\component\ccl.h</file>
+         <hash>661fe489a50dd7e8b16bbc7721ce69cab52027279c2ba0ea4f09bf2a7f135a9e</hash>
       </entry>
       <entry>
-         <file>..\src\packs\PIC32CM1216MC00048_DFP\component\eic.h</file>
-         <hash>4cc6abb4e084667edd4db6637fe5d2ee8fad5a897c2262375f27f6b55265a349</hash>
+         <file>..\src\packs\PIC32CM1216MC00048_DFP\component\dac.h</file>
+         <hash>727503207a20b402f2523bf3dc49892f5099dfc495760075cd3815f8e1830843</hash>
       </entry>
       <entry>
-         <file>..\src\packs\PIC32CM1216MC00048_DFP\component\rstc.h</file>
-         <hash>5d471e67badff6cf69b12d5b02a507da4ec06d36970a18e5c95f9a2e9171cd19</hash>
-      </entry>
-      <entry>
-         <file>..\src\packs\PIC32CM1216MC00048_DFP\instance\sercom3.h</file>
-         <hash>0e29b57c244b1753cf2f1b83542d759e7a8dff05f5390b0c40475c0448babc25</hash>
-      </entry>
-      <entry>
-         <file>..\src\config\mclv2_pic32_cm_mc_pim\peripheral\divas\plib_divas.c</file>
-         <hash>af5217b56a84e26c9718fec1d1271330b291abfb1f0164c046f221cba96e8ecd</hash>
-      </entry>
-      <entry>
-         <file>..\src\packs\PIC32CM1216MC00048_DFP\pio\pic32cm1216mc00048.h</file>
-         <hash>09694474ea1ce1fe656c7f799db50802b809384819f5ed4ad77d74b65c430e7d</hash>
-      </entry>
-      <entry>
-         <file>..\src\packs\PIC32CM1216MC00048_DFP\component\hmatrixb.h</file>
-         <hash>51cc9bc35fd92fc2144c14fdcbe985788982139a7d32cd168d3ca78533f5b243</hash>
-      </entry>
-      <entry>
-         <file>..\src\packs\PIC32CM1216MC00048_DFP\component\sercom.h</file>
-         <hash>f525ab018319f96951facf8bc902ff8a58f9908b28887901862179d4de419286</hash>
-      </entry>
-      <entry>
-         <file>..\src\packs\PIC32CM1216MC00048_DFP\instance\mtb.h</file>
-         <hash>1217fa61669be4cb263788b2b7ece624ddba65b6118c7e06eba0220e9fbd7d36</hash>
-      </entry>
-      <entry>
-         <file>..\src\config\mclv2_pic32_cm_mc_pim\peripheral\port\plib_port.h</file>
-         <hash>2768740b7da407ff650c71178cc5925825c2083abb78de9c1648dbdda2931124</hash>
-      </entry>
-      <entry>
-         <file>..\src\packs\PIC32CM1216MC00048_DFP\component\rtc.h</file>
-         <hash>320588b17cd210682b2a1afd17c9bc629c35e4c5954a5d991bd287a4ab6eed66</hash>
-      </entry>
-      <entry>
-         <file>..\src\config\mclv2_pic32_cm_mc_pim\peripheral\port\plib_port.c</file>
-         <hash>4ff38f4fb8458754dbaf516736d05f011cef8f95f0548633f893d42a4339570c</hash>
-      </entry>
-      <entry>
-         <file>..\src\config\mclv2_pic32_cm_mc_pim\peripheral\sercom\usart\plib_sercom_usart_common.h</file>
-         <hash>f19dafabe0928d60dd83d7e19f35889f200e3fbadff09e2f42523d320acf780a</hash>
+         <file>..\src\packs\PIC32CM1216MC00048_DFP\component\divas.h</file>
+         <hash>e9323f5d3a75fa1351ca9061ca1ba31db820dd8280bb353e6e30fd4998ae317a</hash>
       </entry>
       <entry>
          <file>..\src\packs\PIC32CM1216MC00048_DFP\component\dmac.h</file>
          <hash>0a410df096a111234073ee88e4c1269ed465bd5f837a5cd738470ce40649b0c6</hash>
       </entry>
       <entry>
-         <file>..\src\packs\PIC32CM1216MC00048_DFP\component\supc.h</file>
-         <hash>87c2482a7110d1ffad09b4ae3e2dfc03455f7bd247cbdd801dcbecf1daac5a1a</hash>
+         <file>..\src\packs\PIC32CM1216MC00048_DFP\component\dsu.h</file>
+         <hash>7714a7a85991b518889139ecc6b4eb930b60949dce880739eaf862733fec69f6</hash>
       </entry>
       <entry>
-         <file>..\src\packs\PIC32CM1216MC00048_DFP\component\pm.h</file>
-         <hash>0e75271813a33badccda127b2d112fff0dbceb1ba7965274b5685901cf3ba438</hash>
+         <file>..\src\packs\PIC32CM1216MC00048_DFP\component\eic.h</file>
+         <hash>4cc6abb4e084667edd4db6637fe5d2ee8fad5a897c2262375f27f6b55265a349</hash>
       </entry>
       <entry>
-         <file>..\src\packs\PIC32CM1216MC00048_DFP\instance\tc4.h</file>
-         <hash>bd2942c24a821ad52a09b71c4a67cee551c81b9130816797354b60588a54fdd5</hash>
+         <file>..\src\packs\PIC32CM1216MC00048_DFP\component\evsys.h</file>
+         <hash>30895f7533c2b5158dd2c87c7317fd763e1f5d40b033441d2ad532ec05ebe9c3</hash>
       </entry>
       <entry>
-         <file>..\src\packs\PIC32CM1216MC00048_DFP\instance\gclk.h</file>
-         <hash>f39d35264142824d94de843cbbb17443aef09f508f1e551af4572122a412389f</hash>
+         <file>..\src\packs\PIC32CM1216MC00048_DFP\component\freqm.h</file>
+         <hash>979361dcebb004200e7e8a3fa82bb991e5669701a125d899e01bd01e40c37333</hash>
       </entry>
       <entry>
-         <file>..\src\packs\PIC32CM1216MC00048_DFP\instance\oscctrl.h</file>
-         <hash>c59a1d44ece4ac8ff09f199d10abb7fa970ed14aa88566447b74496b359d28cb</hash>
+         <file>..\src\packs\PIC32CM1216MC00048_DFP\component\fuses.h</file>
+         <hash>1f5e57db029e0fd7a245a2cf1f5f96d444bfc64045fd19107c8b864b8c593612</hash>
       </entry>
       <entry>
-         <file>..\src\config\mclv2_pic32_cm_mc_pim\initialization.c</file>
-         <hash>6c4d27b6c4f97b87a4206e1f51014bf82c45abe5901aff8ab07b23aaf2b23599</hash>
+         <file>..\src\packs\PIC32CM1216MC00048_DFP\component\gclk.h</file>
+         <hash>230192de2a8c12e49ac305fe00089b98ec76c4bf934d246d33998d821d0bd5f6</hash>
       </entry>
       <entry>
-         <file>..\src\packs\PIC32CM1216MC00048_DFP\instance\tc0.h</file>
-         <hash>d83557df91740bdf453b587651c6886b9602b718851da752303eed7031985a51</hash>
+         <file>..\src\packs\PIC32CM1216MC00048_DFP\component\hmatrixb.h</file>
+         <hash>51cc9bc35fd92fc2144c14fdcbe985788982139a7d32cd168d3ca78533f5b243</hash>
+      </entry>
+      <entry>
+         <file>..\src\packs\PIC32CM1216MC00048_DFP\component\mclk.h</file>
+         <hash>4c679852372c40be2d1d0b695c0b6f052adb6c6a25cfa5ef79a482184ccb0e9a</hash>
+      </entry>
+      <entry>
+         <file>..\src\packs\PIC32CM1216MC00048_DFP\component\mtb.h</file>
+         <hash>d3ae3e83d180cbbdf0a0d621bffec4f94077ccfdae0a070371807775518d4479</hash>
+      </entry>
+      <entry>
+         <file>..\src\packs\PIC32CM1216MC00048_DFP\component\nvmctrl.h</file>
+         <hash>98399189510585da3e90b10b33dbb86771431deacba83260e78457f07f3d8309</hash>
+      </entry>
+      <entry>
+         <file>..\src\packs\PIC32CM1216MC00048_DFP\component\osc32kctrl.h</file>
+         <hash>7300b2e2a1351c74f3c15f0e24d1026072311b6a938d7b03dc06a5b9b973db72</hash>
       </entry>
       <entry>
          <file>..\src\packs\PIC32CM1216MC00048_DFP\component\oscctrl.h</file>
          <hash>2cd874d1d8e31f0208998c29c8b47616ab2835d67471a9bacf582da0007bfd0d</hash>
       </entry>
       <entry>
-         <file>..\src\config\mclv2_pic32_cm_mc_pim\X2CCode\X2CScope\src\X2CScopeCommunication.c</file>
-         <hash>6bfc6d51bac56e177fcda3920e68aae7d87cc7cff77e8a24a9927622eef7cdd8</hash>
+         <file>..\src\packs\PIC32CM1216MC00048_DFP\component\pac.h</file>
+         <hash>b2a68e834a76af3506eedf78c4cba515da1ab8eb3745c71527d51ab413a116c4</hash>
+      </entry>
+      <entry>
+         <file>..\src\packs\PIC32CM1216MC00048_DFP\component\pdec.h</file>
+         <hash>eb75160ed1860caee40a9c6bc1e3fefc60df0eb604146003a1c114db8df166ef</hash>
+      </entry>
+      <entry>
+         <file>..\src\packs\PIC32CM1216MC00048_DFP\component\pm.h</file>
+         <hash>0e75271813a33badccda127b2d112fff0dbceb1ba7965274b5685901cf3ba438</hash>
+      </entry>
+      <entry>
+         <file>..\src\packs\PIC32CM1216MC00048_DFP\component\port.h</file>
+         <hash>e54a4fa3040dbb9047b9188ed401886acff156720049201535c71bbd6c7272d5</hash>
+      </entry>
+      <entry>
+         <file>..\src\packs\PIC32CM1216MC00048_DFP\component\rstc.h</file>
+         <hash>5d471e67badff6cf69b12d5b02a507da4ec06d36970a18e5c95f9a2e9171cd19</hash>
+      </entry>
+      <entry>
+         <file>..\src\packs\PIC32CM1216MC00048_DFP\component\rtc.h</file>
+         <hash>320588b17cd210682b2a1afd17c9bc629c35e4c5954a5d991bd287a4ab6eed66</hash>
+      </entry>
+      <entry>
+         <file>..\src\packs\PIC32CM1216MC00048_DFP\component\sdadc.h</file>
+         <hash>b54fdf1f66d061e9974d0713e1f4c57fea68f619843ddd1a3a4435891d9df080</hash>
+      </entry>
+      <entry>
+         <file>..\src\packs\PIC32CM1216MC00048_DFP\component\sercom.h</file>
+         <hash>f525ab018319f96951facf8bc902ff8a58f9908b28887901862179d4de419286</hash>
+      </entry>
+      <entry>
+         <file>..\src\packs\PIC32CM1216MC00048_DFP\component\supc.h</file>
+         <hash>87c2482a7110d1ffad09b4ae3e2dfc03455f7bd247cbdd801dcbecf1daac5a1a</hash>
+      </entry>
+      <entry>
+         <file>..\src\packs\PIC32CM1216MC00048_DFP\component\tc.h</file>
+         <hash>fa069e4d9e830308cb206ad967fb83b7dfd71d1e0ad842f7bb505dbe99f8b15b</hash>
+      </entry>
+      <entry>
+         <file>..\src\packs\PIC32CM1216MC00048_DFP\component\tcc.h</file>
+         <hash>0d7901b645f0aff26f5476e0a2feb8dea06cb508c8c1c75c9de14ee71687681f</hash>
+      </entry>
+      <entry>
+         <file>..\src\packs\PIC32CM1216MC00048_DFP\component\tsens.h</file>
+         <hash>44a32c2f93bca4214a675d52df5f2ce165a081e1f1622ad206afb1748b1ebdfb</hash>
+      </entry>
+      <entry>
+         <file>..\src\packs\PIC32CM1216MC00048_DFP\component\wdt.h</file>
+         <hash>62b857038195bf53fc26cb83538a0481885f1fe0fb446b69dc1007071e6185f4</hash>
+      </entry>
+      <entry>
+         <file>..\src\packs\PIC32CM1216MC00048_DFP\instance\ac.h</file>
+         <hash>ecf14f3ff5044dd8696202a28b208a76d80fe7035394c6f1bf2a368e6787b100</hash>
+      </entry>
+      <entry>
+         <file>..\src\packs\PIC32CM1216MC00048_DFP\instance\adc0.h</file>
+         <hash>1f691c3d4df4b0a3cb624c601f6399476d15b6037c7f52ff68a1d3f9c09d1eb8</hash>
+      </entry>
+      <entry>
+         <file>..\src\packs\PIC32CM1216MC00048_DFP\instance\adc1.h</file>
+         <hash>5e81f7b35965cc5bbba89ee364a273716d0ab6f27de7a970d09b638f2d5a29d0</hash>
+      </entry>
+      <entry>
+         <file>..\src\packs\PIC32CM1216MC00048_DFP\instance\ccl.h</file>
+         <hash>0d9ae303b377d6e1e68a0a0638d2dc15613b1786521217eb6690c97c8294479e</hash>
+      </entry>
+      <entry>
+         <file>..\src\packs\PIC32CM1216MC00048_DFP\instance\dac.h</file>
+         <hash>91df3ef0d687660a3cb67b366310c9a10722d530833916092cfb3874387be26c</hash>
+      </entry>
+      <entry>
+         <file>..\src\packs\PIC32CM1216MC00048_DFP\instance\divas.h</file>
+         <hash>583777ae721feddc275ecc2966bcaa5f90f13ae4e71df41103de3f25b575b749</hash>
+      </entry>
+      <entry>
+         <file>..\src\packs\PIC32CM1216MC00048_DFP\instance\dmac.h</file>
+         <hash>23c414464ad2f8ef868a759e3f67e18850a88b75703e0343b0e1c1e489a28d0e</hash>
       </entry>
       <entry>
          <file>..\src\packs\PIC32CM1216MC00048_DFP\instance\dsu.h</file>
          <hash>c571598e7608be865d33d4183e0b84c603ab37a2f56cd1ffc6b76e04f41e7944</hash>
       </entry>
       <entry>
-         <file>..\src\config\mclv2_pic32_cm_mc_pim\libc_syscalls.c</file>
-         <hash>df1be7627b968b650c3389237792bf3bf4f4318a64a06a4bfe7b76730551c252</hash>
+         <file>..\src\packs\PIC32CM1216MC00048_DFP\instance\eic.h</file>
+         <hash>de8dcb35027e60c53742659d4b7a51966fe52b7f868b2fc6b051d79911e15fc1</hash>
+      </entry>
+      <entry>
+         <file>..\src\packs\PIC32CM1216MC00048_DFP\instance\evsys.h</file>
+         <hash>4ac753008e6f326e66e82b9be066be437a67259c4bc1f6d1a286989b68c72686</hash>
+      </entry>
+      <entry>
+         <file>..\src\packs\PIC32CM1216MC00048_DFP\instance\freqm.h</file>
+         <hash>df29b0010b83cf7e73bfbdb56424cad2850c374d4f19b2a34357a06415f0aa55</hash>
+      </entry>
+      <entry>
+         <file>..\src\packs\PIC32CM1216MC00048_DFP\instance\fuses.h</file>
+         <hash>626ac82601517ac456d835322fa4355e799f0d7065b74b4c6bdc8428023544d6</hash>
+      </entry>
+      <entry>
+         <file>..\src\packs\PIC32CM1216MC00048_DFP\instance\gclk.h</file>
+         <hash>f39d35264142824d94de843cbbb17443aef09f508f1e551af4572122a412389f</hash>
+      </entry>
+      <entry>
+         <file>..\src\packs\PIC32CM1216MC00048_DFP\instance\hmatrixhs.h</file>
+         <hash>d4c1c214580b09dd5f88c22105fdb319b7c79c54605dc336498e14a1268129a1</hash>
+      </entry>
+      <entry>
+         <file>..\src\packs\PIC32CM1216MC00048_DFP\instance\mclk.h</file>
+         <hash>c3fa257b366f291b72b6e57ca07cfd0fc094ba47a109b7bac98a8de7f36a760c</hash>
+      </entry>
+      <entry>
+         <file>..\src\packs\PIC32CM1216MC00048_DFP\instance\mtb.h</file>
+         <hash>1217fa61669be4cb263788b2b7ece624ddba65b6118c7e06eba0220e9fbd7d36</hash>
+      </entry>
+      <entry>
+         <file>..\src\packs\PIC32CM1216MC00048_DFP\instance\nvmctrl.h</file>
+         <hash>dacb40b9a60c6f19a98d2a1c22754ff5c25d22309102d2c285116cccb22c9601</hash>
+      </entry>
+      <entry>
+         <file>..\src\packs\PIC32CM1216MC00048_DFP\instance\osc32kctrl.h</file>
+         <hash>706cc176a76dfad658293c43d31322e79bc4cd5ac10f8844286f80d01e9b3eeb</hash>
+      </entry>
+      <entry>
+         <file>..\src\packs\PIC32CM1216MC00048_DFP\instance\oscctrl.h</file>
+         <hash>c59a1d44ece4ac8ff09f199d10abb7fa970ed14aa88566447b74496b359d28cb</hash>
+      </entry>
+      <entry>
+         <file>..\src\packs\PIC32CM1216MC00048_DFP\instance\pac.h</file>
+         <hash>4045585da0f8e0f120c9fc4fe0c44439a4464b1bd374a9dbb93d2fedf5ab3d1b</hash>
+      </entry>
+      <entry>
+         <file>..\src\packs\PIC32CM1216MC00048_DFP\instance\pdec.h</file>
+         <hash>d256fe1bc7a065973e8a48060f57366e15a838518ed99f8677f911ae74ffeb29</hash>
+      </entry>
+      <entry>
+         <file>..\src\packs\PIC32CM1216MC00048_DFP\instance\pm.h</file>
+         <hash>11417d50f303334ccb6c1a7241f85f030e5ae60f2d0aabb941a05f811c1be2c6</hash>
+      </entry>
+      <entry>
+         <file>..\src\packs\PIC32CM1216MC00048_DFP\instance\port.h</file>
+         <hash>81c97f215a6f9447c82f484d337c9d911cc2c0b7049e05a6900639a3b7fa01f0</hash>
+      </entry>
+      <entry>
+         <file>..\src\packs\PIC32CM1216MC00048_DFP\instance\rstc.h</file>
+         <hash>87e820bbd78847682fd694afd673f66a6401abcc82e107529e06e64b584e9681</hash>
+      </entry>
+      <entry>
+         <file>..\src\packs\PIC32CM1216MC00048_DFP\instance\rtc.h</file>
+         <hash>398b977f1a39d551aba287228383fadb2e6fe281b73497b9fcdf6f3131cb8ec8</hash>
+      </entry>
+      <entry>
+         <file>..\src\packs\PIC32CM1216MC00048_DFP\instance\sdadc.h</file>
+         <hash>171dd2f6ebdd86221925324837c225fbdbe175bdc5747bdf9006f879ff3f51aa</hash>
+      </entry>
+      <entry>
+         <file>..\src\packs\PIC32CM1216MC00048_DFP\instance\sercom0.h</file>
+         <hash>995eb93ba5195c8f161f05cf5ae33da9bf26d4f63af06986da807fa28a6b391b</hash>
+      </entry>
+      <entry>
+         <file>..\src\packs\PIC32CM1216MC00048_DFP\instance\sercom1.h</file>
+         <hash>92bcc28bde2fb52e4eaf46e156fc7b85e892a94e2fa35d698f4acd2990d2a22e</hash>
+      </entry>
+      <entry>
+         <file>..\src\packs\PIC32CM1216MC00048_DFP\instance\sercom2.h</file>
+         <hash>2a785ee636df96a1945fbe996088e6559aa4dfaea5b5c7e153cb01b0351b0f75</hash>
+      </entry>
+      <entry>
+         <file>..\src\packs\PIC32CM1216MC00048_DFP\instance\sercom3.h</file>
+         <hash>0e29b57c244b1753cf2f1b83542d759e7a8dff05f5390b0c40475c0448babc25</hash>
+      </entry>
+      <entry>
+         <file>..\src\packs\PIC32CM1216MC00048_DFP\instance\supc.h</file>
+         <hash>0316dc3927c25e1890dfb403ac2e816ed6b3ea5bcd7e9d627f7e4d653927a46b</hash>
+      </entry>
+      <entry>
+         <file>..\src\packs\PIC32CM1216MC00048_DFP\instance\tc0.h</file>
+         <hash>d83557df91740bdf453b587651c6886b9602b718851da752303eed7031985a51</hash>
+      </entry>
+      <entry>
+         <file>..\src\packs\PIC32CM1216MC00048_DFP\instance\tc1.h</file>
+         <hash>48c8d3c7d5833eb450e0be21b6626ce141bddce7dae7188413baff3585beb816</hash>
+      </entry>
+      <entry>
+         <file>..\src\packs\PIC32CM1216MC00048_DFP\instance\tc2.h</file>
+         <hash>e6dc7b0c0f62a1096cb394d488087076953631c888d96938a2a9ee83aae06edd</hash>
+      </entry>
+      <entry>
+         <file>..\src\packs\PIC32CM1216MC00048_DFP\instance\tc3.h</file>
+         <hash>14f5be35bbaea27ef30bbfef17b504f1d47ab1f98a51513ed03b7bc209e2bc35</hash>
+      </entry>
+      <entry>
+         <file>..\src\packs\PIC32CM1216MC00048_DFP\instance\tc4.h</file>
+         <hash>bd2942c24a821ad52a09b71c4a67cee551c81b9130816797354b60588a54fdd5</hash>
+      </entry>
+      <entry>
+         <file>..\src\packs\PIC32CM1216MC00048_DFP\instance\tcc0.h</file>
+         <hash>a7d9495fe3fe502c5e3e2d929ebade5037665e15acd2f0b28be85ca2b0924c68</hash>
+      </entry>
+      <entry>
+         <file>..\src\packs\PIC32CM1216MC00048_DFP\instance\tcc1.h</file>
+         <hash>647570cc815658bea31026b32db42fc3b0943a24b62a217c0b4c52095e1afad4</hash>
+      </entry>
+      <entry>
+         <file>..\src\packs\PIC32CM1216MC00048_DFP\instance\tcc2.h</file>
+         <hash>4690e17a6a14bf907ae1a0d0c40b21a57c14a6962f3ff45628200ea399abcfc9</hash>
+      </entry>
+      <entry>
+         <file>..\src\packs\PIC32CM1216MC00048_DFP\instance\tsens.h</file>
+         <hash>f002748b8a0a7f49a7c596f909ea4c23fb39919a35177b05025b451421c2a770</hash>
+      </entry>
+      <entry>
+         <file>..\src\packs\PIC32CM1216MC00048_DFP\instance\wdt.h</file>
+         <hash>40b4f18f047867e976e11caec6141c48c9d9999ca2cfb03d446ca6b3446202e7</hash>
+      </entry>
+      <entry>
+         <file>..\src\packs\PIC32CM1216MC00048_DFP\pic32cm1216mc00048.h</file>
+         <hash>7bc01b486cbefb6064c9f523b064f3fb7424f9531343c6b0793cb62afde2ef8b</hash>
+      </entry>
+      <entry>
+         <file>..\src\packs\PIC32CM1216MC00048_DFP\pio\pic32cm1216mc00048.h</file>
+         <hash>09694474ea1ce1fe656c7f799db50802b809384819f5ed4ad77d74b65c430e7d</hash>
       </entry>
    </generatedFileHashHistoryMap>
 </config>

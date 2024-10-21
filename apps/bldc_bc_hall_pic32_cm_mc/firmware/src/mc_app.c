@@ -288,7 +288,7 @@ void __ramfunc__ ADC_ISR(ADC_STATUS status, uintptr_t context)
 void ADC_ISR(ADC_STATUS status, uintptr_t context)
 #endif
 {
-    X2CScope_Update();
+    X2Cscope_Update();
     /* Read the ADC result value */
     Motor_BCParams.speed_ref_pot = ADC1_ConversionResultGet();
      

@@ -49,8 +49,8 @@
 #include <stddef.h>
 #include <stdbool.h>
 #include "peripheral/sercom/usart/plib_sercom3_usart.h"
-#include "X2CCode/X2CScope/inc/X2CScope.h"
 #include "peripheral/nvmctrl/plib_nvmctrl.h"
+#include "X2Cscope.h"
 #include "peripheral/evsys/plib_evsys.h"
 #include "peripheral/port/plib_port.h"
 #include "peripheral/clock/plib_clock.h"
