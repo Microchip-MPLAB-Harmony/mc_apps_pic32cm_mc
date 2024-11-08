@@ -29,16 +29,24 @@ notes and licensing information.
 | Folder     | Description                                               |
 |------------|-----------------------------------------------------------|
 | apps       | Demonstration applications for Motor Control              |
-| docs       | Contains documentation in html format for offline viewing (to be used only after cloning this repository onto a local machine). Use [github pages](https://microchip-mplab-harmony.github.io/mc_apps_pic32cm_mc/) of this repository for viewing it online.                   |
+|||
 
+## Documentation
+
+Click [here](https://onlinedocs.microchip.com/v2/keyword-lookup?keyword=MC_APPS_PIC32CM_MC_INTRODUCTION&redirect=true) to view the online documentation of code examples hosted in this repository.
+
+To view the documentation offline, follow these steps:
+ - Download the publication as a zip file from [here](https://onlinedocs.microchip.com/download/GUID-0F322B05-7084-4AFC-AFE1-790B85B05187?type=webhelp).
+ - Extract the zip file into a folder.
+ - Navigate to the folder and open **index.html** in a web browser of your choice.
 
 ## QSpin Example projects
 The following example projects were created using Harmony QSpin Tool. For more details refer [motor_control repository](https://github.com/Microchip-MPLAB-Harmony/motor_control)
 
 | Name | Description|Control Board|Inverter Board|
 |:-----|:-----------|:------------|:-------------|
- [PMSM FOC using PLL Estimator](apps/pmsm_foc_pll_estimator_pic32cm_mc/readme.md)| Sensorless Field Oriented Control of PMSM using PLL estimator  | [PIC32CM MC00 Motor Control DIM](https://www.microchip.com/en-us/development-tool/ev61e63a)| [MCLV-48V-300W](https://www.microchip.com/en-us/development-tool/ev18h47a) |
-|[PMSM FOC using Reduced Order Luenberger Observer](apps/pmsm_foc_rolo_pic32_cm_mc/readme.md)| Sensorless Field Oriented Control of PMSM using Reduced Order Luenberger Observer (ROLO) | [PIC32CM MC00 Motor Control DIM](https://www.microchip.com/en-us/development-tool/ev61e63a)| [MCLV-48V-300W](https://www.microchip.com/en-us/development-tool/ev18h47a) |
+ [PMSM FOC using PLL Estimator](https://onlinedocs.microchip.com/v2/keyword-lookup?keyword=MH3_pic32cm_mc_apps_pll_estimator&redirect=true)| Sensorless Field Oriented Control of PMSM using PLL estimator  | [PIC32CM MC00 Motor Control DIM](https://www.microchip.com/en-us/development-tool/ev61e63a)| [MCLV-48V-300W](https://www.microchip.com/en-us/development-tool/ev18h47a) |
+|[PMSM FOC using Reduced Order Luenberger Observer](https://onlinedocs.microchip.com/v2/keyword-lookup?keyword=MC_APPS_PIC32CM_MC_PMSM_FOC_USING_REDUCED_ORDER_LUENBERGER_OBSERVER&redirect=true)| Sensorless Field Oriented Control of PMSM using Reduced Order Luenberger Observer (ROLO) | [PIC32CM MC00 Motor Control DIM](https://www.microchip.com/en-us/development-tool/ev61e63a)| [MCLV-48V-300W](https://www.microchip.com/en-us/development-tool/ev18h47a) |
 
 ## Standalone ( Non-QSpin ) Motor Control Examples
 
@@ -47,9 +55,9 @@ These applications contain algorithm code and peripherals are configured using M
 
 | Name | Description|Control Board|Inverter Board|
 |:-----|:-----------|:------------|:-------------|
- | [BLDC Block Commutation using Hall Sensors](apps/bldc_bc_hall_pic32_cm_mc/readme.md) | Block Commutation Control of BLDC motors using Hall Sensors |[PIC32CM MC00 Motor Control Plug-In-Module](https://www.microchip.com/developmenttools/ProductDetails/EV94F66A) |[dsPICDEM™ MCLV-2 Support](https://www.microchip.com/DevelopmentTools/ProductDetails/DM330021-2) |
-| [ACIM Open Loop V/Hz](apps/acim_vhz_pic32_cm_mc/readme.md) | Open Loop V/Hz Control of ACIM |[PIC32CM MC00 Motor Control Plug-In-Module](https://www.microchip.com/developmenttools/ProductDetails/EV94F66A) |[dsPICDEM™ MCHV-3 Support](https://www.microchip.com/developmenttools/ProductDetails/dm330023-3)|
- | [ BLDC sensorless Block Commutation with BEMF zero crossing detection](apps/bldc_bc_sensorless_pic32_cm_mc/readme.md) | Block Commutation Control of BLDC motors using Hall Sensors | [PIC32CM MC00 Motor Control DIM](https://www.microchip.com/en-us/development-tool/ev61e63a)| [MCLV-48V-300W](https://www.microchip.com/en-us/development-tool/ev18h47a) |
+ | [BLDC Block Commutation using Hall Sensors](https://onlinedocs.microchip.com/v2/keyword-lookup?keyword=MC_APPS_PIC32CM_MC_BLDC_BLOCK_COMMUTATION_HALL_SENSOR&redirect=true) | Block Commutation Control of BLDC motors using Hall Sensors |[PIC32CM MC00 Motor Control Plug-In-Module](https://www.microchip.com/developmenttools/ProductDetails/EV94F66A) |[dsPICDEM™ MCLV-2 Support](https://www.microchip.com/DevelopmentTools/ProductDetails/DM330021-2) |
+| [ACIM Open Loop V/Hz](https://onlinedocs.microchip.com/v2/keyword-lookup?keyword=MC_APPS_PIC32CM_MC_ACIM_VHZ_CONTROL&redirect=true) | Open Loop V/Hz Control of ACIM |[PIC32CM MC00 Motor Control Plug-In-Module](https://www.microchip.com/developmenttools/ProductDetails/EV94F66A) |[dsPICDEM™ MCHV-3 Support](https://www.microchip.com/developmenttools/ProductDetails/dm330023-3)|
+ | [ BLDC sensorless Block Commutation with BEMF zero crossing detection](https://onlinedocs.microchip.com/v2/keyword-lookup?keyword=MC_APPS_PIC32CM_MC_BLDC_BC_SENSORLESS&redirect=true) | Block Commutation Control of BLDC motors using Hall Sensors | [PIC32CM MC00 Motor Control DIM](https://www.microchip.com/en-us/development-tool/ev61e63a)| [MCLV-48V-300W](https://www.microchip.com/en-us/development-tool/ev18h47a) |
 
 [![License](https://img.shields.io/badge/license-Harmony%20license-orange.svg)](https://github.com/Microchip-MPLAB-Harmony/mc/blob/master/mplab_harmony_license.md)
 [![Latest release](https://img.shields.io/github/release/Microchip-MPLAB-Harmony/mc_apps_pic32cm_mc.svg)](https://github.com/Microchip-MPLAB-Harmony/mc/releases/latest)

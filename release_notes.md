@@ -31,6 +31,7 @@ nav_order: 99
 ### Required MPLAB Harmony v3 Modules
 * motor_control v3.11.0
 
+
 ### Development Tools
 
 * [MPLAB X IDE v6.20](https://www.microchip.com/mplab/mplab-x-ide)
