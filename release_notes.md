@@ -30,10 +30,6 @@ nav_order: 99
 
 ### Required MPLAB Harmony v3 Modules
 * motor_control v3.11.0
-* csp v3.19.7
-* bsp v3.20.2
-* x2c v1.5.0
-* harmony-services v1.5.0
 
 ### Development Tools
 
