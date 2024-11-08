@@ -22,4 +22,4 @@ modules:
 - {name: CMSIS_5, type: HARMONY, version: 5.9.0}
 - {name: x2c, type: HARMONY, version: v1.5.0}
 - {name: motor_control, type: HARMONY, version: v3.11.0}
-- {name: bsp, type: HARMONY, version: v3.20.2}
+- {name: bsp, type: HARMONY, version: v3.21.0}
